@@ -269,11 +269,14 @@ We want to rewrite the procedure`cc` so that its second argument is a list of th
 We could then call `cc` as follows:
 
 <!-- verification:example-036 -->
-**Exercise 2.19:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-036" filename="example-036.scm" query="(cc 100 us-coins)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
 (define (first-denomination kinds-of-coins)
   (cond ((= kinds-of-coins 1) 1)
         ((= kinds-of-coins 2) 5)
@@ -299,6 +302,24 @@ We could then call `cc` as follows:
 (define us-coins (list 50 25 10 5 1))
 
 (define uk-coins (list 100 50 20 10 5 2 1))
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (no-more? coins) (null? coins))
+(define (first-denomination coins) (car coins))
+(define (except-first-denomination coins) (cdr coins))
+; TP reference solution: same recurrence, memoized for this integral coin set.
+(define (cc amount coins)
+  (let* ((width (+ amount 1)) (cache (make-vector (* width (+ (length coins) 1)) #f)))
+    (define (count remaining values)
+      (cond ((= remaining 0) 1)
+            ((or (< remaining 0) (null? values)) 0)
+            (else
+             (let* ((key (+ remaining (* width (length values)))) (cached (vector-ref cache key)))
+               (if cached cached
+                   (let ((value (+ (count remaining (cdr values)) (count (- remaining (car values)) values))))
+                     (vector-set! cache key value) value))))))
+    (count amount coins)))
+
 ::::
 :::
 
@@ -358,7 +379,7 @@ then in the body of `g`, `w` will be the list `(1 2 3 4 5 6)`.<sup><a href="#not
 ```
 
 <!-- verification:example-037 -->
-**Exercise 2.20:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-037" filename="example-037.scm" query="(run-example)"}
@@ -372,6 +393,11 @@ then in the body of `g`, `w` will be the list `(1 2 3 4 5 6)`.<sup><a href="#not
   (same-parity 2 3 4 5 6 7)
 )
 )
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (same-parity first . rest)
+  (cons first (filter (lambda (x) (= (modulo x 2) (modulo first 2))) rest)))
+
 ::::
 :::
 
@@ -477,7 +503,7 @@ Now we can give a new definition of `scale-list` in terms of `map`:
 **Exercise 2.21.** The procedure`square-list` takes a list of numbers as argument and returns a list of the squares of those numbers.
 
 <!-- verification:example-040 -->
-**Exercise 2.21:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-040" filename="example-040.scm" query="(square-list (list 1 2 3 4))"}
@@ -494,6 +520,10 @@ Now we can give a new definition of `scale-list` in terms of `map`:
               (cons (square (car things))
                     answer))))
   (iter items nil))
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (square-list items) (map (lambda (x) (* x x)) items))
+
 ::::
 :::
 
@@ -747,7 +777,7 @@ What result is printed by the interpreter in response to evaluating each of the 
 ```
 
 <!-- verification:example-043 -->
-**Exercise 2.27:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-043" filename="example-043.scm" query="(run-example)"}
@@ -762,6 +792,11 @@ What result is printed by the interpreter in response to evaluating each of the 
   (deep-reverse x)
 )
 )
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (deep-reverse tree)
+  (if (pair? tree) (map deep-reverse (reverse tree)) tree))
+
 ::::
 :::
 
@@ -783,7 +818,7 @@ What result is printed by the interpreter in response to evaluating each of the 
 ```
 
 <!-- verification:example-044 -->
-**Exercise 2.28:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-044" filename="example-044.scm" query="(run-example)"}
@@ -799,6 +834,13 @@ What result is printed by the interpreter in response to evaluating each of the 
   (fringe (list x x))
 )
 )
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (fringe tree)
+  (cond ((null? tree) '())
+        ((pair? tree) (append (fringe (car tree)) (fringe (cdr tree))))
+        (else (list tree))))
+
 ::::
 :::
 
@@ -896,7 +938,7 @@ Many tree operations can be implemented by similar combinations of sequence oper
 **Exercise 2.30.** Define a procedure`square-tree` analogous to the `square-list`procedure of exercise 2.21. That is, `square-tree` should behave as follows:
 
 <!-- verification:example-046 -->
-**Exercise 2.30:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-046" filename="example-046.scm" query="(run-example)"}
@@ -912,6 +954,13 @@ Many tree operations can be implemented by similar combinations of sequence oper
        (list 2 (list 3 4) 5)
        (list 6 7)))
 )
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (tree-map f tree)
+  (cond ((null? tree) '())
+        ((pair? tree) (cons (tree-map f (car tree)) (tree-map f (cdr tree))))
+        (else (f tree))))
+
 ::::
 :::
 

@@ -37,7 +37,7 @@ The user requested that corrected source text be retained, with exceptions docum
 | Listings; PDF pages 301, 307, 389, 392, 413, 415, 416, 418, 455, 458, 475, 481, 517, 527–532 | Some comments show literal `\emph{…}` and `{\JS~…~}` formatting commands. | Retain the comment wording and identifiers without exposing these formatting commands. |
 | Procedure annotations; PDF pages 38 and 82 | Some arrow/caret pointers are absent or rendered incorrectly in the PDF. | Preserve the arrow/caret pointers specified by the XML. |
 
-Unresolved cross-references printed as “??” in the PDF remain “??”: no reference has been invented. Interactive support definitions and execution notices remain identified as TP additions. The separate execution audit still records examples that do not run or do not reproduce the printed result; text conformity does not make those execution failures pass.
+Unresolved cross-references printed as “??” in the PDF remain “??”: no reference has been invented. Interactive support definitions and execution notices remain identified as TP additions. The separate execution audit records actual interpreter results, adaptations, expected errors and any remaining execution differences; text conformity is not an execution check.
 
 ## Browser verification
 

@@ -257,11 +257,14 @@ will produce a completely separate account object, which maintains its own local
 ```
 
 <!-- verification:example-062 -->
-**Exercise 3.1:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-062" filename="example-062.scm" query="(run-example)"}
 :::: script {type="tp/scheme"}
+(define (make-accumulator sum)
+  (lambda (value) (set! sum (+ sum value)) sum))
+
 (define A (make-accumulator 5))
 
 ; Run the successive queries in the order shown in the book.
@@ -271,6 +274,11 @@ will produce a completely separate account object, which maintains its own local
   (A 10)
 )
 )
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (make-accumulator sum)
+  (lambda (value) (set! sum (+ sum value)) sum))
+
 ::::
 :::
 
@@ -291,71 +299,20 @@ will produce a completely separate account object, which maintains its own local
 ```
 
 <!-- verification:example-063 -->
-**Exercise 3.2:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** TP reference implementation of make-monitored; use the Scheme numeric square root, not the symbolic derivative example. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-063" filename="example-063.scm" query="(run-example)"}
+::: tp-scheme {mode="simple" id="example-063" filename="example-063.scm" query="(begin (write (s 100)) (newline) (s 'how-many-calls?))"}
 :::: script {type="tp/scheme"}
-(define tolerance 0.00001)
-
-(define (fixed-point f first-guess)
-  (define (close-enough? v1 v2)
-    (< (abs (- v1 v2)) tolerance))
-  (define (try guess)
-    (let ((next (f guess)))
-      (if (close-enough? guess next)
-          next
-          (try next))))
-  (try first-guess))
-
-(define (fixed-point-of-transform g transform guess)
-  (fixed-point (transform g) guess))
-
-(define (square y) (* y y))
-
-(define (variable? x) (symbol? x))
-
-(define (same-variable? v1 v2)
-  (and (variable? v1) (variable? v2) (eq? v1 v2)))
-
-; Restored from the supplied PDF, page 266.
-(define (make-table)
-(list '*table*))
-
-; Restored from the supplied PDF, page 269.
-(define operation-table (make-table))
-
-; Restored from the supplied PDF, page 269.
-(define get (operation-table 'lookup-proc))
-
-(define (operator exp) (car exp))
-
-(define (operands exp) (cdr exp))
-
-(define (deriv exp var)
-  (cond ((number? exp) 0)
-        ((variable? exp) (if (same-variable? exp var) 1 0))
-        (else ((get 'deriv (operator exp)) (operands exp)
-                                           var))))
-
-(define (newton-transform g)
-  (lambda (x)
-    (- x (/ (g x) ((deriv g) x)))))
-
-(define (sqrt x)
-  (fixed-point-of-transform (lambda (y) (- (square y) x))
-                            newton-transform
-                            1.0))
+; TP adaptation: TP reference implementation of make-monitored; use the Scheme numeric square root, not the symbolic derivative example.
+(define (make-monitored f)
+  (let ((count 0))
+    (lambda (x)
+      (cond ((eq? x 'how-many-calls?) count)
+            ((eq? x 'reset-count) (set! count 0))
+            (else (set! count (+ count 1)) (f x))))))
 
 (define s (make-monitored sqrt))
-
-; Run the successive queries in the order shown in the book.
-(define (run-example)
-  (begin
-  (let ((result (s 100))) (if (not (eq? result #void)) (begin (write result) (newline))))
-  (s 'how-many-calls?)
-)
-)
 ::::
 :::
 
@@ -378,36 +335,26 @@ will produce a completely separate account object, which maintains its own local
 The resulting account object should process a request only if it is accompanied by the password with which the account was created, and should otherwise return a complaint:
 
 <!-- verification:example-064 -->
-**Exercise 3.3:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** TP reference implementation of the password-protected account exercise. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-064" filename="example-064.scm" query="(run-example)"}
+::: tp-scheme {mode="simple" id="example-064" filename="example-064.scm" query="(begin (write ((acc 'secret-password 'withdraw) 40)) (newline) ((acc 'some-other-password 'deposit) 50))"}
 :::: script {type="tp/scheme"}
-(define (make-account balance)
-   (define (withdraw amount)
-      (if (>= balance amount)
-         (begin (set! balance (- balance amount))
-                balance)
-            "Insufficient funds"))
-   (define (deposit amount)
-      (set! balance (+ balance amount))
-      balance)
-   (define (dispatch m)
-      (cond ((eq? m 'withdraw) withdraw)
-            ((eq? m 'deposit) deposit)
-            (else (error "Unknown request - - MAKE-ACCOUNT"
-                   m))))
-   dispatch)
+; TP adaptation: TP reference implementation of the password-protected account exercise.
+(define (make-account balance password)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount)) balance)
+        "Insufficient funds"))
+  (define (deposit amount) (set! balance (+ balance amount)) balance)
+  (lambda (supplied operation)
+    (if (not (eq? supplied password))
+        (lambda (amount) "Incorrect password")
+        (cond ((eq? operation 'withdraw) withdraw)
+              ((eq? operation 'deposit) deposit)
+              (else (error "Unknown request" operation))))))
 
 (define acc (make-account 100 'secret-password))
-
-; Run the successive queries in the order shown in the book.
-(define (run-example)
-  (begin
-  (let ((result ((acc 'secret-password 'withdraw) 40))) (if (not (eq? result #void)) (begin (write result) (newline))))
-  ((acc 'some-other-password 'deposit) 50)
-)
-)
 ::::
 :::
 

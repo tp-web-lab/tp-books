@@ -39,6 +39,9 @@ To compute GCDs with this machine, we set the input registers, start the machine
 
 ::: tp-scheme {mode="simple" id="example-111" filename="example-111.scm" query="(run-example)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
 (define (set-contents! register value)
   ((register 'set) value))
 

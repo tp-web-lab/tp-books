@@ -237,7 +237,7 @@ for small values of :latexmath:`dx`. We can express this directly as a procedure
 ```
 
 <!-- verification:example-016 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Same values and structure; Scheme printing, spacing or printed numeric rounding differs. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-016" filename="example-016.scm" query="(run-example)"}
@@ -1114,7 +1114,7 @@ to approximate zeros of the cubic :latexmath:`x^3 +ax^2 +bx +c`.
 **Exercise 1.43.** If :latexmath:`f` is a numerical function and :latexmath:`n` is a positive integer, then we can form the :latexmath:`n`th repeated application of :latexmath:`f`, which is defined to be the function whose value at :latexmath:`x` is :latexmath:`f(f(\ldots(f(x))\ldots))`. For example, if :latexmath:`f` is the function :latexmath:`x \mapsto x+1`, then the :latexmath:`n`th repeated application of :latexmath:`f` is the function :latexmath:`x \mapsto x+n`. If :latexmath:`f` is the operation of squaring a number, then the :latexmath:`n`th repeated application of :latexmath:`f` is the function that raises its argument to the :latexmath:`2^n`th power. Write a procedure that takes as inputs a procedure that computes :latexmath:`f` and a positive integer :latexmath:`n` and returns the procedure that computes the :latexmath:`n`th repeated application of :latexmath:`f`. Your procedure should be able to be used as follows:
 
 <!-- verification:example-024 -->
-**Exercise 1.43:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Editable reference implementation supplied by TP for this exercise; not original book text. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-024" filename="example-024.scm" query="((repeated square 2) 5)"}
@@ -1124,6 +1124,12 @@ to approximate zeros of the cubic :latexmath:`x^3 +ax^2 +bx +c`.
 (define (square x) (* x x))
 
 ;; repeated to be written by student; see EXERCISE 1.43
+
+; TP adaptation: Editable reference implementation supplied by TP for this exercise; not original book text.
+(define (repeated f n)
+  (if (= n 0) (lambda (x) x)
+      (lambda (x) (f ((repeated f (- n 1)) x)))))
+
 ::::
 :::
 

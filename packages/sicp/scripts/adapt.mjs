@@ -1,3 +1,4 @@
+import {adaptExecution} from './execution-adaptations.mjs';
 import {mathMarkup} from './math-markup.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
@@ -130,11 +131,14 @@ for(const page of pages){
   const queries=group.flatMap(p=>forms(p.input.code).filter(x=>!definitionName(x)));
   let q=queries.length===1?queries[0]:`(begin\n${queries.slice(0,-1).map(x=>`  (let ((result ${x})) (if (not (eq? result #void)) (begin (write result) (newline))))`).join('\n')}\n  ${queries.at(-1)}\n)`;
   if(q.includes('\n') || (q.includes("'")&&q.includes('"'))){code+='\n\n; Run the successive queries in the order shown in the book.\n(define (run-example)\n  '+q+'\n)';q='(run-example)';}
-  const queryAttribute=q.includes('"')?`'${q}'`:`"${q}"`;
+  let queryAttribute=q.includes('"')?`'${q}'`:`"${q}"`;
   const expected=group.map(p=>p.result.code).join('\n');
   const context=[...source.slice(page.start,group[0].input.start).matchAll(/^(?:#{3,} .+|\*\*Exercise ([0-9.]+)\*\*)/gm)].at(-1);
   const exercise=context?.[1]?.replace(/\.$/,'')??null;
-  const item={id,exercise,page:page.file,line:group[0].input.line,program:code,query:q,expected,pairs:group.length};manifest.unshift(item);
+  const item={id,exercise,page:page.file,line:group[0].input.line,program:code,query:q,expected,pairs:group.length};
+  adaptExecution(item,{definitions,forms,group});code=item.program;q=item.query;
+  if(q.includes("\n")||(q.includes("\"")&&q.includes("'"))){code+="\n(define (run-adapted-example) "+q+")";q="(run-adapted-example)";item.program=code;item.query=q;}
+  queryAttribute=q.includes("\"")?`'${q}'`:`"${q}"`;manifest.unshift(item);
   const replacement=`::: tp-scheme {mode="simple" id="${id}" filename="${id}.scm" query=${queryAttribute}}\n:::: script {type="tp/scheme"}\n${code}\n::::\n:::\n\n<details>\n<summary>Expected result in the source</summary>\n\n\`\`\`text\n${expected}\n\`\`\`\n\n</details>`;
   text=text.slice(0,group[0].input.start-page.start)+replacement+text.slice(group.at(-1).result.end-page.start);
  }
@@ -170,7 +174,7 @@ The initially supplied Markdown was incomplete: its exporter discarded Scheme-sp
 
 Examples with printed results use **tp-scheme in simple mode**, powered by LIPS. Press **Return** in the query field to execute; **Shift+Return** is equivalent. Edited source is reloaded before the query and displays **> Program reloaded.**. Consecutive queries share one interpreter. Dependencies are included in the editable source so that a section can be opened directly. Nothing runs automatically.
 
-The book’s printed result is retained beneath each example. The editable program may include support definitions or a run-example procedure to execute several queries in order; these are TP presentation adaptations, not changes to the authors’ prose. Exercises with missing implementations remain exercises. Embedded evaluators and register-machine transcripts require further adaptations to run directly in LIPS; the [execution audit](audit.md) distinguishes passing results, differences and unresolved cases. Text fidelity and execution compatibility are separate checks. See the [text conformity audit](text-conformity.md) for the comparison of all reading sections and the documented corrections to defects in the PDF.
+The book’s printed result is retained beneath each example. The editable program may include support definitions or a run-example procedure to execute several queries in order; these are TP presentation adaptations, not changes to the authors’ prose. Some interactive exercises include editable TP reference implementations, clearly identified next to the cell. Advanced transcripts include their evaluator or register-machine support; the [execution audit](audit.md) records results, numerical equivalences, intentional errors, adaptations and any unresolved cases. Text fidelity and execution compatibility are separate checks. See the [text conformity audit](text-conformity.md) for the comparison of all reading sections and the documented corrections to defects in the PDF.
 
 ## Attribution
 

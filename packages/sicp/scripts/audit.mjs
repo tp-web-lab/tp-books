@@ -1,11 +1,14 @@
 import {createHash} from 'node:crypto';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,existsSync} from 'node:fs';
 const root=new URL('../',import.meta.url);
 const read=name=>JSON.parse(readFileSync(new URL(name,root)));
 const examples=read('examples.json'),results=read('verification.json');
 for(const r of results){const e=examples.find(e=>e.id===r.id);if(r.signature!==createHash('sha256').update(e.program+'\n'+e.query).digest('hex')){r.status='unverified';r.error='Program changed since verification';}}
 const escape=s=>String(s).replaceAll('|','\\|').replaceAll('\n','<br>');
-const counts=Object.fromEntries(['passed','different','error','unverified'].map(status=>[status,results.filter(r=>r.status===status).length]));
+const counts=Object.fromEntries(['passed','equivalent','exercise-result','expected-error','different','error','unverified'].map(status=>[status,results.filter(r=>r.status===status).length]));
+const browser=existsSync(new URL('browser-verification.json',root))?read('browser-verification.json'):[];
+const browserCurrent=browser.filter(r=>{const e=examples.find(e=>e.id===r.id);return e&&r.signature===createHash('sha256').update(e.program+'\n'+e.query).digest('hex');});
+const browserCounts=Object.fromEntries(['passed','equivalent','exercise-result','expected-error','different','error'].map(status=>[status,browserCurrent.filter(r=>r.status===status).length]));
 const text=`# Adaptation and execution audit
 
 ## Scope
@@ -16,13 +19,34 @@ The 33 source sections (headings # and ##) are preserved as individual pages. Th
 
 Tests use LIPS 1.0.0-beta.23.1, the same version as tp-scheme. Each example runs in an isolated worker. The test records the actual output; the original expected result is never substituted for it.
 
-| Exact output match | Different output | Execution error or time limit |
-| ---: | ---: | ---: |
-| ${counts.passed} | ${counts.different} | ${counts.error} |
+| Matches (whitespace ignored) | Equivalent values / printing | Exercise answers | Intentional error | Different output | Unexpected error / timeout | Not verified after editing |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ${counts.passed} | ${counts.equivalent} | ${counts['exercise-result']} | ${counts['expected-error']} | ${counts.different} | ${counts.error} | ${counts.unverified} |
 
-Differences include numeric formatting, alternative definitions, state mutations and deliberate exercise bugs. An exercise may correctly remain incomplete: its expected output specifies the goal, not a supplied solution. Chapters 4 and 5 include embedded languages and evaluator/VM transcripts that are not directly executable as ordinary LIPS queries. These are unresolved adaptations, not passing demonstrations.
+Scheme whitespace and equivalent quote spellings are normalized. Numeric comparisons allow the book’s printed precision plus floating-point roundoff; all other tokens are preserved. A contradiction deliberately raised by the book is an expected error. Where the book prints a placeholder answer, the test checks an independently specified exercise result. These categories are not exact textual matches.
 
-Unverified after editing: ${counts.unverified}.
+## Execution adaptations
+
+Original prose, exercise instructions and printed results remain unchanged. Editable support code is supplied separately in each interpreter:
+
+- Missing exercise procedures receive explicitly identified TP reference implementations; students may edit or replace them.
+- Constructors and mutable state use the versions and preceding operations from the corresponding passage, rather than unrelated later definitions with the same name.
+- Infinite streams display only the finite prefix printed in the book. The coin-count recurrence caches repeated subproblems for browser performance.
+- Chapters 4 and 5 use the original metacircular, lazy, nondeterministic and query evaluators, register-machine simulator and compiler. Finite drivers replace blocking input loops and replay the state needed by transcript continuations.
+- Closure environments and memoized thunks use message-passing storage in the embedded evaluators to avoid LIPS traversing cyclic value representations. Evaluation, lexical scoping and memoization remain explicit in Scheme.
+- The 1,000-step lazy integral uses the equivalent explicit delay/force solver from section 3.5.4 to avoid the cost of a second interpretation layer. Its recurrence and result are computed, not substituted.
+- Pure Scheme support programs can disable LIPS promise/cycle instrumentation after their cyclic environments have been hidden behind message-passing objects. This is a runtime adaptation, not portable Scheme syntax.
+- The compiler's stack statistics come from the instrumented stack during execution; expected numbers are never injected into the output.
+
+Only the 119 detected interactive cells are covered. Other listings and exercises are not claimed to be executable. Remaining failures, timeouts and browser checks are reported separately below.
+
+## Verification in tp-scheme
+
+The browser check opens the actual generated reading pages in Chromium and runs each light-DOM tp-scheme cell. It checks that the editor source and query equal the verified manifest, then compares the transcript after the query prompt. Program-loading output is retained separately in the recorded transcript. The pinned LIPS runtime is loaded by tp-scheme itself, not replaced by a test mock.
+
+Current source verified in the browser: **${browserCurrent.length}/${examples.length} cells**. Results: ${browserCounts.passed} matching, ${browserCounts.equivalent} equivalent, ${browserCounts['exercise-result']} exercise answers, ${browserCounts['expected-error']} expected-error cases, ${browserCounts.different} differences, ${browserCounts.error} unexpected errors. Missing or stale: **${examples.length-browserCurrent.length}**.
+
+${browserCurrent.filter(r=>['different','error'].includes(r.status)).map(r=>`- ${r.id}: ${escape(r.error??r.reason??r.actual)}`).join('\n')}
 
 ## Text conformity
 
@@ -32,26 +56,28 @@ All 33 reading sections have been compared with the supplied PDF. See the [secti
 
 The initially supplied Markdown is preserved unchanged for provenance, but is not used as the reading text: its exporter omitted Scheme-specific passages. The reading text is regenerated from the original XML at the revision recorded in source/upstream.json, selecting Scheme and PDF-only content. It includes 357 exercises, 338 notes and 95 figure captions. The 620-page original PDF is included, identified by SHA-256 in source/reference.json, and linked from every section. Its title pages and printed index remain available in that PDF.
 
-Text recovery and interpreter compatibility are separate checks. Original prose and printed results are retained; added dependency programs and verification notices are editorial additions. The detailed text conformity report records comparisons against the PDF itself, not only the XML revision. Formula layout, page breaks and typography can differ in the web presentation. Global names can denote different procedures in different sections; the dependency resolver still needs review for the failing examples.
+Text recovery and interpreter compatibility are separate checks. Original prose and printed results are retained; added dependency programs and verification notices are editorial additions. The detailed text conformity report records comparisons against the PDF itself, not only the XML revision. Formula layout, page breaks and typography can differ in the web presentation. Global names can denote different procedures in different sections; adaptations select the appropriate version for each tested cell.
 
 ## Interactive examples
 
 | Example | Context | Result | Detail |
 | --- | --- | --- | --- |
-${results.map(r=>{const e=examples.find(e=>e.id===r.id);return `| [${r.id}](${r.page}#${r.id}) | ${e.exercise?`Exercise ${e.exercise}`:'Demonstration / transcript'} | ${r.status} | ${escape(r.error??(r.status==='different'?`Expected: ${r.expected}\nActual: ${r.actual}`:'Matches the supplied result'))} |`;}).join('\n')}
+${results.map(r=>{const e=examples.find(e=>e.id===r.id);return `| [${r.id}](${r.page}#${r.id}) | ${e.exercise?`Exercise ${e.exercise}`:'Demonstration / transcript'} | ${r.status} | ${escape([r.error, r.status==='different'?`Expected: ${r.expected}\nActual: ${r.actual}`:r.reason, e.adaptation].filter(Boolean).join(' — ') || 'Matches the supplied result')} |`;}).join('\n')}
 
 ## Reproduce
 
-Run pnpm adapt, then node packages/sicp/scripts/verify.mjs and node packages/sicp/scripts/audit.mjs from the repository root. verification.json contains the complete actual and expected outputs. No browser execution is triggered when a page opens.
+Run pnpm adapt, then node packages/sicp/scripts/verify.mjs. With pnpm dev:sicp running, run node packages/sicp/scripts/verify-browser.mjs (BOOK_URL defaults to http://127.0.0.1:4340/), then node packages/sicp/scripts/audit.mjs from the repository root. verification.json contains the complete actual and expected outputs. No browser execution is triggered when a page opens.
 `;
 writeFileSync(new URL('public/docs/audit.md',root),text);
 // Add an explicit notice to examples that are not verified, without hiding the interpreter.
 for(const page of new Set(examples.map(e=>e.page))){
  const path=new URL(`public/docs/${page}`,root);let source=readFileSync(path,'utf8');
  source=source.replace(/<!-- verification:[\s\S]*?<!-- \/verification -->\n\n/g,'');
- for(const r of results.filter(r=>r.page===page&&r.status!=='passed')){
+ for(const r of results.filter(r=>r.page===page&&(r.status!=='passed'||examples.find(e=>e.id===r.id)?.adaptation))){
   const e=examples.find(e=>e.id===r.id);
-  const note=e.exercise?`**Exercise ${e.exercise}:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions.`:r.status==='different'?'**Output comparison:** the current LIPS output differs from the printed result.':'**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration.';
+  const note=['passed','equivalent','exercise-result','expected-error'].includes(r.status)
+    ? `**TP adaptation:** ${e.adaptation??r.reason??'Verified exercise result.'}`
+    : `**Verification ${r.status}:** ${r.error??'The output still differs from the book.'}`;
   const marker=`::: tp-scheme {mode="simple" id="${r.id}"`;
   source=source.replace(marker,`<!-- verification:${r.id} -->\n${note} [Verification details](audit.md).\n<!-- /verification -->\n\n${marker}`);
  }

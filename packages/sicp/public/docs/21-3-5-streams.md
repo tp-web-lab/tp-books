@@ -764,11 +764,29 @@ In our original `sqrt`procedure, we made these guesses be the successive values 
 ```
 
 <!-- verification:example-088 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-088" filename="example-088.scm" query="(display-stream (sqrt-stream 2))"}
+::: tp-scheme {mode="simple" id="example-088" filename="example-088.scm" query="(show-prefix (sqrt-stream 2) 5)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 (define (stream-null? s) (null? s))
 
 (define (stream-car stream) (car stream))
@@ -811,6 +829,23 @@ In our original `sqrt`procedure, we made these guesses be the successive values 
                                (sqrt-improve guess x))
                              guesses)))
   guesses)
+
+; TP adaptation: Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream.
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 ::::
 :::
 
@@ -854,11 +889,29 @@ We first generate the stream of summands of the series (the reciprocals of the o
 ```
 
 <!-- verification:example-089 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Initialize the pi stream after installing partial-sums. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-089" filename="example-089.scm" query="(display-stream pi-stream)"}
+::: tp-scheme {mode="simple" id="example-089" filename="example-089.scm" query="(show-prefix pi-stream 8)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 (define (stream-null? s) (null? s))
 
 (define (stream-car stream) (car stream))
@@ -904,6 +957,26 @@ We first generate the stream of summands of the series (the reciprocals of the o
 
 (define pi-stream
   (scale-stream (partial-sums (pi-summands 1)) 4))
+
+; TP adaptation: Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream.
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
+
+; TP adaptation: Initialize the pi stream after installing partial-sums.
+(define pi-stream (scale-stream (partial-sums (pi-summands 1)) 4))
 ::::
 :::
 
@@ -947,11 +1020,29 @@ Thus, if the original sequence is represented as a stream of values, the transfo
 We can demonstrate Euler acceleration with our sequence of approximations to :latexmath:`\pi`:
 
 <!-- verification:example-090 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Initialize the pi stream after installing partial-sums. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-090" filename="example-090.scm" query="(display-stream (euler-transform pi-stream))"}
+::: tp-scheme {mode="simple" id="example-090" filename="example-090.scm" query="(show-prefix (euler-transform pi-stream) 8)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 (define (stream-null? s) (null? s))
 
 (define (stream-car stream) (car stream))
@@ -1024,6 +1115,26 @@ We can demonstrate Euler acceleration with our sequence of approximations to :l
 
 (define pi-stream
   (scale-stream (partial-sums (pi-summands 1)) 4))
+
+; TP adaptation: Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream.
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
+
+; TP adaptation: Initialize the pi stream after installing partial-sums.
+(define pi-stream (scale-stream (partial-sums (pi-summands 1)) 4))
 ::::
 :::
 
@@ -1079,11 +1190,29 @@ Finally, we form a sequence by taking the first term in each row of the tableau:
 We can demonstrate this kind of "super-acceleration" of the :latexmath:`\pi` sequence:
 
 <!-- verification:example-091 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Initialize the pi stream after installing partial-sums. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-091" filename="example-091.scm" query="(run-example)"}
+::: tp-scheme {mode="simple" id="example-091" filename="example-091.scm" query="(show-prefix (accelerated-sequence euler-transform pi-stream) 8)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 (define (stream-null? s) (null? s))
 
 (define (stream-car stream) (car stream))
@@ -1171,6 +1300,26 @@ We can demonstrate this kind of "super-acceleration" of the :latexmath:`\pi` seq
   (display-stream (accelerated-sequence euler-transform
                                       pi-stream))
 )
+
+; TP adaptation: Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream.
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
+
+; TP adaptation: Initialize the pi stream after installing partial-sums.
+(define pi-stream (scale-stream (partial-sums (pi-summands 1)) 4))
 ::::
 :::
 
@@ -1525,11 +1674,29 @@ Now we can implement our `solve`procedure by delaying the evaluation of `dy` in 
 In general, every caller of `integral` must now `delay` the integrand argument. We can demonstrate that the `solve`procedure works by approximating :latexmath:`e\approx 2.718` by computing the value at :latexmath:`y=1` of the solution to the differential equation :latexmath:`dy/dt=y` with initial condition :latexmath:`y(0)=1`:
 
 <!-- verification:example-092 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-092" filename="example-092.scm" query="(stream-ref (solve (lambda (y) y) 1 0.001) 1000)"}
 :::: script {type="tp/scheme"}
+; TP: evaluator objects hide cyclic environments; skip LIPS pair instrumentation for these acyclic runtime values.
+#!no-cycle
+#!no-promise
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 (define (stream-car stream) (car stream))
 
 (define (stream-cdr stream) (force (cdr stream)))
@@ -1569,6 +1736,23 @@ In general, every caller of `integral` must now `delay` the integrand argument. 
   (define y (integral (delay dy) y0 dt))
   (define dy (stream-map f y))
   y)
+
+; TP adaptation: Variadic stream-map and partial-sums; print only the finite prefix shown in the book, not an infinite stream.
+(define (stream-map f . streams)
+  (if (null? (car streams)) '()
+      (cons-stream (apply f (map stream-car streams))
+                   (apply stream-map (cons f (map stream-cdr streams))))))
+(define (partial-sums s)
+  (define sums (cons-stream (stream-car s) (add-streams (stream-cdr s) sums)))
+  sums)
+(define (show-prefix stream count)
+  (if (> count 0)
+      (begin (write (stream-car stream)) (newline)
+             (if (> count 1) (show-prefix (stream-cdr stream) (- count 1))
+                 (display "...")))))
+
+(define (add-streams s1 s2) (stream-map + s1 s2))
+
 ::::
 :::
 

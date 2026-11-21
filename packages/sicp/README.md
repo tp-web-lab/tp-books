@@ -10,7 +10,9 @@ This book uses `tp-markdown-multi-pages` and `tp-scheme mode="simple"`.
 - `scripts/adapt.mjs`: reproducible section splitting and query/result adaptation.
 - `pages.json`: source ranges for each level-one/level-two section.
 - `examples.json`: programs, queries and expected results for interactive examples.
-- `verification.json`: actual LIPS execution results, including errors and differences.
+- `verification.json`: actual isolated LIPS execution results and comparison categories.
+- `browser-verification.json`: executions of the actual reading-page cells in Chromium, including source/query preservation.
+- `scripts/execution-adaptations.mjs` and `scripts/scheme/`: labelled TP support programs and exercise reference implementations.
 - `public/docs/audit.md`: readable verification report and limitations.
 
 Press Return in an interpreter's query field to run its program and query. Changed source is reloaded automatically. Adjacent queries are grouped to preserve their execution order and state. Each interpreter has its own environment; reading a previous page is not required.
@@ -20,11 +22,14 @@ Press Return in an interpreter's query field to run its program and query. Chang
 ```sh
 pnpm adapt
 pnpm exec node scripts/verify.mjs
+# With the book development server running:
+pnpm exec node scripts/verify-browser.mjs
+pnpm exec node scripts/audit.mjs
 pnpm test
 pnpm build
 ```
 
-This is an initial interactive adaptation, not a claim that all of SICP runs unchanged in LIPS. Exercise specifications deliberately omit implementations; chapters 4 and 5 also contain inputs to embedded evaluators, query languages and register-machine simulators, rather than ordinary Scheme queries. The audit records these cases explicitly. Expected results from the book are retained separately from actual results.
+The 119 detected interactive cells are verified separately from the remaining book listings. Missing exercise procedures receive clearly labelled editable TP reference implementations. Chapter 4 and 5 transcripts include the relevant evaluator, query engine or register-machine simulator. The audit identifies runtime adaptations, numerical printing equivalences, exercise answers and intentional errors; it does not claim that all SICP programs run unchanged in LIPS. Printed book results remain separate from actual execution results.
 
 The original Markdown has extraction defects; the reading edition instead restores the original XML Scheme content. PDF pagination and typography are not reproduced in the web edition. The printed index is available in the linked original PDF. No automatically generated exercise solution is presented as original book content.
 

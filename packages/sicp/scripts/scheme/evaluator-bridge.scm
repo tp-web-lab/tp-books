@@ -1,0 +1,11 @@
+; Noninteractive driver: evaluate real input expressions, then print their results.
+(define (emit-value label value)
+  (display label) (newline) (write value) (newline))
+(define (m-run expression)
+  (emit-value ";;; M-Eval value:" (eval expression the-global-environment)))
+(define (l-run expression)
+  (let ((value (actual-value expression the-global-environment)))
+    (newline) (emit-value ";;; L-Eval value:" value)))
+(define (l-input expression)
+  (display ";;; L-Eval input:") (newline) (write expression) (newline)
+  (l-run expression))

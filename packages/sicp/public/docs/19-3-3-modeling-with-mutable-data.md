@@ -99,7 +99,7 @@ Consider the interaction
 ```
 
 <!-- verification:example-071 -->
-**Exercise 3.12:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Verified exercise result. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-071" filename="example-071.scm" query="(run-example)"}
@@ -149,7 +149,7 @@ Consider the interaction
 ```
 
 <!-- verification:example-072 -->
-**Exercise 3.12:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Verified exercise result. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-072" filename="example-072.scm" query="(run-example)"}
@@ -409,12 +409,16 @@ Assignment is all that is needed, theoretically, to account for the behavior of 
 ```
 
 <!-- verification:example-074 -->
-**Exercise 3.20:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
+**TP adaptation:** Replay the mutation preceding this query in the book. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-074" filename="example-074.scm" query="(car x)"}
 :::: script {type="tp/scheme"}
 (define x (cons 1 2))
+
+; TP adaptation: Replay the mutation preceding this query in the book.
+(define z (cons x x))
+(set-car! (cdr z) 17)
 ::::
 :::
 
@@ -877,11 +881,22 @@ One basic element of our simulation will be a procedure`make-wire`, which constr
 We attach a function box to a set of wires by calling a procedure that constructs that kind of box. The arguments to the constructor procedure are the wires to be attached to the box. For example, given that we can construct and-gates, or-gates, and inverters, we can wire together the half-adder shown in figure 3.25:
 
 <!-- verification:example-076 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Supply the or-gate exercise used by the book’s half-adder; preserve agenda and propagation times. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-076" filename="example-076.scm" query="(run-example)"}
 :::: script {type="tp/scheme"}
+(define or-gate-delay 5)
+(define (logical-and a b) (if (and (= a 1) (= b 1)) 1 0))
+(define (logical-or a b) (if (or (= a 1) (= b 1)) 1 0))
+(define (or-gate a b output)
+  (define (action)
+    (let ((value (logical-or (get-signal a) (get-signal b))))
+      (after-delay or-gate-delay (lambda () (set-signal! output value)))))
+  (add-action! a action)
+  (add-action! b action)
+  'ok)
+
 (define (call-each procedures)
   (if (null? procedures)
       'done
@@ -1383,11 +1398,22 @@ carry 0  New-value = 0
 Next we connect the wires in a half-adder circuit (as in figure 3.25), set the signal on `input-1` to 1, and run the simulation:
 
 <!-- verification:example-078 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Keep the returned status on a separate line from probe output. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-078" filename="example-078.scm" query="(run-example)"}
+::: tp-scheme {mode="simple" id="example-078" filename="example-078.scm" query="(run-result)"}
 :::: script {type="tp/scheme"}
+(define or-gate-delay 5)
+(define (logical-and a b) (if (and (= a 1) (= b 1)) 1 0))
+(define (logical-or a b) (if (or (= a 1) (= b 1)) 1 0))
+(define (or-gate a b output)
+  (define (action)
+    (let ((value (logical-or (get-signal a) (get-signal b))))
+      (after-delay or-gate-delay (lambda () (set-signal! output value)))))
+  (add-action! a action)
+  (add-action! b action)
+  'ok)
+
 (define (call-each procedures)
   (if (null? procedures)
       'done
@@ -1671,6 +1697,9 @@ Next we connect the wires in a half-adder circuit (as in figure 3.25), set the 
   (propagate)
 )
 )
+
+; TP adaptation: Keep the returned status on a separate line from probe output.
+(define (run-result) (let ((result (run-example))) (newline) result))
 ::::
 :::
 
@@ -1689,11 +1718,22 @@ done
 The `sum` signal changes to 1 at time 8. We are now eight time units from the beginning of the simulation. At this point, we can set the signal on `input-2` to 1 and allow the values to propagate:
 
 <!-- verification:example-079 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Keep the returned status on a separate line from probe output. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-079" filename="example-079.scm" query="(run-example)"}
+::: tp-scheme {mode="simple" id="example-079" filename="example-079.scm" query="(run-result)"}
 :::: script {type="tp/scheme"}
+(define or-gate-delay 5)
+(define (logical-and a b) (if (and (= a 1) (= b 1)) 1 0))
+(define (logical-or a b) (if (or (= a 1) (= b 1)) 1 0))
+(define (or-gate a b output)
+  (define (action)
+    (let ((value (logical-or (get-signal a) (get-signal b))))
+      (after-delay or-gate-delay (lambda () (set-signal! output value)))))
+  (add-action! a action)
+  (add-action! b action)
+  'ok)
+
 (define (set-signal! wire new-value)
   ((wire 'set-signal!) new-value))
 
@@ -1982,6 +2022,9 @@ The `sum` signal changes to 1 at time 8. We are now eight time units from the be
   (propagate)
 )
 )
+
+; TP adaptation: Keep the returned status on a separate line from probe output.
+(define (run-result) (let ((result (run-example))) (newline) result))
 ::::
 :::
 
@@ -2395,10 +2438,10 @@ To watch the network in action, we can place probes on the connectors `C` and `F
 Next we set the value of `C` to 25. (The third argument to `set-value!` tells `C` that this directive comes from the `user`.)
 
 <!-- verification:example-081 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Keep the returned status on a separate line from probe output. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-081" filename="example-081.scm" query="(set-value! C 25 'user)"}
+::: tp-scheme {mode="simple" id="example-081" filename="example-081.scm" query="(run-result)"}
 :::: script {type="tp/scheme"}
 (define (set-value! connector new-value informant)
   ((connector 'set-value!) new-value informant))
@@ -2635,6 +2678,9 @@ Next we set the value of `C` to 25. (The third argument to `set-value!` tells `C
 
 (probe "Celsius temp" C)
 (probe "Fahrenheit temp" F)
+
+; TP adaptation: Keep the returned status on a separate line from probe output.
+(define (run-result) (let ((result (set-value! C 25 'user))) (newline) result))
 ::::
 :::
 
@@ -2654,7 +2700,7 @@ The probe on `C` awakens and reports the value. `C` also propagates its value th
 Now we can try to set `F` to a new value, say 212:
 
 <!-- verification:example-082 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** This example intentionally demonstrates a contradiction; the error is the expected result. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-082" filename="example-082.scm" query="(set-value! F 212 'user)"}
@@ -2896,6 +2942,13 @@ Now we can try to set `F` to a new value, say 212:
 (probe "Fahrenheit temp" F)
 
 (set-value! C 25 'user)
+
+; TP adaptation: Retain the conflicting values in the expected contradiction diagnostic.
+(define original-error error)
+(define (error message . details)
+  (display "Error! ") (display message) (display " ")
+  (write (if (= (length details) 1) (car details) details)) (newline)
+  (original-error message))
 ::::
 :::
 
@@ -2911,10 +2964,10 @@ Error! Contradiction (77 212)
 The connector complains that it has sensed a contradiction: Its value is 77, and someone is trying to set it to 212. If we really want to reuse the network with new values, we can tell `C` to forget its old value:
 
 <!-- verification:example-083 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Keep the returned status on a separate line from probe output. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-083" filename="example-083.scm" query="(forget-value! C 'user)"}
+::: tp-scheme {mode="simple" id="example-083" filename="example-083.scm" query="(run-result)"}
 :::: script {type="tp/scheme"}
 (define (forget-value! connector retractor)
   ((connector 'forget) retractor))
@@ -3153,6 +3206,9 @@ The connector complains that it has sensed a contradiction: Its value is 77, and
 (probe "Fahrenheit temp" F)
 
 (set-value! C 25 'user)
+
+; TP adaptation: Keep the returned status on a separate line from probe output.
+(define (run-result) (let ((result (forget-value! C 'user))) (newline) result))
 ::::
 :::
 
@@ -3172,10 +3228,10 @@ done
 Now that `F` has no value, we are free to set it to 212:
 
 <!-- verification:example-084 -->
-**Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
+**TP adaptation:** Keep the returned status on a separate line from probe output. [Verification details](audit.md).
 <!-- /verification -->
 
-::: tp-scheme {mode="simple" id="example-084" filename="example-084.scm" query="(set-value! F 212 'user)"}
+::: tp-scheme {mode="simple" id="example-084" filename="example-084.scm" query="(run-result)"}
 :::: script {type="tp/scheme"}
 (define (set-value! connector new-value informant)
   ((connector 'set-value!) new-value informant))
@@ -3414,6 +3470,12 @@ Now that `F` has no value, we are free to set it to 212:
 (probe "Fahrenheit temp" F)
 
 (set-value! C 25 'user)
+
+; TP adaptation: Replay the successful retraction before assigning Fahrenheit.
+(forget-value! C 'user)
+
+; TP adaptation: Keep the returned status on a separate line from probe output.
+(define (run-result) (let ((result (set-value! F 212 'user))) (newline) result))
 ::::
 :::
 

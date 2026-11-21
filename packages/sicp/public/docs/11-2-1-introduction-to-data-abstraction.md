@@ -289,7 +289,7 @@ As the final example shows, our rational-number implementation does not reduce r
 Now we have
 
 <!-- verification:example-029 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Use the reduced-fraction constructor introduced immediately before this example. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-029" filename="example-029.scm" query="(print-rat (add-rat one-third one-third))"}
@@ -342,6 +342,11 @@ Now we have
 (define (equal-rat? x y)
   (= (* (numer x) (denom y))
      (* (numer y) (denom x))))
+
+; TP adaptation: Use the reduced-fraction constructor introduced immediately before this example.
+(define (make-rat n d)
+  (let ((g (gcd n d)))
+    (cons (/ n g) (/ d g))))
 ::::
 :::
 

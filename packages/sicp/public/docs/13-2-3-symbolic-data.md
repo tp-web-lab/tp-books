@@ -432,7 +432,7 @@ Similarly, we will change `make-product` to build in the rules that 0 times anyt
 Here is how this version works on our three examples:
 
 <!-- verification:example-057 -->
-**Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
+**TP adaptation:** Use the simplified constructors, not the earlier unsimplified versions. [Verification details](audit.md).
 <!-- /verification -->
 
 ::: tp-scheme {mode="simple" id="example-057" filename="example-057.scm" query="(run-example)"}
@@ -499,6 +499,19 @@ Here is how this version works on our three examples:
   (deriv '(* (* x y) (+ x 3)) 'x)
 )
 )
+
+; TP adaptation: Use the simplified constructors, not the earlier unsimplified versions.
+(define (make-sum a1 a2)
+  (cond ((=number? a1 0) a2)
+        ((=number? a2 0) a1)
+        ((and (number? a1) (number? a2)) (+ a1 a2))
+        (else (list '+ a1 a2))))
+(define (make-product m1 m2)
+  (cond ((or (=number? m1 0) (=number? m2 0)) 0)
+        ((=number? m1 1) m2)
+        ((=number? m2 1) m1)
+        ((and (number? m1) (number? m2)) (* m1 m2))
+        (else (list '* m1 m2))))
 ::::
 :::
 
