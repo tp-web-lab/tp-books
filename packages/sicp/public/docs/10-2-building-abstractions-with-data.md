@@ -6,8 +6,6 @@ math: latexmath
 
 [Original PDF · page 99](original/sicp.pdf#page=99)
 
-\addtocontents{toc}{\protect\enlargethispage{-\baselineskip}}
-
 > We now come to the decisive step of mathematical abstraction: we forget about what the symbols stand for. … [The mathematician] need not be idle; there are many operations which he may carry out with these symbols, without ever having to look at the things they stand for.
 > — Hermann Weyl, *The Mathematical Way of Thinking*
 
@@ -21,7 +19,7 @@ Consider the task of designing a system to perform arithmetic with rational numb
 
 The use of compound data also enables us to increase the modularity of our programs. If we can manipulate rational numbers directly as objects in their own right, then we can separate the part of our program that deals with rational numbers per se from the details of how rational numbers may be represented as pairs of integers. The general technique of isolating the parts of a program that deal with how data objects are represented from the parts of a program that deal with how data objects are used is a powerful design methodology called *data abstraction*. We will see how data abstraction makes programs much easier to design, maintain, and modify.
 
-The use of compound data leads to a real increase in the expressive power of our programming language. Consider the idea of forming a "linear combination"$ax+by$. We might like to write a procedure that would accept $a$, $b$, $x$, and $y$ as arguments and return the value of $ax+by$. This presents no difficulty if the arguments are to be numbers, because we can readily define the procedure
+The use of compound data leads to a real increase in the expressive power of our programming language. Consider the idea of forming a "linear combination":latexmath:`ax+by`. We might like to write a procedure that would accept :latexmath:`a`, :latexmath:`b`, :latexmath:`x`, and :latexmath:`y` as arguments and return the value of :latexmath:`ax+by`. This presents no difficulty if the arguments are to be numbers, because we can readily define the procedure
 
 ```scheme
 (define (linear-combination a b x y) 

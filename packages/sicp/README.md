@@ -27,3 +27,7 @@ pnpm build
 This is an initial interactive adaptation, not a claim that all of SICP runs unchanged in LIPS. Exercise specifications deliberately omit implementations; chapters 4 and 5 also contain inputs to embedded evaluators, query languages and register-machine simulators, rather than ordinary Scheme queries. The audit records these cases explicitly. Expected results from the book are retained separately from actual results.
 
 The original Markdown has extraction defects; the reading edition instead restores the original XML Scheme content. PDF pagination and typography are not reproduced in the web edition. The printed index is available in the linked original PDF. No automatically generated exercise solution is presented as original book content.
+
+## Text conformity
+
+All 33 reading sections are compared against the original PDF. See `public/docs/text-conformity.md`, `text-verification.json` and the reviewed exceptions in `source/text-review.json`. With Python and `pymupdf==2.1`, run `python3 packages/sicp/scripts/verify-text.py` from the repository root. New unreviewed differences fail the check. This content audit does not claim identical PDF typography or successful execution of every Scheme transcript.

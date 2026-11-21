@@ -63,3 +63,35 @@ test('Every original note retains its number and local target',()=>{
  }
  assert.equal(count,338);
 });
+
+import {mathMarkup} from './math-markup.mjs';
+test('Math conversion preserves literal currency and protected Scheme code',()=>{
+ const value='Bank1 has \\$25. Formula: $x^2$.\n```scheme\n(display "$25")\n```';
+ const converted=mathMarkup(value);
+ assert.ok(converted.includes('Bank1 has \\$25.'));
+ assert.ok(converted.includes(':latexmath:`x^2`'));
+ assert.ok(converted.includes('(display "$25")'));
+});
+test('Display math preserves row separators',()=>{
+ const formula='\\[\\begin{array}{cc}a&b\\\\c&d\\end{array}\\]';
+ const converted=mathMarkup(formula);
+ assert.ok(converted.startsWith('\n\n```latexmath'));
+ assert.ok(converted.includes('b\\\\c'));
+});
+test('Inline mathematical arguments are preserved',()=>{
+ assert.ok(read('source/sicp-canonical.md').includes('`(transpose `$m$`)`'));
+});
+test('PDF-only layout and index metadata do not leak into reading pages',()=>{
+ const text=pages.map(p=>read('public/docs/'+p.file)).join('\n');
+ assert.ok(!text.includes('\\addtocontents'));
+ assert.ok(!text.includes('operation-and-type tableimplementing'));
+ assert.ok(!text.includes('value.\\\\[4pt]'));
+});
+test('Text conformity report covers current source and every section',()=>{
+ const report=JSON.parse(read('text-verification.json'));
+ assert.equal(report.sourceSha256,createHash('sha256').update(read('source/sicp-canonical.md')).digest('hex'));
+ assert.equal(report.sections.length,pages.length);
+ assert.equal(report.sections.reduce((n,s)=>n+s.unresolved,0),0);
+ assert.equal(report.codeCounts.unresolved,0);
+ assert.equal(Object.values(report.codeCounts).reduce((a,b)=>a+b,0),1424);
+});

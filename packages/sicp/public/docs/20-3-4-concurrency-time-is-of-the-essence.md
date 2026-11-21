@@ -62,7 +62,7 @@ Unfortunately, the complexities introduced by assignment become even more proble
 
 ### 3.4.1 The Nature of Time in Concurrent Systems
 
-On the surface, time seems straightforward. It is an ordering imposed on events.<sup><a href="#note-3-36">36</a></sup> For any events $A$ and $B$, either $A$ occurs before $B$, $A$ and $B$ are simultaneous, or $A$ occurs after $B$. For instance, returning to the bank account example, suppose that Peter withdraws $10 and Paul withdraws $25 from a joint account that initially contains $100, leaving $65 in the account. Depending on the order of the two withdrawals, the sequence of balances in the account is either $\$100 \rightarrow \$90 \rightarrow\$65$ or $\$100 \rightarrow \$75 \rightarrow\$65$. In a computer implementation of the banking system, this changing sequence of balances could be modeled by successive assignments to a variable `balance`.
+On the surface, time seems straightforward. It is an ordering imposed on events.<sup><a href="#note-3-36">36</a></sup> For any events :latexmath:`A` and :latexmath:`B`, either :latexmath:`A` occurs before :latexmath:`B`, :latexmath:`A` and :latexmath:`B` are simultaneous, or :latexmath:`A` occurs after :latexmath:`B`. For instance, returning to the bank account example, suppose that Peter withdraws \$10 and Paul withdraws \$25 from a joint account that initially contains \$100, leaving \$65 in the account. Depending on the order of the two withdrawals, the sequence of balances in the account is either :latexmath:`\$100 \rightarrow \$90 \rightarrow\$65` or :latexmath:`\$100 \rightarrow \$75 \rightarrow\$65`. In a computer implementation of the banking system, this changing sequence of balances could be modeled by successive assignments to a variable `balance`.
 
 In complex situations, however, such a view can be problematic. Suppose that Peter and Paul, and other people besides, are accessing the same bank account through a network of banking machines distributed all over the world. The actual sequence of balances in the account will depend critically on the detailed timing of the accesses and the details of the communication among the machines.
 
@@ -90,7 +90,7 @@ executed as part of each withdrawal process. This consists of three steps: (1) a
 
 **Figure 3.29.** Timing diagram showing how interleaving the order of events in two banking withdrawals can lead to an incorrect final balance.
 
-The timing diagram in figure 3.29 depicts an order of events where `balance` starts at 100, Peter withdraws 10, Paul withdraws 25, and yet the final value of `balance` is 75. As shown in the diagram, the reason for this anomaly is that Paul's assignment of 75 to `balance` is made under the assumption that the value of `balance` to be decremented is 100. That assumption, however, became invalid when Peter changed `balance` to 90. This is a catastrophic failure for the banking system, because the total amount of money in the system is not conserved. Before the transactions, the total amount of money was $100. Afterwards, Peter has $10, Paul has $25, and the bank has $75.<sup><a href="#note-3-37">37</a></sup>
+The timing diagram in figure 3.29 depicts an order of events where `balance` starts at 100, Peter withdraws 10, Paul withdraws 25, and yet the final value of `balance` is 75. As shown in the diagram, the reason for this anomaly is that Paul's assignment of 75 to `balance` is made under the assumption that the value of `balance` to be decremented is 100. That assumption, however, became invalid when Peter changed `balance` to 90. This is a catastrophic failure for the banking system, because the total amount of money in the system is not conserved. Before the transactions, the total amount of money was \$100. Afterwards, Peter has \$10, Paul has \$25, and the bank has \$75.<sup><a href="#note-3-37">37</a></sup>
 
 The general phenomenon illustrated here is that several processes may share a common state variable. What makes this complicated is that more than one process may be trying to manipulate the shared state at the same time. For the bank account example, during each transaction, each customer should be able to act as if the other customers did not exist. When a customer changes the balance in a way that depends on the balance, he must be able to assume that, just before the moment of change, the balance is still what he thought it was.
 
@@ -104,11 +104,11 @@ One possible restriction on concurrency would stipulate that no two operations t
 
 **Figure 3.30.** Concurrent deposits and withdrawals from a joint account in Bank1 and a private account in Bank2.
 
-A less stringent restriction on concurrency would ensure that a concurrent system produces the same result as if the processes had run sequentially in some order. There are two important aspects to this requirement. First, it does not require the processes to actually run sequentially, but only to produce results that are the same *as if* they had run sequentially. For the example in figure 3.30, the designer of the bank account system can safely allow Paul's deposit and Peter's withdrawal to happen concurrently, because the net result will be the same as if the two operations had happened sequentially. Second, there may be more than one possible "correct" result produced by a concurrent program, because we require only that the result be the same as for *some* sequential order. For example, suppose that Peter and Paul's joint account starts out with $100, and Peter deposits $40 while Paul concurrently withdraws half the money in the account. Then sequential execution could result in the account balance being either $70 or $90 (see exercise 3.38).<sup><a href="#note-3-40">40</a></sup>
+A less stringent restriction on concurrency would ensure that a concurrent system produces the same result as if the processes had run sequentially in some order. There are two important aspects to this requirement. First, it does not require the processes to actually run sequentially, but only to produce results that are the same *as if* they had run sequentially. For the example in figure 3.30, the designer of the bank account system can safely allow Paul's deposit and Peter's withdrawal to happen concurrently, because the net result will be the same as if the two operations had happened sequentially. Second, there may be more than one possible "correct" result produced by a concurrent program, because we require only that the result be the same as for *some* sequential order. For example, suppose that Peter and Paul's joint account starts out with \$100, and Peter deposits \$40 while Paul concurrently withdraws half the money in the account. Then sequential execution could result in the account balance being either \$70 or \$90 (see exercise 3.38).<sup><a href="#note-3-40">40</a></sup>
 
 There are still weaker requirements for correct execution of concurrent programs. A program for simulating diffusion (say, the flow of heat in an object) might consist of a large number of processes, each one representing a small volume of space, that update their values concurrently. Each process repeatedly changes its value to the average of its own value and its neighbors' values. This algorithm converges to the right answer independent of the order in which the operations are done; there is no need for any restrictions on concurrent use of the shared values.
 
-**Exercise 3.38.** Suppose that Peter, Paul, and Mary share a joint bank account that initially contains $100. Concurrently, Peter deposits $10, Paul withdraws $20, and Mary withdraws half the money in the account, by executing the following commands:
+**Exercise 3.38.** Suppose that Peter, Paul, and Mary share a joint bank account that initially contains \$100. Concurrently, Peter deposits \$10, Paul withdraws \$20, and Mary withdraws half the money in the account, by executing the following commands:
 
 | Peter: | `(set! balance (+ balance 10))` |
 | --- | --- |
@@ -131,7 +131,7 @@ b. What are some other values that could be produced if the system allows the pr
 :::::
 
 ::::: aside {id="note-3-39"}
-**39.** The columns show the contents of Peter's wallet, the joint account (in Bank1), Paul's wallet, and Paul's private account (in Bank2), before and after each withdrawal (W) and deposit (D). Peter withdraws $10 from Bank1; Paul deposits $5 in Bank2, then withdraws $25 from Bank1.
+**39.** The columns show the contents of Peter's wallet, the joint account (in Bank1), Paul's wallet, and Paul's private account (in Bank2), before and after each withdrawal (W) and deposit (D). Peter withdraws \$10 from Bank1; Paul deposits \$5 in Bank2, then withdraws \$25 from Bank1.
 :::::
 
 ::::: aside {id="note-3-40"}
@@ -140,15 +140,21 @@ b. What are some other values that could be produced if the system allows the pr
 
 ### 3.4.2 Mechanisms for Controlling Concurrency
 
-We've seen that the difficulty in dealing with concurrent processes is rooted in the need to consider the interleaving of the order of events in the different processes. For example, suppose we have two processes, one with three ordered events $(a,b,c)$ and one with three ordered events $(x,y,z)$. If the two processes run concurrently, with no constraints on how their execution is interleaved, then there are 20 different possible orderings for the events that are consistent with the individual orderings for the two processes:
+We've seen that the difficulty in dealing with concurrent processes is rooted in the need to consider the interleaving of the order of events in the different processes. For example, suppose we have two processes, one with three ordered events :latexmath:`(a,b,c)` and one with three ordered events :latexmath:`(x,y,z)`. If the two processes run concurrently, with no constraints on how their execution is interleaved, then there are 20 different possible orderings for the events that are consistent with the individual orderings for the two processes:
 
-$$\begin{array}{cccc}
-(a,b,c,x,y,z) & (a,x,b,y,c,z) & (x,a,b,c,y,z) & (x,a,y,z,b,c)\
-(a,b,x,c,y,z) & (a,x,b,y,z,c) & (x,a,b,y,c,z) & (x,y,a,b,c,z)\
-(a,b,x,y,c,z) & (a,x,y,b,c,z) & (x,a,b,y,z,c) & (x,y,a,b,z,c)\
-(a,b,x,y,z,c) & (a,x,y,b,z,c) & (x,a,y,b,c,z) & (x,y,a,z,b,c)\
+
+
+```latexmath
+\begin{array}{cccc}
+(a,b,c,x,y,z) & (a,x,b,y,c,z) & (x,a,b,c,y,z) & (x,a,y,z,b,c)\\
+(a,b,x,c,y,z) & (a,x,b,y,z,c) & (x,a,b,y,c,z) & (x,y,a,b,c,z)\\
+(a,b,x,y,c,z) & (a,x,y,b,c,z) & (x,a,b,y,z,c) & (x,y,a,b,z,c)\\
+(a,b,x,y,z,c) & (a,x,y,b,z,c) & (x,a,y,b,c,z) & (x,y,a,z,b,c)\\
 (a,x,b,c,y,z) & (a,x,y,z,b,c) & (x,a,y,b,z,c) & (x,y,z,a,b,c)
-\end{array}$$
+\end{array}
+```
+
+
 
 As programmers designing this system, we would have to consider the effects of each of these 20 orderings and check that each behavior is acceptable. Such an approach rapidly becomes unwieldy as the numbers of processes and events increase.
 
@@ -164,7 +170,7 @@ We can use serialization to control access to shared variables. For example, if 
 
 To make the above mechanism more concrete, suppose that we have extended Scheme to include a procedure called `parallel-execute`:
 
-(parallel-execute p$_{1}$ p$_{2}$ $\ldots$ p$_{k}$)
+(parallel-execute p:latexmath:`_{1}` p:latexmath:`_{2}` :latexmath:`\ldots` p:latexmath:`_{k}`)
 
 Each *p* must be a procedure of no arguments. Parallel-execute creates a separate process for each *p*, which applies *p* (to no arguments). These processes all run concurrently.<sup><a href="#note-3-41">41</a></sup>
 
@@ -177,15 +183,15 @@ As an example of how this is used, consider
   (lambda () (set! x (+ x 1))))
 ```
 
-This creates two concurrent processes—$P_1$, which sets `x` to `x` times `x`, and $P_2$, which increments `x`. After execution is complete, `x` will be left with one of five possible values, depending on the interleaving of the events of $P_1$ and $P_2$:
+This creates two concurrent processes—:latexmath:`P_1`, which sets `x` to `x` times `x`, and :latexmath:`P_2`, which increments `x`. After execution is complete, `x` will be left with one of five possible values, depending on the interleaving of the events of :latexmath:`P_1` and :latexmath:`P_2`:
 
-| 101: | $P_1$ sets `x` to 100 and then $P_2$ increments `x` to 101. |
+| 101: | :latexmath:`P_1` sets `x` to 100 and then :latexmath:`P_2` increments `x` to 101. |
 | --- | --- |
-| 121: | $P_2$ increments `x` to 11 and then $P_1$ sets `x` to `x` times `x`. |
-| 110: | $P_2$ changes `x` from 10 to 11 between the two times that $P_1$ |
+| 121: | :latexmath:`P_2` increments `x` to 11 and then :latexmath:`P_1` sets `x` to `x` times `x`. |
+| 110: | :latexmath:`P_2` changes `x` from 10 to 11 between the two times that :latexmath:`P_1` |
 | | accesses the value of `x` during the evaluation of `(* x x)`. |
-| 11: | $P_2$ accesses `x`, then $P_1$ sets `x` to 100, then $P_2$ sets `x`. |
-| 100: | $P_1$ accesses `x` (twice), then $P_2$ sets `x` to 11, then $P_1$ sets `x`. |
+| 11: | :latexmath:`P_2` accesses `x`, then :latexmath:`P_1` sets `x` to 100, then :latexmath:`P_2` sets `x`. |
+| 100: | :latexmath:`P_1` accesses `x` (twice), then :latexmath:`P_2` sets `x` to 11, then :latexmath:`P_1` sets `x`. |
 
 We can constrain the concurrency by using serialized procedures, which are created by *serializers*. Serializers are constructed by `make-serializer`, whose implementation is given below. A serializer takes a procedure as argument and returns a serialized procedure that behaves like the original procedure. All calls to a given serializer return serialized procedures in the same set.
 
@@ -200,7 +206,7 @@ Thus, in contrast to the example above, executing
                   (s (lambda () (set! x (+ x 1)))))
 ```
 
-can produce only two possible values for `x`, 101 or 121. The other possibilities are eliminated, because the execution of $P_1$ and $P_2$ cannot be interleaved.
+can produce only two possible values for `x`, 101 or 121. The other possibilities are eliminated, because the execution of :latexmath:`P_1` and :latexmath:`P_2` cannot be interleaved.
 
 Here is a version of the `make-account`procedure from section 3.1.1, where the deposits and withdrawals have been serialized:
 
@@ -322,7 +328,7 @@ To illustrate one of the difficulties that can arise, suppose we wish to swap th
     ((account2 'deposit) difference)))
 ```
 
-This procedure works well when only a single process is trying to do the exchange. Suppose, however, that Peter and Paul both have access to accounts $a_1$, $a_2$, and $a_3$, and that Peter exchanges $a_1$ and $a_2$ while Paul concurrently exchanges $a_1$ and $a_3$. Even with account deposits and withdrawals serialized for individual accounts (as in the `make-account`procedure shown above in this section), `exchange` can still produce incorrect results. For example, Peter might compute the difference in the balances for $a_1$ and $a_2$, but then Paul might change the balance in $a_1$ before Peter is able to complete the exchange.<sup><a href="#note-3-43">43</a></sup> For correct behavior, we must arrange for the `exchange`procedure to lock out any other concurrent accesses to the accounts during the entire time of the exchange.
+This procedure works well when only a single process is trying to do the exchange. Suppose, however, that Peter and Paul both have access to accounts :latexmath:`a_1`, :latexmath:`a_2`, and :latexmath:`a_3`, and that Peter exchanges :latexmath:`a_1` and :latexmath:`a_2` while Paul concurrently exchanges :latexmath:`a_1` and :latexmath:`a_3`. Even with account deposits and withdrawals serialized for individual accounts (as in the `make-account`procedure shown above in this section), `exchange` can still produce incorrect results. For example, Peter might compute the difference in the balances for :latexmath:`a_1` and :latexmath:`a_2`, but then Paul might change the balance in :latexmath:`a_1` before Peter is able to complete the exchange.<sup><a href="#note-3-43">43</a></sup> For correct behavior, we must arrange for the `exchange`procedure to lock out any other concurrent accesses to the accounts during the entire time of the exchange.
 
 One way we can accomplish this is by using both accounts' serializers to serialize the entire `exchange`procedure. To do this, we will arrange for access to an account's serializer. Note that we are deliberately breaking the modularity of the bank-account object by exposing the serializer. The following version of `make-account` is identical to the original version given in section 3.1.1, except that a serializer is provided to protect the balance variable, and the serializer is exported via message passing:
 
@@ -367,7 +373,7 @@ Exporting the serializer in this way gives us enough flexibility to implement a 
      account2)))
 ```
 
-**Exercise 3.43.** Suppose that the balances in three accounts start out as $10, $20, and $30, and that multiple processes run, exchanging the balances in the accounts. Argue that if the processes are run sequentially, after any number of concurrent exchanges, the account balances should be $10, $20, and $30 in some order. Draw a timing diagram like the one in figure ?? to show how this condition can be violated if the exchanges are implemented using the first version of the account-exchange program in this section. On the other hand, argue that even with this `exchange` program, the sum of the balances in the accounts will be preserved. Draw a timing diagram to show how even this condition would be violated if we did not serialize the transactions on individual accounts.
+**Exercise 3.43.** Suppose that the balances in three accounts start out as \$10, \$20, and \$30, and that multiple processes run, exchanging the balances in the accounts. Argue that if the processes are run sequentially, after any number of concurrent exchanges, the account balances should be \$10, \$20, and \$30 in some order. Draw a timing diagram like the one in figure ?? to show how this condition can be violated if the exchanges are implemented using the first version of the account-exchange program in this section. On the other hand, argue that even with this `exchange` program, the sum of the balances in the accounts will be preserved. Draw a timing diagram to show how even this condition would be violated if we did not serialize the transactions on individual accounts.
 
 **Exercise 3.44.** Consider the problem of transferring an amount from one account to another. Ben Bitdiddle claims that this can be accomplished with the following procedure, even if there are multiple people concurrently transferring money among multiple accounts, using any account mechanism that serializes deposit and withdrawal transactions, for example, the version of `make-account` in the text above.
 
@@ -461,13 +467,13 @@ The actual implementation of `test-and-set!` depends on the details of how our s
 
 **Exercise 3.46.** Suppose that we implement `test-and-set!` using an ordinary procedure as shown in the text, without attempting to make the operation atomic. Draw a timing diagram like the one in figure ?? to demonstrate how the mutex implementation can fail by allowing two processes to acquire the mutex at the same time.
 
-**Exercise 3.47.** A semaphore (of size $n$) is a generalization of a mutex. Like a mutex, a semaphore supports acquire and release operations, but it is more general in that up to $n$processes can acquire it concurrently. Additional processes that attempt to acquire the semaphore must wait for release operations. Give implementations of semaphores
+**Exercise 3.47.** A semaphore (of size :latexmath:`n`) is a generalization of a mutex. Like a mutex, a semaphore supports acquire and release operations, but it is more general in that up to :latexmath:`n`processes can acquire it concurrently. Additional processes that attempt to acquire the semaphore must wait for release operations. Give implementations of semaphores
 a. in terms of mutexes
 b. in terms of atomic `test-and-set!` operations.
 
 #### Deadlock
 
-Now that we have seen how to implement serializers, we can see that account exchanging still has a problem, even with the `serialized-exchange`procedure above. Imagine that Peter attempts to exchange $a_1$ with $a_2$ while Paul concurrently attempts to exchange $a_2$ with $a_1$. Suppose that Peter's process reaches the point where it has entered a serialized procedure protecting $a_1$ and, just after that, Paul's process enters a serialized procedure protecting $a_2$. Now Peter cannot proceed (to enter a serialized procedure protecting $a_2$) until Paul exits the serialized procedure protecting $a_2$. Similarly, Paul cannot proceed until Peter exits the serialized procedure protecting $a_1$. Each process is stalled forever, waiting for the other. This situation is called a *deadlock*. Deadlock is always a danger in systems that provide concurrent access to multiple shared resources.
+Now that we have seen how to implement serializers, we can see that account exchanging still has a problem, even with the `serialized-exchange`procedure above. Imagine that Peter attempts to exchange :latexmath:`a_1` with :latexmath:`a_2` while Paul concurrently attempts to exchange :latexmath:`a_2` with :latexmath:`a_1`. Suppose that Peter's process reaches the point where it has entered a serialized procedure protecting :latexmath:`a_1` and, just after that, Paul's process enters a serialized procedure protecting :latexmath:`a_2`. Now Peter cannot proceed (to enter a serialized procedure protecting :latexmath:`a_2`) until Paul exits the serialized procedure protecting :latexmath:`a_2`. Similarly, Paul cannot proceed until Peter exits the serialized procedure protecting :latexmath:`a_1`. Each process is stalled forever, waiting for the other. This situation is called a *deadlock*. Deadlock is always a danger in systems that provide concurrent access to multiple shared resources.
 
 One way to avoid the deadlock in this situation is to give each account a unique identification number and rewrite `serialized-exchange` so that a process will always attempt to enter a procedure protecting the lowest-numbered account first. Although this method works well for the exchange problem, there are other situations that require more sophisticated deadlock-avoidance techniques, or where deadlock cannot be avoided at all. (See exercises 3.48 and 3.49.)<sup><a href="#note-3-49">49</a></sup>
 
@@ -494,7 +500,7 @@ The basic phenomenon here is that synchronizing different processes, establishin
 :::::
 
 ::::: aside {id="note-3-43"}
-**43.** If the account balances start out as $10, $20, and $30, then after any number of concurrent exchanges, the balances should still be $10, $20, and $30 in some order. Serializing the deposits to individual accounts is not sufficient to guarantee this. See exercise 3.43.
+**43.** If the account balances start out as \$10, \$20, and \$30, then after any number of concurrent exchanges, the balances should still be \$10, \$20, and \$30 in some order. Serializing the deposits to individual accounts is not sufficient to guarantee this. See exercise 3.43.
 :::::
 
 ::::: aside {id="note-3-44"}
@@ -534,7 +540,7 @@ The basic phenomenon here is that synchronizing different processes, establishin
 :::::
 
 ::::: aside {id="note-3-50"}
-**50.** One such alternative to serialization is called *barrier synchronization*. The programmer permits concurrent processes to execute as they please, but establishes certain synchronization points ("barriers") through which no process can proceed until all the processes have reached the barrier. Modern processors provide machine instructions that permit programmers to establish synchronization points at places where consistency is required. The  PowerPC$^{\textrm{TM}}$, for example, includes for this purpose two instructions called  SYNC and  EIEIO (Enforced In-order Execution of Input/Output).
+**50.** One such alternative to serialization is called *barrier synchronization*. The programmer permits concurrent processes to execute as they please, but establishes certain synchronization points ("barriers") through which no process can proceed until all the processes have reached the barrier. Modern processors provide machine instructions that permit programmers to establish synchronization points at places where consistency is required. The  PowerPC:latexmath:`^{\textrm{TM}}`, for example, includes for this purpose two instructions called  SYNC and  EIEIO (Enforced In-order Execution of Input/Output).
 :::::
 
 ::::: aside {id="note-3-51"}

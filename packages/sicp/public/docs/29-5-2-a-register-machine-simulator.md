@@ -1175,7 +1175,7 @@ Here is the new version of`make-stack`:
 
 Exercises 5.15 through 5.19 describe other useful monitoring and debugging features that can be added to the register-machine simulator.
 
-**Exercise 5.14.** Measure the number of pushes and the maximum stack depth required to compute $n!$ for various small values of $n$ using the factorial machine shown in figure 5.11. From your data determine formulas in terms of $n$ for the total number of push operations and the maximum stack depth used in computing $n!$ for any $n > 1$. Note that each of these is a linear function of $n$ and is thus determined by two constants. In order to get the statistics printed, you will have to augment the factorial machine with instructions to initialize the stack and print the statistics. You may want to also modify the machine so that it repeatedly reads a value for $n$, computes the factorial, and prints the result (as we did for the GCD machine in figure ??), so that you will not have to repeatedly invoke `get-register-contents`,`set-register-contents!`, and `start`.
+**Exercise 5.14.** Measure the number of pushes and the maximum stack depth required to compute :latexmath:`n!` for various small values of :latexmath:`n` using the factorial machine shown in figure 5.11. From your data determine formulas in terms of :latexmath:`n` for the total number of push operations and the maximum stack depth used in computing :latexmath:`n!` for any :latexmath:`n > 1`. Note that each of these is a linear function of :latexmath:`n` and is thus determined by two constants. In order to get the statistics printed, you will have to augment the factorial machine with instructions to initialize the stack and print the statistics. You may want to also modify the machine so that it repeatedly reads a value for :latexmath:`n`, computes the factorial, and prints the result (as we did for the GCD machine in figure ??), so that you will not have to repeatedly invoke `get-register-contents`,`set-register-contents!`, and `start`.
 
 **Exercise 5.15.** Add *instruction counting* to the register machine simulation. That is, have the machine model keep track of the number of instructions executed. Extend the machine model's interface to accept a new message that prints the value of the instruction count and resets the count to zero.
 
@@ -1187,9 +1187,9 @@ Exercises 5.15 through 5.19 describe other useful monitoring and debugging fea
 
 **Exercise 5.19.** Alyssa P. Hacker wants a *breakpoint* feature in the simulator to help her debug her machine designs. You have been hired to install this feature for her. She wants to be able to specify a place in the controller sequence where the simulator will stop and allow her to examine the state of the machine. You are to implement a procedure
 
-(set-breakpoint $machine$ $label$ $n$)
+(set-breakpoint :latexmath:`machine` :latexmath:`label` :latexmath:`n`)
 
-that sets a breakpoint just before the $n$th instruction after the given label. For example,
+that sets a breakpoint just before the :latexmath:`n`th instruction after the given label. For example,
 
 ```scheme
 (set-breakpoint gcd-machine 'test-b 4)
@@ -1197,12 +1197,12 @@ that sets a breakpoint just before the $n$th instruction after the given label. 
 
 installs a breakpoint in `gcd-machine` just before the assignment to register `a`. When the simulator reaches the breakpoint it should print the label and the offset of the breakpoint and stop executing instructions. Alyssa can then use `get-register-contents` and `set-register-contents!` to manipulate the state of the simulated machine. She should then be able to continue execution by saying
 
-(proceed-machine $machine$)
+(proceed-machine :latexmath:`machine`)
 
 She should also be able to remove a specific breakpoint by means of
 
-(cancel-breakpoint $machine$ $label$ $n$)
+(cancel-breakpoint :latexmath:`machine` :latexmath:`label` :latexmath:`n`)
 
 or to remove all breakpoints by means of
 
-(cancel-all-breakpoints $machine$)
+(cancel-all-breakpoints :latexmath:`machine`)

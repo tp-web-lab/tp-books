@@ -378,10 +378,10 @@ We can understand this in the following way:
 ::: tp-latex
 :::: script {type="tp/latex"}
 \begin{flushleft}
-\begin{tabular}{@{}c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c}
-\tt\textbf{(define} & \tt (square & \;\tt x) & \tt{(*} & \tt x & \ \tt x)) \
-$\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ \[4pt]
-\normalsize To & \normalsize square & \normalsize something, & \;\normalsize multiply &\normalsize it & \normalsize by itself. \
+\begin{tabular}{@{}c@{}c@{}c@{}c@{}c@{}c@{}c}
+\tt\textbf{(define} & \tt (square & \;\tt x) & \tt{(*} & \tt x & \ \tt x)) \\
+$\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ \\
+\normalsize To & \normalsize square & \normalsize something, & \;\normalsize multiply &\normalsize it & \normalsize by itself. \\
 \end{tabular}
 \end{flushleft}
 ::::
@@ -571,8 +571,8 @@ The expressive power of the class of procedures that we can define at this point
 
 $$\begin{array}{lll}
 |x| & = & \left\{ \begin{array}{rl}
-x & \text{if $x>0$} \
-0 & \text{if $x=0$} \
+x & \text{if $x>0$} \\
+0 & \text{if $x=0$} \\
 -x & \text{if $x<0$}
 \end{array}
 \right.
@@ -631,8 +631,7 @@ In addition to primitive predicates such as `<`, `=`, and `>`, there are logical
 The interpreter evaluates the expressions $\langle e \rangle$ one at a time, in left-to-right order. If any $\langle e \rangle$ evaluates to false, the value of the `and` expression is false, and the rest of the $\langle e \rangle$'s are not evaluated. If all $\langle e \rangle$'s evaluate to true values, the value of the `and` expression is the value of the last one.
 - `(or`$\langle e_1 \rangle\ldots \langle e_n \rangle$`)`
 The interpreter evaluates the expressions $\langle e \rangle$ one at a time, in left-to-right order. If any $\langle e \rangle$ evaluates to a true value, that value is returned as the value of the `or` expression, and the rest of the $\langle e \rangle$'s are not evaluated. If all $\langle e \rangle$'s evaluate to false, the value of the `or` expression is false.
-- `(not`$\langle e \rangle$`)
-`
+- `(not`$\langle e \rangle$`) `
 The value of a `not` expression is true when the expression $\langle e \rangle$ evaluates to false, and false otherwise.
 Notice that `and` and `or` are special forms, not procedures, because the subexpressions are not necessarily all evaluated. `Not` is an ordinary procedure.
 
@@ -779,10 +778,10 @@ The contrast between function and procedure is a reflection of the general disti
 How does one compute square roots? The most common way is to use Newton's method of successive approximations, which says that whenever we have a guess $y$ for the value of the square root of a number $x$, we can perform a simple manipulation to get a better guess (one closer to the actual square root) by averaging $y$ with $x/y$.[^1-22] For example, we can compute the square root of 2 as follows. Suppose our initial guess is 1:
 
 $$\begin{array}{lll}
-\textrm{Guess} & \textrm{Quotient} & \textrm{Average}\[1em]
-1 & {\displaystyle \frac{2}{1} = 2} & {\displaystyle \frac{(2+1)}{2} = 1.5} \[1em]
-1.5 & {\displaystyle \frac{2}{1.5} = 1.3333} & {\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167} \[1em]
-1.4167 & {\displaystyle \frac{2}{1.4167} = 1.4118} & {\displaystyle \frac{(1.4167+1.4118)}{2} = 1.4142} \[1em]
+\textrm{Guess} & \textrm{Quotient} & \textrm{Average}\\[1em]
+1 & {\displaystyle \frac{2}{1} = 2} & {\displaystyle \frac{(2+1)}{2} = 1.5} \\[1em]
+1.5 & {\displaystyle \frac{2}{1.5} = 1.3333} & {\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167} \\[1em]
+1.4167 & {\displaystyle \frac{2}{1.4167} = 1.4118} & {\displaystyle \frac{(1.4167+1.4118)}{2} = 1.4142} \\[1em]
 1.4142 & \ldots & \ldots
 \end{array}$$
 
@@ -1075,7 +1074,7 @@ We can use the substitution model of section 1.1.5 to watch this procedure in a
 Now let's take a different perspective on computing factorials. We could describe a rule for computing $n!$ by specifying that we first multiply 1 by 2, then multiply the result by 3, then by 4, and so on until we reach $n$. More formally, we maintain a running product, together with a counter that counts from 1 up to $n$. We can describe the computation by saying that the counter and the product simultaneously change from one step to the next according to the rule
 
 $$\begin{array}{lll}
-\textrm{product} & \leftarrow & \textrm{counter} \cdot \textrm{product}\
+\textrm{product} & \leftarrow & \textrm{counter} \cdot \textrm{product}\\
 \textrm{counter} & \leftarrow & \textrm{counter} + 1
 \end{array}$$
 
@@ -1202,8 +1201,8 @@ In general, the Fibonacci numbers can be defined by the rule
 
 $$\begin{array}{lll}
 \textrm{Fib}(n) & = & \left\{ \begin{array}{ll}
-0 & \text{if $n=0$}\
-1 & \text{if $n=1$}\
+0 & \text{if $n=0$}\\
+1 & \text{if $n=1$}\\
 \textrm{Fib}(n-1)+\textrm{Fib}(n-2) & \text{otherwise}
 \end{array}
 \right.
@@ -1242,7 +1241,7 @@ Thus, the process uses a number of steps that grows exponentially with the input
 We can also formulate an iterative process for computing the Fibonacci numbers. The idea is to use a pair of integers $a$ and $b$, initialized to $\textrm{Fib}(1)=1$ and $\textrm{Fib}(0)=0$, and to repeatedly apply the simultaneous transformations
 
 $$\begin{array}{lll}
-a & \leftarrow & a+b \
+a & \leftarrow & a+b \\
 b & \leftarrow & a
 \end{array}$$
 
@@ -1321,11 +1320,11 @@ We can easily translate this description into a recursive procedure:
 
 $${
 \begin{array}{rrrrcrrrr}
-& & & & 1 & & & & \
-& & &1 & &1 & & & \
-& &1 & & 2 & &1 & & \
-&1 & &3 & &3 & &1 & \
-1 & & 4 & & 6 & & 4 & & 1 \
+& & & & 1 & & & & \\
+& & &1 & &1 & & & \\
+& &1 & & 2 & &1 & & \\
+&1 & &3 & &3 & &1 & \\
+1 & & 4 & & 6 & & 4 & & 1 \\
 & & & & \ldots & & & &
 \end{array}}$$
 
@@ -1391,7 +1390,7 @@ b. What is the order of growth in space and number of steps (as a function of $
 Consider the problem of computing the exponential of a given number. We would like a procedure that takes as arguments a base $b$ and a positive integer exponent $n$ and computes $b^n$. One way to do this is via the recursive definition
 
 $$\begin{array}{lll}
-b^{n} &=& b\cdot b^{n-1}\
+b^{n} &=& b\cdot b^{n-1}\\
 b^{0} &=& 1
 \end{array}$$
 
@@ -1429,15 +1428,15 @@ b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot b))))))
 we can compute it using three multiplications:
 
 $$\begin{array}{lll}
-b^{2} &= & b\cdot b\
-b^{4} &= & b^{2}\cdot b^{2}\
+b^{2} &= & b\cdot b\\
+b^{4} &= & b^{2}\cdot b^{2}\\
 b^{8} &= & b^{4}\cdot b^{4}
 \end{array}$$
 
 This method works fine for exponents that are powers of 2. We can also take advantage of successive squaring in computing exponentials in general if we use the rule
 
 $$\begin{array}{llll}
-b^{n} &=& (b^{n/2})^{2} &\qquad\,\text{if}\ n\ \text{is even}\
+b^{n} &=& (b^{n/2})^{2} &\qquad\,\text{if}\ n\ \text{is even}\\
 b^{n} &=& b\cdot b^{n-1} &\qquad\text{if}\ n\ \text{is odd}
 \end{array}$$
 
@@ -1521,10 +1520,10 @@ $$\begin{array}{lll}
 to successively reduce the problem of computing a GCD to the problem of computing the GCD of smaller and smaller pairs of integers. For example,
 
 $$\begin{array}{lll}
-\textrm{GCD}(206,40) & = & \textrm{GCD}(40,6) \
-& = & \textrm{GCD}(6,4) \
-& = & \textrm{GCD}(4,2) \
-& = & \textrm{GCD}(2,0) \
+\textrm{GCD}(206,40) & = & \textrm{GCD}(40,6) \\
+& = & \textrm{GCD}(6,4) \\
+& = & \textrm{GCD}(4,2) \\
+& = & \textrm{GCD}(2,0) \\
 & = & 2
 \end{array}$$
 
@@ -2016,8 +2015,8 @@ f(x, y)&=&x(1 + x y)^2 +y (1 - y) + (1 + x y)(1 - y)
 which we could also express as
 
 $$\begin{array}{rll}
-a &=& 1+xy\
-b &=& 1-y\
+a &=& 1+xy\\
+b &=& 1-y\\
 f(x, y) &= &x a^2 +y b + a b
 \end{array}$$
 
@@ -2069,10 +2068,10 @@ The general form of a `let` expression is
 which can be thought of as saying
 
 $$\begin{array}{ll}
-\text{let}\ &\textit{var}_1\ \text{have the value}\ \textit{exp}_1\ \text{and}\
-&\textit{var}_2\ \text{have the value}\ \textit{exp}_2\ \text{and}\
-&\vdots\
-&\textit{var}_n\ \text{have the value}\ \textit{exp}_n\
+\text{let}\ &\textit{var}_1\ \text{have the value}\ \textit{exp}_1\ \text{and}\\
+&\textit{var}_2\ \text{have the value}\ \textit{exp}_2\ \text{and}\\
+&\vdots\\
+&\textit{var}_n\ \text{have the value}\ \textit{exp}_n\\
 \text{in}\ & \textit{body}
 \end{array}$$
 
@@ -2525,8 +2524,6 @@ Hint: You may find it convenient to use `compose` from exercise 1.42.
 
 # 2 Building Abstractions with Data
 
-\addtocontents{toc}{\protect\enlargethispage{-\baselineskip}}
-
 > We now come to the decisive step of mathematical abstraction: we forget about what the symbols stand for. … [The mathematician] need not be idle; there are many operations which he may carry out with these symbols, without ever having to look at the things they stand for.
 > — Hermann Weyl, *The Mathematical Way of Thinking*
 
@@ -2585,13 +2582,13 @@ We are using here a powerful strategy of synthesis: *wishful thinking*. We haven
 
 $$\begin{array}{rll}
 \dfrac{n_{1}}{d_{1}}+\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}-\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}\cdot\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}n_{2}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}n_{2}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}/d_{1}}{n_{2}/d_{2}}
-&=&\dfrac{n_{1}d_{2}}{d_{1}n_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}}{d_{1}n_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}
 &=&\dfrac{n_{2}}{d_{2}}\ \quad \textrm{if and only if}\ \ \ n_{1}d_{2}\ =\ n_{2}d_{1}
 \end{array}$$
@@ -4004,19 +4001,19 @@ then the value of `(accumulate-n + 0 s)` should be the sequence `(22 26 30)`. Fi
 
 $$\left[
 \begin{array}{llll}
-1 & 2 & 3 & 4\
-4 & 5 & 6 & 6\
-6 & 7 & 8 & 9\
+1 & 2 & 3 & 4\\
+4 & 5 & 6 & 6\\
+6 & 7 & 8 & 9\\
 \end{array}
 \right]$$
 
 is represented as the sequence `((1 2 3 4) (4 5 6 6) (6 7 8 9))`. With this representation, we can use sequence operations to concisely express the basic matrix and vector operations. These operations (which are described in any book on matrix algebra) are the following:
 
-| `(dot-product `$v$ $w$`)` | returns the sum $\\sum_{i}v_{i} w_{i}$; |
+| `(dot-product `$v$ $w$`)` | returns the sum $\sum_{i}v_{i} w_{i}$; |
 | --- | --- |
-| `(matrix-*-vector `$m$$v$`)` | returns the vector $t$, where $t_{i} =\\sum_{j}m_{ij}v_{j}$; |
-| `(matrix-*-matrix `$m\\ n$`)` | returns the matrix $p$, where $p_{ij}=\\sum_{k} m_{ik}n_{kj}$; |
-| `(transpose )` | returns the matrix $n$, where $n_{ij}=m_{ji}$. |
+| `(matrix-*-vector `$m$$v$`)` | returns the vector $t$, where $t_{i} =\sum_{j}m_{ij}v_{j}$; |
+| `(matrix-*-matrix `$m\ n$`)` | returns the matrix $p$, where $p_{ij}=\sum_{k} m_{ik}n_{kj}$; |
+| `(transpose `$m$`)` | returns the matrix $n$, where $n_{ij}=m_{ji}$. |
 
 We can define the dot product as[^2-17]
 
@@ -4088,8 +4085,8 @@ Give a property that `op` should satisfy to guarantee that `fold-right` and `fol
 We can extend the sequence paradigm to include many computations that are commonly expressed using nested loops.[^2-18] Consider this problem: Given a positive integer $n$, find all ordered pairs of distinct positive integers $i$ and $j$, where $1\leq j < i\leq n$, such that $i +j$ is prime. For example, if $n$ is 6, then the pairs are the following:
 
 $$\begin{array}{c|ccccccc}
-i & 2 & 3 & 4 & 4 & 5 & 6 & 6 \
-j & 1 & 2 & 1 & 3 & 2 & 1 & 5 \
+i & 2 & 3 & 4 & 4 & 5 & 6 & 6 \\
+j & 1 & 2 & 1 & 3 & 2 & 1 & 5 \\
 \hline
 i+j & 3 & 5 & 5 & 7 & 7 & 7 & 11
 \end{array}$$
@@ -4411,8 +4408,8 @@ returns the same vector as
 **Exercise 2.46.** A two-dimensional vector $v$ running from the origin to a point can be represented as a pair consisting of an $x$-coordinate and a $y$-coordinate. Implement a data abstraction for vectors by giving a constructor `make-vect` and corresponding selectors `xcor-vect` and `ycor-vect`. In terms of your selectors and constructor, implement procedures`add-vect`,`sub-vect`, and `scale-vect` that perform the operations vector addition, vector subtraction, and multiplying a vector by a scalar:
 
 $$\begin{array}{lll}
-(x_1, y_1)+(x_2, y_2) &=& (x_1+x_2, y_1+y_2)\
-(x_1, y_1)-(x_2, y_2) &=& (x_1-x_2, y_1-y_2)\
+(x_1, y_1)+(x_2, y_2) &=& (x_1+x_2, y_1+y_2)\\
+(x_1, y_1)-(x_2, y_2) &=& (x_1-x_2, y_1-y_2)\\
 s\cdot(x, y)&= &(sx, sy)
 \end{array}$$
 
@@ -4779,9 +4776,9 @@ In order to keep things simple, we will consider a very simple symbolic-differen
 
 $$\begin{array}{rll}
 \dfrac{dc}{dx} & = &
-0\quad \text{for $c$ a constant or a variable different from $x$} \[12pt]
-\dfrac{dx}{dx} & = & 1 \[12pt]
-\dfrac{d(u+v)}{dx} & = & \dfrac{du}{dx}+\dfrac{dv}{dx} \[12pt]
+0\quad \text{for $c$ a constant or a variable different from $x$} \\[12pt]
+\dfrac{dx}{dx} & = & 1 \\[12pt]
+\dfrac{d(u+v)}{dx} & = & \dfrac{du}{dx}+\dfrac{dv}{dx} \\[12pt]
 \dfrac{d(uv)}{dx} & = & u\left( \dfrac{dv}{dx}\right)+v\left(
 \dfrac{du}{dx}\right)
 \end{array}$$
@@ -5212,8 +5209,7 @@ Of course, there are better ways to represent large sets than as unordered lists
 
 [^2-37]: If we want to be more formal, we can specify "consistent with the interpretations given above" to mean that the operations satisfy a collection of rules such as these: 
     -  For any set `S` and any object `x`, `(element-of-set? x (adjoin-set x S))` is true (informally: "Adjoining an object to a set produces a set that contains the object"). 
-    -  For any sets `S` and `T` and any object `x`, `(element-of-set? x (union-set S T))` is equal to `(or (element-of-set? x S) (element-of-set? x T))
-    	    ` (informally: "The elements of `(union-set S T)` are the elements that are in `S` or in `T`"). 
+    -  For any sets `S` and `T` and any object `x`, `(element-of-set? x (union-set S T))` is equal to `(or (element-of-set? x S) (element-of-set? x T)) ` (informally: "The elements of `(union-set S T)` are the elements that are in `S` or in `T`"). 
     -  For any object `x`, `(element-of-set? x '())` is false (informally: "No object is an element of the empty set").
 
 [^2-38]: Halving the size of the problem at each step is the distinguishing characteristic of  logarithmic growth, as we saw with the fast-exponentiation algorithm of section 1.2.4 and the half-interval search method of section 1.3.3.
@@ -5275,15 +5271,15 @@ Given an "alphabet" of symbols and their relative frequencies, how do we constru
 
 The algorithm for generating a Huffman tree is very simple. The idea is to arrange the tree so that the symbols with the lowest frequency appear farthest away from the root. Begin with the set of leaf nodes, containing symbols and their frequencies, as determined by the initial data from which the code is to be constructed. Now find two leaves with the lowest weights and merge them to produce a node that has these two nodes as its left and right branches. The weight of the new node is the sum of the two weights. Remove the two leaves from the original set and replace them by this new node. Now continue this process. At each step, merge two nodes with the smallest weights, removing them from the set and replacing them with a node that has these two as its left and right branches. The process stops when there is only one node left, which is the root of the entire tree. Here is how the Huffman tree of figure 2.18 was generated:
 
-| Initial leaves | $\\{$(A 8) (B 3) (C 1) (D 1) (E 1) (F 1) (G 1) (H 1)$\\}$ |
+| Initial leaves | $\{$(A 8) (B 3) (C 1) (D 1) (E 1) (F 1) (G 1) (H 1)$\}$ |
 | --- | --- |
-| Merge | $\\{$(A 8) (B 3) ($\\{$C D$\\}$ 2) (E 1) (F 1) (G 1) (H 1)$\\}$ |
-| Merge | $\\{$(A 8) (B 3) ($\\{$C D$\\}$ 2) ($\\{$E F$\\}$ 2) (G 1) (H 1)$\\}$ |
-| Merge | $\\{$(A 8) (B 3) ($\\{$C D$\\}$ 2) ($\\{$E F$\\}$ 2) ($\\{$G H$\\}$ 2)$\\}$ |
-| Merge | $\\{$(A 8) (B 3) ($\\{$C D$\\}$ 2) ($\\{$E F G H$\\}$ 4)$\\}$ |
-| Merge | $\\{$(A 8) ($\\{$B C D$\\}$ 5) ($\\{$E F G H$\\}$ 4)$\\}$ |
-| Merge | $\\{$(A 8) ($\\{$B C D E F G H$\\}$ 9)$\\}$ |
-| Final merge | $\\{$($\\{$A B C D E F G H$\\}$ 17)$\\}$ |
+| Merge | $\{$(A 8) (B 3) ($\{$C D$\}$ 2) (E 1) (F 1) (G 1) (H 1)$\}$ |
+| Merge | $\{$(A 8) (B 3) ($\{$C D$\}$ 2) ($\{$E F$\}$ 2) (G 1) (H 1)$\}$ |
+| Merge | $\{$(A 8) (B 3) ($\{$C D$\}$ 2) ($\{$E F$\}$ 2) ($\{$G H$\}$ 2)$\}$ |
+| Merge | $\{$(A 8) (B 3) ($\{$C D$\}$ 2) ($\{$E F G H$\}$ 4)$\}$ |
+| Merge | $\{$(A 8) ($\{$B C D$\}$ 5) ($\{$E F G H$\}$ 4)$\}$ |
+| Merge | $\{$(A 8) ($\{$B C D E F G H$\}$ 9)$\}$ |
+| Final merge | $\{$($\{$A B C D E F G H$\}$ 17)$\}$ |
 
 The algorithm does not always specify a unique tree, because there may not be unique smallest-weight nodes at each step. Also, the choice of the order in which the two nodes are merged (i.e., which will be the right branch and which will be the left branch) is arbitrary.
 
@@ -5476,7 +5472,7 @@ Like rational numbers, complex numbers are naturally represented as ordered pair
 
 $$\begin{array}{lll}
 \text{Real-part}(z_{1}+z_{2}) & = &
-\text{Real-part}(z_{1})+\text{Real-part}(z_{2}) \[1ex]
+\text{Real-part}(z_{1})+\text{Real-part}(z_{2}) \\[1ex]
 \text{Imaginary-part}(z_{1} +z_{2}) & = &
 \text{Imaginary-part}(z_1)+\text{Imaginary-part}(z_2)
 \end{array}$$
@@ -5485,7 +5481,7 @@ When multiplying complex numbers, it is more natural to think in terms of repres
 
 $$\begin{array}{lll}
 \text{Magnitude}(z_{1}\cdot z_{2}) & = &
-\text{Magnitude}(z_{1})\cdot\text{Magnitude}(z_{2})\[1ex]
+\text{Magnitude}(z_{1})\cdot\text{Magnitude}(z_{2})\\[1ex]
 \text{Angle}(z_{1}\cdot z_{2}) & = &
 \text{Angle}(z_{1})+\text{Angle}(z_{2})
 \end{array}$$
@@ -5535,7 +5531,7 @@ To complete the complex-number package, we must choose a representation and we m
 In order to make the different choices concrete, imagine that there are two programmers, Ben Bitdiddle and Alyssa P. Hacker, who are independently designing representations for the complex-number system. Ben chooses to represent complex numbers in rectangular form. With this choice, selecting the real and imaginary parts of a complex number is straightforward, as is constructing a complex number with given real and imaginary parts. To find the magnitude and the angle, or to construct a complex number with a given magnitude and angle, he uses the trigonometric relations
 
 $$\begin{array}{lllllll}
-x & = & r\ \cos A & \quad \quad \quad & r & = & \sqrt{x^2 +y^2} \
+x & = & r\ \cos A & \quad \quad \quad & r & = & \sqrt{x^2 +y^2} \\
 y & = & r\ \sin A & & A &= & \arctan (y,x)
 \end{array}$$
 
@@ -6593,8 +6589,6 @@ The GCD computation is at the heart of any system that does operations on ration
 
 # 3 Modularity, Objects, and State
 
-\addtocontents{toc}{\protect\enlargethispage{2\baselineskip}}
-
 > $\def\aal{\alpha{\raise 1pt\hbox{\hskip -4pt{\char'47}}}}
 > M\epsilon\tau\alpha\beta\acute{\alpha}\lambda\lambda o \nu\
 > ἀ\nu\alpha\pi\alpha\acute{\upsilon}\epsilon\tau\alpha\iota$
@@ -6614,7 +6608,7 @@ Both the object-based approach and the stream-processing approach raise signific
 
 ## 3.1 Assignment and Local State
 
-We ordinarily view the world as populated by independent objects, each of which has a state that changes over time. An object is said to "have state" if its behavior is influenced by its history. A bank account, for example, has state in that the answer to the question "Can I withdraw $100?" depends upon the history of deposit and withdrawal transactions. We can characterize an object's state by one or more *state variables*, which among them maintain enough information about history to determine the object's current behavior. In a simple banking system, we could characterize the state of an account by a current balance rather than by remembering the entire history of account transactions.
+We ordinarily view the world as populated by independent objects, each of which has a state that changes over time. An object is said to "have state" if its behavior is influenced by its history. A bank account, for example, has state in that the answer to the question "Can I withdraw \$100?" depends upon the history of deposit and withdrawal transactions. We can characterize an object's state by one or more *state variables*, which among them maintain enough information about history to determine the object's current behavior. In a simple banking system, we could characterize the state of an account by a current balance rather than by remembering the entire history of account transactions.
 
 In a system composed of many objects, the objects are rarely completely independent. Each may influence the states of others through interactions, which serve to couple the state variables of one object to those of other objects. Indeed, the view that a system is composed of separate objects is most useful when the state variables of the system can be grouped into closely coupled subsystems that are only loosely coupled to other subsystems.
 
@@ -6622,7 +6616,7 @@ This view of a system can be a powerful framework for organizing computational m
 
 ### 3.1.1 Local State Variables
 
-To illustrate what we mean by having a computational object with time-varying state, let us model the situation of withdrawing money from a bank account. We will do this using a procedure`withdraw`, which takes as argument an `amount` to be withdrawn. If there is enough money in the account to accommodate the withdrawal, then `withdraw` should return the balance remaining after the withdrawal. Otherwise, `withdraw` should return the message *Insufficient funds.* For example, if we begin with $100 in the account, we should obtain the following sequence of responses using `withdraw`:
+To illustrate what we mean by having a computational object with time-varying state, let us model the situation of withdrawing money from a bank account. We will do this using a procedure`withdraw`, which takes as argument an `amount` to be withdrawn. If there is enough money in the account to accommodate the withdrawal, then `withdraw` should return the balance remaining after the withdrawal. Otherwise, `withdraw` should return the message *Insufficient funds.* For example, if we begin with \$100 in the account, we should obtain the following sequence of responses using `withdraw`:
 
 ```scheme
 (withdraw 25)
@@ -7162,7 +7156,7 @@ A language that supports the concept that "equals can be substituted for equals"
 
 Once we forgo referential transparency, the notion of what it means for computational objects to be "the same" becomes difficult to capture in a formal way. Indeed, the meaning of "same" in the real world that our programs model is hardly clear in itself. In general, we can determine that two apparently identical objects are indeed "the same one" only by modifying one object and then observing whether the other object has changed in the same way. But how can we tell if an object has "changed" other than by observing the "same" object twice and seeing whether some property of the object differs from one observation to the next? Thus, we cannot determine "change" without some a priori notion of "sameness," and we cannot determine sameness without observing the effects of change.
 
-As an example of how this issue arises in programming, consider the situation where Peter and Paul have a bank account with $100 in it. There is a substantial difference between modeling this as
+As an example of how this issue arises in programming, consider the situation where Peter and Paul have a bank account with \$100 in it. There is a substantial difference between modeling this as
 
 ```scheme
 (define peter-acc (make-account 100))
@@ -7252,7 +7246,7 @@ An environment is a sequence of *frames*. Each frame is a table (possibly empty)
 
 Figure 3.1 shows a simple environment structure consisting of three frames, labeled I, II, and III. In the diagram, A, B, C, and D are pointers to environments. C and D point to the same environment. The variables `z` and `x` are bound in frame II, while `y` and `x` are bound in frame I. The value of `x` in environment D is 3. The value of `x` with respect to environment B is also 3. This is determined as follows: We examine the first frame in the sequence (frame III) and do not find a binding for `x`, so we proceed to the enclosing environment D and find the binding in frame I. On the other hand, the value of `x` in environment A is 7, because the first frame in the sequence (frame II) contains a binding of `x` to 7. With respect to environment A, the binding of `x` to 7 in frame II is said to *shadow* the binding of `x` to 3 in frame I.
 
-The environment is crucial to the evaluation process, because it determines the context in which an expression should be evaluated. Indeed, one could say that expressions in a programming language do not, in themselves, have any meaning. Rather, an expression acquires a meaning only with respect to some environment in which it is evaluated. Even the interpretation of an expression as straightforward as `(+ 1 1)` depends on an understanding that one is operating in a context in which `+` is the symbol for addition. Thus, in our model of evaluation we will always speak of evaluating an expression with respect to some environment. To describe interactions with the interpreter, we will suppose that there is a global environment, consisting of a single frame (with no enclosing environment) that includes values for the symbols associated with the primitive procedures. For example, the idea that `+` is the symbol for addition is captured by saying that the symbol `+` is bound in the global environment to the primitive addition procedure.
+The environment is crucial to the evaluation process, because it determines the context in which an expression should be evaluated. Indeed, one could say that expressions in a programming language do not, in themselves, have any meaning. Rather, an expression acquires a meaning only with respect to some environment in which it is evaluated. Even the interpretation of an expression as straightforward as `(+ 1 1)` depends on an understanding that one is operating in a context in which `+` is the symbol for addition. Thus, in our model of evaluation we will always speak of evaluating an expression with respect to some environment. To describe interactions with the interpreter, we will suppose that there is a global environment, consisting of a single frame (with no enclosing environment) that includes values for the symbols associated with the primitive procedures. For example, the idea that `+` is the symbol for addition is captured by saying that the symbol `+` is bound in the global environment to the primitive addition procedure.
 
 ### 3.2.1 The Rules for Evaluation
 
@@ -7287,7 +7281,7 @@ Figure 3.2 shows the result of evaluating this `define` expression. The procedu
 
 Now that we have seen how procedures are created, we can describe how procedures are applied. The environment model specifies: To apply a procedure to arguments, create a new environment containing a frame that binds the parameters to the values of the arguments. The enclosing environment of this frame is the environment specified by the procedure. Now, within this new environment, evaluate the procedure body.
 
-To show how this rule is followed, figure 3.3 illustrates the environment structure created by evaluating the expression `(square 5)` in the global environment, where `square` is the procedure generated in figure 3.2. Applying the procedure results in the creation of a new environment, labeled E1 in the figure, that begins with a frame in which `x`, the formal parameter for the procedure, is bound to the argument 5. The pointer leading upward from this frame shows that the frame's enclosing environment is the global environment. The global environment is chosen here, because this is the environment that is indicated as part of the `square`procedure object. Within E1, we evaluate the body of the procedure,`(* x x)`. Since the value of `x` in E1 is 5, the result is `(* 5 5)`, or 25.
+To show how this rule is followed, figure 3.3 illustrates the environment structure created by evaluating the expression `(square 5)` in the global environment, where `square` is the procedure generated in figure 3.2. Applying the procedure results in the creation of a new environment, labeled E1 in the figure, that begins with a frame in which `x`, the formal parameter for the procedure, is bound to the argument 5. The pointer leading upward from this frame shows that the frame's enclosing environment is the global environment. The global environment is chosen here, because this is the environment that is indicated as part of the `square`procedure object. Within E1, we evaluate the body of the procedure,`(* x x)`. Since the value of `x` in E1 is 5, the result is `(* 5 5)`, or 25.
 
 ![](https://sicp.sourceacademy.org/img_original/ch3-Z-G-4.svg)
 
@@ -7607,7 +7601,7 @@ The basic operations on pairs—`cons`, `car`, and `cdr`—can be used to constr
 
 The primitive mutators for pairs are `set-car!` and `set-cdr!`.`Set-car!` takes two arguments, the first of which must be a pair. It modifies this pair, replacing the `car` pointer by a pointer to the second argument of `set-car!`.[^3-17]
 
-As an example, suppose that `x` is bound to the list `((a b) c d)` and `y` to the list `(e f)` as illustrated in figure 3.12. Evaluating the expression `(set-car! x y)` modifies the pair to which `x` is bound, replacing its `car` by the value of `y`. The result of the operation is shown in figure 3.13. The structure `x` has been modified and would now be printed as `((e f) c d)`. The pairs representing the list `(a b)`, identified by the pointer that was replaced, are now detached from the original structure.[^3-18]
+As an example, suppose that `x` is bound to the list `((a b) c d)` and `y` to the list `(e f)` as illustrated in figure 3.12. Evaluating the expression `(set-car! x y)` modifies the pair to which `x` is bound, replacing its `car` by the value of `y`. The result of the operation is shown in figure 3.13. The structure `x` has been modified and would now be printed as `((e f) c d)`. The pairs representing the list `(a b)`, identified by the pointer that was replaced, are now detached from the original structure.[^3-18]
 
 ![](https://sicp.sourceacademy.org/img_original/ch3-Z-G-13.svg)
 
@@ -7841,7 +7835,7 @@ z2
 ((wow b) a b)
 ```
 
-One way to detect sharing in list structures is to use the predicate `eq?`, which we introduced in section 2.3.1 as a way to test whether two symbols are equal. More generally, `(eq? x y)` tests whether `x` and `y` are the same object (that is, whether `x` and `y` are equal as pointers). Thus, with `z1` and `z2` as defined in figure 3.16 and 3.17, `(eq? (car z1) (cdr z1))` is true and `(eq? (car z2) (cdr z2))` is false.
+One way to detect sharing in list structures is to use the predicate `eq?`, which we introduced in section 2.3.1 as a way to test whether two symbols are equal. More generally, `(eq? x y)` tests whether `x` and `y` are the same object (that is, whether `x` and `y` are equal as pointers). Thus, with `z1` and `z2` as defined in figure 3.16 and 3.17, `(eq? (car z1) (cdr z1))` is true and `(eq? (car z2) (cdr z2))` is false.
 
 As will be seen in the following sections, we can exploit sharing to greatly extend the repertoire of data structures that can be represented by pairs. On the other hand, sharing can also be dangerous, since modifications made to structures will also affect other structures that happen to share the modified parts. The mutation operations `set-car!` and `set-cdr!` should be used with care; unless we have a good understanding of how our data objects are shared, mutation can have unanticipated results.[^3-21]
 
@@ -7966,7 +7960,9 @@ tests if the queue is empty.
 returns the object at the front of the queue, signaling an error if the queue is empty; it does not modify the queue.
 - two mutators:
 `(insert-queue! queue item)`
-inserts the item at the rear of the queue and returns the modified queue as its value.\[4pt]`(delete-queue! queue)`
+inserts the item at the rear of the queue and returns the modified queue as its value.
+
+`(delete-queue! queue)`
 removes the item at the front of the queue and returns the modified queue as its value, signaling an error if the queue is empty before the deletion.
 
 Because a queue is a sequence of items, we could certainly represent it as an ordinary list; the front of the queue would be the `car` of the list, inserting an item in the queue would amount to appending a new element at the end of the list, and deleting an item from the queue would just be taking the `cdr` of the list. However, this representation is inefficient, because in order to insert an item we must scan the list until we reach the end. Since the only method we have for scanning a list is by successive `cdr` operations, this scanning requires $\Theta(n)$ steps for a list of $n$ items. A simple modification to the list representation overcomes this disadvantage by allowing the queue operations to be implemented so that they require $\Theta(1)$ steps; that is, so that the number of steps needed is independent of the length of the queue.
@@ -8239,7 +8235,6 @@ The `lookup` and `insert!` operations defined above take the table as an argumen
 Using `make-table`, we could implement the `get` and `put` operations used in section 2.4.3 for data-directed programming, as follows:
 
 ```scheme
-operation-and-type tableimplementing
 (define operation-table (make-table))
 (define get (operation-table 'lookup-proc))
 (define put (operation-table 'insert-proc!))
@@ -9191,7 +9186,7 @@ Unfortunately, the complexities introduced by assignment become even more proble
 
 ### 3.4.1 The Nature of Time in Concurrent Systems
 
-On the surface, time seems straightforward. It is an ordering imposed on events.[^3-36] For any events $A$ and $B$, either $A$ occurs before $B$, $A$ and $B$ are simultaneous, or $A$ occurs after $B$. For instance, returning to the bank account example, suppose that Peter withdraws $10 and Paul withdraws $25 from a joint account that initially contains $100, leaving $65 in the account. Depending on the order of the two withdrawals, the sequence of balances in the account is either $\$100 \rightarrow \$90 \rightarrow\$65$ or $\$100 \rightarrow \$75 \rightarrow\$65$. In a computer implementation of the banking system, this changing sequence of balances could be modeled by successive assignments to a variable `balance`.
+On the surface, time seems straightforward. It is an ordering imposed on events.[^3-36] For any events $A$ and $B$, either $A$ occurs before $B$, $A$ and $B$ are simultaneous, or $A$ occurs after $B$. For instance, returning to the bank account example, suppose that Peter withdraws \$10 and Paul withdraws \$25 from a joint account that initially contains \$100, leaving \$65 in the account. Depending on the order of the two withdrawals, the sequence of balances in the account is either $\$100 \rightarrow \$90 \rightarrow\$65$ or $\$100 \rightarrow \$75 \rightarrow\$65$. In a computer implementation of the banking system, this changing sequence of balances could be modeled by successive assignments to a variable `balance`.
 
 In complex situations, however, such a view can be problematic. Suppose that Peter and Paul, and other people besides, are accessing the same bank account through a network of banking machines distributed all over the world. The actual sequence of balances in the account will depend critically on the detailed timing of the accesses and the details of the communication among the machines.
 
@@ -9219,7 +9214,7 @@ executed as part of each withdrawal process. This consists of three steps: (1) a
 
 **Figure 3.29.** Timing diagram showing how interleaving the order of events in two banking withdrawals can lead to an incorrect final balance.
 
-The timing diagram in figure 3.29 depicts an order of events where `balance` starts at 100, Peter withdraws 10, Paul withdraws 25, and yet the final value of `balance` is 75. As shown in the diagram, the reason for this anomaly is that Paul's assignment of 75 to `balance` is made under the assumption that the value of `balance` to be decremented is 100. That assumption, however, became invalid when Peter changed `balance` to 90. This is a catastrophic failure for the banking system, because the total amount of money in the system is not conserved. Before the transactions, the total amount of money was $100. Afterwards, Peter has $10, Paul has $25, and the bank has $75.[^3-37]
+The timing diagram in figure 3.29 depicts an order of events where `balance` starts at 100, Peter withdraws 10, Paul withdraws 25, and yet the final value of `balance` is 75. As shown in the diagram, the reason for this anomaly is that Paul's assignment of 75 to `balance` is made under the assumption that the value of `balance` to be decremented is 100. That assumption, however, became invalid when Peter changed `balance` to 90. This is a catastrophic failure for the banking system, because the total amount of money in the system is not conserved. Before the transactions, the total amount of money was \$100. Afterwards, Peter has \$10, Paul has \$25, and the bank has \$75.[^3-37]
 
 The general phenomenon illustrated here is that several processes may share a common state variable. What makes this complicated is that more than one process may be trying to manipulate the shared state at the same time. For the bank account example, during each transaction, each customer should be able to act as if the other customers did not exist. When a customer changes the balance in a way that depends on the balance, he must be able to assume that, just before the moment of change, the balance is still what he thought it was.
 
@@ -9233,11 +9228,11 @@ One possible restriction on concurrency would stipulate that no two operations t
 
 **Figure 3.30.** Concurrent deposits and withdrawals from a joint account in Bank1 and a private account in Bank2.
 
-A less stringent restriction on concurrency would ensure that a concurrent system produces the same result as if the processes had run sequentially in some order. There are two important aspects to this requirement. First, it does not require the processes to actually run sequentially, but only to produce results that are the same *as if* they had run sequentially. For the example in figure 3.30, the designer of the bank account system can safely allow Paul's deposit and Peter's withdrawal to happen concurrently, because the net result will be the same as if the two operations had happened sequentially. Second, there may be more than one possible "correct" result produced by a concurrent program, because we require only that the result be the same as for *some* sequential order. For example, suppose that Peter and Paul's joint account starts out with $100, and Peter deposits $40 while Paul concurrently withdraws half the money in the account. Then sequential execution could result in the account balance being either $70 or $90 (see exercise 3.38).[^3-40]
+A less stringent restriction on concurrency would ensure that a concurrent system produces the same result as if the processes had run sequentially in some order. There are two important aspects to this requirement. First, it does not require the processes to actually run sequentially, but only to produce results that are the same *as if* they had run sequentially. For the example in figure 3.30, the designer of the bank account system can safely allow Paul's deposit and Peter's withdrawal to happen concurrently, because the net result will be the same as if the two operations had happened sequentially. Second, there may be more than one possible "correct" result produced by a concurrent program, because we require only that the result be the same as for *some* sequential order. For example, suppose that Peter and Paul's joint account starts out with \$100, and Peter deposits \$40 while Paul concurrently withdraws half the money in the account. Then sequential execution could result in the account balance being either \$70 or \$90 (see exercise 3.38).[^3-40]
 
 There are still weaker requirements for correct execution of concurrent programs. A program for simulating diffusion (say, the flow of heat in an object) might consist of a large number of processes, each one representing a small volume of space, that update their values concurrently. Each process repeatedly changes its value to the average of its own value and its neighbors' values. This algorithm converges to the right answer independent of the order in which the operations are done; there is no need for any restrictions on concurrent use of the shared values.
 
-**Exercise 3.38.** Suppose that Peter, Paul, and Mary share a joint bank account that initially contains $100. Concurrently, Peter deposits $10, Paul withdraws $20, and Mary withdraws half the money in the account, by executing the following commands:
+**Exercise 3.38.** Suppose that Peter, Paul, and Mary share a joint bank account that initially contains \$100. Concurrently, Peter deposits \$10, Paul withdraws \$20, and Mary withdraws half the money in the account, by executing the following commands:
 
 | Peter: | `(set! balance (+ balance 10))` |
 | --- | --- |
@@ -9253,7 +9248,7 @@ b. What are some other values that could be produced if the system allows the pr
 
 [^3-38]: The factorial program in section 3.1.3 illustrates this for a single sequential process.
 
-[^3-39]: The columns show the contents of Peter's wallet, the joint account (in Bank1), Paul's wallet, and Paul's private account (in Bank2), before and after each withdrawal (W) and deposit (D). Peter withdraws $10 from Bank1; Paul deposits $5 in Bank2, then withdraws $25 from Bank1.
+[^3-39]: The columns show the contents of Peter's wallet, the joint account (in Bank1), Paul's wallet, and Paul's private account (in Bank2), before and after each withdrawal (W) and deposit (D). Peter withdraws \$10 from Bank1; Paul deposits \$5 in Bank2, then withdraws \$25 from Bank1.
 
 [^3-40]: A more formal way to express this idea is to say that concurrent programs are inherently *nondeterministic*. That is, they are described not by single-valued functions, but by functions whose results are sets of possible values. In section 4.3 we will study a language for expressing nondeterministic computations.
 
@@ -9262,10 +9257,10 @@ b. What are some other values that could be produced if the system allows the pr
 We've seen that the difficulty in dealing with concurrent processes is rooted in the need to consider the interleaving of the order of events in the different processes. For example, suppose we have two processes, one with three ordered events $(a,b,c)$ and one with three ordered events $(x,y,z)$. If the two processes run concurrently, with no constraints on how their execution is interleaved, then there are 20 different possible orderings for the events that are consistent with the individual orderings for the two processes:
 
 $$\begin{array}{cccc}
-(a,b,c,x,y,z) & (a,x,b,y,c,z) & (x,a,b,c,y,z) & (x,a,y,z,b,c)\
-(a,b,x,c,y,z) & (a,x,b,y,z,c) & (x,a,b,y,c,z) & (x,y,a,b,c,z)\
-(a,b,x,y,c,z) & (a,x,y,b,c,z) & (x,a,b,y,z,c) & (x,y,a,b,z,c)\
-(a,b,x,y,z,c) & (a,x,y,b,z,c) & (x,a,y,b,c,z) & (x,y,a,z,b,c)\
+(a,b,c,x,y,z) & (a,x,b,y,c,z) & (x,a,b,c,y,z) & (x,a,y,z,b,c)\\
+(a,b,x,c,y,z) & (a,x,b,y,z,c) & (x,a,b,y,c,z) & (x,y,a,b,c,z)\\
+(a,b,x,y,c,z) & (a,x,y,b,c,z) & (x,a,b,y,z,c) & (x,y,a,b,z,c)\\
+(a,b,x,y,z,c) & (a,x,y,b,z,c) & (x,a,y,b,c,z) & (x,y,a,z,b,c)\\
 (a,x,b,c,y,z) & (a,x,y,z,b,c) & (x,a,y,b,z,c) & (x,y,z,a,b,c)
 \end{array}$$
 
@@ -9486,7 +9481,7 @@ Exporting the serializer in this way gives us enough flexibility to implement a 
      account2)))
 ```
 
-**Exercise 3.43.** Suppose that the balances in three accounts start out as $10, $20, and $30, and that multiple processes run, exchanging the balances in the accounts. Argue that if the processes are run sequentially, after any number of concurrent exchanges, the account balances should be $10, $20, and $30 in some order. Draw a timing diagram like the one in figure ?? to show how this condition can be violated if the exchanges are implemented using the first version of the account-exchange program in this section. On the other hand, argue that even with this `exchange` program, the sum of the balances in the accounts will be preserved. Draw a timing diagram to show how even this condition would be violated if we did not serialize the transactions on individual accounts.
+**Exercise 3.43.** Suppose that the balances in three accounts start out as \$10, \$20, and \$30, and that multiple processes run, exchanging the balances in the accounts. Argue that if the processes are run sequentially, after any number of concurrent exchanges, the account balances should be \$10, \$20, and \$30 in some order. Draw a timing diagram like the one in figure ?? to show how this condition can be violated if the exchanges are implemented using the first version of the account-exchange program in this section. On the other hand, argue that even with this `exchange` program, the sum of the balances in the accounts will be preserved. Draw a timing diagram to show how even this condition would be violated if we did not serialize the transactions on individual accounts.
 
 **Exercise 3.44.** Consider the problem of transferring an amount from one account to another. Ben Bitdiddle claims that this can be accomplished with the following procedure, even if there are multiple people concurrently transferring money among multiple accounts, using any account mechanism that serializes deposit and withdrawal transactions, for example, the version of `make-account` in the text above.
 
@@ -9608,7 +9603,7 @@ The basic phenomenon here is that synchronizing different processes, establishin
 
 [^3-42]: We have simplified `exchange` by exploiting the fact that our `deposit` message accepts negative amounts. (This is a serious bug in our banking system!)
 
-[^3-43]: If the account balances start out as $10, $20, and $30, then after any number of concurrent exchanges, the balances should still be $10, $20, and $30 in some order. Serializing the deposits to individual accounts is not sufficient to guarantee this. See exercise 3.43.
+[^3-43]: If the account balances start out as \$10, \$20, and \$30, then after any number of concurrent exchanges, the balances should still be \$10, \$20, and \$30 in some order. Serializing the deposits to individual accounts is not sufficient to guarantee this. See exercise 3.43.
 
 [^3-44]: Exercise 3.45 investigates why deposits and withdrawals are no longer automatically serialized by the account.
 
@@ -9693,7 +9688,7 @@ This expression does find the second prime, but the computational overhead is ou
 
 Streams are a clever idea that allows one to use sequence manipulations without incurring the costs of manipulating sequences as lists. With streams we can achieve the best of both worlds: We can formulate programs elegantly as sequence manipulations, while attaining the efficiency of incremental computation. The basic idea is to arrange to construct a stream only partially, and to pass the partial construction to the program that consumes the stream. If the consumer attempts to access a part of the stream that has not yet been constructed, the stream will automatically construct just enough more of itself to produce the required part, thus preserving the illusion that the entire stream exists. In other words, although we will write programs as if we were processing complete sequences, we design our stream implementation to automatically and transparently interleave the construction of the stream with its use.
 
-On the surface, streams are just lists with different names for the procedures that manipulate them. There is a constructor, `cons-stream`, and two selectors, `stream-car` and `stream-cdr`, which satisfy the constraints \begin{eqnarray*} \mbox{(stream-car (cons-stream x y))} &=& \mbox{x} \ \mbox{(stream-cdr (cons-stream x y))} &=& \mbox{y} \end{eqnarray*} There is a distinguishable object, `the-empty-stream`, which cannot be the result of any `cons-stream` operation, and which can be identified with the predicate `stream-null?`.[^3-55]
+On the surface, streams are just lists with different names for the procedures that manipulate them. There is a constructor, `cons-stream`, and two selectors, `stream-car` and `stream-cdr`, which satisfy the constraints \begin{eqnarray*} \mbox{(stream-car (cons-stream x y))} &=& \mbox{x} \\ \mbox{(stream-cdr (cons-stream x y))} &=& \mbox{y} \end{eqnarray*} There is a distinguishable object, `the-empty-stream`, which cannot be the result of any `cons-stream` operation, and which can be identified with the predicate `stream-null?`.[^3-55]
 
 Thus we can make and use streams, in just the same way as we can make and use lists, to represent aggregate data arranged in a sequence. In particular, we can build stream analogs of the list operations from chapter 2, such as `list-ref`, `map`, and `for-each`:[^3-56]
 
@@ -9931,7 +9926,7 @@ What does the interpreter print in response to evaluating each expression in the
 (display-stream z)
 ```
 
-What is the value of `sum` after each of the above expressions is evaluated? What is the printed response to evaluating the `stream-ref` and `display-stream` expressions? Would these responses differ if we had implemented `(delay exp)` simply as `(lambda () exp)` without using the optimization provided by `memo-proc`$\,$? Explain.
+What is the value of `sum` after each of the above expressions is evaluated? What is the printed response to evaluating the `stream-ref` and `display-stream` expressions? Would these responses differ if we had implemented `(delay exp)` simply as `(lambda () exp)` without using the optimization provided by `memo-proc`$\,$? Explain.
 
 [^3-54]: Assume that we have a predicate `prime?` (e.g., as in section 1.2.6) that tests for primality.
 
@@ -9993,7 +9988,7 @@ In analogy with `integers`, we can define the infinite stream of Fibonacci numbe
 (define fibs (fibgen 0 1))
 ```
 
-`Fibs` is a pair whose `car` is 0 and whose `cdr` is a promise to evaluate `(fibgen 1 1)`. When we evaluate this delayed `(fibgen 1 1)`, it will produce a pair whose `car` is 1 and whose `cdr` is a promise to evaluate `(fibgen 1 2)`, and so on.
+`Fibs` is a pair whose `car` is 0 and whose `cdr` is a promise to evaluate `(fibgen 1 1)`. When we evaluate this delayed `(fibgen 1 1)`, it will produce a pair whose `car` is 1 and whose `cdr` is a promise to evaluate `(fibgen 1 2)`, and so on.
 
 For a look at a more exciting infinite stream, we can generalize the `no-sevens` example to construct the infinite stream of prime numbers, using a *sieving* method.[^3-61] We start with the integers beginning with 2, which is the first prime. To get the rest of the primes, we start by filtering the multiples of 2 from the rest of the integers. This leaves a stream beginning with 3, which is the next prime. Now we filter the multiples of 3 from the rest of this stream. This leaves a stream beginning with 5, which is the next prime, and so on. In other words, we construct the primes by a sieving process, described as follows: To sieve a stream S, form a stream whose first element is the first element of S and the rest of which is obtained by filtering all multiples of the first element of S out of the rest of S and sieving the result. This process is readily described in terms of stream operations:
 
@@ -10063,8 +10058,8 @@ We can define the Fibonacci numbers in the same style:
 This definition says that `fibs` is a stream beginning with 0 and 1, such that the rest of the stream can be generated by adding `fibs` to itself shifted by one place:
 
 $$\begin{array}{ccccccccccccl}
-& & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & \ldots & = & \texttt{(stream-cdr fibs)} \
-& & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & \ldots & = & \texttt{fibs} \ \hline
+& & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & \ldots & = & \texttt{(stream-cdr fibs)} \\
+& & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & \ldots & = & \texttt{fibs} \\ \hline
 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & \ldots & = & \texttt{fibs}
 \end{array}$$
 
@@ -10169,8 +10164,8 @@ Fill in the missing expressions in the places marked &lt;??&gt; above.
 $$\begin{array}{rll}
 e^{x} &=&
 1+x+\dfrac{x^{2}}{2}+\dfrac{x^{3}}{3\cdot2}
-+\dfrac{x^{4}}{4\cdot 3\cdot 2}+\cdots, \[9pt]
-\cos x &=& 1-\dfrac{x^{2}}{2}+\dfrac{x^{4}}{4\cdot 3\cdot 2}-\cdots, \[9pt]
++\dfrac{x^{4}}{4\cdot 3\cdot 2}+\cdots, \\[9pt]
+\cos x &=& 1-\dfrac{x^{2}}{2}+\dfrac{x^{4}}{4\cdot 3\cdot 2}-\cdots, \\[9pt]
 \sin x &=& x-\dfrac{x^{3}}{3\cdot 2}
 +\dfrac{x^{5}}{5\cdot 4\cdot 3\cdot 2}- \cdots,
 \end{array}$$
@@ -10210,7 +10205,7 @@ Show how to generate the series for sine and cosine, starting from the facts tha
 
 You can test your procedure by verifying that $sin^2 x + cos^2 x = 1$, using the series from exercise 3.59.
 
-**Exercise 3.61.** Let $S$ be a power series (exercise 3.59) whose constant term is 1. Suppose we want to find the power series $1/S$, that is, the series $X$ such that $S\cdot X= 1$. Write $S=1+S_R$ where $S_R$ is the part of $S$ after the constant term. Then we can solve for $X$ as follows: \[ \begin{array}{rll} S \cdot X &=& 1 \ (1+S_R)\cdot X &=& 1 \ X + S_R \cdot X &=& 1 \ X &=& 1 - S_R \cdot X \end{array} \] In other words, $X$ is the power series whose constant term is 1 and whose higher-order terms are given by the negative of $S_R$ times $X$. Use this idea to write a procedure`invert-unit-series` that computes $1/S$ for a power series $S$ with constant term 1. You will need to use `mul-series` from exercise 3.60.
+**Exercise 3.61.** Let $S$ be a power series (exercise 3.59) whose constant term is 1. Suppose we want to find the power series $1/S$, that is, the series $X$ such that $S\cdot X= 1$. Write $S=1+S_R$ where $S_R$ is the part of $S$ after the constant term. Then we can solve for $X$ as follows: \[ \begin{array}{rll} S \cdot X &=& 1 \\ (1+S_R)\cdot X &=& 1 \\ X + S_R \cdot X &=& 1 \\ X &=& 1 - S_R \cdot X \end{array} \] In other words, $X$ is the power series whose constant term is 1 and whose higher-order terms are given by the negative of $S_R$ times $X$. Use this idea to write a procedure`invert-unit-series` that computes $1/S$ for a power series $S$ with constant term 1. You will need to use `mul-series` from exercise 3.60.
 
 **Exercise 3.62.** Use the results of exercises 3.60 and 3.61 to define a procedure`div-series` that divides two power series. `Div-series` should work for any two series, provided that the denominator series begins with a nonzero constant term. (If the denominator has a zero constant term, then `div-series` should signal an error.) Show how to use `div-series` together with the result of exercise 3.59 to generate the power series for tangent.
 
@@ -10343,9 +10338,9 @@ Even better, we can accelerate the accelerated sequence, and recursively acceler
 The tableau has the form
 
 $$\begin{array}{llllll}
-s_{00} & s_{01} & s_{02} & s_{03} & s_{04} & \ldots\
-& s_{10} & s_{11} & s_{12} & s_{13} & \ldots\
-& & s_{20} & s_{21} & s_{22} & \ldots\
+s_{00} & s_{01} & s_{02} & s_{03} & s_{04} & \ldots\\
+& s_{10} & s_{11} & s_{12} & s_{13} & \ldots\\
+& & s_{20} & s_{21} & s_{22} & \ldots\\
 & & & & \ldots &
 \end{array}$$
 
@@ -10422,18 +10417,18 @@ For example, suppose we want to generalize the `prime-sum-pairs` procedure of se
 Our problem, then, is to produce the stream `int-pairs`. More generally, suppose we have two streams $S = (S_i)$ and $T = (T_j)$, and imagine the infinite rectangular array
 
 $$\begin{array}{cccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-(S_1,T_0) & (S_1,T_1) & (S_1, T_2) & \ldots\
-(S_2,T_0) & (S_2,T_1) & (S_2, T_2) & \ldots\
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+(S_1,T_0) & (S_1,T_1) & (S_1, T_2) & \ldots\\
+(S_2,T_0) & (S_2,T_1) & (S_2, T_2) & \ldots\\
 \ldots
 \end{array}$$
 
 We wish to generate a stream that contains all the pairs in the array that lie on or above the diagonal, i.e., the pairs
 
 $$\begin{array}{cccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-& (S_1,T_1) & (S_1, T_2) & \ldots\
-& & (S_2, T_2) & \ldots\
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+& (S_1,T_1) & (S_1, T_2) & \ldots\\
+& & (S_2, T_2) & \ldots\\
 & & & \ldots
 \end{array}$$
 
@@ -10442,10 +10437,10 @@ $$\begin{array}{cccc}
 Call the general stream of pairs `(pairs S T)`, and consider it to be composed of three parts: the pair $(S_0,T_0)$, the rest of the pairs in the first row, and the remaining pairs:[^3-68]
 
 $$\begin{array}{c|ccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-\hline{} %--------------------------------------------------- \
-& (S_1,T_1) & (S_1, T_2) & \ldots\
-& & (S_2, T_2) & \ldots\
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+\hline{} %--------------------------------------------------- \\
+& (S_1,T_1) & (S_1, T_2) & \ldots\\
+& & (S_2, T_2) & \ldots\\
 & & & \ldots
 \end{array}$$
 
@@ -10713,22 +10708,22 @@ The output stream, modeling $y$, is generated by a network that contains a loop.
 **Exercise 3.80.** A *series RLC circuit* consists of a resistor, a capacitor, and an inductor connected in series, as shown in figure 3.36. If $R$, $L$, and $C$ are the resistance, inductance, and capacitance, then the relations between voltage ($v$) and current ($i$) for the three components are described by the equations
 
 $$\begin{array}{lll}
-v_{R} &=& i_{R} R\[9pt]
-v_{L} &=& L\dfrac{di_{L}}{dt}\[11pt]
+v_{R} &=& i_{R} R\\[9pt]
+v_{L} &=& L\dfrac{di_{L}}{dt}\\[11pt]
 i_{C} &=& C\dfrac{dv_{C}}{dt}
 \end{array}$$
 
 and the circuit connections dictate the relations
 
 $$\begin{array}{lll}
-i_{R} &=& i_{L}=-i_{C}\[3pt]
+i_{R} &=& i_{L}=-i_{C}\\[3pt]
 v_{C} &=& v_{L}+v_{R}
 \end{array}$$
 
 Combining these equations shows that the state of the circuit (summarized by $v_{C}$, the voltage across the capacitor, and $i_{L}$, the current in the inductor) is described by the pair of differential equations
 
 $$\begin{array}{lll}
-\dfrac{dv_{C}}{dt} &=& -\dfrac{i_{L}}{C}\[11pt]
+\dfrac{dv_{C}}{dt} &=& -\dfrac{i_{L}}{C}\\[11pt]
 \dfrac {di_{L}}{dt} &=& \dfrac{1}{L}v_{C}-\dfrac{R}{L}i_{L}
 \end{array}$$
 
@@ -11087,8 +11082,7 @@ Here is the specification of the syntax of our language:
 (define (variable? exp) (symbol? exp))
 ```
 
-- Quotations have the form `(quote `*text-of-quotation*`)
-`:[^4-9]
+- Quotations have the form `(quote `*text-of-quotation*`) `:[^4-9]
 
 ```scheme
 (define (quoted? exp)
@@ -12740,7 +12734,7 @@ try-again
 
 [^4-44]: In actuality, the distinction between nondeterministically returning a single choice and returning all choices depends somewhat on our point of view. From the perspective of the code that uses the value, the nondeterministic choice returns a single value. From the perspective of the programmer designing the code, the nondeterministic choice potentially returns all possible values, and the computation branches so that each value is investigated separately.
 
-[^4-45]: One might object that this is a hopelessly inefficient mechanism. It might require millions of processors to solve some easily stated problem this way, and most of the time most of those processors would be idle. This objection should be taken in the context of history. Memory used to be considered just such an expensive commodity.  In 1965 a megabyte of RAM cost about $400,000. Now every personal computer has many gigabytes of RAM, and most of the time most of that RAM is unused. It is hard to underestimate the cost of mass-produced electronics.
+[^4-45]: One might object that this is a hopelessly inefficient mechanism. It might require millions of processors to solve some easily stated problem this way, and most of the time most of those processors would be idle. This objection should be taken in the context of history. Memory used to be considered just such an expensive commodity.  In 1965 a megabyte of RAM cost about \$400,000. Now every personal computer has many gigabytes of RAM, and most of the time most of that RAM is unused. It is hard to underestimate the cost of mass-produced electronics.
 
 [^4-46]: Automagically: "Automatically, but in a way which, for some reason (typically because it is too complicated, or too ugly, or perhaps even too trivial), the speaker doesn't feel like explaining." (Steele 1983, Raymond 1996)
 
@@ -13481,7 +13475,7 @@ This approach, when it works, can be a very powerful way to write programs. Part
 
 This procedure can be regarded as a translation into Lisp of the following two rules, the first of which covers the case where the first list is empty and the second of which handles the case of a nonempty list, which is a `cons` of two parts:
 - For any list `y`, the empty list and `y``append` to form `y`.
-- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.[^4-58]
+- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.[^4-58]
 Using the `append`procedure, we can answer questions such as
 
 > Find the `append` of `(a b)` and `(c d)`.
@@ -13782,7 +13776,7 @@ The final combining form is called `lisp-value`. When `lisp-value` is the first 
 
 (lisp-value $\langle \textit{predicate}\rangle$ $\langle \textit{arg}_{1}\rangle$ $\ldots$ $\langle \textit{arg}_{n} \rangle$)
 
-will be satisfied by assignments to the pattern variables for which the $\langle \textit{predicate} \rangle$ applied to the instantiated $\langle \textit{arg}_{1} \rangle, \ldots, \langle \textit{arg}_{n}\rangle$ is true. For example, to find all people whose salary is greater than $30,000 we could write[^4-63]
+will be satisfied by assignments to the pattern variables for which the $\langle \textit{predicate} \rangle$ applied to the instantiated $\langle \textit{arg}_{1} \rangle, \ldots, \langle \textit{arg}_{n}\rangle$ is true. For example, to find all people whose salary is greater than \$30,000 we could write[^4-63]
 
 ```scheme
 (and (salary ?person ?amount)
@@ -13910,7 +13904,7 @@ Why does this happen? Is there a way to find a list of people who live near each
 
 We can regard a rule as a kind of logical implication: *If* an assignment of values to pattern variables satisfies the body, * then* it satisfies the conclusion. Consequently, we can regard the query language as having the ability to perform *logical deductions* based upon the rules. As an example, consider the `append` operation described at the beginning of section 4.4. As we said, `append` can be characterized by the following two rules:
 - For any list `y`, the empty list and `y``append` to form `y`.
-- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.
+- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.
 
 To express this in our query language, we define two rules for a relation
 
@@ -14122,7 +14116,7 @@ A unifier takes two patterns, each containing constants and variables, and deter
 The unification algorithm is the most technically difficult part of the query system. With complex patterns, performing unification may seem to require deduction. To unify `(?x ?x)` and `((a ?y c) (a b ?z))`, for example, the algorithm must infer that `?x` should be `(a b c)`,`?y` should be `b`, and `?z` should be `c`. We may think of this process as solving a set of equations among the pattern components. In general, these are simultaneous equations, which may require substantial manipulation to solve.[^4-70] For example, unifying `(?x ?x)` and `((a ?y c) (a b ?z))` may be thought of as specifying the simultaneous equations
 
 $$\begin{array}{lll}
-\texttt{?x} & = & \texttt{(a ?y c)} \
+\texttt{?x} & = & \texttt{(a ?y c)} \\
 \texttt{?x} & = & \texttt{(a b ?z)}
 \end{array}$$
 
@@ -14209,7 +14203,7 @@ The driver also checks for the special command `assert!`, which signals that the
 
 [^4-70]: In one-sided pattern matching, all the equations that contain pattern variables are explicit and already solved for the unknown (the pattern variable).
 
-[^4-71]: Another way to think of unification is that it generates the most general pattern that is a specialization of the two input patterns.  That is, the unification of `(?x a)` and `((b ?y) ?z)` is `((b ?y) a)`, and  the unification of `(?x a ?y)` and `(?y ?z a)`, discussed above, is `(a a a)`. For our implementation, it is more convenient to think of the result of unification as a frame rather than a pattern.
+[^4-71]: Another way to think of unification is that it generates the most general pattern that is a specialization of the two input patterns.  That is, the unification of `(?x a)` and `((b ?y) ?z)` is `((b ?y) a)`, and  the unification of `(?x a ?y)` and `(?y ?z a)`, discussed above, is `(a a a)`. For our implementation, it is more convenient to think of the result of unification as a frame rather than a pattern.
 
 [^4-72]: Since unification is a  generalization of matching, we could simplify the system by using the unifier to produce both streams. Treating the easy case with the simple matcher, however, illustrates how matching (as opposed to full-blown unification) can be useful in its own right.
 
@@ -14657,7 +14651,7 @@ The unification algorithm is implemented as a procedure that takes as inputs two
 
 In unification, as in one-sided pattern matching, we want to accept a proposed extension of the frame only if it is consistent with existing bindings. The procedure`extend-if-possible` used in unification is the same as the `extend-if-consistent` used in pattern matching except for two special checks, marked "***" in the program below. In the first case, if the variable we are trying to match is not bound, but the value we are trying to match it with is itself a (different) variable, it is necessary to check to see if the value is bound, and if so, to match its value. If both parties to the match are unbound, we may bind either to the other.
 
-The second check deals with attempts to bind a variable to a pattern that includes that variable. Such a situation can occur whenever a variable is repeated in both patterns. Consider, for example, unifying the two patterns `(?x ?x)` and `(?y `$\langle expression$ $involving$`?y`$\rangle$`)` in a frame where both `?x` and `?y` are unbound. First `?x` is matched against `?y`, making a binding of `?x` to `?y`. Next, the same `?x` is matched against the given expression involving `?y`. Since `?x` is already bound to `?y`, this results in matching `?y` against the expression. If we think of the unifier as finding a set of values for the pattern variables that make the patterns the same, then these patterns imply instructions to find a `?y` such that `?y` is equal to the expression involving `?y`. There is no general method for solving such equations, so we reject such bindings; these cases are recognized by the predicate `depends-on?`.[^4-79] On the other hand, we do not want to reject attempts to bind a variable to itself. For example, consider unifying `(?x ?x)` and `(?y ?y)`. The second attempt to bind `?x` to `?y` matches `?y`(the stored value of `?x`) against `?y`(the new value of `?x`).). This is taken care of by the `equal?` clause of `unify-match`.
+The second check deals with attempts to bind a variable to a pattern that includes that variable. Such a situation can occur whenever a variable is repeated in both patterns. Consider, for example, unifying the two patterns `(?x ?x)` and `(?y `$\langle expression$ $involving$`?y`$\rangle$`)` in a frame where both `?x` and `?y` are unbound. First `?x` is matched against `?y`, making a binding of `?x` to `?y`. Next, the same `?x` is matched against the given expression involving `?y`. Since `?x` is already bound to `?y`, this results in matching `?y` against the expression. If we think of the unifier as finding a set of values for the pattern variables that make the patterns the same, then these patterns imply instructions to find a `?y` such that `?y` is equal to the expression involving `?y`. There is no general method for solving such equations, so we reject such bindings; these cases are recognized by the predicate `depends-on?`.[^4-79] On the other hand, we do not want to reject attempts to bind a variable to itself. For example, consider unifying `(?x ?x)` and `(?y ?y)`. The second attempt to bind `?x` to `?y` matches `?y`(the stored value of `?x`) against `?y`(the new value of `?x`).). This is taken care of by the `equal?` clause of `unify-match`.
 
 ```scheme
 (define (extend-if-possible var val frame)
@@ -15132,8 +15126,6 @@ Implement for the query language a rule-application method that uses environment
     `Expand-question-mark` and `contract-question-mark` use several procedures with `string` in their names. These are Scheme primitives.
 
 # 5 Computing with Register Machines
-
-\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
 
 > My aim is to show that the heavenly machine is not a kind of divine, live being, but a kind of clockwork (and he who believes that a clock has soul attributes the maker's glory to the work), insofar as nearly all the manifold motions are caused by a most simple and material force, just as all motions of the clock are caused by a single weight.
 > — Johannes Kepler, letter to Herwart von Hohenburg, 1605
@@ -16938,7 +16930,7 @@ We must define Scheme procedures to simulate the operations used as primitives b
 ```scheme
 (define eceval-operations
   (list (list 'self-evaluating? self-evaluating)
-        \textit{complete list of operations for eceval machine}))
+        complete list of operations for eceval machine))
 ```
 
 Finally, we can initialize the global environment and run the evaluator:
@@ -17026,9 +17018,9 @@ By running this procedure with the monitored stack, determine, as a function of 
 > \begin{center}
 > \smallskip
 > \begin{tabular}{l|l|l}
-> & Maximum depth & Number of pushes \ \hline
-> \rule{0pt}{7mm} Recursive factorial & & \ \hline
-> \rule{0pt}{7mm} Iterative factorial & & \ \hline
+> & Maximum depth & Number of pushes \\ \hline
+> Recursive factorial & & \\ \hline
+> Iterative factorial & & \\ \hline
 > \end{tabular}
 > \smallskip
 > \end{center}
@@ -17182,7 +17174,7 @@ Whenever registers might need to be saved, the compiler's code generators use `p
 
 produces one of the following four sequences of instructions, depending on how *seq*$_1$ and *seq*$_2$ use *reg*$_1$ and *reg*$_2$:
 
-\[ \begin{array}{l|l|l|l} \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} \ \textit{seq}_2 & \textit{seq}_1 & \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} \ & \texttt{(restore}\ \textit{reg}_1\texttt{)} & \texttt{(restore}\ \textit{reg}_2\texttt{)} & \textit{seq}_1 \ & \textit{seq}_2 & \textit{seq}_2 & \texttt{(restore}\ \textit{reg}_1\texttt{)} \ & & & \texttt{(restore}\ \textit{reg}_2\texttt{)} \ & & & \textit{seq}_2 \end{array} \]
+\[ \begin{array}{l|l|l|l} \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} \\ \textit{seq}_2 & \textit{seq}_1 & \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} \\ & \texttt{(restore}\ \textit{reg}_1\texttt{)} & \texttt{(restore}\ \textit{reg}_2\texttt{)} & \textit{seq}_1 \\ & \textit{seq}_2 & \textit{seq}_2 & \texttt{(restore}\ \textit{reg}_1\texttt{)} \\ & & & \texttt{(restore}\ \textit{reg}_2\texttt{)} \\ & & & \textit{seq}_2 \end{array} \]
 
 By using `preserving` to combine instruction sequences the compiler avoids unnecessary stack operations. This also isolates the details of whether or not to generate `save` and `restore` instructions within the `preserving`procedure, separating them from the concerns that arise in writing each of the individual code generators. In fact no `save` or `restore` instructions are explicitly produced by the code generators.
 
@@ -18111,7 +18103,7 @@ Exercises 5.39 through 5.43 describe how to complete this sketch of the lexica
 not-found
 ```
 
-**Exercise 5.42.** Using `find-variable` from exercise 5.41, rewrite `compile-variable` and `compile-assignment` to output lexical-address instructions. In cases where `find-variable` returns `not-found` (that is, where the variable is not in the compile-time environment), you should have the code generators use the evaluator operations, as before, to search for the binding. (The only place a variable that is not found at compile time can be is in the global environment, which is part of the runtime environment but is not part of the compile-time environment.[^5-45] Thus, if you wish, you may have the evaluator operations looks directly in the global environment, which can be obtained with the operation `(op get-global-environment)`, instead of having them search the whole runtime environment found in `env`.) Test the modified compiler on a few simple cases, such as the nested `lambda` combination at the beginning of this section.
+**Exercise 5.42.** Using `find-variable` from exercise 5.41, rewrite `compile-variable` and `compile-assignment` to output lexical-address instructions. In cases where `find-variable` returns `not-found` (that is, where the variable is not in the compile-time environment), you should have the code generators use the evaluator operations, as before, to search for the binding. (The only place a variable that is not found at compile time can be is in the global environment, which is part of the runtime environment but is not part of the compile-time environment.[^5-45] Thus, if you wish, you may have the evaluator operations looks directly in the global environment, which can be obtained with the operation `(op get-global-environment)`, instead of having them search the whole runtime environment found in `env`.) Test the modified compiler on a few simple cases, such as the nested `lambda` combination at the beginning of this section.
 
 **Exercise 5.43.** We argued in section 4.1.6 that internal definitions for block structure should not be considered "real"`define`s. Rather, a procedure body should be interpreted as if the internal variables being defined were installed as ordinary `lambda` variables initialized to their correct values using `set!`. Section 4.1.6 and exercise 4.17 showed how to modify the metacircular interpreter to accomplish this by scanning out internal definitions. Modify the compiler to perform the same transformation before it compiles a procedure body.
 

@@ -1,0 +1,595 @@
+{
+  "codeCounts": {
+    "matched": 1403,
+    "corrected_pdf_formatting": 17,
+    "interrupted": 3,
+    "reviewed": 1,
+    "unresolved": 0
+  },
+  "codeFindings": [
+    {
+      "section": "1.3 Formulating Abstractions with Higher-Order Procedures",
+      "status": "reviewed",
+      "code": "(         lambda           (x)           (+   x     4))\n// read as: ^               ^             ^   ^     ^\n//   the procedure of an argument x that adds x and 4"
+    },
+    {
+      "section": "3.4 Concurrency: Time Is of the Essence",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (make-account balance)\n  (define (withdraw amount)\n    (if (>= balance amount)\n        (begin (set! balance (- balance amount))\n          balance)\n        \"Insufficient funds\"))\n  (define (deposit amount)\n    (set! balance (+ balance amount))\n    balance)\n  (let ((protected (make-serializer)))\n    (define (dispatch m)\n      (cond ((eq? m 'withdraw) (protected withdraw))\n            ((eq? m 'deposit) (protected deposit))\n            ((eq? m 'balance)\n            ((protected (lambda () balance)))) ; serialized\n            (else (error \"Unknown request - - MAKE-ACCOUNT\"\n                         m))))\n    dispatch))"
+    },
+    {
+      "section": "3.4 Concurrency: Time Is of the Essence",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (make-mutex)\n  (let ((cell (list false)))            \n    (define (the-mutex m)\n      (cond ((eq? m 'acquire)\n             (if (test-and-set! cell)\n                 (the-mutex 'acquire))) ; retry\n                 ((eq? m 'release) (clear! cell))))\n    the-mutex))\n\n(define (clear! cell)\n  (set-car! cell false))"
+    },
+    {
+      "section": "4.2 Variations on a Scheme: Lazy Evaluation",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (apply procedure arguments env)\n  (cond ((primitive-procedure? procedure)\n         (apply-primitive-procedure\n          procedure\n          (list-of-arg-values arguments env)))  ; changed\n        ((compound-procedure? procedure)\n         (eval-sequence\n          (procedure-body procedure)\n          (extend-environment\n           (procedure-parameters procedure)\n           (list-of-delayed-args arguments env) ; changed\n           (procedure-environment procedure))))\n        (else\n         (error\n          \"Unknown procedure type - - APPLY\" procedure))))"
+    },
+    {
+      "section": "4.2 Variations on a Scheme: Lazy Evaluation",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (evaluated-thunk? obj)\n  (tagged-list? obj 'evaluated-thunk))\n\n(define (thunk-value evaluated-thunk) (cadr evaluated-thunk))\n\n(define (force-it obj)\n  (cond ((thunk? obj)\n         (let ((result (actual-value\n                        (thunk-exp obj)\n                        (thunk-env obj))))\n           (set-car! obj 'evaluated-thunk)\n           (set-car! (cdr obj) result)  ; replace exp with its value\n           (set-cdr! (cdr obj) '())     ; forget unneeded env\n           result))\n        ((evaluated-thunk? obj)\n         (thunk-value obj))\n        (else obj)))"
+    },
+    {
+      "section": "4.2 Variations on a Scheme: Lazy Evaluation",
+      "status": "interrupted",
+      "code": ";;; L-Eval input:\n(square (id 10))\n;;; L-Eval value:\nresponse\n;;; L-Eval input:\ncount\n;;; L-Eval value:\nresponse"
+    },
+    {
+      "section": "4.3 Variations on a Scheme: Nondeterministic Computing",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (analyze-if exp)\n  (let ((pproc (analyze (if-predicate exp)))\n        (cproc (analyze (if-consequent exp)))\n        (aproc (analyze (if-alternative exp))))\n   (lambda (env succeed fail)\n           (pproc env\n                  ;; success continuation for evaluating the predicate\n                  ;; to obtain pred-value\n                  (lambda (pred-value fail2)\n                    (if (true? pred-value)\n                        (cproc env succeed fail2)\n                        (aproc env succeed fail2)))\n                  ;; failure continuation for evaluating the predicate\n                  fail))))"
+    },
+    {
+      "section": "4.3 Variations on a Scheme: Nondeterministic Computing",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (analyze-assignment exp)\n  (let ((var (assignment-variable exp))\n        (vproc (analyze (assignment-value exp))))\n    (lambda (env succeed fail)\n      (vproc env\n             (lambda (val fail2)        ; *1*\n               (let ((old-value\n                     (lookup-variable-value var env))) \n                 (set-variable-value! var val env)\n                 (succeed 'ok\n                          (lambda ()    ; *2*\n                            (set-variable-value! var\n                                                 old-value\n                                                 env)\n                            (fail2)))))\n             fail))))"
+    },
+    {
+      "section": "4.3 Variations on a Scheme: Nondeterministic Computing",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (get-args aprocs env succeed fail)\n  (if (null? aprocs)\n      (succeed '() fail)\n      ((car aprocs) env\n                    ;; success continuation for this aproc\n                    (lambda (arg fail2)\n                      (get-args (cdr aprocs)\n                                env\n                                ;; success continuation for recursive\n                                ;; call to get-args\n                                (lambda (args fail3)\n                                  (succeed (cons arg args)\n                                           fail3))\n                                fail2))\n                    fail)))"
+    },
+    {
+      "section": "4.3 Variations on a Scheme: Nondeterministic Computing",
+      "status": "corrected_pdf_formatting",
+      "code": "(define input-prompt \";;; Amb-Eval input:\")\n(define output-prompt \";;; Amb-Eval value:\")\n\n(define (driver-loop)\n  (define (internal-loop try-again)\n    (prompt-for-input input-prompt)\n    (let ((input (read)))\n      (if (eq? input 'try-again)\n          (try-again)\n          (begin\n            (newline)\n            (display \";;; Starting a new problem \")\n            (ambeval input\n                     the-global-environment\n                     ;; ambeval success\n                     (lambda (val next-alternative)\n                       (announce-output output-prompt)\n                       (user-print val)\n                       (internal-loop next-alternative))\n                    ;; ambeval failure\n                    (lambda ()\n                      (announce-output\n                       \";;; There are no more values of\")\n                      (user-print input)\n                      (driver-loop)))))))\n  (internal-loop\n   (lambda ()\n     (newline)\n     (display \";;; There is no current problem\")\n     (driver-loop))))"
+    },
+    {
+      "section": "4.4 Logic Programming",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (unify-match p1 p2 frame)\n  (cond ((eq? frame 'failed) 'failed)\n        ((equal? p1 p2) frame)\n        ((var? p1) (extend-if-possible p1 p2 frame))\n        ((var? p2) (extend-if-possible p2 p1 frame))  ; ***\n        ((and (pair? p1) (pair? p2))\n         (unify-match (cdr p1)\n                      (cdr p2)\n                      (unify-match (car p1)\n                                   (car p2)\n                                   frame)))\n        (else 'failed)))"
+    },
+    {
+      "section": "4.4 Logic Programming",
+      "status": "corrected_pdf_formatting",
+      "code": "(define (extend-if-possible var val frame)\n  (let ((binding (binding-in-frame var frame)))\n    (cond (binding\n           (unify-match\n            (binding-value binding) val frame))\n          ((var? val)                      ; ***\n           (let ((binding (binding-in-frame val frame)))\n             (if binding\n                 (unify-match\n                  var (binding-value binding) frame)\n                 (extend var val frame))))\n          ((depends-on? val var frame)     ; ***\n           'failed)\n          (else (extend var val frame)))))"
+    },
+    {
+      "section": "4.4 Logic Programming",
+      "status": "interrupted",
+      "code": "(define (index-key-of pat)\n  (let ((key (car pat)))\n    (if (var? key) '? key)))"
+    },
+    {
+      "section": "5.1 Designing Register Machines",
+      "status": "corrected_pdf_formatting",
+      "code": "(data-paths\n (registers\n  ((name a)\n   (buttons ((name a<-b) (source (register b)))))\n  ((name b)\n   (buttons ((name b<-t) (source (register t)))))\n  ((name t)\n   (buttons ((name t<-r) (source (operation rem))))))\n\n (operations\n  ((name rem)\n   (inputs (register a) (register b)))\n  ((name =)\n   (inputs (register b) (constant 0)))))\n\n(controller\n  test-b                           ; label\n    (test =)                       ; test\n    (branch (label gcd-done))      ; conditional branch\n    (t<-r)                         ; button push\n    (a<-b)                         ; button push\n    (b<-t)                         ; button push\n    (goto (label test-b))          ; unconditional branch\n  gcd-done)                        ; label"
+    },
+    {
+      "section": "5.3 Storage Allocation and Garbage Collection",
+      "status": "corrected_pdf_formatting",
+      "code": "relocate-old-result-in-new\n  (test (op pointer-to-pair?) (reg old))\n  (branch (label pair))\n  (assign new (reg old))\n  (goto (reg relocate-continue))\npair\n  (assign oldcr (op vector-ref) (reg the-cars) (reg old))\n  (test (op broken-heart?) (reg oldcr))\n  (branch (label already-moved))\n  (assign new (reg free)) ; new location for pair\n  ;; Update free pointer.\n  (assign free (op +) (reg free) (const 1))\n  ;; Copy the car and cdr to new memory.\n  (perform (op vector-set!)\n  (reg new-cars) (reg new) (reg oldcr))\n  (assign oldcr (op vector-ref) (reg the-cdrs) (reg old))\n  (perform (op vector-set!)\n  (reg new-cdrs) (reg new) (reg oldcr))\n  ;; Construct the broken heart.\n  (perform (op vector-set!)\n  (reg the-cars) (reg old) (const broken-heart))\n  (perform\n  (op vector-set!) (reg the-cdrs) (reg old) (reg new))\n  (goto (reg relocate-continue))\nalready-moved\n  (assign new (op vector-ref) (reg the-cdrs) (reg old))\n  (goto (reg relocate-continue))"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "corrected_pdf_formatting",
+      "code": "ev-if\n(save exp)                    ; save expression for later\n(save env)\n(save continue)\n(assign continue (label ev-if-decide))\n(assign exp (op if-predicate) (reg exp))\n(goto (label eval-dispatch))  ; evaluate the predicate"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "corrected_pdf_formatting",
+      "code": "ev-assignment\n(assign unev (op assignment-variable) (reg exp))\n(save unev)                   ; save variable for later\n(assign exp (op assignment-value) (reg exp))\n(save env)\n(save continue)\n(assign continue (label ev-assignment-1))\n(goto (label eval-dispatch))  ; evaluate the assignment value\nev-assignment-1\n(restore continue)\n(restore env)\n(restore unev)\n(perform\n(op set-variable-value!) (reg unev) (reg val) (reg env))\n(assign val (const ok))\n(goto (reg continue))"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "corrected_pdf_formatting",
+      "code": "ev-definition\n(assign unev (op definition-variable) (reg exp))\n(save unev)                   ; save variable for later\n(assign exp (op definition-value) (reg exp))\n(save env)\n(save continue)\n(assign continue (label ev-definition-1))\n(goto (label eval-dispatch))  ; evaluate the definition value\nev-definition-1\n(restore continue)\n(restore env)\n(restore unev)\n(perform\n(op define-variable!) (reg unev) (reg val) (reg env))\n(assign val (const ok))\n(goto (reg continue))"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "corrected_pdf_formatting",
+      "code": "unknown-expression-type\n      (assign val (const unknown-expression-type-error))\n      (goto (label signal-error))\n\n      unknown-procedure-type\n      (restore continue)    ; clean up stack (from apply-dispatch)\n      (assign val (const unknown-procedure-type-error))\n      (goto (label signal-error))\n\n      signal-error\n      (perform (op user-print) (reg val))\n      (goto (label read-eval-print-loop))"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "corrected_pdf_formatting",
+      "code": "(define eceval-operations\n  (list (list 'self-evaluating? self-evaluating)\n        complete list of operations for eceval machine))"
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "status": "interrupted",
+      "code": ";;; EC-Eval input:\n(define (factorial n)\n(if (= n 1)\n1\n(* (factorial (- n 1)) n)))\n(total-pushes = 3 maximum-depth = 3)\n;;; EC-Eval value:\nok\n\n;;; EC-Eval input:\n(factorial 5)\n(total-pushes = 144 maximum-depth = 28)\n;;; EC-Eval value:\n120"
+    }
+  ],
+  "pdfSha256": "f80ed2d39a69235ba7bc8ee7779a0533af78198b4b4e0bfb3a7d52748682b3da",
+  "sourceSha256": "a237a3f54f0e5ae46a2b208d2ee5a151adb0ea6919fa4b2856361866ca8c2440",
+  "sections": [
+    {
+      "section": "Foreword",
+      "pdfPages": [
+        15,
+        21
+      ],
+      "matched": 85,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "Prefaces",
+      "pdfPages": [
+        21,
+        21
+      ],
+      "matched": 0,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "Preface",
+      "pdfPages": [
+        21,
+        22
+      ],
+      "matched": 23,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "Preface to the First Edition",
+      "pdfPages": [
+        22,
+        25
+      ],
+      "matched": 47,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "Acknowledgments",
+      "pdfPages": [
+        25,
+        29
+      ],
+      "matched": 44,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "1 Building Abstractions with Procedures",
+      "pdfPages": [
+        29,
+        32
+      ],
+      "matched": 74,
+      "interrupted": 0,
+      "reviewed": 1,
+      "unresolved": 0
+    },
+    {
+      "section": "1.1 The Elements of Programming",
+      "pdfPages": [
+        32,
+        54
+      ],
+      "matched": 440,
+      "interrupted": 1,
+      "reviewed": 3,
+      "unresolved": 0
+    },
+    {
+      "section": "1.2 Procedures and the Processes They Generate",
+      "pdfPages": [
+        54,
+        76
+      ],
+      "matched": 547,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "1.3 Formulating Abstractions with Higher-Order Procedures",
+      "pdfPages": [
+        76,
+        99
+      ],
+      "matched": 395,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2 Building Abstractions with Data",
+      "pdfPages": [
+        99,
+        102
+      ],
+      "matched": 69,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2.1 Introduction to Data Abstraction",
+      "pdfPages": [
+        102,
+        114
+      ],
+      "matched": 224,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2.2 Hierarchical Data and the Closure Property",
+      "pdfPages": [
+        114,
+        154
+      ],
+      "matched": 582,
+      "interrupted": 5,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2.3 Symbolic Data",
+      "pdfPages": [
+        154,
+        178
+      ],
+      "matched": 443,
+      "interrupted": 3,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2.4 Multiple Representations for Abstract Data",
+      "pdfPages": [
+        178,
+        195
+      ],
+      "matched": 228,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "2.5 Systems with Generic Operations",
+      "pdfPages": [
+        195,
+        221
+      ],
+      "matched": 455,
+      "interrupted": 4,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3 Modularity, Objects, and State",
+      "pdfPages": [
+        221,
+        222
+      ],
+      "matched": 23,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3.1 Assignment and Local State",
+      "pdfPages": [
+        222,
+        237
+      ],
+      "matched": 295,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3.2 The Environment Model of Evaluation",
+      "pdfPages": [
+        237,
+        251
+      ],
+      "matched": 204,
+      "interrupted": 4,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3.3 Modeling with Mutable Data",
+      "pdfPages": [
+        251,
+        292
+      ],
+      "matched": 597,
+      "interrupted": 4,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3.4 Concurrency: Time Is of the Essence",
+      "pdfPages": [
+        292,
+        310
+      ],
+      "matched": 314,
+      "interrupted": 2,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "3.5 Streams",
+      "pdfPages": [
+        310,
+        349
+      ],
+      "matched": 646,
+      "interrupted": 2,
+      "reviewed": 2,
+      "unresolved": 0
+    },
+    {
+      "section": "4 Metalinguistic Abstraction",
+      "pdfPages": [
+        349,
+        351
+      ],
+      "matched": 66,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "4.1 The Metacircular Evaluator",
+      "pdfPages": [
+        351,
+        385
+      ],
+      "matched": 492,
+      "interrupted": 1,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "4.2 Variations on a Scheme: Lazy Evaluation",
+      "pdfPages": [
+        385,
+        397
+      ],
+      "matched": 181,
+      "interrupted": 1,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "4.3 Variations on a Scheme: Nondeterministic Computing",
+      "pdfPages": [
+        397,
+        420
+      ],
+      "matched": 341,
+      "interrupted": 1,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "4.4 Logic Programming",
+      "pdfPages": [
+        420,
+        469
+      ],
+      "matched": 758,
+      "interrupted": 1,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "5 Computing with Register Machines",
+      "pdfPages": [
+        469,
+        470
+      ],
+      "matched": 27,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "5.1 Designing Register Machines",
+      "pdfPages": [
+        470,
+        488
+      ],
+      "matched": 269,
+      "interrupted": 11,
+      "reviewed": 1,
+      "unresolved": 0
+    },
+    {
+      "section": "5.2 A Register-Machine Simulator",
+      "pdfPages": [
+        488,
+        506
+      ],
+      "matched": 200,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "5.3 Storage Allocation and Garbage Collection",
+      "pdfPages": [
+        506,
+        518
+      ],
+      "matched": 221,
+      "interrupted": 3,
+      "reviewed": 0,
+      "unresolved": 0
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "pdfPages": [
+        518,
+        534
+      ],
+      "matched": 245,
+      "interrupted": 0,
+      "reviewed": 2,
+      "unresolved": 0
+    },
+    {
+      "section": "5.5 Compilation",
+      "pdfPages": [
+        534,
+        577
+      ],
+      "matched": 557,
+      "interrupted": 2,
+      "reviewed": 1,
+      "unresolved": 0
+    },
+    {
+      "section": "References",
+      "pdfPages": [
+        577,
+        583
+      ],
+      "matched": 257,
+      "interrupted": 0,
+      "reviewed": 0,
+      "unresolved": 0
+    }
+  ],
+  "findings": [
+    {
+      "section": "1 Building Abstractions with Procedures",
+      "key": "ea39bf99ccc50e8c2a8c43fe4e4f2be38d42ebc01fff379d2bdfca983978f818",
+      "text": "The *Lisp 1 Programmer's Manual* appeared in 1960, and the *Lisp 1.5 Programmer's Manual* (McCarthy 1965) was published in 1962.",
+      "status": "reviewed",
+      "review": {
+        "category": "authorized-pdf-correction",
+        "pdfPage": 30,
+        "explanation": "The PDF visibly omits both book titles. Retain Lisp 1 Programmer's Manual and Lisp 1.5 Programmer's Manual from XML, as authorized by the user."
+      }
+    },
+    {
+      "section": "1.1 The Elements of Programming",
+      "key": "cf8cc0a56a82f0dd9826e8b0bc689dc0109ba1815da4f10b5cc557eee14b86eb",
+      "text": "\\begin{flushleft}\n\\begin{tabular}{@{}c@{}c@{}c@{}c@{}c@{}c@{}c}\n\\tt\\textbf{(define} & \\tt (square & \\;\\tt x) & \\tt{(*} & \\tt x & \\ \\tt x)) \\\\",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 38,
+        "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+      }
+    },
+    {
+      "section": "1.1 The Elements of Programming",
+      "key": "b6feeb1e6c770bf785e228cc6d61bb285cb6d338a592d9920be536c30a32b946",
+      "text": "\\\\\n\\normalsize To & \\normalsize square & \\normalsize something, & \\;\\normalsize multiply &\\normalsize it & \\normalsize by itself.",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 38,
+        "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+      }
+    },
+    {
+      "section": "1.1 The Elements of Programming",
+      "key": "598e364d30ab7282bd54fce0d0d263ea268881b0f11df90e0136df9a1e597e57",
+      "text": "\\\\\n\\end{tabular}\n\\end{flushleft}",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 38,
+        "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+      }
+    },
+    {
+      "section": "3.5 Streams",
+      "key": "c141f72316d7a96a7232417b6d2ef421ca6ddd1658511c736715b442b52fbaae",
+      "text": "There is a constructor, `cons-stream`, and two selectors, `stream-car` and `stream-cdr`, which satisfy the constraints \\begin{eqnarray*} \\mbox{(stream-car (cons-stream x y))} &=& \\mbox{x} \\\\ \\mbox{(stream-cdr (cons-stream x y))} &=& \\mbox{y} \\end{eqnarray*} There is a distinguishable object, `the-empty-stream`, which cannot be the result of any `cons-stream` operation, and which can be identified with the predicate `stream-null?`.",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 312,
+        "explanation": "The two stream selector equations are present in the PDF. The fragment contains TeX control words, which have no literal textual equivalent. Native math output verified."
+      }
+    },
+    {
+      "section": "3.5 Streams",
+      "key": "14419f19a3b42039cf563a344fd91c74b409704fab26253189b4a8ad6d1572de",
+      "text": "\\[ \\begin{array}{rll} S \\cdot X &=& 1 \\\\ (1+S_R)\\cdot X &=& 1 \\\\ X + S_R \\cdot X &=& 1 \\\\ X &=& 1 - S_R \\cdot X \\end{array} \\] In other words,",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 326,
+        "explanation": "The four equations deriving X = 1 - S_R X are present in the PDF. Converted to a native displayed math fence; TeX control words are not prose."
+      }
+    },
+    {
+      "section": "5.1 Designing Register Machines",
+      "key": "0dbc7fb58a9339525ffb4a04d5fd0cd438d567a980c3e17c598d6c1e673110c3",
+      "text": "Before calling gcd, we assign to continue ;;",
+      "status": "reviewed",
+      "review": {
+        "category": "authorized-pdf-correction",
+        "pdfPage": 481,
+        "explanation": "The PDF prints literal emph and JS formatting commands in the comment. Preserve the words Before calling gcd, we assign to continue, without those erroneous visible commands."
+      }
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "key": "c591fbb9610e8d11a9b3a0c57c82a1c727ebc33c2fb0b2e4ccb3a93ce58c2f52",
+      "text": "script {type=\"tp/latex\"}",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 533,
+        "explanation": "Exercise 5.27 table: Maximum depth, Number of pushes, Recursive factorial, Iterative factorial. Cells retained; the script wrapper and TeX spacing controls are web presentation only."
+      }
+    },
+    {
+      "section": "5.4 The Explicit-Control Evaluator",
+      "key": "41e474a3eef67abfe99248927086a14c978ebe69d76029690c7c64ca02b01bf1",
+      "text": "> & Maximum depth & Number of pushes \\\\ \\hline\n> Recursive factorial & & \\\\ \\hline\n> Iterative factorial & & \\\\ \\hline",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 533,
+        "explanation": "Exercise 5.27 table: Maximum depth, Number of pushes, Recursive factorial, Iterative factorial. Cells retained; the script wrapper and TeX spacing controls are web presentation only."
+      }
+    },
+    {
+      "section": "5.5 Compilation",
+      "key": "2364eb82bcdca4905f4d0fb1bc5588fb1bff0e2df6474377dea1fcaa5ceb03bc",
+      "text": "\\[ \\begin{array}{l|l|l|l} \\textit{seq}_1 & \\texttt{(save}\\ \\textit{reg}_1\\texttt{)} & \\texttt{(save}\\ \\textit{reg}_2\\texttt{)} & \\texttt{(save}\\ \\textit{reg}_2\\texttt{)} \\\\ \\textit{seq}_2 & \\textit{seq}_1 & \\textit{seq}_1 & \\texttt{(save}\\ \\textit{reg}_1\\texttt{)} \\\\ & \\texttt{(restore}\\ \\textit{reg}_1\\texttt{)} & \\texttt{(restore}\\ \\textit{reg}_2\\texttt{)} & \\textit{seq}_1 \\\\ & \\textit{seq}_2 & \\textit{seq}_2 & \\texttt{(restore}\\ \\textit{reg}_1\\texttt{)} \\\\ & & & \\texttt{(restore}\\ \\textit{reg}_2\\texttt{)} \\\\ & & & \\textit{seq}_2 \\end{array} \\]",
+      "status": "reviewed",
+      "review": {
+        "category": "typesetting",
+        "pdfPage": 540,
+        "explanation": "Register save/restore ordering comparison is a mathematical array, not prose. Retain all four columns and original row separators in a native math fence."
+      }
+    }
+  ]
+}

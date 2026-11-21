@@ -47,11 +47,11 @@ One of the useful structures we can build with pairs is a *sequence*—an ordere
 
 Such a sequence of pairs, formed by nested `cons`es, is called a *list*, and Scheme provides a primitive called `list` to help in constructing lists.<sup><a href="#note-2-8">8</a></sup> The above sequence could be produced by `(list 1 2 3 4)`. In general,
 
-(list a$_{1}$ a$_{2}$ $\ldots$ a$_{n}$)
+(list a:latexmath:`_{1}` a:latexmath:`_{2}` :latexmath:`\ldots` a:latexmath:`_{n}`)
 
 is equivalent to
 
-(cons a$_{1}$ (cons a$_{2}$ (cons $\ldots$ (cons a$_{n}$ nil) $\ldots$)))
+(cons a:latexmath:`_{1}` (cons a:latexmath:`_{2}` (cons :latexmath:`\ldots` (cons a:latexmath:`_{n}` nil) :latexmath:`\ldots`)))
 
 Lisp systems conventionally print lists by printing the sequence of elements, enclosed in parentheses. Thus, the data object in figure 2.4 is printed as `(1 2 3 4)`:
 
@@ -112,9 +112,9 @@ The value of `nil`, used to terminate the chain of pairs, can be thought of as a
 
 #### List operations
 
-The use of pairs to represent sequences of elements as lists is accompanied by conventional programming techniques for manipulating lists by successively "`cdr`ing down" the lists. For example, the procedure`list-ref` takes as arguments a list and a number $n$ and returns the $n$th item of the list. It is customary to number the elements of the list beginning with 0. The method for computing `list-ref` is the following:
-- For $n=0$, `list-ref` should return the `car` of the list.
-- Otherwise, `list-ref` should return the $(n-1)$st item of the `cdr` of the list.
+The use of pairs to represent sequences of elements as lists is accompanied by conventional programming techniques for manipulating lists by successively "`cdr`ing down" the lists. For example, the procedure`list-ref` takes as arguments a list and a number :latexmath:`n` and returns the :latexmath:`n`th item of the list. It is customary to number the elements of the list beginning with 0. The method for computing `list-ref` is the following:
+- For :latexmath:`n=0`, `list-ref` should return the `car` of the list.
+- Otherwise, `list-ref` should return the :latexmath:`(n-1)`st item of the `cdr` of the list.
 
 ```scheme
 (define (list-ref items n)
@@ -585,7 +585,7 @@ The value returned by the call to `for-each` (not illustrated above) can be some
 ::::: aside {id="note-2-9"}
 **9.** Since nested applications of `car` and `cdr` are cumbersome to write, Lisp dialects provide abbreviations for them—for instance, 
 
-(cadr $\langle arg \rangle$) = (car (cdr $\langle arg \rangle$))
+(cadr :latexmath:`\langle arg \rangle`) = (car (cdr :latexmath:`\langle arg \rangle`))
 
  The names of all such procedures start with `c` and end with `r`. Each `a` between them stands for a `car` operation and each `d` for a `cdr` operation, to be applied in the same order in which they appear in the name. The names `car` and `cdr` persist because simple combinations like `cadr` are pronounceable.
 :::::
@@ -604,7 +604,7 @@ The value returned by the call to `for-each` (not illustrated above) can be some
 :::::
 
 ::::: aside {id="note-2-12"}
-**12.** Scheme standardly provides a `map` procedure that is more general than the one described here. This more general `map` takes a procedure of $n$ arguments, together with $n$ lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results. For example: 
+**12.** Scheme standardly provides a `map` procedure that is more general than the one described here. This more general `map` takes a procedure of :latexmath:`n` arguments, together with :latexmath:`n` lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results. For example: 
 
 ```scheme
 (map + (list 1 2 3) (list 40 50 60) (list 700 800 900))
@@ -961,7 +961,7 @@ In section 1.3 we saw how program abstractions, implemented as higher-order pro
           (sum-odd-squares (cdr tree))))))
 ```
 
-On the surface, this procedure is very different from the following one, which constructs a list of all the even Fibonacci numbers ${\textrm{Fib}}(k)$, where $k$ is less than or equal to a given integer $n$:
+On the surface, this procedure is very different from the following one, which constructs a list of all the even Fibonacci numbers :latexmath:`{\textrm{Fib}}(k)`, where :latexmath:`k` is less than or equal to a given integer :latexmath:`n`:
 
 ```scheme
 (define (even-fibs n)
@@ -981,7 +981,7 @@ Despite the fact that these two procedures are structurally very different, a mo
 - squares each of the selected ones; and
 - accumulates the results using `+`, starting with 0.
 The second program
-- enumerates the integers from 0 to $n$;
+- enumerates the integers from 0 to :latexmath:`n`;
 - computes the Fibonacci number for each integer;
 - filters them, selecting the even ones; and
 - accumulates the results using `cons`, starting with the empty list.
@@ -1187,7 +1187,7 @@ Now we can reformulate `sum-odd-squares` and `even-fibs` as in the signal-flow d
                   (enumerate-tree tree)))))
 ```
 
-For `even-fibs`, we enumerate the integers from 0 to $n$, generate the Fibonacci number for each of these integers, filter the resulting sequence to keep only the even elements, and accumulate the results into a list:
+For `even-fibs`, we enumerate the integers from 0 to :latexmath:`n`, generate the Fibonacci number for each of these integers, filter the resulting sequence to keep only the even elements, and accumulate the results into a list:
 
 ```scheme
 (define (even-fibs n)
@@ -1200,7 +1200,7 @@ For `even-fibs`, we enumerate the integers from 0 to $n$, generate the Fibonacci
 
 The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces. We can encourage modular design by providing a library of standard components together with a conventional interface for connecting the components in flexible ways.
 
-Modular construction is a powerful strategy for controlling complexity in engineering design. In real signal-processing applications, for example, designers regularly build systems by cascading elements selected from standardized families of filters and transducers. Similarly, sequence operations provide a library of standard program elements that we can mix and match. For instance, we can reuse pieces from the `sum-odd-squares` and `even-fibs`procedures in a program that constructs a list of the squares of the first $n+1$ Fibonacci numbers:
+Modular construction is a powerful strategy for controlling complexity in engineering design. In real signal-processing applications, for example, designers regularly build systems by cascading elements selected from standardized families of filters and transducers. Similarly, sequence operations provide a library of standard program elements that we can mix and match. For instance, we can reuse pieces from the `sum-odd-squares` and `even-fibs`procedures in a program that constructs a list of the squares of the first :latexmath:`n+1` Fibonacci numbers:
 
 ```scheme
 (define (list-fib-squares n)
@@ -1353,15 +1353,27 @@ Sequences, implemented here as lists, serve as a conventional interface that per
   (accumulate ?? 0 sequence))
 ```
 
-**Exercise 2.34.** Evaluating a polynomial in $x$ at a given value of $x$ can be formulated as an accumulation. We evaluate the polynomial
+**Exercise 2.34.** Evaluating a polynomial in :latexmath:`x` at a given value of :latexmath:`x` can be formulated as an accumulation. We evaluate the polynomial
 
-$$a_{n} x^n +a_{n-1}x^{n-1}+\cdots + a_{1} x+a_{0}$$
+
+
+```latexmath
+a_{n} x^n +a_{n-1}x^{n-1}+\cdots + a_{1} x+a_{0}
+```
+
+
 
 using a well-known algorithm called *Horner's rule*, which structures the computation as
 
-$$\left(\cdots (a_{n} x+a_{n-1})x+\cdots +a_{1}\right) x+a_{0}$$
 
-In other words, we start with $a_{n}$, multiply by $x$, add $a_{n-1}$, multiply by $x$, and so on, until we reach $a_{0}$.<sup><a href="#note-2-16">16</a></sup> Fill in the following template to produce a procedure that evaluates a polynomial using Horner's rule. Assume that the coefficients of the polynomial are arranged in a sequence, from $a_{0}$ through $a_{n}$.
+
+```latexmath
+\left(\cdots (a_{n} x+a_{n-1})x+\cdots +a_{1}\right) x+a_{0}
+```
+
+
+
+In other words, we start with :latexmath:`a_{n}`, multiply by :latexmath:`x`, add :latexmath:`a_{n-1}`, multiply by :latexmath:`x`, and so on, until we reach :latexmath:`a_{0}`.<sup><a href="#note-2-16">16</a></sup> Fill in the following template to produce a procedure that evaluates a polynomial using Horner's rule. Assume that the coefficients of the polynomial are arranged in a sequence, from :latexmath:`a_{0}` through :latexmath:`a_{n}`.
 
 ```scheme
 (define (horner-eval x coefficient-sequence)
@@ -1370,7 +1382,7 @@ In other words, we start with $a_{n}$, multiply by $x$, add $a_{n-1}$, multiply 
                coefficient-sequence))
 ```
 
-For example, to compute $1+3x+5x^3+x^5$ at $x=2$ you would evaluate
+For example, to compute :latexmath:`1+3x+5x^3+x^5` at :latexmath:`x=2` you would evaluate
 
 ```scheme
 (horner-eval 2 (list 1 3 0 5 0 1))
@@ -1399,23 +1411,29 @@ then the value of `(accumulate-n + 0 s)` should be the sequence `(22 26 30)`. Fi
            (accumulate-n op init ??))))
 ```
 
-**Exercise 2.37.** Suppose we represent vectors $v=(v_{i})$ as sequences of numbers, and matrices $m=(m_{ij})$ as sequences of vectors (the rows of the matrix). For example, the matrix
+**Exercise 2.37.** Suppose we represent vectors :latexmath:`v=(v_{i})` as sequences of numbers, and matrices :latexmath:`m=(m_{ij})` as sequences of vectors (the rows of the matrix). For example, the matrix
 
-$$\left[
+
+
+```latexmath
+\left[
 \begin{array}{llll}
-1 & 2 & 3 & 4\
-4 & 5 & 6 & 6\
-6 & 7 & 8 & 9\
+1 & 2 & 3 & 4\\
+4 & 5 & 6 & 6\\
+6 & 7 & 8 & 9\\
 \end{array}
-\right]$$
+\right]
+```
+
+
 
 is represented as the sequence `((1 2 3 4) (4 5 6 6) (6 7 8 9))`. With this representation, we can use sequence operations to concisely express the basic matrix and vector operations. These operations (which are described in any book on matrix algebra) are the following:
 
-| `(dot-product `$v$ $w$`)` | returns the sum $\\sum_{i}v_{i} w_{i}$; |
+| `(dot-product `:latexmath:`v` :latexmath:`w``)` | returns the sum :latexmath:`\sum_{i}v_{i} w_{i}`; |
 | --- | --- |
-| `(matrix-*-vector `$m$$v$`)` | returns the vector $t$, where $t_{i} =\\sum_{j}m_{ij}v_{j}$; |
-| `(matrix-*-matrix `$m\\ n$`)` | returns the matrix $p$, where $p_{ij}=\\sum_{k} m_{ik}n_{kj}$; |
-| `(transpose )` | returns the matrix $n$, where $n_{ij}=m_{ji}$. |
+| `(matrix-*-vector `:latexmath:`m`:latexmath:`v``)` | returns the vector :latexmath:`t`, where :latexmath:`t_{i} =\sum_{j}m_{ij}v_{j}`; |
+| `(matrix-*-matrix `:latexmath:`m\ n``)` | returns the matrix :latexmath:`p`, where :latexmath:`p_{ij}=\sum_{k} m_{ik}n_{kj}`; |
+| `(transpose `:latexmath:`m``)` | returns the matrix :latexmath:`n`, where :latexmath:`n_{ij}=m_{ji}`. |
 
 We can define the dot product as<sup><a href="#note-2-17">17</a></sup>
 
@@ -1484,18 +1502,24 @@ Give a property that `op` should satisfy to guarantee that `fold-right` and `fol
 
 #### Nested Mappings
 
-We can extend the sequence paradigm to include many computations that are commonly expressed using nested loops.<sup><a href="#note-2-18">18</a></sup> Consider this problem: Given a positive integer $n$, find all ordered pairs of distinct positive integers $i$ and $j$, where $1\leq j < i\leq n$, such that $i +j$ is prime. For example, if $n$ is 6, then the pairs are the following:
+We can extend the sequence paradigm to include many computations that are commonly expressed using nested loops.<sup><a href="#note-2-18">18</a></sup> Consider this problem: Given a positive integer :latexmath:`n`, find all ordered pairs of distinct positive integers :latexmath:`i` and :latexmath:`j`, where :latexmath:`1\leq j < i\leq n`, such that :latexmath:`i +j` is prime. For example, if :latexmath:`n` is 6, then the pairs are the following:
 
-$$\begin{array}{c|ccccccc}
-i & 2 & 3 & 4 & 4 & 5 & 6 & 6 \
-j & 1 & 2 & 1 & 3 & 2 & 1 & 5 \
+
+
+```latexmath
+\begin{array}{c|ccccccc}
+i & 2 & 3 & 4 & 4 & 5 & 6 & 6 \\
+j & 1 & 2 & 1 & 3 & 2 & 1 & 5 \\
 \hline
 i+j & 3 & 5 & 5 & 7 & 7 & 7 & 11
-\end{array}$$
+\end{array}
+```
 
-A natural way to organize this computation is to generate the sequence of all ordered pairs of positive integers less than or equal to $n$, filter to select those pairs whose sum is prime, and then, for each pair $(i, j)$ that passes through the filter, produce the triple $(i, j, i+j)$.
 
-Here is a way to generate the sequence of pairs: For each integer $i\leq n$, enumerate the integers $j < i$, and for each such $i$ and $j$ generate the pair $(i, j)$. In terms of sequence operations, we map along the sequence `(enumerate-interval 1 n)`. For each $i$ in this sequence, we map along the sequence `(enumerate-interval 1 (- i 1))`. For each $j$ in this latter sequence, we generate the pair `(list i j)`. This gives us a sequence of pairs for each $i$. Combining all the sequences for all the $i$ (by accumulating with `append`) produces the required sequence of pairs:<sup><a href="#note-2-19">19</a></sup>
+
+A natural way to organize this computation is to generate the sequence of all ordered pairs of positive integers less than or equal to :latexmath:`n`, filter to select those pairs whose sum is prime, and then, for each pair :latexmath:`(i, j)` that passes through the filter, produce the triple :latexmath:`(i, j, i+j)`.
+
+Here is a way to generate the sequence of pairs: For each integer :latexmath:`i\leq n`, enumerate the integers :latexmath:`j < i`, and for each such :latexmath:`i` and :latexmath:`j` generate the pair :latexmath:`(i, j)`. In terms of sequence operations, we map along the sequence `(enumerate-interval 1 n)`. For each :latexmath:`i` in this sequence, we map along the sequence `(enumerate-interval 1 (- i 1))`. For each :latexmath:`j` in this latter sequence, we generate the pair `(list i j)`. This gives us a sequence of pairs for each :latexmath:`i`. Combining all the sequences for all the :latexmath:`i` (by accumulating with `append`) produces the required sequence of pairs:<sup><a href="#note-2-19">19</a></sup>
 
 ```scheme
 ;; replace n below by the desired number
@@ -1541,7 +1565,7 @@ Combining all these steps yields the complete procedure:
                  (enumerate-interval 1 n)))))
 ```
 
-Nested mappings are also useful for sequences other than those that enumerate intervals. Suppose we wish to generate all the permutations of a set $S$; that is, all the ways of ordering the items in the set. For instance, the permutations of $\{1, 2, 3\}$ are $\{1, 2, 3\}$, $\{ 1, 3, 2\}$, $\{2, 1, 3\}$, $\{ 2, 3, 1\}$, $\{ 3, 1, 2\}$, and $\{ 3, 2, 1\}$. Here is a plan for generating the permutations of $S$: For each item $x$ in $S$, recursively generate the sequence of permutations of $S-x$,<sup><a href="#note-2-20">20</a></sup> and adjoin $x$ to the front of each one. This yields, for each $x$ in $S$, the sequence of permutations of $S$ that begin with $x$. Combining these sequences for all $x$ gives all the permutations of $S$:<sup><a href="#note-2-21">21</a></sup>
+Nested mappings are also useful for sequences other than those that enumerate intervals. Suppose we wish to generate all the permutations of a set :latexmath:`S`; that is, all the ways of ordering the items in the set. For instance, the permutations of :latexmath:`\{1, 2, 3\}` are :latexmath:`\{1, 2, 3\}`, :latexmath:`\{ 1, 3, 2\}`, :latexmath:`\{2, 1, 3\}`, :latexmath:`\{ 2, 3, 1\}`, :latexmath:`\{ 3, 1, 2\}`, and :latexmath:`\{ 3, 2, 1\}`. Here is a plan for generating the permutations of :latexmath:`S`: For each item :latexmath:`x` in :latexmath:`S`, recursively generate the sequence of permutations of :latexmath:`S-x`,<sup><a href="#note-2-20">20</a></sup> and adjoin :latexmath:`x` to the front of each one. This yields, for each :latexmath:`x` in :latexmath:`S`, the sequence of permutations of :latexmath:`S` that begin with :latexmath:`x`. Combining these sequences for all :latexmath:`x` gives all the permutations of :latexmath:`S`:<sup><a href="#note-2-21">21</a></sup>
 
 ```scheme
 (define (permutations s)
@@ -1553,7 +1577,7 @@ Nested mappings are also useful for sequences other than those that enumerate in
              s)))
 ```
 
-Notice how this strategy reduces the problem of generating permutations of $S$ to the problem of generating the permutations of sets with fewer elements than $S$. In the terminal case, we work our way down to the empty list, which represents a set of no elements. For this, we generate `(list nil)`, which is a sequence with one item, namely the set with no elements. The `remove`procedure used in `permutations` returns all the items in a given sequence except for a given item. This can be expressed as a simple filter:
+Notice how this strategy reduces the problem of generating permutations of :latexmath:`S` to the problem of generating the permutations of sets with fewer elements than :latexmath:`S`. In the terminal case, we work our way down to the empty list, which represents a set of no elements. For this, we generate `(list nil)`, which is a sequence with one item, namely the set with no elements. The `remove`procedure used in `permutations` returns all the items in a given sequence except for a given item. This can be expressed as a simple filter:
 
 ```scheme
 (define (remove item sequence)
@@ -1561,17 +1585,17 @@ Notice how this strategy reduces the problem of generating permutations of $S$ t
           sequence))
 ```
 
-**Exercise 2.40.** Write a procedure`unique-pairs` that, given an integer $n$, generates the sequence of pairs $(i, j)$ with $1\leq j < i\leq n$. Use `unique-pairs` to simplify the definition of `prime-sum-pairs` given above.
+**Exercise 2.40.** Write a procedure`unique-pairs` that, given an integer :latexmath:`n`, generates the sequence of pairs :latexmath:`(i, j)` with :latexmath:`1\leq j < i\leq n`. Use `unique-pairs` to simplify the definition of `prime-sum-pairs` given above.
 
-**Exercise 2.41.** Write a procedure to find all ordered triples of distinct positive integers $i$, $j$, and $k$ less than or equal to a given integer $n$ that sum to a given integer $s$.
+**Exercise 2.41.** Write a procedure to find all ordered triples of distinct positive integers :latexmath:`i`, :latexmath:`j`, and :latexmath:`k` less than or equal to a given integer :latexmath:`n` that sum to a given integer :latexmath:`s`.
 
 ![](docs/img_original/ch2-Z-G-23.svg)
 
 **Figure 2.8.** A solution to the eight-queens puzzle.
 
-**Exercise 2.42.** The "eight-queens puzzle" asks how to place eight queens on a chessboard so that no queen is in check from any other (i.e., no two queens are in the same row, column, or diagonal). One possible solution is shown in figure 2.8. One way to solve the puzzle is to work across the board, placing a queen in each column. Once we have placed $k-1$ queens, we must place the $k$th queen in a position where it does not check any of the queens already on the board. We can formulate this approach recursively: Assume that we have already generated the sequence of all possible ways to place $k-1$ queens in the first $k-1$ columns of the board. For each of these ways, generate an extended set of positions by placing a queen in each row of the $k$th column. Now filter these, keeping only the positions for which the queen in the $k$th column is safe with respect to the other queens. This produces the sequence of all ways to place $k$ queens in the first $k$ columns. By continuing this process, we will produce not only one solution, but all solutions to the puzzle.
+**Exercise 2.42.** The "eight-queens puzzle" asks how to place eight queens on a chessboard so that no queen is in check from any other (i.e., no two queens are in the same row, column, or diagonal). One possible solution is shown in figure 2.8. One way to solve the puzzle is to work across the board, placing a queen in each column. Once we have placed :latexmath:`k-1` queens, we must place the :latexmath:`k`th queen in a position where it does not check any of the queens already on the board. We can formulate this approach recursively: Assume that we have already generated the sequence of all possible ways to place :latexmath:`k-1` queens in the first :latexmath:`k-1` columns of the board. For each of these ways, generate an extended set of positions by placing a queen in each row of the :latexmath:`k`th column. Now filter these, keeping only the positions for which the queen in the :latexmath:`k`th column is safe with respect to the other queens. This produces the sequence of all ways to place :latexmath:`k` queens in the first :latexmath:`k` columns. By continuing this process, we will produce not only one solution, but all solutions to the puzzle.
 
-We implement this solution as a procedure`queens`, which returns a sequence of all solutions to the problem of placing $n$ queens on an $n\times n$ chessboard. `Queens` has an internal procedure`queen-cols` that returns the sequence of all ways to place queens in the first $k$ columns of the board.
+We implement this solution as a procedure`queens`, which returns a sequence of all solutions to the problem of placing :latexmath:`n` queens on an :latexmath:`n\times n` chessboard. `Queens` has an internal procedure`queen-cols` that returns the sequence of all ways to place queens in the first :latexmath:`k` columns of the board.
 
 ```scheme
 (define (queens board-size)
@@ -1589,9 +1613,9 @@ We implement this solution as a procedure`queens`, which returns a sequence of a
   (queen-cols board-size))
 ```
 
-In this procedure`rest-of-queens` is a way to place $k-1$ queens in the first $k-1$ columns, and `new-row` is a proposed row in which to place the queen for the $k$th column. Complete the program by implementing the representation for sets of board positions, including the procedure`adjoin-position`, which adjoins a new row-column position to a set of positions, and `empty-board`, which represents an empty set of positions. You must also write the procedure`safe?`, which determines for a set of positions whether the queen in the $k$th column is safe with respect to the others. (Note that we need only check whether the new queen is safe—the other queens are already guaranteed safe with respect to each other.)
+In this procedure`rest-of-queens` is a way to place :latexmath:`k-1` queens in the first :latexmath:`k-1` columns, and `new-row` is a proposed row in which to place the queen for the :latexmath:`k`th column. Complete the program by implementing the representation for sets of board positions, including the procedure`adjoin-position`, which adjoins a new row-column position to a set of positions, and `empty-board`, which represents an empty set of positions. You must also write the procedure`safe?`, which determines for a set of positions whether the queen in the :latexmath:`k`th column is safe with respect to the others. (Note that we need only check whether the new queen is safe—the other queens are already guaranteed safe with respect to each other.)
 
-**Exercise 2.43.** Louis Reasoner is having a terrible time doing exercise 2.42. His `queens`procedure seems to work, but it runs extremely slowly. (Louis never does manage to wait long enough for it to solve even the $6\times 6$ case.) When Louis asks Eva Lu Ator for help, she points out that he has interchanged the order of the nested mappings in the `flatmap`, writing it as
+**Exercise 2.43.** Louis Reasoner is having a terrible time doing exercise 2.42. His `queens`procedure seems to work, but it runs extremely slowly. (Louis never does manage to wait long enough for it to solve even the :latexmath:`6\times 6` case.) When Louis asks Eva Lu Ator for help, she points out that he has interchanged the order of the nested mappings in the `flatmap`, writing it as
 
 ```scheme
 (flatmap
@@ -1602,7 +1626,7 @@ In this procedure`rest-of-queens` is a way to place $k-1$ queens in the first $k
   (enumerate-interval 1 board-size))
 ```
 
-Explain why this interchange makes the program run slowly. Estimate how long it will take Louis's program to solve the eight-queens puzzle, assuming that the program in exercise 2.42 solves the puzzle in time $T$.
+Explain why this interchange makes the program run slowly. Estimate how long it will take Louis's program to solve the eight-queens puzzle, assuming that the program in exercise 2.42 solves the puzzle in time :latexmath:`T`.
 
 ::::: aside {id="note-2-14"}
 **14.** This is, in fact, precisely the `fringe`procedure from exercise 2.28. Here we've renamed it to emphasize that it is part of a family of general sequence-manipulation procedures.
@@ -1613,7 +1637,7 @@ Explain why this interchange makes the program run slowly. Estimate how long it 
 :::::
 
 ::::: aside {id="note-2-16"}
-**16.** According to  Knuth (1997b), this rule was formulated by  W. G. Horner early in the nineteenth century, but the method was actually used by Newton over a hundred years earlier. Horner's rule evaluates the polynomial using fewer additions and multiplications than does the straightforward method of first computing $a_{n} x^n$, then adding $a_{n-1}x^{n-1}$, and so on. In fact, it is possible to prove that any algorithm for evaluating arbitrary polynomials must use at least as many additions and multiplications as does Horner's rule, and thus Horner's rule is an  optimal algorithm for polynomial evaluation. This was proved (for the number of additions) by  A. M. Ostrowski in a 1954 paper that essentially founded the modern study of optimal algorithms. The analogous statement for multiplications was proved by  V. Y. Pan in 1966. The book by  Borodin and Munro (1975)  provides an overview of these and other results about optimal algorithms.
+**16.** According to  Knuth (1997b), this rule was formulated by  W. G. Horner early in the nineteenth century, but the method was actually used by Newton over a hundred years earlier. Horner's rule evaluates the polynomial using fewer additions and multiplications than does the straightforward method of first computing :latexmath:`a_{n} x^n`, then adding :latexmath:`a_{n-1}x^{n-1}`, and so on. In fact, it is possible to prove that any algorithm for evaluating arbitrary polynomials must use at least as many additions and multiplications as does Horner's rule, and thus Horner's rule is an  optimal algorithm for polynomial evaluation. This was proved (for the number of additions) by  A. M. Ostrowski in a 1954 paper that essentially founded the modern study of optimal algorithms. The analogous statement for multiplications was proved by  V. Y. Pan in 1966. The book by  Borodin and Munro (1975)  provides an overview of these and other results about optimal algorithms.
 :::::
 
 ::::: aside {id="note-2-17"}
@@ -1625,11 +1649,11 @@ Explain why this interchange makes the program run slowly. Estimate how long it 
 :::::
 
 ::::: aside {id="note-2-19"}
-**19.** We're representing a pair here as a list of two elements rather than as a Lisp pair. Thus, the "pair"$(i, j)$ is represented as `(list i j)`, not `(cons i j)`.
+**19.** We're representing a pair here as a list of two elements rather than as a Lisp pair. Thus, the "pair":latexmath:`(i, j)` is represented as `(list i j)`, not `(cons i j)`.
 :::::
 
 ::::: aside {id="note-2-20"}
-**20.** The set $S-x$ is the set of all elements of $S$, excluding $x$.
+**20.** The set :latexmath:`S-x` is the set of all elements of :latexmath:`S`, excluding :latexmath:`x`.
 :::::
 
 ::::: aside {id="note-2-21"}
@@ -1793,12 +1817,18 @@ Figure 2.15 shows a frame and its associated vectors. In accordance with data a
 
 **Figure 2.15.** A frame is described by three vectors—an origin and two edges.
 
-We will use coordinates in the unit square ($0\leq x, y\leq 1$) to specify images. With each frame, we associate a *frame coordinate map*, which will be used to shift and scale images to fit the frame. The map transforms the unit square into the frame by mapping the vector $\mathbf{v}=(x, y)$ to the vector sum
+We will use coordinates in the unit square (:latexmath:`0\leq x, y\leq 1`) to specify images. With each frame, we associate a *frame coordinate map*, which will be used to shift and scale images to fit the frame. The map transforms the unit square into the frame by mapping the vector :latexmath:`\mathbf{v}=(x, y)` to the vector sum
 
-$$\text{Origin(Frame)} + x\cdot \text{ Edge}_1\text{ (Frame)}
-      + y\cdot \text{ Edge}_2\text{ (Frame)}$$
 
-For example, $(0, 0)$ is mapped to the origin of the frame, $(1, 1)$ to the vertex diagonally opposite the origin, and $(0.5, 0.5)$ to the center of the frame. We can create a frame's coordinate map with the following procedure:<sup><a href="#note-2-26">26</a></sup>
+
+```latexmath
+\text{Origin(Frame)} + x\cdot \text{ Edge}_1\text{ (Frame)}
+      + y\cdot \text{ Edge}_2\text{ (Frame)}
+```
+
+
+
+For example, :latexmath:`(0, 0)` is mapped to the origin of the frame, :latexmath:`(1, 1)` to the vertex diagonally opposite the origin, and :latexmath:`(0.5, 0.5)` to the center of the frame. We can create a frame's coordinate map with the following procedure:<sup><a href="#note-2-26">26</a></sup>
 
 ```scheme
 (define (frame-coord-map frame)
@@ -1823,13 +1853,19 @@ returns the same vector as
 (origin-frame a-frame)
 ```
 
-**Exercise 2.46.** A two-dimensional vector $v$ running from the origin to a point can be represented as a pair consisting of an $x$-coordinate and a $y$-coordinate. Implement a data abstraction for vectors by giving a constructor `make-vect` and corresponding selectors `xcor-vect` and `ycor-vect`. In terms of your selectors and constructor, implement procedures`add-vect`,`sub-vect`, and `scale-vect` that perform the operations vector addition, vector subtraction, and multiplying a vector by a scalar:
+**Exercise 2.46.** A two-dimensional vector :latexmath:`v` running from the origin to a point can be represented as a pair consisting of an :latexmath:`x`-coordinate and a :latexmath:`y`-coordinate. Implement a data abstraction for vectors by giving a constructor `make-vect` and corresponding selectors `xcor-vect` and `ycor-vect`. In terms of your selectors and constructor, implement procedures`add-vect`,`sub-vect`, and `scale-vect` that perform the operations vector addition, vector subtraction, and multiplying a vector by a scalar:
 
-$$\begin{array}{lll}
-(x_1, y_1)+(x_2, y_2) &=& (x_1+x_2, y_1+y_2)\
-(x_1, y_1)-(x_2, y_2) &=& (x_1-x_2, y_1-y_2)\
+
+
+```latexmath
+\begin{array}{lll}
+(x_1, y_1)+(x_2, y_2) &=& (x_1+x_2, y_1+y_2)\\
+(x_1, y_1)-(x_2, y_2) &=& (x_1-x_2, y_1-y_2)\\
 s\cdot(x, y)&= &(sx, sy)
-\end{array}$$
+\end{array}
+```
+
+
 
 **Exercise 2.47.** Here are two possible constructors for frames:
 

@@ -16,7 +16,7 @@ A conventional computer memory can be thought of as an array of cubbyholes, each
 
 To model computer memory, we use a new kind of data structure called a *vector*. Abstractly, a vector is a compound data object whose individual elements can be accessed by means of an integer index in an amount of time that is independent of the index.<sup><a href="#note-5-5">5</a></sup> In order to describe memory operations, we use two primitive Scheme procedures for manipulating vectors:
 - `(vector-ref `*vector n*`)` returns the *n*th element of the vector.
-- `(vector-set! `*vector n value*`)` sets the $n$th element of the vector to the designated value.
+- `(vector-set! `*vector n value*`)` sets the :latexmath:`n`th element of the vector to the designated value.
 For example, if `v` is a vector, then (vector-ref v 5) gets the fifth entry in the vector `v` and (vector-set! v 5 7) changes the value of the fifth entry of the vector `v` to 7.<sup><a href="#note-5-6">6</a></sup> For computer memory, this access can be implemented through the use of address arithmetic to combine a *base address* that specifies the beginning location of a vector in memory with an *index* that specifies the offset of a particular element of the vector.
 
 #### Representing Lisp data
@@ -37,31 +37,31 @@ Given the above representation scheme, we can replace each "primitive" list oper
 
 For example, we can make a register machine support the instructions
 
-(assign reg$_{1}$ (op car) (reg reg$_{2}$)) (assign reg$_{1}$ (op cdr) (reg reg$_{2}$))
+(assign reg:latexmath:`_{1}` (op car) (reg reg:latexmath:`_{2}`)) (assign reg:latexmath:`_{1}` (op cdr) (reg reg:latexmath:`_{2}`))
 
 if we implement these, respectively, as
 
-(assign reg$_{1}$ (op vector-ref) (reg the-cars) (reg reg$_{2}$)) (assign reg$_{1}$ (op vector-ref) (reg the-cdrs) (reg reg$_{2}$))
+(assign reg:latexmath:`_{1}` (op vector-ref) (reg the-cars) (reg reg:latexmath:`_{2}`)) (assign reg:latexmath:`_{1}` (op vector-ref) (reg the-cdrs) (reg reg:latexmath:`_{2}`))
 
 The instructions
 
-(perform (op set-car!) (reg reg$_{1}$) (reg reg$_{2}$)) (perform (op set-cdr!) (reg reg$_{1}$) (reg reg$_{2}$))
+(perform (op set-car!) (reg reg:latexmath:`_{1}`) (reg reg:latexmath:`_{2}`)) (perform (op set-cdr!) (reg reg:latexmath:`_{1}`) (reg reg:latexmath:`_{2}`))
 
 are implemented as
 
-(perform (op vector-set!) (reg the-cars) (reg reg$_{1}$) (reg reg$_{2}$)) (perform (op vector-set!) (reg the-cdrs) (reg reg$_{1}$) (reg reg$_{2}$))
+(perform (op vector-set!) (reg the-cars) (reg reg:latexmath:`_{1}`) (reg reg:latexmath:`_{2}`)) (perform (op vector-set!) (reg the-cdrs) (reg reg:latexmath:`_{1}`) (reg reg:latexmath:`_{2}`))
 
 `Cons` is performed by allocating an unused index and storing the arguments to `cons` in `the-cars` and `the-cdrs` at that indexed vector position. We presume that there is a special register, `free`, that always holds a pair pointer containing the next available index, and that we can increment the index part of that pointer to find the next free location.<sup><a href="#note-5-10">10</a></sup> For example, the instruction
 
-(assign reg$_{1}$ (op cons) (reg reg$_{2}$) (reg reg$_{3}$))
+(assign reg:latexmath:`_{1}` (op cons) (reg reg:latexmath:`_{2}`) (reg reg:latexmath:`_{3}`))
 
 is implemented as the following sequence of vector operations:<sup><a href="#note-5-11">11</a></sup>
 
-(perform (op vector-set!) (reg the-cars) (reg free) (reg reg$_{2}$)) (perform (op vector-set!) (reg the-cdrs) (reg free) (reg reg$_{3}$)) (assign reg$_{1}$ (reg free)) (assign free (op +) (reg free) (const 1))
+(perform (op vector-set!) (reg the-cars) (reg free) (reg reg:latexmath:`_{2}`)) (perform (op vector-set!) (reg the-cdrs) (reg free) (reg reg:latexmath:`_{3}`)) (assign reg:latexmath:`_{1}` (reg free)) (assign free (op +) (reg free) (const 1))
 
 The `eq?` operation
 
-(op eq?) (reg reg$_{1}$) (reg reg$_{2}$)
+(op eq?) (reg reg:latexmath:`_{1}`) (reg reg:latexmath:`_{2}`)
 
 simply tests the equality of all fields in the registers, and predicates such as `pair?`,`null?`,`symbol?`, and `number?`, need only check the type field.
 
@@ -95,7 +95,7 @@ These operations can be further expanded in terms of the vector operations given
 (define y (list x x))
 ```
 
-with the `free` pointer initially `p1`. What is the final value of `free`$\,$? What pointers represent the values of `x` and `y`?
+with the `free` pointer initially `p1`. What is the final value of `free`:latexmath:`\,`? What pointers represent the values of `x` and `y`?
 
 **Exercise 5.21.** Implement register machines for the following procedures. Assume that the list-structure memory operations are available as machine primitives.
 a. Recursive `count-leaves`:
@@ -123,7 +123,7 @@ b. Recursive `count-leaves` with explicit counter:
 **Exercise 5.22.** Exercise 3.12 of section 3.3.1 presented an `append`procedure that appends two lists to form a new list and an `append!` procedure that splices two lists together. Design a register machine to implement each of these procedures. Assume that the list-structure memory operations are available as primitive operations.
 
 ::::: aside {id="note-5-5"}
-**5.** We could represent memory as lists of items. However, the access time would then not be independent of the index, since accessing the $n$th element of a list requires $n-1$`cdr` operations.
+**5.** We could represent memory as lists of items. However, the access time would then not be independent of the index, since accessing the :latexmath:`n`th element of a list requires :latexmath:`n-1``cdr` operations.
 :::::
 
 ::::: aside {id="note-5-6"}
@@ -267,7 +267,7 @@ gc-flip
 ```
 
 ::::: aside {id="note-5-12"}
-**12.** This may not be true eventually, because memories may get large enough so that it would be impossible to run out of free memory in the lifetime of the computer. For example, there are about $3\times 10^{13}$ microseconds in a year, so if we were to `cons` once per *microsecond* we would need about $10^{15}$ cells of memory to build a machine that could operate for 30 years without running out of memory. That much memory seems absurdly large by today's standards, but it is not physically impossible. On the other hand, processors are getting faster and  a future computer may have  large numbers of processors operating in parallel on a single memory, so it may be possible to use up memory much faster than we have postulated.
+**12.** This may not be true eventually, because memories may get large enough so that it would be impossible to run out of free memory in the lifetime of the computer. For example, there are about :latexmath:`3\times 10^{13}` microseconds in a year, so if we were to `cons` once per *microsecond* we would need about :latexmath:`10^{15}` cells of memory to build a machine that could operate for 30 years without running out of memory. That much memory seems absurdly large by today's standards, but it is not physically impossible. On the other hand, processors are getting faster and  a future computer may have  large numbers of processors operating in parallel on a single memory, so it may be possible to use up memory much faster than we have postulated.
 :::::
 
 ::::: aside {id="note-5-13"}

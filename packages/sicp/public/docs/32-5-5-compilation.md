@@ -102,21 +102,27 @@ In the first case, execution will continue with the next instruction in the sequ
 
 Each code generator returns an *instruction sequence* containing the object code it has generated for the expression. Code generation for a compound expression is accomplished by combining the output from simpler code generators for component expressions, just as evaluation of a compound expression is accomplished by evaluating the component expressions.
 
-The simplest method for combining instruction sequences is a procedure called `append-instruction-sequences`. It takes as arguments any number of instruction sequences that are to be executed sequentially; it appends them and returns the combined sequence. That is, if $seq_1$ and $seq_2$ are sequences of instructions, then evaluating
+The simplest method for combining instruction sequences is a procedure called `append-instruction-sequences`. It takes as arguments any number of instruction sequences that are to be executed sequentially; it appends them and returns the combined sequence. That is, if :latexmath:`seq_1` and :latexmath:`seq_2` are sequences of instructions, then evaluating
 
-(append-instruction-sequences $seq_1$ $seq_2$)
+(append-instruction-sequences :latexmath:`seq_1` :latexmath:`seq_2`)
 
 produces the sequence
 
-$seq_1$ $seq_2$
+:latexmath:`seq_1` :latexmath:`seq_2`
 
 Whenever registers might need to be saved, the compiler's code generators use `preserving`, which is a more subtle method for combining instruction sequences. `Preserving` takes three arguments: a set of registers and two instruction sequences that are to be executed sequentially. It appends the sequences in such a way that the contents of each register in the set is preserved over the execution of the first sequence, if this is needed for the execution of the second sequence. That is, if the first sequence modifies the register and the second sequence actually needs the register's original contents, then `preserving` wraps a `save` and a `restore` of the register around the first sequence before appending the sequences. Otherwise, `preserving` simply returns the appended instruction sequences. Thus, for example,
 
-(preserving (list $reg_1$ $reg_2$) $seq_1$ $seq_2$)
+(preserving (list :latexmath:`reg_1` :latexmath:`reg_2`) :latexmath:`seq_1` :latexmath:`seq_2`)
 
-produces one of the following four sequences of instructions, depending on how *seq*$_1$ and *seq*$_2$ use *reg*$_1$ and *reg*$_2$:
+produces one of the following four sequences of instructions, depending on how *seq*:latexmath:`_1` and *seq*:latexmath:`_2` use *reg*:latexmath:`_1` and *reg*:latexmath:`_2`:
 
-\[ \begin{array}{l|l|l|l} \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} \ \textit{seq}_2 & \textit{seq}_1 & \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} \ & \texttt{(restore}\ \textit{reg}_1\texttt{)} & \texttt{(restore}\ \textit{reg}_2\texttt{)} & \textit{seq}_1 \ & \textit{seq}_2 & \textit{seq}_2 & \texttt{(restore}\ \textit{reg}_1\texttt{)} \ & & & \texttt{(restore}\ \textit{reg}_2\texttt{)} \ & & & \textit{seq}_2 \end{array} \]
+
+
+```latexmath
+\begin{array}{l|l|l|l} \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} & \texttt{(save}\ \textit{reg}_2\texttt{)} \\ \textit{seq}_2 & \textit{seq}_1 & \textit{seq}_1 & \texttt{(save}\ \textit{reg}_1\texttt{)} \\ & \texttt{(restore}\ \textit{reg}_1\texttt{)} & \texttt{(restore}\ \textit{reg}_2\texttt{)} & \textit{seq}_1 \\ & \textit{seq}_2 & \textit{seq}_2 & \texttt{(restore}\ \textit{reg}_1\texttt{)} \\ & & & \texttt{(restore}\ \textit{reg}_2\texttt{)} \\ & & & \textit{seq}_2 \end{array}
+```
+
+
 
 By using `preserving` to combine instruction sequences the compiler avoids unnecessary stack operations. This also isolates the details of whether or not to generate `save` and `restore` instructions within the `preserving`procedure, separating them from the concerns that arise in writing each of the individual code generators. In fact no `save` or `restore` instructions are explicitly produced by the code generators.
 
@@ -257,7 +263,7 @@ The appended two-instruction sequence requires `env` and `val` and modifies the 
 
 The code for an `if expression` compiled with a given target and linkage has the form
 
-$\langle compilation\ of\ predicate,\ target$ val$,\ linkage$ next$\rangle$ (test (op false?) (reg val)) (branch (label false-branch)) true-branch $\langle compilation\ of\ consequent\ with\ given\ target\ and\ given\ linkage or$ after-if$\rangle$ false-branch $\langle compilation\ of\ alternative\ with\ given\ target\ and\ linkage\rangle$ after-if
+:latexmath:`\langle compilation\ of\ predicate,\ target` val:latexmath:`,\ linkage` next:latexmath:`\rangle` (test (op false?) (reg val)) (branch (label false-branch)) true-branch :latexmath:`\langle compilation\ of\ consequent\ with\ given\ target\ and\ given\ linkage or` after-if:latexmath:`\rangle` false-branch :latexmath:`\langle compilation\ of\ alternative\ with\ given\ target\ and\ linkage\rangle` after-if
 
 To generate this code, we compile the predicate, consequent, and alternative, and combine the resulting code with instructions to test the predicate result and with newly generated labels to mark the true and false branches and the end of the conditional.<sup><a href="#note-5-35">35</a></sup> In this arrangement of code, we must branch around the true branch if the test is false. The only slight complication is in how the linkage for the true branch should be handled. If the linkage for the conditional is `return` or a label, then the true and false branches will both use this same linkage. If the linkage is `next`, the true branch ends with a jump around the code for the false branch to the label at the end of the conditional.
 
@@ -307,11 +313,11 @@ The compilation of sequences (from procedure bodies or explicit `begin` expressi
 
 Lambda expressions construct procedures. The object code for a lambda expression must have the form
 
-$\langle construct\ procedure\ object\ and\ assign\ it\ to\ target\ register\rangle$ $\langle linkage\rangle$
+:latexmath:`\langle construct\ procedure\ object\ and\ assign\ it\ to\ target\ register\rangle` :latexmath:`\langle linkage\rangle`
 
 When we compile the lambda expression, we also generate the code for the procedure body. Although the body won't be executed at the time of procedure construction, it is convenient to insert it into the object code right after the code for the `lambda`. If the linkage for the lambda expression is a label or `return`, this is fine. But if the linkage is `next`, we will need to skip around the code for the procedure body by using a linkage that jumps to a label that is inserted after the body. The object code thus has the form
 
-$\langle construct\ procedure\ object\ and\ assign\ it\ to\ target\ register\rangle$ $\langle code\ for\ given\ linkage\rangle\ or$ (goto (label after-lambda)) $\langle compilation\ of\ procedure\ body\rangle$ after-lambda
+:latexmath:`\langle construct\ procedure\ object\ and\ assign\ it\ to\ target\ register\rangle` :latexmath:`\langle code\ for\ given\ linkage\rangle\ or` (goto (label after-lambda)) :latexmath:`\langle compilation\ of\ procedure\ body\rangle` after-lambda
 
 `Compile-lambda` generates the code for constructing the procedure object followed by the code for the procedure body. The procedure object will be constructed at run time by combining the current environment (the environment at the point of definition) with the entry point to the compiled procedure body (a newly generated label).<sup><a href="#note-5-36">36</a></sup>
 
@@ -397,7 +403,7 @@ $\langle construct\ procedure\ object\ and\ assign\ it\ to\ target\ register\ran
 
 The essence of the compilation process is the compilation of procedure applications. The code for a combination compiled with a given target and linkage has the form
 
-$\langle compilation\ of\ operator,\ target$ proc$,\ linkage$ next$\rangle$ $\langle evaluate\ operands\ and\ construct\ argument\ list\ in$ argl$\rangle$ $\langle compilation\ of\ procedure\ call\ with\ given\ target\ and\ linkage\rangle$
+:latexmath:`\langle compilation\ of\ operator,\ target` proc:latexmath:`,\ linkage` next:latexmath:`\rangle` :latexmath:`\langle evaluate\ operands\ and\ construct\ argument\ list\ in` argl:latexmath:`\rangle` :latexmath:`\langle compilation\ of\ procedure\ call\ with\ given\ target\ and\ linkage\rangle`
 
 The registers `env`, `proc`, and `argl` may have to be saved and restored during evaluation of the operator and operands. Note that this is the only place in the compiler where a target other than `val` is specified.
 
@@ -418,7 +424,7 @@ The required code is generated by `compile-application`. This recursively compil
 
 The code to construct the argument list will evaluate each operand into `val` and then `cons` that value onto the argument list being accumulated in `argl`. Since we `cons` the arguments onto `argl` in sequence, we must start with the last argument and end with the first, so that the arguments will appear in order from first to last in the resulting list. Rather than waste an instruction by initializing `argl` to the empty list to set up for this sequence of evaluations, we make the first code sequence construct the initial `argl`. The general form of the argument-list construction is thus as follows:
 
-$\langle compilation\ of\ last\ operand,\ targeted\ to$ val$\rangle$ (assign argl (op list) (reg val)) $\langle compilation\ of\ next\ operand,\ targeted\ to$ val$\rangle$ (assign argl (op cons) (reg val) (reg argl)) $\ldots$ $\langle compilation\ of\ first\ operand,\ targeted\ to$ val$\rangle$ (assign argl (op cons) (reg val) (reg argl))
+:latexmath:`\langle compilation\ of\ last\ operand,\ targeted\ to` val:latexmath:`\rangle` (assign argl (op list) (reg val)) :latexmath:`\langle compilation\ of\ next\ operand,\ targeted\ to` val:latexmath:`\rangle` (assign argl (op cons) (reg val) (reg argl)) :latexmath:`\ldots` :latexmath:`\langle compilation\ of\ first\ operand,\ targeted\ to` val:latexmath:`\rangle` (assign argl (op cons) (reg val) (reg argl))
 
 `Argl` must be preserved around each operand evaluation except the first (so that arguments accumulated so far won't be lost), and `env` must be preserved around each operand evaluation except the last (for use by subsequent operand evaluations).
 
@@ -466,7 +472,7 @@ Otherwise, `construct-arglist` creates code that initializes `argl` with the las
 
 After evaluating the elements of a combination, the compiled code must apply the procedure in `proc` to the arguments in `argl`. The code performs essentially the same dispatch as the `apply`procedure in the metacircular evaluator of section 4.1.1 or the `apply-dispatch` entry point in the explicit-control evaluator of section 5.4.1. It checks whether the procedure to be applied is a primitive procedure or a compiled procedure. For a primitive procedure, it uses `apply-primitive-procedure`; we will see shortly how it handles compiled procedures. The procedure-application code has the following form:
 
-(test (op primitive-procedure?) (reg proc)) (branch (label primitive-branch)) compiled-branch $\langle code\ to\ apply\ compiled\ procedure\ with\ given\ target\ and\ appropriate\ linkage\rangle$ primitive-branch (assign $\langle target\rangle$ (op apply-primitive-procedure) (reg proc) (reg argl)) $\langle linkage \rangle$ after-call
+(test (op primitive-procedure?) (reg proc)) (branch (label primitive-branch)) compiled-branch :latexmath:`\langle code\ to\ apply\ compiled\ procedure\ with\ given\ target\ and\ appropriate\ linkage\rangle` primitive-branch (assign :latexmath:`\langle target\rangle` (op apply-primitive-procedure) (reg proc) (reg argl)) :latexmath:`\langle linkage \rangle` after-call
 
 Observe that the compiled branch must skip around the primitive branch. Therefore, if the linkage for the original procedure call was `next`, the compound branch must use a linkage that jumps to a label that is inserted after the primitive branch. (This is similar to the linkage used for the true branch in `compile-if`.)
 
@@ -505,17 +511,17 @@ The code that handles procedure application is the most subtle part of the compi
 
 Thus, we might expect the code for a compiled-procedure application (to be generated by `compile-proc-appl`) with a given target and linkage to look like this if the linkage is a label:
 
-(assign continue (label proc-return)) (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val)) proc-return (assign $target$ (reg val)) ; included if target is not val (goto (label $\langle linkage\rangle$)) ; linkage code
+(assign continue (label proc-return)) (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val)) proc-return (assign :latexmath:`target` (reg val)) ; included if target is not val (goto (label :latexmath:`\langle linkage\rangle`)) ; linkage code
 
 or like this if the linkage is `return`.
 
-(save continue) (assign continue (label proc-return)) (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val)) proc-return (assign $\langle target\rangle$ (reg val)) ; included if target is not val (restore continue) (goto (reg continue)) ; linkage code
+(save continue) (assign continue (label proc-return)) (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val)) proc-return (assign :latexmath:`\langle target\rangle` (reg val)) ; included if target is not val (restore continue) (goto (reg continue)) ; linkage code
 
 This code sets up `continue` so that the procedure will return to a label `proc-return` and jumps to the procedure's entry point. The code at `proc-return` transfers the procedure's result from `val` to the target register (if necessary) and then jumps to the location specified by the linkage. (The linkage is always `return` or a label, because `compile-procedure-call` replaces a `next` linkage for the compound-procedure branch by an `after-call` label.)
 
 In fact, if the target is not `val`, that is exactly the code our compiler will generate.<sup><a href="#note-5-37">37</a></sup> Usually, however, the target is `val` (the only time the compiler specifies a different register is when targeting the evaluation of an operator to `proc`), so the procedure result is put directly into the target register and there is no need to return to a special location that copies it. Instead we simplify the code by setting up `continue` so that the procedure will "return" directly to the place specified by the caller's linkage:
 
-$\langle set\ up$ continue $for\ linkage\rangle$ (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val))
+:latexmath:`\langle set\ up` continue :latexmath:`for\ linkage\rangle` (assign val (op compiled-procedure-entry) (reg proc)) (goto (reg val))
 
 If the linkage is a label, we set up `continue` so that the procedure will return to that label. (That is, the `(goto (reg continue))` the procedure ends with becomes equivalent to the `(goto (label linkage))` at `proc-return` above.)
 
@@ -713,11 +719,11 @@ We have specified that the value of the `define` expression should be placed in 
 
 `Compile` determines that the expression is a definition, so it calls `compile-definition` to compile code to compute the value to be assigned (targeted to `val`), followed by code to install the definition, followed by code to put the value of the `define` (which is the symbol `ok`) into the target register, followed finally by the linkage code. `Env` is preserved around the computation of the value, because it is needed in order to install the definition. Because the linkage is `next`, there is no linkage code in this case. The skeleton of the compiled code is thus
 
-$\langle save$ env $if\ modified\ by\ code\ to\ compute\ value\rangle$ $\langle compilation\ of\ definition\ value, target$ val$, linkage$ next$\rangle$ $\langle restore$ env $if\ saved\ above\rangle$ (perform (op define-variable!) (const factorial) (reg val) (reg env)) (assign val (const ok))
+:latexmath:`\langle save` env :latexmath:`if\ modified\ by\ code\ to\ compute\ value\rangle` :latexmath:`\langle compilation\ of\ definition\ value, target` val:latexmath:`, linkage` next:latexmath:`\rangle` :latexmath:`\langle restore` env :latexmath:`if\ saved\ above\rangle` (perform (op define-variable!) (const factorial) (reg val) (reg env)) (assign val (const ok))
 
 The expression that is to be compiled to produce the value for the variable`factorial` is a `lambda` expression whose value is the procedure that computes factorials. `Compile` handles this by calling `compile-lambda`, which compiles the procedure body, labels it as a new entry point, and generates the instruction that will combine the procedure body at the new entry point with the runtime environment and assign the result to `val`. The sequence then skips around the compiled procedure code, which is inserted at this point. The procedure code itself begins by extending the procedure's definition environment by a frame that binds the formal parameter `n` to the procedure argument. Then comes the actual procedure body. Since this code for the value of the variable doesn't modify the `env` register, the optional `save` and `restore` shown above aren't generated. (The procedure code at `entry2` isn't executed at this point, so its use of `env` is irrelevant.) Therefore, the skeleton for the compiled code becomes
 
-(assign val (op make-compiled-procedure) (label entry2) (reg env)) (goto (label after-lambda1)) entry2 (assign env (op compiled-procedure-env) (reg proc)) (assign env (op extend-environment) (const (n)) (reg argl) (reg env)) $\langle compilation\ of\ procedure\ body\rangle$ after-lambda1 (perform (op define-variable!) (const factorial) (reg val) (reg env)) (assign val (const ok))
+(assign val (op make-compiled-procedure) (label entry2) (reg env)) (goto (label after-lambda1)) entry2 (assign env (op compiled-procedure-env) (reg proc)) (assign env (op extend-environment) (const (n)) (reg argl) (reg env)) :latexmath:`\langle compilation\ of\ procedure\ body\rangle` after-lambda1 (perform (op define-variable!) (const factorial) (reg val) (reg env)) (assign val (const ok))
 
 A procedure body is always compiled (by `compile-lambda-body`)as a sequence with target `val` and linkage `return`. The sequence in this case consists of a single `if` expression:
 
@@ -729,7 +735,7 @@ A procedure body is always compiled (by `compile-lambda-body`)as a sequence with
 
 `Compile-if` generates code that first computes the predicate (targeted to `val`), then checks the result and branches around the true branch if the predicate is false. `Env` and `continue` are preserved around the predicate code, since they may be needed for the rest of the `if` expression. Since the `if` expression is the final expression (and only expression) in the sequence making up the procedure body, its target is `val` and its linkage is `return`, so the true and false branches are both compiled with target `val` and linkage `return`. (That is, the value of the conditional, which is the value computed by either of its branches, is the value of the procedure.)
 
-$\langle save$ continue, env $if\ modified\ by\ predicate\ and\ needed\ by\ branches\rangle$ $\langle compilation\ of\ predicate, target$ val$,\ linkage$ next$\rangle$ $\langle restore$ continue, env $if\ saved\ above\rangle$ (test (op false?) (reg val)) (branch (label false-branch4)) true-branch5 $\langle compilation\ of\ true\ branch, target$ val$,\ linkage$ return$\rangle$ false-branch4 $\langle compilation\ of\ false\ branch, target$ val$,\ linkage$ return$\rangle$ after-if3
+:latexmath:`\langle save` continue, env :latexmath:`if\ modified\ by\ predicate\ and\ needed\ by\ branches\rangle` :latexmath:`\langle compilation\ of\ predicate, target` val:latexmath:`,\ linkage` next:latexmath:`\rangle` :latexmath:`\langle restore` continue, env :latexmath:`if\ saved\ above\rangle` (test (op false?) (reg val)) (branch (label false-branch4)) true-branch5 :latexmath:`\langle compilation\ of\ true\ branch, target` val:latexmath:`,\ linkage` return:latexmath:`\rangle` false-branch4 :latexmath:`\langle compilation\ of\ false\ branch, target` val:latexmath:`,\ linkage` return:latexmath:`\rangle` after-if3
 
 The predicate `(= n 1)` is a procedure call. This looks up the operator (the symbol `=`) and places this value in `proc`. It then assembles the arguments `1` and the value of `n` into `argl`. Then it tests whether `proc` contains a primitive or a compound procedure, and dispatches to a primitive branch or a compound branch accordingly. Both branches resume at the `after-call` label. The requirements to preserve registers around the evaluation of the operator and operands don't result in any saving of registers, because in this case those evaluations don't modify the registers in question.
 
@@ -1019,7 +1025,7 @@ Each time `lookup-variable-value` searches for `x`, it must determine that the s
 
 We can exploit this fact by inventing a new kind of variable-lookup operation, `lexical-address-lookup`, that takes as arguments an environment and a *lexical address* that consists of two numbers: a *frame number*, which specifies how many frames to pass over, and a *displacement number*, which specifies how many variables to pass over in that frame. `Lexical-address-lookup` will produce the value of the variable stored at that lexical address relative to the current environment. If we add the `lexical-address-lookup` operation to our machine, we can make the compiler generate code that references variables using this operation, rather than `lookup-variable-value`. Similarly, our compiled code can use a new `lexical-address-set!` operation instead of `set-variable-value!`.
 
-In order to generate such code, the compiler must be able to determine the lexical address of a variable it is about to compile a reference to. The lexical address of a variable in a program depends on where one is in the code. For example, in the following program, the address of `x` in expression $e_1$ is (2,0)—two frames back and the first variable in the frame. At that point `y` is at address (0,0) and `c` is at address (1,2). In expression $e_2$, `x` is at (1,0), `y` is at (1,1), and `c` is at (0,2).
+In order to generate such code, the compiler must be able to determine the lexical address of a variable it is about to compile a reference to. The lexical address of a variable in a program depends on where one is in the code. For example, in the following program, the address of `x` in expression :latexmath:`e_1` is (2,0)—two frames back and the first variable in the frame. At that point `y` is at address (0,0) and `c` is at address (1,2). In expression :latexmath:`e_2`, `x` is at (1,0), `y` is at (1,1), and `c` is at (0,2).
 
 ```scheme
 ((lambda (x y)
@@ -1039,7 +1045,7 @@ Exercises 5.39 through 5.43 describe how to complete this sketch of the lexica
 
 **Exercise 5.40.** Modify the compiler to maintain the compile-time environment as described above. That is, add a compile-time-environment argument to `compile` and the various code generators, and extend it in `compile-lambda-body`.
 
-**Exercise 5.41.** Write a procedure`find-variable` that takes as arguments a variable and a compile-time environment and returns the lexical address of the variable with respect to that environment. For example, in the program fragment that is shown above, the compile-time environment during the compilation of expression $e_1$ is `((y z) (a b c d e) (x y))`. `Find-variable` should produce
+**Exercise 5.41.** Write a procedure`find-variable` that takes as arguments a variable and a compile-time environment and returns the lexical address of the variable with respect to that environment. For example, in the program fragment that is shown above, the compile-time environment during the compilation of expression :latexmath:`e_1` is `((y z) (a b c d e) (x y))`. `Find-variable` should produce
 
 <!-- verification:example-113 -->
 **Exercise 5.41:** the source is editable. The supplied program does not yet reproduce the expected result; complete or correct it using the exercise instructions. [Verification details](audit.md).
@@ -1071,7 +1077,7 @@ not-found
 
 </details>
 
-**Exercise 5.42.** Using `find-variable` from exercise 5.41, rewrite `compile-variable` and `compile-assignment` to output lexical-address instructions. In cases where `find-variable` returns `not-found` (that is, where the variable is not in the compile-time environment), you should have the code generators use the evaluator operations, as before, to search for the binding. (The only place a variable that is not found at compile time can be is in the global environment, which is part of the runtime environment but is not part of the compile-time environment.<sup><a href="#note-5-45">45</a></sup> Thus, if you wish, you may have the evaluator operations looks directly in the global environment, which can be obtained with the operation `(op get-global-environment)`, instead of having them search the whole runtime environment found in `env`.) Test the modified compiler on a few simple cases, such as the nested `lambda` combination at the beginning of this section.
+**Exercise 5.42.** Using `find-variable` from exercise 5.41, rewrite `compile-variable` and `compile-assignment` to output lexical-address instructions. In cases where `find-variable` returns `not-found` (that is, where the variable is not in the compile-time environment), you should have the code generators use the evaluator operations, as before, to search for the binding. (The only place a variable that is not found at compile time can be is in the global environment, which is part of the runtime environment but is not part of the compile-time environment.<sup><a href="#note-5-45">45</a></sup> Thus, if you wish, you may have the evaluator operations looks directly in the global environment, which can be obtained with the operation `(op get-global-environment)`, instead of having them search the whole runtime environment found in `env`.) Test the modified compiler on a few simple cases, such as the nested `lambda` combination at the beginning of this section.
 
 **Exercise 5.43.** We argued in section 4.1.6 that internal definitions for block structure should not be considered "real"`define`s. Rather, a procedure body should be interpreted as if the internal variables being defined were installed as ordinary `lambda` variables initialized to their correct values using `set!`. Section 4.1.6 and exercise 4.17 showed how to modify the metacircular interpreter to accomplish this by scanning out internal definitions. Modify the compiler to perform the same transformation before it compiles a procedure body.
 
@@ -2327,7 +2333,7 @@ Note the restore of `continue` at `compiled-apply`. Recall that the evaluator wa
 
 To enable us to run some compiled code when we start the evaluator machine, we add a `branch` instruction at the beginning of the evaluator machine, which causes the machine to go to a new entry point if the `flag` register is set.<sup><a href="#note-5-47">47</a></sup>
 
-(branch (label external-entry)) ; branches if flag is set read-eval-print-loop (perform (op initialize-stack)) $\ldots$
+(branch (label external-entry)) ; branches if flag is set read-eval-print-loop (perform (op initialize-stack)) :latexmath:`\ldots`
 
 `External-entry` assumes that the machine is started with `val` containing the location of an instruction sequence that puts a result into `val` and ends with `(goto (reg continue))`. Starting at this entry point jumps to the location designated by `val`, but first assigns `continue` so that execution will return to `print-result`, which prints the value in `val` and then goes to the beginning of the evaluator's read-eval-print loop.<sup><a href="#note-5-48">48</a></sup>
 
@@ -3571,9 +3577,9 @@ With the programs in this section, we can now experiment with the alternative ex
 The alternatives of interpretation and compilation also lead to different strategies for porting languages to new computers. Suppose that we wish to implement Lisp for a new machine. One strategy is to begin with the explicit-control evaluator of section 5.4 and translate its instructions to instructions for the new machine. A different strategy is to begin with the compiler and change the code generators so that they generate code for the new machine. The second strategy allows us to run any Lisp program on the new machine by first compiling it with the compiler running on our original Lisp system, and linking it with a compiled version of the runtime library.<sup><a href="#note-5-51">51</a></sup> Better yet, we can compile the compiler itself, and run this on the new machine to compile other Lisp programs.<sup><a href="#note-5-52">52</a></sup> Or we can compile one of the interpreters of section 4.1 to produce an interpreter that runs on the new machine.
 
 **Exercise 5.45.** By comparing the stack operations used by compiled code to the stack operations used by the evaluator for the same computation, we can determine the extent to which the compiler optimizes use of the stack, both in speed (reducing the total number of stack operations) and in space (reducing the maximum stack depth). Comparing this optimized stack use to the performance of a special-purpose machine for the same computation gives some indication of the quality of the compiler.
-a. Exercise 5.27 asked you to determine, as a function of $n$, the number of pushes and the maximum stack depth needed by the evaluator to compute $n!$ using the recursive factorial procedure given above. Exercise 5.14 asked you to do the same measurements for the special-purpose factorial machine shown in figure 5.11. Now perform the same analysis using the compiled `factorial`procedure.
+a. Exercise 5.27 asked you to determine, as a function of :latexmath:`n`, the number of pushes and the maximum stack depth needed by the evaluator to compute :latexmath:`n!` using the recursive factorial procedure given above. Exercise 5.14 asked you to do the same measurements for the special-purpose factorial machine shown in figure 5.11. Now perform the same analysis using the compiled `factorial`procedure.
 
-Take the ratio of the number of pushes in the compiled version to the number of pushes in the interpreted version, and do the same for the maximum stack depth. Since the number of operations and the stack depth used to compute $n!$ are linear in $n$, these ratios should approach constants as $n$ becomes large. What are these constants? Similarly, find the ratios of the stack usage in the special-purpose machine to the usage in the interpreted version.
+Take the ratio of the number of pushes in the compiled version to the number of pushes in the interpreted version, and do the same for the maximum stack depth. Since the number of operations and the stack depth used to compute :latexmath:`n!` are linear in :latexmath:`n`, these ratios should approach constants as :latexmath:`n` becomes large. What are these constants? Similarly, find the ratios of the stack usage in the special-purpose machine to the usage in the interpreted version.
 
 Compare the ratios for special-purpose versus interpreted code to the ratios for compiled versus interpreted code. You should find that the special-purpose machine is much more efficient than the compiled code, since the hand-tailored controller code should be much better than what is produced by our rudimentary general-purpose compiler.
 
@@ -3588,11 +3594,11 @@ b. Can you suggest improvements to the compiler that would help it generate code
       (+ (fib (- n 1)) (fib (- n 2)))))
 ```
 
-compared to the effectiveness of using the special-purpose Fibonacci machine of figure 5.13. (For measurement of the interpreted performance, see exercise 5.29.) For Fibonacci, the time resource used is not linear in $n$; hence the ratios of stack operations will not approach a limiting value that is independent of $n$.
+compared to the effectiveness of using the special-purpose Fibonacci machine of figure 5.13. (For measurement of the interpreted performance, see exercise 5.29.) For Fibonacci, the time resource used is not linear in :latexmath:`n`; hence the ratios of stack operations will not approach a limiting value that is independent of :latexmath:`n`.
 
 **Exercise 5.47.** This section described how to modify the explicit-control evaluator so that interpreted code can call compiled procedures. Show how to modify the compiler so that compiled procedures can call not only primitive procedures and compiled procedures, but interpreted procedures as well. This requires modifying `compile-procedure-call` to handle the case of compound (interpreted) procedures. Be sure to handle all the same `target` and `linkage` combinations as in `compile-proc-appl`. To do the actual procedure application, the code needs to jump to the evaluator's `compound-apply` entry point. This label cannot be directly referenced in object code (since the assembler requires that all labels referenced by the code it is assembling be defined there), so we will add a register called `compapp` to the evaluator machine to hold this entry point, and add an instruction to initialize it:
 
-(assign compapp (label compound-apply)) (branch (label external-entry)) ; branches if flag is set read-eval-print-loop $\ldots$
+(assign compapp (label compound-apply)) (branch (label external-entry)) ; branches if flag is set read-eval-print-loop :latexmath:`\ldots`
 
 To test your code, start by defining a procedure `f` that calls a procedure `g`. Use `compile-and-go` to compile the definition of `f` and start the evaluator. Now, typing at the evaluator, define `g` and try to call `f`.
 
@@ -3709,7 +3715,7 @@ ok
 
 
 
- Compilers for popular languages, such as  C and C++, put hardly any error-checking operations into running code, so as to make things run as fast as possible. As a result, it falls to programmers to explicitly provide error checking. Unfortunately, people often neglect to do this, even in critical applications where speed is not a constraint. Their programs lead fast and dangerous lives. For example, the notorious "Worm" that paralyzed the Internet in 1988 exploited the  UNIX$^{\textrm{TM}}$ operating system's failure to check whether the input buffer has overflowed in the finger daemon. (See Spafford 1989.)
+ Compilers for popular languages, such as  C and C++, put hardly any error-checking operations into running code, so as to make things run as fast as possible. As a result, it falls to programmers to explicitly provide error checking. Unfortunately, people often neglect to do this, even in critical applications where speed is not a constraint. Their programs lead fast and dangerous lives. For example, the notorious "Worm" that paralyzed the Internet in 1988 exploited the  UNIX:latexmath:`^{\textrm{TM}}` operating system's failure to check whether the input buffer has overflowed in the finger daemon. (See Spafford 1989.)
 :::::
 
 ::::: aside {id="note-5-51"}

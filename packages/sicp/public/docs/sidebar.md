@@ -33,3 +33,4 @@
   - [5.5 Compilation](32-5-5-compilation.md)
 - [References](33-references.md)
 - [Adaptation audit](audit.md)
+- [Text conformity](text-conformity.md)

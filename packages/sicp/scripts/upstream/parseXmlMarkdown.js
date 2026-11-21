@@ -155,6 +155,7 @@ const heading = (level, text) => {
 // entirely instead of just losing its markup). SCHEME is dropped since it's
 // the other edition's code, and SPLIT/SPLITINLINE are transparent wrappers.
 const codeTextHandlers = {
+  INDEX: () => {}, // Index metadata is not Scheme source.
   META: (node, writeTo) => {
     writeTo.push(
       "*" + (node.firstChild ? node.firstChild.nodeValue : "") + "*"
@@ -173,8 +174,8 @@ const recursiveProcessCodeText = (node, writeTo) => {
   if (codeTextHandlers[name]) {
     codeTextHandlers[name](node, writeTo);
   } else if (name === "#text") {
-    if(node.nodeValue.trim().startsWith("\\\\addtocontents"))return;
-    const raw = node.nodeValue.replaceAll("\\\\", "\\");
+    if(/^(?:\\)+addtocontents\b/.test(node.nodeValue.trim()))return;
+    const raw = node.nodeValue.includes("$") ? node.nodeValue : node.nodeValue.replace(/\\textit\{([^{}]*)\}/g, "$1");
     if (!raw.match(/&(\w|\.)+;/)) {
       // "$\texttt{...}\texttt{...}$"-style runs (one or more \texttt{}
       // groups sharing a single pair of $...$) show up in code listings for
@@ -308,8 +309,6 @@ const processFigureMarkdown = (node, writeTo) => {
   );
 
   if((node.getAttribute("CONTINUED")??"").toLowerCase()==="yes")figureNum--;
-  const table = getChildrenByTagName(node, "TABLE")[0];
-  if (table) processTableMarkdown(table, writeTo);
 };
 
 const processTableMarkdown = (node, writeTo) => {
@@ -327,7 +326,6 @@ const processTableMarkdown = (node, writeTo) => {
       return arr
         .join("")
         .replace(/\s+/g, " ")
-        .replace(/\\/g, "\\\\")
         .replace(/\|/g, "\\|")
         .trim();
     });
@@ -373,8 +371,8 @@ const unnumberedHeading = (node, writeTo, level) => {
 
 const processTextFunctionsMarkdown = {
   "#text": (node, writeTo) => {
-    if(node.nodeValue.trim().startsWith("\\\\addtocontents"))return;
-    const raw = node.nodeValue.replaceAll("\\\\", "\\");
+    if(/^(?:\\)+addtocontents\b/.test(node.nodeValue.trim()))return;
+    const raw = node.nodeValue;
     if (raw.match(/&(\w|\.)+;/)) {
       // Include-entity placeholder (e.g. &section1.1;), meaningful only to
       // the LaTeX \input pipeline (see processFileInput.js). This pipeline
@@ -497,6 +495,14 @@ const processTextFunctionsMarkdown = {
   },
 
   P: (node, writeTo) => processTextFunctionsMarkdown["TEXT"](node, writeTo),
+  PDF_ONLY: (node, writeTo) => {
+    if (/^\s*\\\\(?:\[[^\]]*\])?\s*$/.test(node.textContent)) {
+      writeTo.push("\n\n");
+      return;
+    }
+    recursiveProcessTextMarkdown(node.firstChild, writeTo);
+  },
+
   TEXT: (node, writeTo) => {
     writeTo.push("\n\n");
     recursiveProcessTextMarkdown(node.firstChild, writeTo);
@@ -665,7 +671,7 @@ const processTextFunctionsMarkdown = {
   LATEX: (node, writeTo) => {
     const arr = [];
     recursiveProcessPureText(node.firstChild, arr);
-    const text = normalizeLatexMacros(arr.join("").trim().replaceAll("\\\\", "\\"));
+    const text = normalizeLatexMacros(arr.join("").trim());
     const display = text.match(/^\\\[([\s\S]*)\\\]$/);
     if (display) {
       writeTo.push("\n\n$$" + display[1].trim() + "$$\n\n");
@@ -677,7 +683,7 @@ const processTextFunctionsMarkdown = {
       // equivalent exists, and leaking the raw LaTeX is worse than dropping
       // it, since the same content is already conveyed by the code snippet
       // and surrounding prose.
-      writeTo.push("\n\n::: tp-latex\n:::: script {type=\"tp/latex\"}\n"+text.replace(/\\normalcodesize/g,"")+"\n::::\n:::\n\n");
+      writeTo.push("\n\n::: tp-latex\n:::: script {type=\"tp/latex\"}\n"+text.replace(/\\normalcodesize/g,"").replace(/@\{~\}/g, "@{}").replace(/\\\\\[[^\]]+\]/g, "\\\\").replace(/\\rule\{0pt\}\{[^}]+\}/g, "")+"\n::::\n:::\n\n");
       return;
     } else if (text.startsWith("$")) {
       // Already its own $...$ inline math, just sitting in a block-level
@@ -693,7 +699,7 @@ const processTextFunctionsMarkdown = {
   LATEXINLINE: (node, writeTo) => {
     const arr = [];
     recursiveProcessPureText(node.firstChild, arr);
-    const text = normalizeLatexMacros(arr.join("").trim().replaceAll("\\\\", "\\"));
+    const text = normalizeLatexMacros(arr.join("").trim());
     if (text.startsWith("$")) {
       writeTo.push(text);
     } else if (text.startsWith("\\")) {
@@ -705,6 +711,8 @@ const processTextFunctionsMarkdown = {
       writeTo.push("*" + text + "*");
     }
   },
+  DOLLAR: (_node, writeTo) => writeTo.push("\\$"),
+
   LaTeX: (node, writeTo) => {
     writeTo.push("LaTeX");
   },
@@ -739,11 +747,27 @@ const processTextFunctionsMarkdown = {
   ECMA: () => {},
   PLR: () => {},
   [lang.inlineTag]: (node, writeTo) => {
-    writeTo.push("`");
-    const codeArr = [];
-    recursiveProcessPureText(node.firstChild, codeArr);
-    writeTo.push(codeArr.join("").replace(/_@/g, "_").replace(/@/g, ""));
-    writeTo.push("`");
+    // Inline code can contain mathematical metavariables. The old pure-text
+    // visitor discarded element children, turning e.g. (transpose m) into
+    // (transpose ). Preserve those children outside the code span.
+    let code = "";
+    const flush = () => {
+      if (!code) return;
+      writeTo.push("`" + code.replace(/\s+/g, " ").replace(/_@/g, "_").replace(/@/g, "") + "`");
+      code = "";
+    };
+    for (const child of Array.from(node.childNodes)) {
+      if (child.nodeName === "#text") code += child.nodeValue;
+      else if (["LATEXINLINE", "META", "METAPHRASE"].includes(child.nodeName)) {
+        flush();
+        processTextMarkdown(child, writeTo);
+      } else {
+        const parts = [];
+        if (replaceTagWithSymbol(child, parts)) code += parts.join("");
+        else code += child.textContent;
+      }
+    }
+    flush();
   }
 };
 

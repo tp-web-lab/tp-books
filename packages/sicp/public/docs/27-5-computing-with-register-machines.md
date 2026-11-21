@@ -6,8 +6,6 @@ math: latexmath
 
 [Original PDF · page 469](original/sicp.pdf#page=469)
 
-\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
-
 > My aim is to show that the heavenly machine is not a kind of divine, live being, but a kind of clockwork (and he who believes that a clock has soul attributes the maker's glory to the work), insofar as nearly all the manifold motions are caused by a most simple and material force, just as all motions of the clock are caused by a single weight.
 > — Johannes Kepler, letter to Herwart von Hohenburg, 1605
 

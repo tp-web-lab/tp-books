@@ -118,7 +118,7 @@ Section 4.3.1 introduces `amb` and explains how it supports nondeterminism thro
 
 ### 4.3.1 Amb and Search
 
-To extend Scheme to support nondeterminism, we introduce a new special form called `amb`.<sup><a href="#note-4-43">43</a></sup> The expression `(amb `$e_1\ e_2\ldots e_n$`)` returns the value of one of the $n$ expressions $e_i$"ambiguously." For example, the expression
+To extend Scheme to support nondeterminism, we introduce a new special form called `amb`.<sup><a href="#note-4-43">43</a></sup> The expression `(amb `:latexmath:`e_1\ e_2\ldots e_n``)` returns the value of one of the :latexmath:`n` expressions :latexmath:`e_i`"ambiguously." For example, the expression
 
 ```scheme
 (list (amb 1 2 3) (amb 'a 'b))
@@ -149,14 +149,14 @@ With `amb` and `require`, we can implement the `an-element-of` procedure used ab
 
 `An-element-of` fails if the list is empty. Otherwise it ambiguously returns either the first element of the list or an element chosen from the rest of the list.
 
-We can also express infinite ranges of choices. The following procedure potentially returns any integer greater than or equal to some given $n$:
+We can also express infinite ranges of choices. The following procedure potentially returns any integer greater than or equal to some given :latexmath:`n`:
 
 ```scheme
 (define (an-integer-starting-from n)
   (amb n (an-integer-starting-from (+ n 1))))
 ```
 
-This is like the stream procedure `integers-starting-from` described in section 3.5.2, but with an important difference: The stream procedure returns an object that represents the sequence of all integers beginning with $n$, whereas the `amb`procedure returns a single integer.<sup><a href="#note-4-44">44</a></sup>
+This is like the stream procedure `integers-starting-from` described in section 3.5.2, but with an important difference: The stream procedure returns an object that represents the sequence of all integers beginning with :latexmath:`n`, whereas the `amb`procedure returns a single integer.<sup><a href="#note-4-44">44</a></sup>
 
 Abstractly, we can imagine that evaluating an `amb` expression causes time to split into branches, where the computation continues on each branch with one of the possible values of the expression. We say that `amb` represents a *nondeterministic choice point*. If we had a machine with a sufficient number of processors that could be dynamically allocated, we could implement the search in a straightforward way. Execution would proceed as in a sequential machine, until an `amb` expression is encountered. At this point, more processors would be allocated and initialized to continue all of the parallel executions implied by the choice. Each processor would proceed sequentially as if it were the only choice, until it either terminates by encountering a failure, or it further subdivides, or it finishes.<sup><a href="#note-4-45">45</a></sup>
 
@@ -496,7 +496,7 @@ The driver loop for the `amb` evaluator has some unusual properties. It reads an
 
 </details>
 
-**Exercise 4.36.** Write a procedure `an-integer-between` that returns an integer between two given bounds. This can be used to implement a procedure that finds Pythagorean triples, i.e., triples of integers $(i,j,k)$ between the given bounds such that $i \leq j$ and $i^2 + j^2 =k^2$, as follows:
+**Exercise 4.36.** Write a procedure `an-integer-between` that returns an integer between two given bounds. This can be used to implement a procedure that finds Pythagorean triples, i.e., triples of integers :latexmath:`(i,j,k)` between the given bounds such that :latexmath:`i \leq j` and :latexmath:`i^2 + j^2 =k^2`, as follows:
 
 ```scheme
 (define (a-pythagorean-triple-between low high)
@@ -532,7 +532,7 @@ The driver loop for the `amb` evaluator has some unusual properties. It reads an
 :::::
 
 ::::: aside {id="note-4-45"}
-**45.** One might object that this is a hopelessly inefficient mechanism. It might require millions of processors to solve some easily stated problem this way, and most of the time most of those processors would be idle. This objection should be taken in the context of history. Memory used to be considered just such an expensive commodity.  In 1965 a megabyte of RAM cost about $400,000. Now every personal computer has many gigabytes of RAM, and most of the time most of that RAM is unused. It is hard to underestimate the cost of mass-produced electronics.
+**45.** One might object that this is a hopelessly inefficient mechanism. It might require millions of processors to solve some easily stated problem this way, and most of the time most of those processors would be idle. This objection should be taken in the context of history. Memory used to be considered just such an expensive commodity.  In 1965 a megabyte of RAM cost about \$400,000. Now every personal computer has many gigabytes of RAM, and most of the time most of that RAM is unused. It is hard to underestimate the cost of mass-produced electronics.
 :::::
 
 ::::: aside {id="note-4-46"}
@@ -967,7 +967,7 @@ The top-level procedure`ambeval` (similar to the version of `eval` given in sect
 
 A success continuation is a procedure of two arguments: the value just obtained and another failure continuation to be used if that value leads to a subsequent failure. A failure continuation is a procedure of no arguments. So the general form of an execution procedure is
 
-(lambda (env succeed fail) ;; succeed is (lambda (value fail) $\ldots$) ;; fail is (lambda () $\ldots$) $\ldots$)
+(lambda (env succeed fail) ;; succeed is (lambda (value fail) :latexmath:`\ldots`) ;; fail is (lambda () :latexmath:`\ldots`) :latexmath:`\ldots`)
 
 For example, executing
 

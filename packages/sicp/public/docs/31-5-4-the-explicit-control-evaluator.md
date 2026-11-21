@@ -446,14 +446,14 @@ For the purposes of the simulation, we initialize the stack each time through th
 
 If we combine all the code fragments presented in sections 5.4.1–5.4.4, we can create an evaluator machine model that we can run using the register-machine simulator of section 5.2.
 
-(define eceval (make-machine '(exp env val proc argl continue unev) eceval-operations '( read-eval-print-loop $\langle$entire machine controller as given above$\rangle$ )))
+(define eceval (make-machine '(exp env val proc argl continue unev) eceval-operations '( read-eval-print-loop :latexmath:`\langle`entire machine controller as given above:latexmath:`\rangle` )))
 
 We must define Scheme procedures to simulate the operations used as primitives by the evaluator. These are the same procedures we used for the metacircular evaluator in section 4.1, together with the few additional ones defined in footnotes throughout section 5.4.
 
 ```scheme
 (define eceval-operations
   (list (list 'self-evaluating? self-evaluating)
-        \textit{complete list of operations for eceval machine}))
+        complete list of operations for eceval machine))
 ```
 
 Finally, we can initialize the global environment and run the evaluator:
@@ -565,7 +565,7 @@ Of course, evaluating expressions in this way will take much longer than if we h
 
 Simulation can be a powerful tool to guide the implementation of evaluators. Simulations make it easy not only to explore variations of the register-machine design but also to monitor the performance of the simulated evaluator. For example, one important factor in performance is how efficiently the evaluator uses the stack. We can observe the number of stack operations required to evaluate various expressions by defining the evaluator register machine with the version of the simulator that collects statistics on stack use (section 5.2.4), and adding an instruction at the evaluator's `print-result` entry point to print the statistics:
 
-print-result (perform (op print-stack-statistics)); added instruction (perform (op announce-output) (const "EC-Eval value:")) $\ldots$ ; same as before
+print-result (perform (op print-stack-statistics)); added instruction (perform (op announce-output) (const "EC-Eval value:")) :latexmath:`\ldots` ; same as before
 
 Interactions with the evaluator now look like this:
 
@@ -600,9 +600,9 @@ Note that the driver loop of the evaluator reinitializes the stack at the start 
       (iter 1 1))
 ```
 
-Run the procedure with some small values of $n$. Record the maximum stack depth and the number of pushes required to compute $n!$ for each of these values.
-a. You will find that the maximum depth required to evaluate $n!$ is independent of $n$. What is that depth?
-b. Determine from your data a formula in terms of $n$ for the total number of push operations used in evaluating $n!$ for any $n \geq 1$. Note that the number of operations used is a linear function of $n$ and is thus determined by two constants.
+Run the procedure with some small values of :latexmath:`n`. Record the maximum stack depth and the number of pushes required to compute :latexmath:`n!` for each of these values.
+a. You will find that the maximum depth required to evaluate :latexmath:`n!` is independent of :latexmath:`n`. What is that depth?
+b. Determine from your data a formula in terms of :latexmath:`n` for the total number of push operations used in evaluating :latexmath:`n!` for any :latexmath:`n \geq 1`. Note that the number of operations used is a linear function of :latexmath:`n` and is thus determined by two constants.
 
 **Exercise 5.27.** For comparison with exercise 5.26, explore the behavior of the following procedure for computing factorials recursively:
 
@@ -613,16 +613,16 @@ b. Determine from your data a formula in terms of $n$ for the total number of pu
       (* (factorial (- n 1)) n)))
 ```
 
-By running this procedure with the monitored stack, determine, as a function of $n$, the maximum depth of the stack and the total number of pushes used in evaluating $n!$ for $n \geq 1$. (Again, these functions will be linear.) Summarize your experiments by filling in the following table with the appropriate expressions in terms of $n$:
+By running this procedure with the monitored stack, determine, as a function of :latexmath:`n`, the maximum depth of the stack and the total number of pushes used in evaluating :latexmath:`n!` for :latexmath:`n \geq 1`. (Again, these functions will be linear.) Summarize your experiments by filling in the following table with the appropriate expressions in terms of :latexmath:`n`:
 
 > ::: tp-latex
 > :::: script {type="tp/latex"}
 > \begin{center}
 > \smallskip
 > \begin{tabular}{l|l|l}
-> & Maximum depth & Number of pushes \ \hline
-> \rule{0pt}{7mm} Recursive factorial & & \ \hline
-> \rule{0pt}{7mm} Iterative factorial & & \ \hline
+> & Maximum depth & Number of pushes \\ \hline
+> Recursive factorial & & \\ \hline
+> Iterative factorial & & \\ \hline
 > \end{tabular}
 > \smallskip
 > \end{center}
@@ -673,5 +673,5 @@ b. Much worse is the problem of handling errors that are signaled by applying pr
 :::::
 
 ::::: aside {id="note-5-30"}
-**30.** Regrettably, this is the normal state of affairs in  conventional compiler-based language systems such as C.  In UNIX$^{\textrm{TM}}$ the system "dumps core," and in  DOS/Windows$^{\textrm{TM}}$ it becomes catatonic. The  Macintosh$^{\textrm{TM}}$ displays a picture of an exploding bomb and offers you the opportunity to reboot the computer—if you're lucky.
+**30.** Regrettably, this is the normal state of affairs in  conventional compiler-based language systems such as C.  In UNIX:latexmath:`^{\textrm{TM}}` the system "dumps core," and in  DOS/Windows:latexmath:`^{\textrm{TM}}` it becomes catatonic. The  Macintosh:latexmath:`^{\textrm{TM}}` displays a picture of an exploding bomb and offers you the opportunity to reboot the computer—if you're lucky.
 :::::

@@ -180,7 +180,7 @@ math: latexmath
 
 - Rees, Jonathan A., and Norman I. Adams IV. 1982. T: A dialect of Lisp or, lambda: The ultimate software tool. In *Conference Record of the 1982 ACM Symposium on Lisp and Functional Programming,* pp. 114–122.
 
-- Rees, Jonathan, and William Clinger (eds). 1991. The revised$^4$ report on the algorithmic language Scheme. *Lisp Pointers,* 4(3).
+- Rees, Jonathan, and William Clinger (eds). 1991. The revised:latexmath:`^4` report on the algorithmic language Scheme. *Lisp Pointers,* 4(3).
 
 - Rivest, Ronald, Adi Shamir, and Leonard Adleman. 1977. A method for obtaining digital signatures and public-key cryptosystems. Technical memo LCS/TM82, MIT Laboratory for Computer Science.
 

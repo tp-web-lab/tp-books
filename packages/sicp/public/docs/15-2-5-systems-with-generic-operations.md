@@ -148,15 +148,15 @@ Programs outside the complex-number package can construct complex numbers either
   ((get 'make-from-mag-ang 'complex) r a))
 ```
 
-What we have here is a two-level tag system. A typical complex number, such as $3+4i$ in rectangular form, would be represented as shown in figure 2.24. The outer tag (`complex`) is used to direct the number to the complex package. Once within the complex package, the next tag (`rectangular`) is used to direct the number to the rectangular package. In a large and complicated system there might be many levels, each interfaced with the next by means of generic operations. As a data object is passed "downward," the outer tag that is used to direct it to the appropriate package is stripped off (by applying `contents`) and the next level of tag (if any) becomes visible to be used for further dispatching.
+What we have here is a two-level tag system. A typical complex number, such as :latexmath:`3+4i` in rectangular form, would be represented as shown in figure 2.24. The outer tag (`complex`) is used to direct the number to the complex package. Once within the complex package, the next tag (`rectangular`) is used to direct the number to the rectangular package. In a large and complicated system there might be many levels, each interfaced with the next by means of generic operations. As a data object is passed "downward," the outer tag that is used to direct it to the appropriate package is stripped off (by applying `contents`) and the next level of tag (if any) becomes visible to be used for further dispatching.
 
 ![](docs/img_original/ch2-Z-G-65.svg)
 
-**Figure 2.24.** Representation of $3+4i$ in rectangular form.
+**Figure 2.24.** Representation of :latexmath:`3+4i` in rectangular form.
 
 In the above packages, we used `add-rat`,`add-complex`, and the other arithmetic procedures exactly as originally written. Once these declarations are internal to different installation procedures, however, they no longer need names that are distinct from each other: we could simply name them `add`, `sub`, `mul`, and `div` in both packages.
 
-**Exercise 2.77.** Louis Reasoner tries to evaluate the expression `(magnitude z)` where `z` is the object shown in figure 2.24. To his surprise, instead of the answer $5$ he gets an error message from `apply-generic`, saying there is no method for the operation `magnitude` on the types `(complex)`. He shows this interaction to Alyssa P. Hacker, who says "The problem is that the complex-number selectors were never defined for `complex` numbers, just for `polar` and `rectangular` numbers. All you have to do to make this work is add the following to the `complex` package:"
+**Exercise 2.77.** Louis Reasoner tries to evaluate the expression `(magnitude z)` where `z` is the object shown in figure 2.24. To his surprise, instead of the answer :latexmath:`5` he gets an error message from `apply-generic`, saying there is no method for the operation `magnitude` on the types `(complex)`. He shows this interaction to Alyssa P. Hacker, who says "The problem is that the complex-number selectors were never defined for `complex` numbers, just for `polar` and `rectangular` numbers. All you have to do to make this work is add the following to the `complex` package:"
 
 ```scheme
 (put 'real-part '(complex) real-part)
@@ -236,7 +236,7 @@ Once the coercion table has been set up, we can handle coercion in a uniform man
             (list op type-tags)))))))
 ```
 
-This coercion scheme has many advantages over the method of defining explicit cross-type operations, as outlined above. Although we still need to write coercion procedures to relate the types (possibly $n^2$procedures for a system with $n$ types), we need to write only one procedure for each pair of types rather than a different procedure for each collection of types and each generic operation.<sup><a href="#note-2-51">51</a></sup> What we are counting on here is the fact that the appropriate transformation between types depends only on the types themselves, not on the operation to be applied.
+This coercion scheme has many advantages over the method of defining explicit cross-type operations, as outlined above. Although we still need to write coercion procedures to relate the types (possibly :latexmath:`n^2`procedures for a system with :latexmath:`n` types), we need to write only one procedure for each pair of types rather than a different procedure for each collection of types and each generic operation.<sup><a href="#note-2-51">51</a></sup> What we are counting on here is the fact that the appropriate transformation between types depends only on the types themselves, not on the operation to be applied.
 
 On the other hand, there may be applications for which our coercion scheme is not general enough. Even when neither of the objects to be combined can be converted to the type of the other it may still be possible to perform the operation by converting both objects to a third type. In order to deal with such complexity and still preserve modularity in our programs, it is usually necessary to build systems that take advantage of still further structure in the relations among types, as we discuss next.
 
@@ -254,7 +254,7 @@ We can redesign our `apply-generic`procedure in the following way: For each type
 
 Another advantage of a tower is that we can easily implement the notion that every type "inherits" all operations defined on a supertype. For instance, if we do not supply a special procedure for finding the real part of an integer, we should nevertheless expect that `real-part` will be defined for integers by virtue of the fact that integers are a subtype of complex numbers. In a tower, we can arrange for this to happen in a uniform way by modifying `apply-generic`. If the required operation is not directly defined for the type of the object given, we raise the object to its supertype and try again. We thus crawl up the tower, transforming our argument as we go, until we either find a level at which the desired operation can be performed or hit the top (in which case we give up).
 
-Yet another advantage of a tower over a more general hierarchy is that it gives us a simple way to "lower" a data object to the simplest representation. For example, if we add $2+3i$ to $4-3i$, it would be nice to obtain the answer as the integer 6 rather than as the complex number $6+0i$. Exercise 2.85 discusses a way to implement such a lowering operation. (The trick is that we need a general way to distinguish those objects that can be lowered, such as $6+0i$, from those that cannot, such as $6+2i$.)
+Yet another advantage of a tower over a more general hierarchy is that it gives us a simple way to "lower" a data object to the simplest representation. For example, if we add :latexmath:`2+3i` to :latexmath:`4-3i`, it would be nice to obtain the answer as the integer 6 rather than as the complex number :latexmath:`6+0i`. Exercise 2.85 discusses a way to implement such a lowering operation. (The trick is that we need a general way to distinguish those objects that can be lowered, such as :latexmath:`6+0i`, from those that cannot, such as :latexmath:`6+2i`.)
 
 #### Inadequacies of hierarchies
 
@@ -298,7 +298,7 @@ c. Modify `apply-generic` so that it doesn't try coercion if the two arguments h
 
 **Exercise 2.84.** Using the `raise` operation of exercise 2.83, modify the `apply-generic`procedure so that it coerces its arguments to have the same type by the method of successive raising, as discussed in this section. You will need to devise a way to test which of two types is higher in the tower. Do this in a manner that is "compatible" with the rest of the system and will not lead to problems in adding new levels to the tower.
 
-**Exercise 2.85.** This section mentioned a method for "simplifying" a data object by lowering it in the tower of types as far as possible. Design a procedure`drop` that accomplishes this for the tower described in exercise 2.83. The key is to decide, in some general way, whether an object can be lowered. For example, the complex number $1.5+0i$ can be lowered as far as `real`, the complex number $1+0i$ can be lowered as far as `integer`, and the complex number $2+3i$ cannot be lowered at all. Here is a plan for determining whether an object can be lowered: Begin by defining a generic operation `project` that "pushes" an object down in the tower. For example, projecting a complex number would involve throwing away the imaginary part. Then a number can be dropped if, when we `project` it and `raise` the result back to the type we started with, we end up with something equal to what we started with. Show how to implement this idea in detail, by writing a `drop`procedure that drops an object as far as possible. You will need to design the various projection operations<sup><a href="#note-2-53">53</a></sup> and install `project` as a generic operation in the system. You will also need to make use of a generic equality predicate, such as described in exercise 2.79. Finally, use `drop` to rewrite `apply-generic` from exercise 2.84 so that it "simplifies" its answers.
+**Exercise 2.85.** This section mentioned a method for "simplifying" a data object by lowering it in the tower of types as far as possible. Design a procedure`drop` that accomplishes this for the tower described in exercise 2.83. The key is to decide, in some general way, whether an object can be lowered. For example, the complex number :latexmath:`1.5+0i` can be lowered as far as `real`, the complex number :latexmath:`1+0i` can be lowered as far as `integer`, and the complex number :latexmath:`2+3i` cannot be lowered at all. Here is a plan for determining whether an object can be lowered: Begin by defining a generic operation `project` that "pushes" an object down in the tower. For example, projecting a complex number would involve throwing away the imaginary part. Then a number can be dropped if, when we `project` it and `raise` the result back to the type we started with, we end up with something equal to what we started with. Show how to implement this idea in detail, by writing a `drop`procedure that drops an object as far as possible. You will need to design the various projection operations<sup><a href="#note-2-53">53</a></sup> and install `project` as a generic operation in the system. You will also need to make use of a generic equality predicate, such as described in exercise 2.79. Finally, use `drop` to rewrite `apply-generic` from exercise 2.84 so that it "simplifies" its answers.
 
 **Exercise 2.86.** Suppose we want to handle complex numbers whose real parts, imaginary parts, magnitudes, and angles can be either ordinary numbers, rational numbers, or other numbers we might wish to add to the system. Describe and implement the changes to the system needed to accommodate this. You will have to define operations such as `sine` and `cosine` that are generic over ordinary numbers and rational numbers.
 
@@ -312,7 +312,7 @@ c. Modify `apply-generic` so that it doesn't try coercion if the two arguments h
 :::::
 
 ::::: aside {id="note-2-51"}
-**51.** If we are clever, we can usually get by with fewer than $n^2$ coercion procedures. For instance, if we know how to convert from type 1 to type 2 and from type 2 to type 3, then we can use this knowledge to convert from type 1 to type 3. This can greatly decrease the number of coercion procedures we need to supply explicitly when we add a new type to the system. If we are willing to build the required amount of sophistication into our system, we can have it search the "graph" of relations among types and automatically generate those coercion procedures that can be inferred from the ones that are supplied explicitly.
+**51.** If we are clever, we can usually get by with fewer than :latexmath:`n^2` coercion procedures. For instance, if we know how to convert from type 1 to type 2 and from type 2 to type 3, then we can use this knowledge to convert from type 1 to type 3. This can greatly decrease the number of coercion procedures we need to supply explicitly when we add a new type to the system. If we are willing to build the required amount of sophistication into our system, we can have it search the "graph" of relations among types and automatically generate those coercion procedures that can be inferred from the ones that are supplied explicitly.
 :::::
 
 ::::: aside {id="note-2-52"}
@@ -327,9 +327,15 @@ c. Modify `apply-generic` so that it doesn't try coercion if the two arguments h
 
 The manipulation of symbolic algebraic expressions is a complex process that illustrates many of the hardest problems that occur in the design of large-scale systems. An algebraic expression, in general, can be viewed as a hierarchical structure, a tree of operators applied to operands. We can construct algebraic expressions by starting with a set of primitive objects, such as constants and variables, and combining these by means of algebraic operators, such as addition and multiplication. As in other languages, we form abstractions that enable us to refer to compound objects in simple terms. Typical abstractions in symbolic algebra are ideas such as linear combination, polynomial, rational function, or trigonometric function. We can regard these as compound "types," which are often useful for directing the processing of expressions. For example, we could describe the expression
 
-$$x^{2}\, \sin (y^2+1)+x\, \cos 2y+\cos (y^3 -2y^2)$$
 
-as a polynomial in $x$ with coefficients that are trigonometric functions of polynomials in $y$ whose coefficients are integers.
+
+```latexmath
+x^{2}\, \sin (y^2+1)+x\, \cos 2y+\cos (y^3 -2y^2)
+```
+
+
+
+as a polynomial in :latexmath:`x` with coefficients that are trigonometric functions of polynomials in :latexmath:`y` whose coefficients are integers.
 
 We will not attempt to develop a complete algebraic-manipulation system here. Such systems are exceedingly complex programs, embodying deep algebraic knowledge and elegant algorithms. What we will do is look at a simple but important part of algebraic manipulation: the arithmetic of polynomials. We will illustrate the kinds of decisions the designer of such a system faces, and how to apply the ideas of abstract data and generic operations to help organize this effort.
 
@@ -337,15 +343,27 @@ We will not attempt to develop a complete algebraic-manipulation system here. Su
 
 Our first task in designing a system for performing arithmetic on polynomials is to decide just what a polynomial is. Polynomials are normally defined relative to certain variables (the *indeterminates* of the polynomial). For simplicity, we will restrict ourselves to polynomials having just one indeterminate *(univariate polynomials*).<sup><a href="#note-2-54">54</a></sup> We will define a polynomial to be a sum of terms, each of which is either a coefficient, a power of the indeterminate, or a product of a coefficient and a power of the indeterminate. A coefficient is defined as an algebraic expression that is not dependent upon the indeterminate of the polynomial. For example,
 
-$$5x^2 +3x +7$$
 
-is a simple polynomial in $x$, and
 
-$$(y^2 +1)x^3 +(2y)x+1$$
+```latexmath
+5x^2 +3x +7
+```
 
-is a polynomial in $x$ whose coefficients are polynomials in $y$.
 
-Already we are skirting some thorny issues. Is the first of these polynomials the same as the polynomial $5y^2 +3y +7$, or not? A reasonable answer might be "yes, if we are considering a polynomial purely as a mathematical function, but no, if we are considering a polynomial to be a syntactic form." The second polynomial is algebraically equivalent to a polynomial in $y$ whose coefficients are polynomials in $x$. Should our system recognize this, or not? Furthermore, there are other ways to represent a polynomial—for example, as a product of factors, or (for a univariate polynomial) as the set of roots, or as a listing of the values of the polynomial at a specified set of points.<sup><a href="#note-2-55">55</a></sup> We can finesse these questions by deciding that in our algebraic-manipulation system a "polynomial" will be a particular syntactic form, not its underlying mathematical meaning.
+
+is a simple polynomial in :latexmath:`x`, and
+
+
+
+```latexmath
+(y^2 +1)x^3 +(2y)x+1
+```
+
+
+
+is a polynomial in :latexmath:`x` whose coefficients are polynomials in :latexmath:`y`.
+
+Already we are skirting some thorny issues. Is the first of these polynomials the same as the polynomial :latexmath:`5y^2 +3y +7`, or not? A reasonable answer might be "yes, if we are considering a polynomial purely as a mathematical function, but no, if we are considering a polynomial to be a syntactic form." The second polynomial is algebraically equivalent to a polynomial in :latexmath:`y` whose coefficients are polynomials in :latexmath:`x`. Should our system recognize this, or not? Furthermore, there are other ways to represent a polynomial—for example, as a product of factors, or (for a univariate polynomial) as the set of roots, or as a listing of the values of the polynomial at a specified set of points.<sup><a href="#note-2-55">55</a></sup> We can finesse these questions by deciding that in our algebraic-manipulation system a "polynomial" will be a particular syntactic form, not its underlying mathematical meaning.
 
 Now we must consider how to go about doing arithmetic on polynomials. In this simple system, we will consider only addition and multiplication. Moreover, we will insist that two polynomials to be combined must have the same indeterminate.
 
@@ -371,7 +389,7 @@ We will approach the design of our system by following the familiar discipline o
 
 To incorporate polynomials into our generic arithmetic system, we need to supply them with type tags. We'll use the tag `polynomial`, and install appropriate operations on tagged polynomials in the operation table. We'll embed all our code in an installation procedure for the polynomial package, similar to the ones in section 2.5.1:
 
-(define (install-polynomial-package) ;; internal procedures ;; representation of poly (define (make-poly variable term-list) (cons variable term-list)) (define (variable p) (car p)) (define (term-list p) (cdr p)) $langle$ procedures same-variable? and variable? from section 2.3.2 $\rangle$ ;; representation of terms and term lists $langle$ procedures adjoin-term $\ldots$ coeff from text below $langle$ (define (add-poly p1 p2) $\ldots$) $langle$ procedures used by add-poly $langle$ (define (mul-poly p1 p2) $\ldots$) $langle$procedures used by mul-poly $langle$ ;; interface to rest of the system (define (tag p) (attach-tag 'polynomial p)) (put 'add '(polynomial polynomial) (lambda (p1 p2) (tag (add-poly p1 p2)))) (put 'mul '(polynomial polynomial) (lambda (p1 p2) (tag (mul-poly p1 p2)))) (put 'make 'polynomial (lambda (var terms) (tag (make-poly var terms)))) 'done)
+(define (install-polynomial-package) ;; internal procedures ;; representation of poly (define (make-poly variable term-list) (cons variable term-list)) (define (variable p) (car p)) (define (term-list p) (cdr p)) :latexmath:`langle` procedures same-variable? and variable? from section 2.3.2 :latexmath:`\rangle` ;; representation of terms and term lists :latexmath:`langle` procedures adjoin-term :latexmath:`\ldots` coeff from text below :latexmath:`langle` (define (add-poly p1 p2) :latexmath:`\ldots`) :latexmath:`langle` procedures used by add-poly :latexmath:`langle` (define (mul-poly p1 p2) :latexmath:`\ldots`) :latexmath:`langle`procedures used by mul-poly :latexmath:`langle` ;; interface to rest of the system (define (tag p) (attach-tag 'polynomial p)) (put 'add '(polynomial polynomial) (lambda (p1 p2) (tag (add-poly p1 p2)))) (put 'mul '(polynomial polynomial) (lambda (p1 p2) (tag (mul-poly p1 p2)))) (put 'make 'polynomial (lambda (var terms) (tag (make-poly var terms)))) 'done)
 
 Polynomial addition is performed termwise. Terms of the same order (i.e., with the same power of the indeterminate) must be combined. This is done by forming a new term of the same order whose coefficient is the sum of the coefficients of the addends. Terms in one addend for which there are no terms of the same order in the other addend are simply accumulated into the sum polynomial being constructed.
 
@@ -422,18 +440,30 @@ In order to multiply two term lists, we multiply each term of the first list by 
 
 This is really all there is to polynomial addition and multiplication. Notice that, since we operate on terms using the generic procedures`add` and `mul`, our polynomial package is automatically able to handle any type of coefficient that is known about by the generic arithmetic package. If we include a coercion mechanism such as one of those discussed in section 2.5.2, then we also are automatically able to handle operations on polynomials of different coefficient types, such as
 
-$$\begin{array}{l}
+
+
+```latexmath
+\begin{array}{l}
 {\left[3x^2 +(2+3i)x+7\right] \cdot \left[x^4 +\frac{2}{3}x^2
 +(5+3i)\right]}
-\end{array}$$
+\end{array}
+```
+
+
 
 Because we installed the polynomial addition and multiplication procedures`add-poly` and `mul-poly` in the generic arithmetic system as the `add` and `mul` operations for type `polynomial`, our system is also automatically able to handle polynomial operations such as
 
-$$\begin{array}{l}
-{\left[ (y+1)x^2 +(y^2 +1)x+(y-1)\right]\cdot \left[(y-2)x+(y^3 +7)\right]}
-\end{array}$$
 
-The reason is that when the system tries to combine coefficients, it will dispatch through `add` and `mul`. Since the coefficients are themselves polynomials (in $y$), these will be combined using `add-poly` and `mul-poly`. The result is a kind of "data-directed recursion" in which, for example, a call to `mul-poly` will result in recursive calls to `mul-poly` in order to multiply the coefficients. If the coefficients of the coefficients were themselves polynomials (as might be used to represent polynomials in three variables), the data direction would ensure that the system would follow through another level of recursive calls, and so on through as many levels as the structure of the data dictates.<sup><a href="#note-2-57">57</a></sup>
+
+```latexmath
+\begin{array}{l}
+{\left[ (y+1)x^2 +(y^2 +1)x+(y-1)\right]\cdot \left[(y-2)x+(y^3 +7)\right]}
+\end{array}
+```
+
+
+
+The reason is that when the system tries to combine coefficients, it will dispatch through `add` and `mul`. Since the coefficients are themselves polynomials (in :latexmath:`y`), these will be combined using `add-poly` and `mul-poly`. The result is a kind of "data-directed recursion" in which, for example, a call to `mul-poly` will result in recursive calls to `mul-poly` in order to multiply the coefficients. If the coefficients of the coefficients were themselves polynomials (as might be used to represent polynomials in three variables), the data direction would ensure that the system would follow through another level of recursive calls, and so on through as many levels as the structure of the data dictates.<sup><a href="#note-2-57">57</a></sup>
 
 #### Representing term lists
 
@@ -441,15 +471,27 @@ Finally, we must confront the job of implementing a good representation for term
 
 How should we structure the list that represents a term list? One consideration is the "density" of the polynomials we intend to manipulate. A polynomial is said to be *dense* if it has nonzero coefficients in terms of most orders. If it has many zero terms it is said to be *sparse*. For example,
 
-$$A:\quad x^5 +2x^4 +3x^2 -2x -5$$
+
+
+```latexmath
+A:\quad x^5 +2x^4 +3x^2 -2x -5
+```
+
+
 
 is a dense polynomial, whereas
 
-$$B:\quad x^{100} +2x^2 +1$$
+
+
+```latexmath
+B:\quad x^{100} +2x^2 +1
+```
+
+
 
 is sparse.
 
-The term lists of dense polynomials are most efficiently represented as lists of the coefficients. For example, $A$ above would be nicely represented as `(1 2 0 3 -2 -5)`. The order of a term in this representation is the length of the sublist beginning with that term's coefficient, decremented by 1.<sup><a href="#note-2-58">58</a></sup> This would be a terrible representation for a sparse polynomial such as $B$: There would be a giant list of zeros punctuated by a few lonely nonzero terms. A more reasonable representation of the term list of a sparse polynomial is as a list of the nonzero terms, where each term is a list containing the order of the term and the coefficient for that order. In such a scheme, polynomial $B$ is efficiently represented as `((100 1) (2 2) (0 1))`. As most polynomial manipulations are performed on sparse polynomials, we will use this method. We will assume that term lists are represented as lists of terms, arranged from highest-order to lowest-order term. Once we have made this decision, implementing the selectors and constructors for terms and term lists is straightforward:<sup><a href="#note-2-59">59</a></sup>
+The term lists of dense polynomials are most efficiently represented as lists of the coefficients. For example, :latexmath:`A` above would be nicely represented as `(1 2 0 3 -2 -5)`. The order of a term in this representation is the length of the sublist beginning with that term's coefficient, decremented by 1.<sup><a href="#note-2-58">58</a></sup> This would be a terrible representation for a sparse polynomial such as :latexmath:`B`: There would be a giant list of zeros punctuated by a few lonely nonzero terms. A more reasonable representation of the term list of a sparse polynomial is as a list of the nonzero terms, where each term is a list containing the order of the term and the coefficient for that order. In such a scheme, polynomial :latexmath:`B` is efficiently represented as `((100 1) (2 2) (0 1))`. As most polynomial manipulations are performed on sparse polynomials, we will use this method. We will assume that term lists are represented as lists of terms, arranged from highest-order to lowest-order term. Once we have made this decision, implementing the selectors and constructors for terms and term lists is straightforward:<sup><a href="#note-2-59">59</a></sup>
 
 ```scheme
 (define (adjoin-term term term-list)
@@ -486,9 +528,15 @@ Users of the polynomial package will create (tagged) polynomials by means of the
 
 **Exercise 2.91.** A univariate polynomial can be divided by another one to produce a polynomial quotient and a polynomial remainder. For example,
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \dfrac{x^5-1}{x^2 -1} & = & x^3 +x,\ \text{remainder }x-1
-\end{array}$$
+\end{array}
+```
+
+
 
 Division can be performed via long division. That is, divide the highest-order term of the dividend by the highest-order term of the divisor. The result is the first term of the quotient. Next, multiply the result by the divisor, subtract that from the dividend, and produce the rest of the answer by recursively dividing the difference by the divisor. Stop when the order of the divisor exceeds the order of the dividend and declare the dividend to be the remainder. Also, if the dividend ever becomes zero, return zero as both quotient and remainder.
 
@@ -517,7 +565,7 @@ Complete the following definition of `div-terms` by filling in the missing expre
 
 Our polynomial system illustrates how objects of one type (polynomials) may in fact be complex objects that have objects of many different types as parts. This poses no real difficulty in defining generic operations. We need only install appropriate generic operations for performing the necessary manipulations of the parts of the compound types. In fact, we saw that polynomials form a kind of "recursive data abstraction," in that parts of a polynomial may themselves be polynomials. Our generic operations and our data-directed programming style can handle this complication without much trouble.
 
-On the other hand, polynomial algebra is a system for which the data types cannot be naturally arranged in a tower. For instance, it is possible to have polynomials in $x$ whose coefficients are polynomials in $y$. It is also possible to have polynomials in $y$ whose coefficients are polynomials in $x$. Neither of these types is "above" the other in any natural way, yet it is often necessary to add together elements from each set. There are several ways to do this. One possibility is to convert one polynomial to the type of the other by expanding and rearranging terms so that both polynomials have the same principal variable. One can impose a towerlike structure on this by ordering the variables and thus always converting any polynomial to a "canonical form" with the highest-priority variable dominant and the lower-priority variables buried in the coefficients. This strategy works fairly well, except that the conversion may expand a polynomial unnecessarily, making it hard to read and perhaps less efficient to work with. The tower strategy is certainly not natural for this domain or for any domain where the user can invent new types dynamically using old types in various combining forms, such as trigonometric functions, power series, and integrals.
+On the other hand, polynomial algebra is a system for which the data types cannot be naturally arranged in a tower. For instance, it is possible to have polynomials in :latexmath:`x` whose coefficients are polynomials in :latexmath:`y`. It is also possible to have polynomials in :latexmath:`y` whose coefficients are polynomials in :latexmath:`x`. Neither of these types is "above" the other in any natural way, yet it is often necessary to add together elements from each set. There are several ways to do this. One possibility is to convert one polynomial to the type of the other by expanding and rearranging terms so that both polynomials have the same principal variable. One can impose a towerlike structure on this by ordering the variables and thus always converting any polynomial to a "canonical form" with the highest-priority variable dominant and the lower-priority variables buried in the coefficients. This strategy works fairly well, except that the conversion may expand a polynomial unnecessarily, making it hard to read and perhaps less efficient to work with. The tower strategy is certainly not natural for this domain or for any domain where the user can invent new types dynamically using old types in various combining forms, such as trigonometric functions, power series, and integrals.
 
 It should not be surprising that controlling coercion is a serious problem in the design of large-scale algebraic-manipulation systems. Much of the complexity of such systems is concerned with relationships among diverse types. Indeed, it is fair to say that we do not yet completely understand coercion. In fact, we do not yet completely understand the concept of a data type. Nevertheless, what we know provides us with powerful structuring and modularity principles to support the design of large systems.
 
@@ -527,16 +575,28 @@ It should not be surprising that controlling coercion is a serious problem in th
 
 We can extend our generic arithmetic system to include *rational functions*. These are "fractions" whose numerator and denominator are polynomials, such as
 
-$$\begin{array}{l}
+
+
+```latexmath
+\begin{array}{l}
 \dfrac{x+1}{x^3 -1}
-\end{array}$$
+\end{array}
+```
+
+
 
 The system should be able to add, subtract, multiply, and divide rational functions, and to perform such computations as
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \dfrac{x+1}{x^3 -1}+\dfrac{x}{x^2 -1} & = & \dfrac{x^3 +2x^2 +3x +1}{x^4 +
 x^3 -x-1}
-\end{array}$$
+\end{array}
+```
+
+
 
 (Here the sum has been simplified by removing common factors. Ordinary "cross multiplication" would have produced a fourth-degree polynomial over a fifth-degree polynomial.)
 
@@ -582,26 +642,26 @@ where `remainder-terms` picks out the remainder component of the list returned b
 
 and check your result by hand.
 
-**Exercise 2.95.** Define $P_{1}$, $P_{2}$, and $P_{3}$ to be the polynomials
+**Exercise 2.95.** Define :latexmath:`P_{1}`, :latexmath:`P_{2}`, and :latexmath:`P_{3}` to be the polynomials
 
-| $P_{1}$: | $x^2 - 2x + 1$ |
+| :latexmath:`P_{1}`: | :latexmath:`x^2 - 2x + 1` |
 | --- | --- |
-| $P_{2}$: | $11x^2 + 7$ |
-| $P_{3}$: | $13x + 5$ |
+| :latexmath:`P_{2}`: | :latexmath:`11x^2 + 7` |
+| :latexmath:`P_{3}`: | :latexmath:`13x + 5` |
 
-Now define $Q_1$ to be the product of $P_1$ and $P_2$ and $Q_2$ to be the product of $P_1$ and $P_3$, and use `greatest-common-divisor` (exercise 2.94) to compute the GCD of $Q_1$ and $Q_2$. Note that the answer is not the same as $P_1$. This example introduces noninteger operations into the computation, causing difficulties with the GCD algorithm.<sup><a href="#note-2-61">61</a></sup> To understand what is happening, try tracing `gcd-terms` while computing the GCD or try performing the division by hand.
+Now define :latexmath:`Q_1` to be the product of :latexmath:`P_1` and :latexmath:`P_2` and :latexmath:`Q_2` to be the product of :latexmath:`P_1` and :latexmath:`P_3`, and use `greatest-common-divisor` (exercise 2.94) to compute the GCD of :latexmath:`Q_1` and :latexmath:`Q_2`. Note that the answer is not the same as :latexmath:`P_1`. This example introduces noninteger operations into the computation, causing difficulties with the GCD algorithm.<sup><a href="#note-2-61">61</a></sup> To understand what is happening, try tracing `gcd-terms` while computing the GCD or try performing the division by hand.
 
 We can solve the problem exhibited in exercise 2.95 if we use the following modification of the GCD algorithm (which really works only in the case of polynomials with integer coefficients). Before performing any polynomial division in the GCD computation, we multiply the dividend by an integer constant factor, chosen to guarantee that no fractions will arise during the division process. Our answer will thus differ from the actual GCD by an integer constant factor, but this does not matter in the case of reducing rational functions to lowest terms; the GCD will be used to divide both the numerator and denominator, so the integer constant factor will cancel out.
 
-More precisely, if $P$ and $Q$ are polynomials, let $O_1$ be the order of $P$ (i.e., the order of the largest term of $P$) and let $O_2$ be the order of $Q$. Let $c$ be the leading coefficient of $Q$. Then it can be shown that, if we multiply $P$ by the *integerizing factor*$c^{1+O_{1} -O_{2}}$, the resulting polynomial can be divided by $Q$ by using the `div-terms` algorithm without introducing any fractions. The operation of multiplying the dividend by this constant and then dividing is sometimes called the *pseudodivision* of $P$ by $Q$. The remainder of the division is called the *pseudoremainder*.
+More precisely, if :latexmath:`P` and :latexmath:`Q` are polynomials, let :latexmath:`O_1` be the order of :latexmath:`P` (i.e., the order of the largest term of :latexmath:`P`) and let :latexmath:`O_2` be the order of :latexmath:`Q`. Let :latexmath:`c` be the leading coefficient of :latexmath:`Q`. Then it can be shown that, if we multiply :latexmath:`P` by the *integerizing factor*:latexmath:`c^{1+O_{1} -O_{2}}`, the resulting polynomial can be divided by :latexmath:`Q` by using the `div-terms` algorithm without introducing any fractions. The operation of multiplying the dividend by this constant and then dividing is sometimes called the *pseudodivision* of :latexmath:`P` by :latexmath:`Q`. The remainder of the division is called the *pseudoremainder*.
 
 **Exercise 2.96.**
 a. Implement the procedure`pseudoremainder-terms`, which is just like `remainder-terms` except that it multiplies the dividend by the integerizing factor described above before calling `div-terms`. Modify `gcd-terms` to use `pseudoremainder-terms`, and verify that `greatest-common-divisor` now produces an answer with integer coefficients on the example in exercise 2.95.
-b. The GCD now has integer coefficients, but they are larger than those of $P_1$. Modify `gcd-terms` so that it removes common factors from the coefficients of the answer by dividing all the coefficients by their (integer) greatest common divisor.
+b. The GCD now has integer coefficients, but they are larger than those of :latexmath:`P_1`. Modify `gcd-terms` so that it removes common factors from the coefficients of the answer by dividing all the coefficients by their (integer) greatest common divisor.
 
 Thus, here is how to reduce a rational function to lowest terms:
 - Compute the GCD of the numerator and denominator, using the version of `gcd-terms` from exercise 2.96.
-- When you obtain the GCD, multiply both numerator and denominator by the same integerizing factor before dividing through by the GCD, so that division by the GCD will not introduce any noninteger coefficients. As the factor you can use the leading coefficient of the GCD raised to the power $1+O_{1} -O_{2}$, where $O_{2}$ is the order of the GCD and $O_{1}$ is the maximum of the orders of the numerator and denominator. This will ensure that dividing the numerator and denominator by the GCD will not introduce any fractions.
+- When you obtain the GCD, multiply both numerator and denominator by the same integerizing factor before dividing through by the GCD, so that division by the GCD will not introduce any noninteger coefficients. As the factor you can use the leading coefficient of the GCD raised to the power :latexmath:`1+O_{1} -O_{2}`, where :latexmath:`O_{2}` is the order of the GCD and :latexmath:`O_{1}` is the maximum of the orders of the numerator and denominator. This will ensure that dividing the numerator and denominator by the GCD will not introduce any fractions.
 - The result of this operation will be a numerator and denominator with integer coefficients. The coefficients will normally be very large because of all of the integerizing factors, so the last step is to remove the redundant factors by computing the (integer) greatest common divisor of all the coefficients of the numerator and the denominator and dividing through by this factor.
 
 **Exercise 2.97.**
@@ -637,7 +697,7 @@ The GCD computation is at the heart of any system that does operations on ration
 :::::
 
 ::::: aside {id="note-2-55"}
-**55.** For univariate polynomials, giving the value of a polynomial at a given set of points can be a particularly good representation. This makes polynomial arithmetic extremely simple. To obtain, for example, the sum of two polynomials represented in this way, we need only add the values of the polynomials at corresponding points. To transform back to a more familiar representation, we can use the  Lagrange interpolation formula, which shows how to recover the coefficients of a polynomial of degree $n$ given the values of the polynomial at $n+1$ points.
+**55.** For univariate polynomials, giving the value of a polynomial at a given set of points can be a particularly good representation. This makes polynomial arithmetic extremely simple. To obtain, for example, the sum of two polynomials represented in this way, we need only add the values of the polynomials at corresponding points. To transform back to a more familiar representation, we can use the  Lagrange interpolation formula, which shows how to recover the coefficients of a polynomial of degree :latexmath:`n` given the values of the polynomial at :latexmath:`n+1` points.
 :::::
 
 ::::: aside {id="note-2-56"}
@@ -647,9 +707,15 @@ The GCD computation is at the heart of any system that does operations on ration
 ::::: aside {id="note-2-57"}
 **57.** To make this work completely smoothly, we should also add to our generic arithmetic system the ability to coerce a "number" to a polynomial by regarding it as a polynomial of degree zero whose coefficient is the number. This is necessary if we are going to perform operations such as 
 
-$${\left[ x^2 +(y+1)x+5\right]+ \left[ x^2 +2x+1\right]}$$
 
- which requires adding the coefficient $y+1$ to the coefficient 2.
+
+```latexmath
+{\left[ x^2 +(y+1)x+5\right]+ \left[ x^2 +2x+1\right]}
+```
+
+
+
+ which requires adding the coefficient :latexmath:`y+1` to the coefficient 2.
 :::::
 
 ::::: aside {id="note-2-58"}
@@ -661,11 +727,11 @@ $${\left[ x^2 +(y+1)x+5\right]+ \left[ x^2 +2x+1\right]}$$
 :::::
 
 ::::: aside {id="note-2-60"}
-**60.** The fact that  Euclid's Algorithm works for polynomials is formalized in algebra by saying that polynomials form a kind of algebraic domain called a *Euclidean ring*. A Euclidean ring is a domain that admits addition, subtraction, and commutative multiplication, together with a way of assigning to each element $x$ of the ring a positive integer "measure"$m(x)$ with the properties that $m(xy)\geq m(x)$ for any nonzero $x$ and $y$ and that, given any $x$ and $y$, there exists a $q$ such that $y=qx+r$ and either $r=0$ or $m(r) < m(x)$. From an abstract point of view, this is what is needed to prove that Euclid's Algorithm works. For the domain of integers, the measure $m$ of an integer is the absolute value of the integer itself. For the domain of polynomials, the measure of a polynomial is its degree.
+**60.** The fact that  Euclid's Algorithm works for polynomials is formalized in algebra by saying that polynomials form a kind of algebraic domain called a *Euclidean ring*. A Euclidean ring is a domain that admits addition, subtraction, and commutative multiplication, together with a way of assigning to each element :latexmath:`x` of the ring a positive integer "measure":latexmath:`m(x)` with the properties that :latexmath:`m(xy)\geq m(x)` for any nonzero :latexmath:`x` and :latexmath:`y` and that, given any :latexmath:`x` and :latexmath:`y`, there exists a :latexmath:`q` such that :latexmath:`y=qx+r` and either :latexmath:`r=0` or :latexmath:`m(r) < m(x)`. From an abstract point of view, this is what is needed to prove that Euclid's Algorithm works. For the domain of integers, the measure :latexmath:`m` of an integer is the absolute value of the integer itself. For the domain of polynomials, the measure of a polynomial is its degree.
 :::::
 
 ::::: aside {id="note-2-61"}
-**61.** In an implementation like MIT Scheme, this produces a polynomial that is indeed a divisor of $Q_1$ and $Q_2$, but with rational coefficients. In many other Scheme systems, in which division of integers can produce limited-precision decimal numbers, we may fail to get a valid divisor.
+**61.** In an implementation like MIT Scheme, this produces a polynomial that is indeed a divisor of :latexmath:`Q_1` and :latexmath:`Q_2`, but with rational coefficients. In many other Scheme systems, in which division of integers can produce limited-precision decimal numbers, we may fail to get a valid divisor.
 :::::
 
 ::::: aside {id="note-2-62"}

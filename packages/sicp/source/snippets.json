@@ -6225,7 +6225,7 @@
   },
   {
     "name": "operation_table",
-    "code": "operation-and-type tableimplementing\n(define operation-table (make-table))\n(define get (operation-table 'lookup-proc))\n(define put (operation-table 'insert-proc!))",
+    "code": "(define operation-table (make-table))\n(define get (operation-table 'lookup-proc))\n(define put (operation-table 'insert-proc!))",
     "requires": [
       "make_table2"
     ],
@@ -11095,7 +11095,7 @@
   },
   {
     "name": null,
-    "code": "(define eceval-operations\n  (list (list 'self-evaluating? self-evaluating)\n        \\textit{complete list of operations for eceval machine}))",
+    "code": "(define eceval-operations\n  (list (list 'self-evaluating? self-evaluating)\n        complete list of operations for eceval machine))",
     "requires": [],
     "file": "chapter5/section4/subsection4.xml",
     "excluded": false

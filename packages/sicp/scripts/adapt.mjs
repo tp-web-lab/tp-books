@@ -1,3 +1,4 @@
+import {mathMarkup} from './math-markup.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -142,6 +143,7 @@ for(const page of pages){
  text=text.replace(/^\[\^(\d+)-(\d+)\]: ([^\n]*(?:\n(?:    [^\n]*|(?=\n    )[^\n]*))*)/gm,(_all,chapter,number,body)=>
   `::::: aside {id="note-${chapter}-${number}"}\n**${number}.** ${body.replace(/^    /gm,'').trim()}\n:::::`);
  text=text.replace(/\[\^(\d+)-(\d+)\]/g,(_all,chapter,number)=>`<sup><a href="#note-${chapter}-${number}">${number}</a></sup>`);
+ text=mathMarkup(text);
  text=text.replaceAll("https://sicp.sourceacademy.org/", "docs/");
  const pdf=pdfSections.find(p=>p.heading===page.title);
  if(pdf)text=text.replace(/^(#+ .+)$/m,`$1\n\n[Original PDF · page ${pdf.pdfPage}](original/sicp.pdf#page=${pdf.pdfPage})`);
@@ -149,7 +151,7 @@ for(const page of pages){
  writeFileSync(`${root}public/docs/${page.file}`,'---\nmath: latexmath\n---\n\n'+text.trim()+'\n');
 }
 manifest.sort((a,b)=>a.line-b.line);
-writeFileSync(`${root}public/docs/sidebar.md`,'- [Introduction](cover.md)\n'+pages.map(p=>`${p.level===2?'  ':''}- [${p.title}](${p.file})`).join('\n')+'\n- [Adaptation audit](audit.md)\n');
+writeFileSync(`${root}public/docs/sidebar.md`,'- [Introduction](cover.md)\n'+pages.map(p=>`${p.level===2?'  ':''}- [${p.title}](${p.file})`).join('\n')+'\n- [Adaptation audit](audit.md)\n- [Text conformity](text-conformity.md)\n');
 writeFileSync(`${root}examples.json`,JSON.stringify(manifest,null,2)+'\n');
 writeFileSync(`${root}pages.json`,JSON.stringify(pages,null,2)+'\n');
 writeFileSync(`${root}public/docs/cover.md`, `# Structure and Interpretation of Computer Programs
@@ -168,7 +170,7 @@ The initially supplied Markdown was incomplete: its exporter discarded Scheme-sp
 
 Examples with printed results use **tp-scheme in simple mode**, powered by LIPS. Press **Return** in the query field to execute; **Shift+Return** is equivalent. Edited source is reloaded before the query and displays **> Program reloaded.**. Consecutive queries share one interpreter. Dependencies are included in the editable source so that a section can be opened directly. Nothing runs automatically.
 
-The book’s printed result is retained beneath each example. The editable program may include support definitions or a run-example procedure to execute several queries in order; these are TP presentation adaptations, not changes to the authors’ prose. Exercises with missing implementations remain exercises. Embedded evaluators and register-machine transcripts require further adaptations to run directly in LIPS; the [execution audit](audit.md) distinguishes passing results, differences and unresolved cases. Text fidelity and execution compatibility are separate checks.
+The book’s printed result is retained beneath each example. The editable program may include support definitions or a run-example procedure to execute several queries in order; these are TP presentation adaptations, not changes to the authors’ prose. Exercises with missing implementations remain exercises. Embedded evaluators and register-machine transcripts require further adaptations to run directly in LIPS; the [execution audit](audit.md) distinguishes passing results, differences and unresolved cases. Text fidelity and execution compatibility are separate checks. See the [text conformity audit](text-conformity.md) for the comparison of all reading sections and the documented corrections to defects in the PDF.
 
 ## Attribution
 

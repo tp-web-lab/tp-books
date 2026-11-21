@@ -1,0 +1,67 @@
+{
+  "ea39bf99ccc50e8c2a8c43fe4e4f2be38d42ebc01fff379d2bdfca983978f818": {
+    "category": "authorized-pdf-correction",
+    "pdfPage": 30,
+    "explanation": "The PDF visibly omits both book titles. Retain Lisp 1 Programmer's Manual and Lisp 1.5 Programmer's Manual from XML, as authorized by the user."
+  },
+  "cf8cc0a56a82f0dd9826e8b0bc689dc0109ba1815da4f10b5cc557eee14b86eb": {
+    "category": "typesetting",
+    "pdfPage": 38,
+    "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+  },
+  "b6feeb1e6c770bf785e228cc6d61bb285cb6d338a592d9920be536c30a32b946": {
+    "category": "typesetting",
+    "pdfPage": 38,
+    "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+  },
+  "598e364d30ab7282bd54fce0d0d263ea268881b0f11df90e0136df9a1e597e57": {
+    "category": "typesetting",
+    "pdfPage": 38,
+    "explanation": "Six-column annotation of (define (square x) (* x x)): same code, upward arrows and To / square / something, / multiply / it / by itself. PDF font and spacing controls replaced by a native Markdown table."
+  },
+  "c141f72316d7a96a7232417b6d2ef421ca6ddd1658511c736715b442b52fbaae": {
+    "category": "typesetting",
+    "pdfPage": 312,
+    "explanation": "The two stream selector equations are present in the PDF. The fragment contains TeX control words, which have no literal textual equivalent. Native math output verified."
+  },
+  "14419f19a3b42039cf563a344fd91c74b409704fab26253189b4a8ad6d1572de": {
+    "category": "typesetting",
+    "pdfPage": 326,
+    "explanation": "The four equations deriving X = 1 - S_R X are present in the PDF. Converted to a native displayed math fence; TeX control words are not prose."
+  },
+  "a4131695e3abb0cad37b46c509990c358f5292271ed52e8474810e4ae3d10d9f": {
+    "category": "typesetting",
+    "pdfPage": 430,
+    "explanation": "Rule syntax metavariables conclusion/body occur in the PDF. TeX angle-bracket and italic commands are presentation, not additional text."
+  },
+  "d7f77f05bf30848fcab96fe5bb657f28bf1b86e57028fba0d3f12ea34ddc05d2": {
+    "category": "typesetting",
+    "pdfPage": 430,
+    "explanation": "Rule syntax metavariables conclusion/body occur in the PDF. TeX angle-bracket and italic commands are presentation, not additional text."
+  },
+  "ae7b1e5c7a22bd71cac93fcc373fb2236606711dbcf63c1734e2e15bf44e2726": {
+    "category": "typesetting",
+    "pdfPage": 430,
+    "explanation": "Rule syntax metavariables conclusion/body occur in the PDF. TeX angle-bracket and italic commands are presentation, not additional text."
+  },
+  "0dbc7fb58a9339525ffb4a04d5fd0cd438d567a980c3e17c598d6c1e673110c3": {
+    "category": "authorized-pdf-correction",
+    "pdfPage": 481,
+    "explanation": "The PDF prints literal emph and JS formatting commands in the comment. Preserve the words Before calling gcd, we assign to continue, without those erroneous visible commands."
+  },
+  "c591fbb9610e8d11a9b3a0c57c82a1c727ebc33c2fb0b2e4ccb3a93ce58c2f52": {
+    "category": "typesetting",
+    "pdfPage": 533,
+    "explanation": "Exercise 5.27 table: Maximum depth, Number of pushes, Recursive factorial, Iterative factorial. Cells retained; the script wrapper and TeX spacing controls are web presentation only."
+  },
+  "41e474a3eef67abfe99248927086a14c978ebe69d76029690c7c64ca02b01bf1": {
+    "category": "typesetting",
+    "pdfPage": 533,
+    "explanation": "Exercise 5.27 table: Maximum depth, Number of pushes, Recursive factorial, Iterative factorial. Cells retained; the script wrapper and TeX spacing controls are web presentation only."
+  },
+  "2364eb82bcdca4905f4d0fb1bc5588fb1bff0e2df6474377dea1fcaa5ceb03bc": {
+    "category": "typesetting",
+    "pdfPage": 540,
+    "explanation": "Register save/restore ordering comparison is a mathematical array, not prose. Retain all four columns and original row separators in a native math fence."
+  }
+}

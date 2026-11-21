@@ -1,0 +1,332 @@
+[
+  {
+    "page": "01-foreword.md",
+    "sourceHash": "30b3d6d46ba0e5add0350330e4462393e3e8854cf09d54b9f8a5245faf881d10",
+    "raw": [],
+    "mathCount": 1,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "02-prefaces.md",
+    "sourceHash": "12dcac50b4ba8b8b18bc30e513f0205437b53a9f0396726d5a2169dc4753e896",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "03-preface.md",
+    "sourceHash": "4223ea8ea7b73d376bbefd20f3549dd9533ad4c11628a4ebb7ffd2ae3379e66c",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "04-preface-to-the-first-edition.md",
+    "sourceHash": "89eea9354586118113edcc7805aaee25e0310b2f2c13612bb3f084a59ed1f4a1",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "05-acknowledgments.md",
+    "sourceHash": "9abec37a31ab36191334a40d17bfedd922d5bda70b53aa9761e22cbfaa246ea8",
+    "raw": [],
+    "mathCount": 1,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "06-1-building-abstractions-with-procedures.md",
+    "sourceHash": "c02836cc9ba2125a405beeba74b1b1fdd51cd51d847897a108daac0a1b80300d",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "07-1-1-the-elements-of-programming.md",
+    "sourceHash": "f33280ded99aa09d2ce4eea9f4ec1e7a436fce89fb972732536a6c7738b05077",
+    "raw": [],
+    "mathCount": 68,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "08-1-2-procedures-and-the-processes-they-generate.md",
+    "sourceHash": "41427b96ab51f35cc5708c4bbb7fdc32c6799f8d01e75fd799d6962567d0f0de",
+    "raw": [],
+    "mathCount": 360,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "sourceHash": "e11fa8dd5c03ca19018742144be040afea2f8f97f35ea0b08565d26957401a00",
+    "raw": [],
+    "mathCount": 220,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "10-2-building-abstractions-with-data.md",
+    "sourceHash": "a7ddf9cb2e9fb2b2301507fcd53a54c992e2c6057697c2c67a0365c659cf80fd",
+    "raw": [],
+    "mathCount": 6,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "sourceHash": "fc899bcd884d371b89aad8cad261deb3daed87571891c40a5842866ee701d7c7",
+    "raw": [],
+    "mathCount": 26,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "sourceHash": "08c0ffa53a320c668ee60d9783aea2d95a1030f338c561b621fac7ee7627f34f",
+    "raw": [],
+    "mathCount": 133,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "13-2-3-symbolic-data.md",
+    "sourceHash": "39226ab75266bb7bf57f3b45f797f3f19192f70b7d9e643361370b843d2e7e7a",
+    "raw": [],
+    "mathCount": 95,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "14-2-4-multiple-representations-for-abstract-data.md",
+    "sourceHash": "21f20d57a0bb1f64fa2c1f7b562703c6b1af631a0422e7cb15f4d2c805245796",
+    "raw": [],
+    "mathCount": 24,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "15-2-5-systems-with-generic-operations.md",
+    "sourceHash": "adb04bbb04d26ae687b5bbc1a1311f64912c6e7accef58f87b60a92c9f30c20d",
+    "raw": [],
+    "mathCount": 105,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "16-3-modularity-objects-and-state.md",
+    "sourceHash": "7d130c7c2623bd3c653fe3c40560c0cc18c178d9b732eeccc31f799b7cbc5bcc",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "17-3-1-assignment-and-local-state.md",
+    "sourceHash": "5d2e4d8e35c42ae86c8a768c585e16e4db00f1cecee37997254b94afa5e8442a",
+    "raw": [],
+    "mathCount": 39,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "18-3-2-the-environment-model-of-evaluation.md",
+    "sourceHash": "f030fcdf669f1d30ef28de5f3dddae94ec0d2bbbb4be09c31f083d1f2046df11",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "sourceHash": "a0ec84cdb8717fc732518cc2dbbac3b92afa409c9dcf18d7c9fca09efe4640e5",
+    "raw": [],
+    "mathCount": 104,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "20-3-4-concurrency-time-is-of-the-essence.md",
+    "sourceHash": "c4c953b9b1116ba98d819f9d1aa499d2bedd5e354b333f9db25a66ad59514ff8",
+    "raw": [],
+    "mathCount": 57,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "21-3-5-streams.md",
+    "sourceHash": "61471ea48a03a833b4671f7f966064263c523359abf5b587a622eecca33c5415",
+    "raw": [],
+    "mathCount": 197,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "22-4-metalinguistic-abstraction.md",
+    "sourceHash": "77eea51f1843d972c6ecee35aef61fe3a9e5d1e759f33920d9d6afe31fc636b2",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "23-4-1-the-metacircular-evaluator.md",
+    "sourceHash": "a842e6da84ff79cf6fd551612ceae723a72815e6f39e953852938b38b04a735b",
+    "raw": [],
+    "mathCount": 7,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "sourceHash": "8f5b974189d537a8df39845a667938a360711aeb622b73b5c8134efca78a2840",
+    "raw": [],
+    "mathCount": 1,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "sourceHash": "091effd3e98b02de283ef1c146a45eae6264f80434dbcfaa3978fa7eb6066832",
+    "raw": [],
+    "mathCount": 11,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "26-4-4-logic-programming.md",
+    "sourceHash": "ab6c137ecd7400a36078288774a44b34038a5b58c3371b6bca35c7df3f8c23b9",
+    "raw": [],
+    "mathCount": 69,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "27-5-computing-with-register-machines.md",
+    "sourceHash": "1d872c2a264d83f3f91445660003630a0796fa7f9bc8c5e4d8052c68cba68c7c",
+    "raw": [],
+    "mathCount": 0,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "28-5-1-designing-register-machines.md",
+    "sourceHash": "3fe8940163f887a148139676e6b270fd87af187005056a8d79634c80056b9bba",
+    "raw": [],
+    "mathCount": 65,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "29-5-2-a-register-machine-simulator.md",
+    "sourceHash": "fc708e455e8606e24af70daed4c55d2c883233034286686bea07b173215b1577",
+    "raw": [],
+    "mathCount": 16,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "30-5-3-storage-allocation-and-garbage-collection.md",
+    "sourceHash": "f10feca0d8fbe6d80189fe3ef530566b0583b6dac5bdf6424d12e9c0f13b0bda",
+    "raw": [],
+    "mathCount": 30,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "31-5-4-the-explicit-control-evaluator.md",
+    "sourceHash": "8b4f58e84170f118ced9665d38588e319726a3d177ef4187b92a24ec17a8a975",
+    "raw": [],
+    "mathCount": 18,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "32-5-5-compilation.md",
+    "sourceHash": "d114b388dfee6bfef48de2d57f9b4ed8bbf7ab94e5ba2dc2de0f5364283df6d2",
+    "raw": [],
+    "mathCount": 81,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  },
+  {
+    "page": "33-references.md",
+    "sourceHash": "d2c1ba75a37a7915fe5a7e2cd51764fbb1e88b4ef3503d44be987b4e705f17b3",
+    "raw": [],
+    "mathCount": 1,
+    "alerts": [],
+    "mathErrors": [],
+    "badImages": [],
+    "errors": []
+  }
+]

@@ -6,7 +6,7 @@ math: latexmath
 
 [Original PDF · page 222](original/sicp.pdf#page=222)
 
-We ordinarily view the world as populated by independent objects, each of which has a state that changes over time. An object is said to "have state" if its behavior is influenced by its history. A bank account, for example, has state in that the answer to the question "Can I withdraw $100?" depends upon the history of deposit and withdrawal transactions. We can characterize an object's state by one or more *state variables*, which among them maintain enough information about history to determine the object's current behavior. In a simple banking system, we could characterize the state of an account by a current balance rather than by remembering the entire history of account transactions.
+We ordinarily view the world as populated by independent objects, each of which has a state that changes over time. An object is said to "have state" if its behavior is influenced by its history. A bank account, for example, has state in that the answer to the question "Can I withdraw \$100?" depends upon the history of deposit and withdrawal transactions. We can characterize an object's state by one or more *state variables*, which among them maintain enough information about history to determine the object's current behavior. In a simple banking system, we could characterize the state of an account by a current balance rather than by remembering the entire history of account transactions.
 
 In a system composed of many objects, the objects are rarely completely independent. Each may influence the states of others through interactions, which serve to couple the state variables of one object to those of other objects. Indeed, the view that a system is composed of separate objects is most useful when the state variables of the system can be grouped into closely coupled subsystems that are only loosely coupled to other subsystems.
 
@@ -14,7 +14,7 @@ This view of a system can be a powerful framework for organizing computational m
 
 ### 3.1.1 Local State Variables
 
-To illustrate what we mean by having a computational object with time-varying state, let us model the situation of withdrawing money from a bank account. We will do this using a procedure`withdraw`, which takes as argument an `amount` to be withdrawn. If there is enough money in the account to accommodate the withdrawal, then `withdraw` should return the balance remaining after the withdrawal. Otherwise, `withdraw` should return the message *Insufficient funds.* For example, if we begin with $100 in the account, we should obtain the following sequence of responses using `withdraw`:
+To illustrate what we mean by having a computational object with time-varying state, let us model the situation of withdrawing money from a bank account. We will do this using a procedure`withdraw`, which takes as argument an `amount` to be withdrawn. If there is enough money in the account to accommodate the withdrawal, then `withdraw` should return the balance remaining after the withdrawal. Otherwise, `withdraw` should return the message *Insufficient funds.* For example, if we begin with \$100 in the account, we should obtain the following sequence of responses using `withdraw`:
 
 ::: tp-scheme {mode="simple" id="example-059" filename="example-059.scm" query="(run-example)"}
 :::: script {type="tp/scheme"}
@@ -80,9 +80,9 @@ Decrementing `balance` is accomplished by the expression
 
 This uses the `set!` special form, whose syntax is
 
-(set! $\langle \textit{name} \rangle$ $\langle \textit{new-value}\rangle$)
+(set! :latexmath:`\langle \textit{name} \rangle` :latexmath:`\langle \textit{new-value}\rangle`)
 
-Here $\langle \textit{name} \rangle$ is a symbol and $\langle \textit{new-value} \rangle$ is any expression. `Set!` changes $\langle \textit{name} \rangle$ so that its value is the result obtained by evaluating $\langle \textit{new-value}\rangle$. In the case at hand, we are changing `balance` so that its new value will be the result of subtracting `amount` from the previous value of `balance`.<sup><a href="#note-3-2">2</a></sup>
+Here :latexmath:`\langle \textit{name} \rangle` is a symbol and :latexmath:`\langle \textit{new-value} \rangle` is any expression. `Set!` changes :latexmath:`\langle \textit{name} \rangle` so that its value is the result obtained by evaluating :latexmath:`\langle \textit{new-value}\rangle`. In the case at hand, we are changing `balance` so that its new value will be the result of subtracting `amount` from the previous value of `balance`.<sup><a href="#note-3-2">2</a></sup>
 
 `Withdraw` also uses the `begin` special form to cause two expressions to be evaluated in the case where the `if` test is true: first decrementing `balance` and then returning the value of `balance`. In general, evaluating the expression
 
@@ -90,7 +90,7 @@ Here $\langle \textit{name} \rangle$ is a symbol and $\langle \textit{new-value}
 (begin $\textit{exp}_{1}$ $\textit{exp}_{2}$ $\ldots$ $\textit{exp}_{k}$)
 ```
 
-causes the expressions $\textit{exp}_{1}$ through $\textit{exp}_{k}$ to be evaluated in sequence and the value of the final expression $\textit{exp}_{k}$ to be returned as the value of the entire `begin` form.<sup><a href="#note-3-3">3</a></sup>
+causes the expressions :latexmath:`\textit{exp}_{1}` through :latexmath:`\textit{exp}_{k}` to be evaluated in sequence and the value of the final expression :latexmath:`\textit{exp}_{k}` to be returned as the value of the entire `begin` form.<sup><a href="#note-3-3">3</a></sup>
 
 Although `withdraw` works as desired, the variable `balance` presents a problem. As specified above, `balance` is a name defined in the global environment and is freely accessible to be examined or modified by any procedure. It would be much better if we could somehow make `balance` internal to `withdraw`, so that `withdraw` would be the only procedure that could access `balance` directly and any other procedure could access `balance` only indirectly (through calls to `withdraw`). This would more accurately model the notion that `balance` is a local state variable used by `withdraw` to keep track of the state of the account.
 
@@ -447,11 +447,11 @@ The resulting account object should process a request only if it is accompanied 
 
 As we shall see, introducing assignment into our programming language leads us into a thicket of difficult conceptual issues. Nevertheless, viewing systems as collections of objects with local state is a powerful technique for maintaining a modular design. As a simple example, consider the design of a procedure`rand` that, whenever it is called, returns an integer chosen at random.
 
-It is not at all clear what is meant by "chosen at random." What we presumably want is for successive calls to `rand` to produce a sequence of numbers that has statistical properties of uniform distribution. We will not discuss methods for generating suitable sequences here. Rather, let us assume that we have a procedure`rand-update` that has the property that if we start with a given number $x_{1}$ and form
+It is not at all clear what is meant by "chosen at random." What we presumably want is for successive calls to `rand` to produce a sequence of numbers that has statistical properties of uniform distribution. We will not discuss methods for generating suitable sequences here. Rather, let us assume that we have a procedure`rand-update` that has the property that if we start with a given number :latexmath:`x_{1}` and form
 
-$x_{2}$ = (rand-update $x_{1}$) $x_{3}$ = (rand-update $x_{2}$)
+:latexmath:`x_{2}` = (rand-update :latexmath:`x_{1}`) :latexmath:`x_{3}` = (rand-update :latexmath:`x_{2}`)
 
-then the sequence of values $x_1, x_2, x_3, \ldots$, will have the desired statistical properties.<sup><a href="#note-3-6">6</a></sup>
+then the sequence of values :latexmath:`x_1, x_2, x_3, \ldots`, will have the desired statistical properties.<sup><a href="#note-3-6">6</a></sup>
 
 We can implement `rand` as a procedure with a local state variable `x` that is initialized to some fixed value `random-init`. Each call to `rand` computes `rand-update` of the current value of `x`, returns this as the random number, and also stores this as the new value of `x`.
 
@@ -465,7 +465,7 @@ We can implement `rand` as a procedure with a local state variable `x` that is i
 
 Of course, we could generate the same sequence of random numbers without using assignment by simply calling `rand-update` directly. However, this would mean that any part of our program that used random numbers would have to explicitly remember the current value of `x` to be passed as an argument to `rand-update`. To realize what an annoyance this would be, consider using random numbers to implement a technique called *Monte Carlo simulation*.
 
-The Monte Carlo method consists of choosing sample experiments at random from a large set and then making deductions on the basis of the probabilities estimated from tabulating the results of those experiments. For example, we can approximate $\pi$ using the fact that $6/\pi^2$ is the probability that two integers chosen at random will have no factors in common; that is, that their greatest common divisor will be 1.<sup><a href="#note-3-7">7</a></sup> To obtain the approximation to $\pi$, we perform a large number of experiments. In each experiment we choose two integers at random and perform a test to see if their GCD is 1. The fraction of times that the test is passed gives us our estimate of $6/\pi^2$, and from this we obtain our approximation to $\pi$.
+The Monte Carlo method consists of choosing sample experiments at random from a large set and then making deductions on the basis of the probabilities estimated from tabulating the results of those experiments. For example, we can approximate :latexmath:`\pi` using the fact that :latexmath:`6/\pi^2` is the probability that two integers chosen at random will have no factors in common; that is, that their greatest common divisor will be 1.<sup><a href="#note-3-7">7</a></sup> To obtain the approximation to :latexmath:`\pi`, we perform a large number of experiments. In each experiment we choose two integers at random and perform a test to see if their GCD is 1. The fraction of times that the test is passed gives us our estimate of :latexmath:`6/\pi^2`, and from this we obtain our approximation to :latexmath:`\pi`.
 
 The heart of our program is a procedure`monte-carlo`, which takes as arguments the number of times to try an experiment, together with the experiment, represented as a no-argument procedure that will return either true or false each time it is run. `Monte-carlo` runs the experiment for the designated number of trials and returns a number telling the fraction of the trials in which the experiment was found to be true.
 
@@ -516,9 +516,9 @@ The general phenomenon illustrated by the Monte Carlo example is this: From the 
 
 It is tempting to conclude this discussion by saying that, by introducing assignment and the technique of hiding state in local variables, we are able to structure systems in a more modular fashion than if all state had to be manipulated explicitly, by passing additional parameters. Unfortunately, as we shall see, the story is not so simple.
 
-**Exercise 3.5.** *Monte Carlo integration* is a method of estimating definite integrals by means of Monte Carlo simulation. Consider computing the area of a region of space described by a predicate $P(x, y)$ that is true for points $(x, y)$ in the region and false for points not in the region. For example, the region contained within a circle of radius $3$ centered at $(5, 7)$ is described by the predicate that tests whether $(x-5)^2 + (y-7)^2\leq 3^2$. To estimate the area of the region described by such a predicate, begin by choosing a rectangle that contains the region. For example, a rectangle with diagonally opposite corners at $(2, 4)$ and $(8, 10)$ contains the circle above. The desired integral is the area of that portion of the rectangle that lies in the region. We can estimate the integral by picking, at random, points $(x, y)$ that lie in the rectangle, and testing $P(x, y)$ for each point to determine whether the point lies in the region. If we try this with many points, then the fraction of points that fall in the region should give an estimate of the proportion of the rectangle that lies in the region. Hence, multiplying this fraction by the area of the entire rectangle should produce an estimate of the integral.
+**Exercise 3.5.** *Monte Carlo integration* is a method of estimating definite integrals by means of Monte Carlo simulation. Consider computing the area of a region of space described by a predicate :latexmath:`P(x, y)` that is true for points :latexmath:`(x, y)` in the region and false for points not in the region. For example, the region contained within a circle of radius :latexmath:`3` centered at :latexmath:`(5, 7)` is described by the predicate that tests whether :latexmath:`(x-5)^2 + (y-7)^2\leq 3^2`. To estimate the area of the region described by such a predicate, begin by choosing a rectangle that contains the region. For example, a rectangle with diagonally opposite corners at :latexmath:`(2, 4)` and :latexmath:`(8, 10)` contains the circle above. The desired integral is the area of that portion of the rectangle that lies in the region. We can estimate the integral by picking, at random, points :latexmath:`(x, y)` that lie in the rectangle, and testing :latexmath:`P(x, y)` for each point to determine whether the point lies in the region. If we try this with many points, then the fraction of points that fall in the region should give an estimate of the proportion of the rectangle that lies in the region. Hence, multiplying this fraction by the area of the entire rectangle should produce an estimate of the integral.
 
-Implement Monte Carlo integration as a procedure`estimate-integral` that takes as arguments a predicate `P`, upper and lower bounds `x1`, `x2`, `y1`, and `y2` for the rectangle, and the number of trials to perform in order to produce the estimate. Your procedure should use the same `monte-carlo`procedure that was used above to estimate $\pi$. Use your `estimate-integral` to produce an estimate of $\pi$ by measuring the area of a unit circle.
+Implement Monte Carlo integration as a procedure`estimate-integral` that takes as arguments a predicate `P`, upper and lower bounds `x1`, `x2`, `y1`, and `y2` for the rectangle, and the number of trials to perform in order to produce the estimate. Your procedure should use the same `monte-carlo`procedure that was used above to estimate :latexmath:`\pi`. Use your `estimate-integral` to produce an estimate of :latexmath:`\pi` by measuring the area of a unit circle.
 
 You will find it useful to have a procedure that returns a number chosen at random from a given range. The following `random-in-range`procedure implements this in terms of the `random` procedure used in section 1.2.6, which returns a nonnegative number less than its input.<sup><a href="#note-3-8">8</a></sup>
 
@@ -528,10 +528,10 @@ You will find it useful to have a procedure that returns a number chosen at rand
     (+ low (random range))))
 ```
 
-**Exercise 3.6.** It is useful to be able to reset a random-number generator to produce a sequence starting from a given value. Design a new `rand`procedure that is called with an argument that is either the symbol `generate` or the symbol `reset` and behaves as follows: `(rand 'generate)` produces a new random number; `((rand 'reset)`$\langle \textit{new-value} \rangle$`)` resets the internal state variable to the designated *new-value*. Thus, by resetting the state, one can generate repeatable sequences. These are very handy to have when testing and debugging programs that use random numbers.
+**Exercise 3.6.** It is useful to be able to reset a random-number generator to produce a sequence starting from a given value. Design a new `rand`procedure that is called with an argument that is either the symbol `generate` or the symbol `reset` and behaves as follows: `(rand 'generate)` produces a new random number; `((rand 'reset)`:latexmath:`\langle \textit{new-value} \rangle``)` resets the internal state variable to the designated *new-value*. Thus, by resetting the state, one can generate repeatable sequences. These are very handy to have when testing and debugging programs that use random numbers.
 
 ::::: aside {id="note-3-6"}
-**6.** One common way to implement `rand-update` is to use the rule that $x$ is updated to $ax+b$ modulo $m$, where $a$, $b$, and $m$ are appropriately chosen integers. Chapter 3 of Knuth 1997b includes an extensive discussion of techniques for generating sequences of random numbers and establishing their statistical properties. Notice that the `rand-update`procedure computes a mathematical function: Given the same input twice, it produces the same output. Therefore, the number sequence produced by `rand-update` certainly is not "random," if by "random" we insist that each number in the sequence is unrelated to the preceding number. The relation between "real randomness" and so-called *pseudo-random* sequences, which are produced by well-determined computations and yet have suitable statistical properties, is a complex question involving difficult issues in mathematics and philosophy.  Kolmogorov,  Solomonoff, and  Chaitin have made great progress in clarifying these issues; a discussion can be found in Chaitin 1975.
+**6.** One common way to implement `rand-update` is to use the rule that :latexmath:`x` is updated to :latexmath:`ax+b` modulo :latexmath:`m`, where :latexmath:`a`, :latexmath:`b`, and :latexmath:`m` are appropriately chosen integers. Chapter 3 of Knuth 1997b includes an extensive discussion of techniques for generating sequences of random numbers and establishing their statistical properties. Notice that the `rand-update`procedure computes a mathematical function: Given the same input twice, it produces the same output. Therefore, the number sequence produced by `rand-update` certainly is not "random," if by "random" we insist that each number in the sequence is unrelated to the preceding number. The relation between "real randomness" and so-called *pseudo-random* sequences, which are produced by well-determined computations and yet have suitable statistical properties, is a complex question involving difficult issues in mathematics and philosophy.  Kolmogorov,  Solomonoff, and  Chaitin have made great progress in clarifying these issues; a discussion can be found in Chaitin 1975.
 :::::
 
 ::::: aside {id="note-3-7"}
@@ -638,7 +638,7 @@ We can use the substitution model to explain how `make_decrementer` works. For i
 ((make-decrementer 25) 20)
 ```
 
-We first simplify the operator of the combination by substituting $25$ for `balance` in the body of `make-decrementer`. This reduces the expression to
+We first simplify the operator of the combination by substituting :latexmath:`25` for `balance` in the body of `make-decrementer`. This reduces the expression to
 
 ```scheme
 ((lambda (amount) (- 25 amount)) 20)
@@ -741,7 +741,7 @@ A language that supports the concept that "equals can be substituted for equals"
 
 Once we forgo referential transparency, the notion of what it means for computational objects to be "the same" becomes difficult to capture in a formal way. Indeed, the meaning of "same" in the real world that our programs model is hardly clear in itself. In general, we can determine that two apparently identical objects are indeed "the same one" only by modifying one object and then observing whether the other object has changed in the same way. But how can we tell if an object has "changed" other than by observing the "same" object twice and seeing whether some property of the object differs from one observation to the next? Thus, we cannot determine "change" without some a priori notion of "sameness," and we cannot determine sameness without observing the effects of change.
 
-As an example of how this issue arises in programming, consider the situation where Peter and Paul have a bank account with $100 in it. There is a substantial difference between modeling this as
+As an example of how this issue arises in programming, consider the situation where Peter and Paul have a bank account with \$100 in it. There is a substantial difference between modeling this as
 
 ```scheme
 (define peter-acc (make-account 100))

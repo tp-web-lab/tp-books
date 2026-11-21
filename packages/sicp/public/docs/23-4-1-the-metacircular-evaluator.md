@@ -207,8 +207,7 @@ Here is the specification of the syntax of our language:
 (define (variable? exp) (symbol? exp))
 ```
 
-- Quotations have the form `(quote `*text-of-quotation*`)
-`:<sup><a href="#note-4-9">9</a></sup>
+- Quotations have the form `(quote `*text-of-quotation*`) `:<sup><a href="#note-4-9">9</a></sup>
 
 ```scheme
 (define (quoted? exp)
@@ -1183,7 +1182,7 @@ Ben asserts that the result should be obtained using the sequential rule for `de
     body)
 ```
 
-are a variation on `let` in which the expressions *exp$_{k}$* that provide the initial values for the variables *var$_{k}$* are evaluated in an environment that includes all the `letrec` bindings. This permits recursion in the bindings, such as the mutual recursion of `even?` and `odd?` in the example above, or the evaluation of 10 factorial with
+are a variation on `let` in which the expressions *exp:latexmath:`_{k}`* that provide the initial values for the variables *var:latexmath:`_{k}`* are evaluated in an environment that includes all the `letrec` bindings. This permits recursion in the bindings, such as the mutual recursion of `even?` and `odd?` in the example above, or the evaluation of 10 factorial with
 
 ```scheme
 (letrec ((fact
@@ -1195,7 +1194,7 @@ are a variation on `let` in which the expressions *exp$_{k}$* that provide the i
 ```
 
 a. Implement `letrec` as a derived expression, by transforming a `letrec` expression into a `let` expression as shown in the text above or in exercise 4.19. That is, the `letrec` variables should be created with a `let` and then be assigned their values with `set!`.
-b. Louis Reasoner is confused by all this fuss about internal definitions. The way he sees it, if you don't like to use `define` inside a procedure, you can just use `let`. Illustrate what is loose about his reasoning by drawing an environment diagram that shows the environment in which the $\langle$rest of body of$\rangle$`f` is evaluated during evaluation of the expression `(f 5)`, with `f` defined as in this exercise. Draw an environment diagram for the same evaluation, but with `let` in place of `letrec` in the definition of `f`.
+b. Louis Reasoner is confused by all this fuss about internal definitions. The way he sees it, if you don't like to use `define` inside a procedure, you can just use `let`. Illustrate what is loose about his reasoning by drawing an environment diagram that shows the environment in which the :latexmath:`\langle`rest of body of:latexmath:`\rangle``f` is evaluated during evaluation of the expression `(f 5)`, with `f` defined as in this exercise. Draw an environment diagram for the same evaluation, but with `let` in place of `letrec` in the definition of `f`.
 
 **Exercise 4.22.** Amazingly, Louis's intuition in exercise 4.21 is correct. It is indeed possible to specify recursive procedures without using `letrec` (or even `define`), although the method for accomplishing this is much more subtle than Louis imagined. The following expression computes 10 factorial by applying a recursive factorial procedure:<sup><a href="#note-4-27">27</a></sup>
 
@@ -1251,7 +1250,7 @@ Fill in the missing expressions to complete an alternative definition of `f`, wh
 :::::
 
 ::::: aside {id="note-4-27"}
-**27.** This example illustrates a programming trick for formulating recursive procedures without using `define`. The most general trick of this sort is the $Y$*operator*, which can be used to give a "pure $\lambda$-calculus" implementation of recursion. (See Stoy 1977 for details on the lambda calculus, and Gabriel 1988 for an exposition of the $Y$ operator in Scheme.)
+**27.** This example illustrates a programming trick for formulating recursive procedures without using `define`. The most general trick of this sort is the :latexmath:`Y`*operator*, which can be used to give a "pure :latexmath:`\lambda`-calculus" implementation of recursion. (See Stoy 1977 for details on the lambda calculus, and Gabriel 1988 for an exposition of the :latexmath:`Y` operator in Scheme.)
 :::::
 
 ### 4.1.7 Separating Syntactic Analysis from Execution

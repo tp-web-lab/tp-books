@@ -18,6 +18,7 @@
     "@tp/tp-components": "link:../../../tp-components"
   },
   "devDependencies": {
+    "@playwright/test": "1.62.0",
     "@xmldom/xmldom": "^0.9.12",
     "lips": "1.0.0-beta.23.1",
     "vite": "8.1.5",

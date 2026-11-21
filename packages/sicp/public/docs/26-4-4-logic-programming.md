@@ -23,7 +23,7 @@ This approach, when it works, can be a very powerful way to write programs. Part
 
 This procedure can be regarded as a translation into Lisp of the following two rules, the first of which covers the case where the first list is empty and the second of which handles the case of a nonempty list, which is a `cons` of two parts:
 - For any list `y`, the empty list and `y``append` to form `y`.
-- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.<sup><a href="#note-4-58">58</a></sup>
+- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.<sup><a href="#note-4-58">58</a></sup>
 Using the `append`procedure, we can answer questions such as
 
 > Find the `append` of `(a b)` and `(c d)`.
@@ -49,7 +49,7 @@ Earlier in this chapter we explored the technology of implementing interpreters 
 :::::
 
 ::::: aside {id="note-4-59"}
-**59.** This certainly does not relieve the user of the entire problem of how to compute the answer. There are many different mathematically equivalent sets of rules for formulating the `append` relation, only some of which can be turned into effective devices for computing in any direction. In addition, sometimes "what is" information gives no clue "how to" compute an answer. For example, consider the problem of computing the $y$ such that $y^2 = x$.
+**59.** This certainly does not relieve the user of the entire problem of how to compute the answer. There are many different mathematically equivalent sets of rules for formulating the `append` relation, only some of which can be turned into effective devices for computing in any direction. In addition, sometimes "what is" information gives no clue "how to" compute an answer. For example, consider the problem of computing the :latexmath:`y` such that :latexmath:`y^2 = x`.
 :::::
 
 ::::: aside {id="note-4-60"}
@@ -280,9 +280,9 @@ The resulting output is
 
 In general,
 
-(and $\langle \textit{query}_{1}\rangle$ $\langle \textit{query}_{2} \rangle$ $\ldots$ $\langle \textit{query}_{n} \rangle$)
+(and :latexmath:`\langle \textit{query}_{1}\rangle` :latexmath:`\langle \textit{query}_{2} \rangle` :latexmath:`\ldots` :latexmath:`\langle \textit{query}_{n} \rangle`)
 
-is satisfied by all sets of values for the pattern variables that simultaneously satisfy $\langle\textit{query}_{1}\rangle\ldots \langle\textit{query}_{n}\rangle$.
+is satisfied by all sets of values for the pattern variables that simultaneously satisfy :latexmath:`\langle\textit{query}_{1}\rangle\ldots \langle\textit{query}_{n}\rangle`.
 
 As for simple queries, the system processes a compound query by finding all assignments to the pattern variables that satisfy the query, then displaying instantiations of the query with those values.
 
@@ -311,9 +311,9 @@ will find all employees supervised by Ben Bitdiddle or Alyssa P. Hacker:
 
 In general,
 
-(or $\langle \textit{query}_{1}\rangle$ $\langle \textit{query}_{2}\rangle$ $\ldots$ $\langle \textit{query}_{n}\rangle$)
+(or :latexmath:`\langle \textit{query}_{1}\rangle` :latexmath:`\langle \textit{query}_{2}\rangle` :latexmath:`\ldots` :latexmath:`\langle \textit{query}_{n}\rangle`)
 
-is satisfied by all sets of values for the pattern variables that satisfy at least one of $\langle \textit{query}_{1}\rangle \ldots \langle \textit{query}_{n}\rangle$.
+is satisfied by all sets of values for the pattern variables that satisfy at least one of :latexmath:`\langle \textit{query}_{1}\rangle \ldots \langle \textit{query}_{n}\rangle`.
 
 Compound queries can also be formed with `not`. For example,
 
@@ -324,15 +324,15 @@ Compound queries can also be formed with `not`. For example,
 
 finds all people supervised by Ben Bitdiddle who are not computer programmers. In general,
 
-(not $\langle \textit{query}_{1}\rangle$)
+(not :latexmath:`\langle \textit{query}_{1}\rangle`)
 
-is satisfied by all assignments to the pattern variables that do not satisfy $\langle \textit{query}_{1} \rangle$.<sup><a href="#note-4-62">62</a></sup>
+is satisfied by all assignments to the pattern variables that do not satisfy :latexmath:`\langle \textit{query}_{1} \rangle`.<sup><a href="#note-4-62">62</a></sup>
 
 The final combining form is called `lisp-value`. When `lisp-value` is the first element of a pattern, it specifies that the next element is a Lisp predicate to be applied to the rest of the (instantiated) elements as arguments. In general,
 
-(lisp-value $\langle \textit{predicate}\rangle$ $\langle \textit{arg}_{1}\rangle$ $\ldots$ $\langle \textit{arg}_{n} \rangle$)
+(lisp-value :latexmath:`\langle \textit{predicate}\rangle` :latexmath:`\langle \textit{arg}_{1}\rangle` :latexmath:`\ldots` :latexmath:`\langle \textit{arg}_{n} \rangle`)
 
-will be satisfied by assignments to the pattern variables for which the $\langle \textit{predicate} \rangle$ applied to the instantiated $\langle \textit{arg}_{1} \rangle, \ldots, \langle \textit{arg}_{n}\rangle$ is true. For example, to find all people whose salary is greater than $30,000 we could write<sup><a href="#note-4-63">63</a></sup>
+will be satisfied by assignments to the pattern variables for which the :latexmath:`\langle \textit{predicate} \rangle` applied to the instantiated :latexmath:`\langle \textit{arg}_{1} \rangle, \ldots, \langle \textit{arg}_{n}\rangle` is true. For example, to find all people whose salary is greater than \$30,000 we could write<sup><a href="#note-4-63">63</a></sup>
 
 ```scheme
 (and (salary ?person ?amount)
@@ -371,9 +371,9 @@ The following rule declares that a person is a "wheel" in an organization if he 
 
 The general form of a rule is
 
-(rule $\langle \textit{conclusion} \rangle$ $\langle \textit{body} \rangle$)
+(rule :latexmath:`\langle \textit{conclusion} \rangle` :latexmath:`\langle \textit{body} \rangle`)
 
-where $\langle \textit{conclusion}\rangle$ is a pattern and $\langle \textit{body} \rangle$ is any query.<sup><a href="#note-4-65">65</a></sup> We can think of a rule as representing a large (even infinite) set of assertions, namely all instantiations of the rule conclusion with variable assignments that satisfy the rule body. When we described simple queries (patterns), we said that an assignment to variables satisfies a pattern if the instantiated pattern is in the data base. But the pattern needn't be explicitly in the data base as an assertion. It can be an implicit assertion implied by a rule. For example, the query
+where :latexmath:`\langle \textit{conclusion}\rangle` is a pattern and :latexmath:`\langle \textit{body} \rangle` is any query.<sup><a href="#note-4-65">65</a></sup> We can think of a rule as representing a large (even infinite) set of assertions, namely all instantiations of the rule conclusion with variable assignments that satisfy the rule body. When we described simple queries (patterns), we said that an assignment to variables satisfies a pattern if the instantiated pattern is in the data base. But the pattern needn't be explicitly in the data base as an assertion. It can be an implicit assertion implied by a rule. For example, the query
 
 ```scheme
 (lives-near ?x (Bitdiddle Ben))
@@ -460,7 +460,7 @@ Why does this happen? Is there a way to find a list of people who live near each
 
 We can regard a rule as a kind of logical implication: *If* an assignment of values to pattern variables satisfies the body, * then* it satisfies the conclusion. Consequently, we can regard the query language as having the ability to perform *logical deductions* based upon the rules. As an example, consider the `append` operation described at the beginning of section 4.4. As we said, `append` can be characterized by the following two rules:
 - For any list `y`, the empty list and `y``append` to form `y`.
-- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.
+- For any `u`, `v`, `y`, and `z`, `(cons u v)` and `y``append` to form `(cons u z)` if `v` and `y``append` to form `z`.
 
 To express this in our query language, we define two rules for a relation
 
@@ -999,30 +999,54 @@ A unifier takes two patterns, each containing constants and variables, and deter
 
 The unification algorithm is the most technically difficult part of the query system. With complex patterns, performing unification may seem to require deduction. To unify `(?x ?x)` and `((a ?y c) (a b ?z))`, for example, the algorithm must infer that `?x` should be `(a b c)`,`?y` should be `b`, and `?z` should be `c`. We may think of this process as solving a set of equations among the pattern components. In general, these are simultaneous equations, which may require substantial manipulation to solve.<sup><a href="#note-4-70">70</a></sup> For example, unifying `(?x ?x)` and `((a ?y c) (a b ?z))` may be thought of as specifying the simultaneous equations
 
-$$\begin{array}{lll}
-\texttt{?x} & = & \texttt{(a ?y c)} \
+
+
+```latexmath
+\begin{array}{lll}
+\texttt{?x} & = & \texttt{(a ?y c)} \\
 \texttt{?x} & = & \texttt{(a b ?z)}
-\end{array}$$
+\end{array}
+```
+
+
 
 These equations imply that
 
-$$(a ?y c) = (a b ?z)$$
+
+
+```latexmath
+(a ?y c) = (a b ?z)
+```
+
+
 
 which in turn implies that
 
-$$\texttt{a} = \texttt{a},\
+
+
+```latexmath
+\texttt{a} = \texttt{a},\
 \texttt{?y} = \texttt{b},\
-\texttt{c} = \texttt{?z}$$
+\texttt{c} = \texttt{?z}
+```
+
+
 
 and hence that
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \texttt{?x} & = & \texttt{(a b c)}
-\end{array}$$
+\end{array}
+```
+
+
 
 In a successful pattern match, all pattern variables become bound, and the values to which they are bound contain only constants. This is also true of all the examples of unification we have seen so far. In general, however, a successful unification may not completely determine the variable values; some variables may remain unbound and others may be bound to values that contain variables.
 
-Consider the unification of `(?x a)` and `((b ?y) ?z)`. We can deduce that `?x`$=$`(b ?y)` and `a`$=$`?z`, but we cannot further solve for `?x` or `?y`. The unification doesn't fail, since it is certainly possible to make the two patterns equal by assigning values to `?x` and `?y`. Since this match in no way restricts the values `?y` can take on, no binding for `?y` is put into the result frame. The match does, however, restrict the value of `?x`. Whatever value `?y` has, `?x` must be `(b ?y)`. A binding of `?x` to the pattern `(b ?y)` is thus put into the frame. If a value for `?y` is later determined and added to the frame (by a pattern match or unification that is required to be consistent with this frame), the previously bound `?x` will refer to this value.<sup><a href="#note-4-71">71</a></sup>
+Consider the unification of `(?x a)` and `((b ?y) ?z)`. We can deduce that `?x`:latexmath:`=``(b ?y)` and `a`:latexmath:`=``?z`, but we cannot further solve for `?x` or `?y`. The unification doesn't fail, since it is certainly possible to make the two patterns equal by assigning values to `?x` and `?y`. Since this match in no way restricts the values `?y` can take on, no binding for `?y` is put into the result frame. The match does, however, restrict the value of `?x`. Whatever value `?y` has, `?x` must be `(b ?y)`. A binding of `?x` to the pattern `(b ?y)` is thus put into the frame. If a value for `?y` is later determined and added to the frame (by a pattern match or unification that is required to be consistent with this frame), the previously bound `?x` will refer to this value.<sup><a href="#note-4-71">71</a></sup>
 
 #### Applying rules
 
@@ -1098,7 +1122,7 @@ The driver also checks for the special command `assert!`, which signals that the
 :::::
 
 ::::: aside {id="note-4-71"}
-**71.** Another way to think of unification is that it generates the most general pattern that is a specialization of the two input patterns.  That is, the unification of `(?x a)` and `((b ?y) ?z)` is `((b ?y) a)`, and  the unification of `(?x a ?y)` and `(?y ?z a)`, discussed above, is `(a a a)`. For our implementation, it is more convenient to think of the result of unification as a frame rather than a pattern.
+**71.** Another way to think of unification is that it generates the most general pattern that is a specialization of the two input patterns.  That is, the unification of `(?x a)` and `((b ?y) ?z)` is `((b ?y) a)`, and  the unification of `(?x a ?y)` and `(?y ?z a)`, discussed above, is `(a a a)`. For our implementation, it is more convenient to think of the result of unification as a frame rather than a pattern.
 :::::
 
 ::::: aside {id="note-4-72"}
@@ -1145,7 +1169,7 @@ If we now ask
 (married Mickey ?who)
 ```
 
-we will get no response, because the system doesn't know that if $A$ is married to $B$, then $B$ is married to $A$. So we assert the rule
+we will get no response, because the system doesn't know that if :latexmath:`A` is married to :latexmath:`B`, then :latexmath:`B` is married to :latexmath:`A`. So we assert the rule
 
 ```scheme
 (assert! (rule (married ?x ?y)
@@ -1180,7 +1204,7 @@ These two queries do not produce the same result. The first query begins by find
 
 The trouble is that our implementation of `not` really is meant to serve as a filter on values for the variables. If a `not` clause is processed with a frame in which some of the variables remain unbound (as does `?x` in the example above), the system will produce unexpected results. Similar problems occur with the use of `lisp-value`—the Lisp predicate can't work if some of its arguments are unbound. See exercise 4.78.
 
-There is also a much more serious way in which the `not` of the query language differs from the `not` of mathematical logic. In logic, we interpret the statement "not $P$" to mean that $P$ is not true. In the query system, however, "not $P$" means that $P$ is not deducible from the knowledge in the data base. For example, given the personnel data base of section 4.4.1, the system would happily deduce all sorts of `not` statements, such as that Ben Bitdiddle is not a baseball fan, that it is not raining outside, and that $2 + 2$ is not 4.<sup><a href="#note-4-77">77</a></sup> In other words, the `not` of logic programming languages reflects the so-called *closed world assumption* that all relevant information has been included in the data base.<sup><a href="#note-4-78">78</a></sup>
+There is also a much more serious way in which the `not` of the query language differs from the `not` of mathematical logic. In logic, we interpret the statement "not :latexmath:`P`" to mean that :latexmath:`P` is not true. In the query system, however, "not :latexmath:`P`" means that :latexmath:`P` is not deducible from the knowledge in the data base. For example, given the personnel data base of section 4.4.1, the system would happily deduce all sorts of `not` statements, such as that Ben Bitdiddle is not a baseball fan, that it is not raining outside, and that :latexmath:`2 + 2` is not 4.<sup><a href="#note-4-77">77</a></sup> In other words, the `not` of logic programming languages reflects the so-called *closed world assumption* that all relevant information has been included in the data base.<sup><a href="#note-4-78">78</a></sup>
 
 **Exercise 4.65.** Louis Reasoner mistakenly deletes the `outranked-by` rule (section 4.4.1) from the data base. When he realizes this, he quickly reinstalls it. Unfortunately, he makes a slight change in the rule, and types it in as
 
@@ -1228,7 +1252,7 @@ Why is Oliver Warbucks listed four times?
 
 In general, Ben's new system allows expressions of the form
 
-(accumulation-function variable $\langle query$ $pattern\rangle$)
+(accumulation-function variable :latexmath:`\langle query` :latexmath:`pattern\rangle`)
 
 where `accumulation-function` can be things like `sum`, `average`, or `maximum`. Ben reasons that it should be a cinch to implement this. He will simply feed the query pattern to `qeval`. This will produce a stream of frames. He will then pass this stream through a mapping function that extracts the value of the designated variable from each frame in the stream and feed the resulting stream of values to the accumulation function. Just as Ben completes the implementation and is about to try it out, Cy walks by, still puzzling over the `wheel` query result in exercise 4.66. When Cy shows Ben the system's response, Ben groans, "Oh, no, my simple accumulation scheme won't work!"
 
@@ -1249,7 +1273,7 @@ What has Ben just realized? Outline a method he can use to salvage the situation
 :::::
 
 ::::: aside {id="note-4-76"}
-**76.** This is not a problem of the logic but one of the procedural interpretation of the logic provided by our interpreter. We could write an interpreter that would not fall into a loop here. For example, we could enumerate all the proofs derivable from our assertions and our rules in a breadth-first rather than a depth-first order. However, such a system makes it more difficult to take advantage of the order of deductions in our programs. One attempt to build sophisticated control into such a program is described in de Kleer et al. 1977. Another technique, which does not lead to such serious control problems, is to put in special knowledge, such as detectors for particular kinds of loops (exercise 4.68). However, there can be no general scheme for reliably preventing a system from going down infinite paths in performing deductions. Imagine a diabolical rule of the form "To show $P(x)$ is true, show that $P(f(x))$ is true," for some suitably chosen function $f$.
+**76.** This is not a problem of the logic but one of the procedural interpretation of the logic provided by our interpreter. We could write an interpreter that would not fall into a loop here. For example, we could enumerate all the proofs derivable from our assertions and our rules in a breadth-first rather than a depth-first order. However, such a system makes it more difficult to take advantage of the order of deductions in our programs. One attempt to build sophisticated control into such a program is described in de Kleer et al. 1977. Another technique, which does not lead to such serious control problems, is to put in special knowledge, such as detectors for particular kinds of loops (exercise 4.68). However, there can be no general scheme for reliably preventing a system from going down infinite paths in performing deductions. Imagine a diabolical rule of the form "To show :latexmath:`P(x)` is true, show that :latexmath:`P(f(x))` is true," for some suitably chosen function :latexmath:`f`.
 :::::
 
 ::::: aside {id="note-4-77"}
@@ -1561,7 +1585,7 @@ The unification algorithm is implemented as a procedure that takes as inputs two
 
 In unification, as in one-sided pattern matching, we want to accept a proposed extension of the frame only if it is consistent with existing bindings. The procedure`extend-if-possible` used in unification is the same as the `extend-if-consistent` used in pattern matching except for two special checks, marked "***" in the program below. In the first case, if the variable we are trying to match is not bound, but the value we are trying to match it with is itself a (different) variable, it is necessary to check to see if the value is bound, and if so, to match its value. If both parties to the match are unbound, we may bind either to the other.
 
-The second check deals with attempts to bind a variable to a pattern that includes that variable. Such a situation can occur whenever a variable is repeated in both patterns. Consider, for example, unifying the two patterns `(?x ?x)` and `(?y `$\langle expression$ $involving$`?y`$\rangle$`)` in a frame where both `?x` and `?y` are unbound. First `?x` is matched against `?y`, making a binding of `?x` to `?y`. Next, the same `?x` is matched against the given expression involving `?y`. Since `?x` is already bound to `?y`, this results in matching `?y` against the expression. If we think of the unifier as finding a set of values for the pattern variables that make the patterns the same, then these patterns imply instructions to find a `?y` such that `?y` is equal to the expression involving `?y`. There is no general method for solving such equations, so we reject such bindings; these cases are recognized by the predicate `depends-on?`.<sup><a href="#note-4-79">79</a></sup> On the other hand, we do not want to reject attempts to bind a variable to itself. For example, consider unifying `(?x ?x)` and `(?y ?y)`. The second attempt to bind `?x` to `?y` matches `?y`(the stored value of `?x`) against `?y`(the new value of `?x`).). This is taken care of by the `equal?` clause of `unify-match`.
+The second check deals with attempts to bind a variable to a pattern that includes that variable. Such a situation can occur whenever a variable is repeated in both patterns. Consider, for example, unifying the two patterns `(?x ?x)` and `(?y `:latexmath:`\langle expression` :latexmath:`involving``?y`:latexmath:`\rangle``)` in a frame where both `?x` and `?y` are unbound. First `?x` is matched against `?y`, making a binding of `?x` to `?y`. Next, the same `?x` is matched against the given expression involving `?y`. Since `?x` is already bound to `?y`, this results in matching `?y` against the expression. If we think of the unifier as finding a set of values for the pattern variables that make the patterns the same, then these patterns imply instructions to find a `?y` such that `?y` is equal to the expression involving `?y`. There is no general method for solving such equations, so we reject such bindings; these cases are recognized by the predicate `depends-on?`.<sup><a href="#note-4-79">79</a></sup> On the other hand, we do not want to reject attempts to bind a variable to itself. For example, consider unifying `(?x ?x)` and `(?y ?y)`. The second attempt to bind `?x` to `?y` matches `?y`(the stored value of `?x`) against `?y`(the new value of `?x`).). This is taken care of by the `equal?` clause of `unify-match`.
 
 ```scheme
 (define (extend-if-possible var val frame)
@@ -1987,7 +2011,7 @@ The real problem is to write the procedure`uniquely-asserted`. This should take 
 
 Test your implementation by forming a query that lists all people who supervise precisely one person.
 
-**Exercise 4.77.** Our implementation of `and` as a series combination of queries (figure 4.5) is elegant, but it is inefficient because in processing the second query of the `and` we must scan the data base for each frame produced by the first query. If the data base has $N$ elements, and a typical query produces a number of output frames proportional to $N$ (say $N/k$), then scanning the data base for each frame produced by the first query will require $N^{2}/k$ calls to the pattern matcher. Another approach would be to process the two clauses of the `and` separately, then look for all pairs of output frames that are compatible. If each query produces $N/k$ output frames, then this means that we must perform $N^{2}/k^{2}$ compatibility checks—a factor of $k$ fewer than the number of matches required in our current method.
+**Exercise 4.77.** Our implementation of `and` as a series combination of queries (figure 4.5) is elegant, but it is inefficient because in processing the second query of the `and` we must scan the data base for each frame produced by the first query. If the data base has :latexmath:`N` elements, and a typical query produces a number of output frames proportional to :latexmath:`N` (say :latexmath:`N/k`), then scanning the data base for each frame produced by the first query will require :latexmath:`N^{2}/k` calls to the pattern matcher. Another approach would be to process the two clauses of the `and` separately, then look for all pairs of output frames that are compatible. If each query produces :latexmath:`N/k` output frames, then this means that we must perform :latexmath:`N^{2}/k^{2}` compatibility checks—a factor of :latexmath:`k` fewer than the number of matches required in our current method.
 
 Devise an implementation of `and` that uses this strategy. You must implement a procedure that takes two frames as inputs, checks whether the bindings in the frames are compatible, and, if so, produces a frame that merges the two sets of bindings. This operation is similar to unification.
 
@@ -2009,24 +2033,48 @@ Devise an implementation of `and` that uses this strategy. You must implement a 
 
 there is no confusion between the `x` in `square` and the `x` in `sum-of-squares`, because we evaluate the body of each procedure in an environment that is specially constructed to contain bindings for the local variables. In the query system, we used a different strategy to avoid name conflicts in applying rules. Each time we apply a rule we rename the variables with new names that are guaranteed to be unique. The analogous strategy for the Lisp evaluator would be to do away with local environments and simply rename the variables in the body of a procedure each time we apply the procedure.
 
-Implement for the query language a rule-application method that uses environments rather than renaming. See if you can build on your environment structure to create constructs in the query language for dealing with large systems, such as the rule analog of block-structured procedures. Can you relate any of this to the problem of making deductions in a context (e.g., "If I supposed that $P$ were true, then I would be able to deduce $A$ and $B$.") as a method of problem solving? (This problem is open-ended.)
+Implement for the query language a rule-application method that uses environments rather than renaming. See if you can build on your environment structure to create constructs in the query language for dealing with large systems, such as the rule analog of block-structured procedures. Can you relate any of this to the problem of making deductions in a context (e.g., "If I supposed that :latexmath:`P` were true, then I would be able to deduce :latexmath:`A` and :latexmath:`B`.") as a method of problem solving? (This problem is open-ended.)
 
 ::::: aside {id="note-4-79"}
-**79.** In general, unifying `?y` with an expression involving `?y` would require our being able to find a  fixed point of the equation `?y`$ = \textit{expression involving}$`?y`.  It is sometimes possible to syntactically form an expression that appears to be the solution. For example, `?y`$=$`(f ?y)` seems to have the fixed point `(f (f (f `…`)))`,  which we can produce by beginning with the expression `(f ?y)` and repeatedly substituting `(f ?y)` for `?y`. Unfortunately, not every such equation has a meaningful fixed point. The issues that arise here are similar to the issues of manipulating  infinite series in mathematics. For example, we know that 2 is the solution to the equation $y = 1 + y/2$. Beginning with the expression $1 + y/2$ and repeatedly substituting $1 + y/2$ for $y$ gives 
+**79.** In general, unifying `?y` with an expression involving `?y` would require our being able to find a  fixed point of the equation `?y`:latexmath:`= \textit{expression involving}``?y`.  It is sometimes possible to syntactically form an expression that appears to be the solution. For example, `?y`:latexmath:`=``(f ?y)` seems to have the fixed point `(f (f (f `…`)))`,  which we can produce by beginning with the expression `(f ?y)` and repeatedly substituting `(f ?y)` for `?y`. Unfortunately, not every such equation has a meaningful fixed point. The issues that arise here are similar to the issues of manipulating  infinite series in mathematics. For example, we know that 2 is the solution to the equation :latexmath:`y = 1 + y/2`. Beginning with the expression :latexmath:`1 + y/2` and repeatedly substituting :latexmath:`1 + y/2` for :latexmath:`y` gives 
 
-$$2 \ = \ y \ = \ 1 + y/2 \ = \ 1 + (1+y/2)/2 \ = \ 1 + 1/2 + y/4 \ = \ \cdots,$$
 
- which leads to 
 
-$$2 \ = \  1 + 1/2 + 1/4 + 1/8 +\cdots.$$
+```latexmath
+2 \ = \ y \ = \ 1 + y/2 \ = \ 1 + (1+y/2)/2 \ = \ 1 + 1/2 + y/4 \ = \ \cdots,
+```
 
- However, if we try the same manipulation beginning with the observation that $-1$ is the solution to the equation $y \ = \  1 + 2y$, we obtain 
 
-$$-1 \ = \  y \ = \  1 + 2y \ = \  1 + 2(1 + 2y) \ = \  1 + 2 + 4y \ = \  \cdots,$$
 
  which leads to 
 
-$$-1 \ = \  1 + 2 + 4 + 8 +\cdots.$$
+
+
+```latexmath
+2 \ = \  1 + 1/2 + 1/4 + 1/8 +\cdots.
+```
+
+
+
+ However, if we try the same manipulation beginning with the observation that :latexmath:`-1` is the solution to the equation :latexmath:`y \ = \ 1 + 2y`, we obtain 
+
+
+
+```latexmath
+-1 \ = \  y \ = \  1 + 2y \ = \  1 + 2(1 + 2y) \ = \  1 + 2 + 4y \ = \  \cdots,
+```
+
+
+
+ which leads to 
+
+
+
+```latexmath
+-1 \ = \  1 + 2 + 4 + 8 +\cdots.
+```
+
+
 
  Although the formal manipulations used in deriving these two equations are identical, the first result is a valid assertion about infinite series but the second is not. Similarly, for our unification results, reasoning with an arbitrary syntactically constructed expression may lead to errors.
 :::::

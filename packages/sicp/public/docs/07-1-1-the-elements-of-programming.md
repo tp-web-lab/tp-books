@@ -295,25 +295,18 @@ We begin by examining how to express the idea of "squaring." We might say, "To s
 
 We can understand this in the following way:
 
-::: tp-latex
-:::: script {type="tp/latex"}
-\begin{flushleft}
-\begin{tabular}{@{}c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c}
-\tt\textbf{(define} & \tt (square & \;\tt x) & \tt{(*} & \tt x & \ \tt x)) \
-$\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ & $\Big\uparrow$ \[4pt]
-\normalsize To & \normalsize square & \normalsize something, & \;\normalsize multiply &\normalsize it & \normalsize by itself. \
-\end{tabular}
-\end{flushleft}
-::::
-:::
+| `(define` | `(square` | `x)` | `(*` | `x` | `x))` |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ↑ | ↑ | ↑ | ↑ | ↑ | ↑ |
+| To | square | something, | multiply | it | by itself. |
 
 We have here a *compound procedure*, which has been given the name `square`. The procedure represents the operation of multiplying something by itself. The thing to be multiplied is given a local name, `x`, which plays the same role that a pronoun plays in natural language. Evaluating the definition creates this compound procedure and associates it with the name `square`.<sup><a href="#note-1-12">12</a></sup>
 
 The general form of a procedure definition is
 
-(define ($\langle \textit{name} \rangle$ $\langle\textit{formal parameters}\rangle$) $\langle \textit{body} \rangle$)
+(define (:latexmath:`\langle \textit{name} \rangle` :latexmath:`\langle\textit{formal parameters}\rangle`) :latexmath:`\langle \textit{body} \rangle`)
 
-The $\langle \textit{name}\rangle$ is a symbol to be associated with the procedure definition in the environment.<sup><a href="#note-1-13">13</a></sup> The $\langle \textit{formal parameters}\rangle$ are the names used within the body of the procedure to refer to the corresponding arguments of the procedure. The $\langle \textit{body} \rangle$ is an expression that will yield the value of the procedure application when the formal parameters are replaced by the actual arguments to which the procedure is applied.<sup><a href="#note-1-14">14</a></sup> The $\langle \textit{name} \rangle$ and the $\langle \textit{formal parameters} \rangle$ are grouped within parentheses, just as they would be in an actual call to the procedure being defined.
+The :latexmath:`\langle \textit{name}\rangle` is a symbol to be associated with the procedure definition in the environment.<sup><a href="#note-1-13">13</a></sup> The :latexmath:`\langle \textit{formal parameters}\rangle` are the names used within the body of the procedure to refer to the corresponding arguments of the procedure. The :latexmath:`\langle \textit{body} \rangle` is an expression that will yield the value of the procedure application when the formal parameters are replaced by the actual arguments to which the procedure is applied.<sup><a href="#note-1-14">14</a></sup> The :latexmath:`\langle \textit{name} \rangle` and the :latexmath:`\langle \textit{formal parameters} \rangle` are grouped within parentheses, just as they would be in an actual call to the procedure being defined.
 
 Having defined `square`, we can now use it:
 
@@ -343,7 +336,7 @@ Having defined `square`, we can now use it:
 
 </details>
 
-We can also use `square` as a building block in defining other procedures. For example, $x^2 +y^2$ can be expressed as
+We can also use `square` as a building block in defining other procedures. For example, :latexmath:`x^2 +y^2` can be expressed as
 
 ```scheme
 (+ (square x) (square y))
@@ -421,7 +414,7 @@ Compound procedures are used in exactly the same way as primitive procedures. In
 :::::
 
 ::::: aside {id="note-1-13"}
-**13.** Throughout this book, we will  describe the general syntax of expressions by using italic symbols delimited by angle brackets—e.g., $\langle \textit{name}\rangle$—to  denote the "slots" in the expression to be filled in when such an expression is actually used.
+**13.** Throughout this book, we will  describe the general syntax of expressions by using italic symbols delimited by angle brackets—e.g., :latexmath:`\langle \textit{name}\rangle`—to  denote the "slots" in the expression to be filled in when such an expression is actually used.
 :::::
 
 ::::: aside {id="note-1-14"}
@@ -536,14 +529,20 @@ Lisp uses applicative-order evaluation, partly because of the additional efficie
 
 The expressive power of the class of procedures that we can define at this point is very limited, because we have no way to make tests and to perform different operations depending on the result of a test. For instance, we cannot define a procedure that computes the absolute value of a number by testing whether the number is positive, negative, or zero and taking different actions in the different cases according to the rule
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 |x| & = & \left\{ \begin{array}{rl}
-x & \text{if $x>0$} \
-0 & \text{if $x=0$} \
+x & \text{if $x>0$} \\
+0 & \text{if $x=0$} \\
 -x & \text{if $x<0$}
 \end{array}
 \right.
-\end{array}$$
+\end{array}
+```
+
+
 
 This construct is called a *case analysis*, and there is a special form in Lisp for notating such a case analysis. It is called `cond` (which stands for "conditional"), and it is used as follows:
 
@@ -560,11 +559,11 @@ This construct is called a *case analysis*, and there is a special form in Lisp 
 
 The general form of a conditional expression is
 
-(cond ($\langle p_1 \rangle $ $\langle e_1 \rangle$) ($\langle p_2 \rangle $ $\langle e_2 \rangle$) $\vdots$ ($\langle p_n \rangle $ $\langle e_n \rangle$))
+(cond (:latexmath:`\langle p_1 \rangle` :latexmath:`\langle e_1 \rangle`) (:latexmath:`\langle p_2 \rangle` :latexmath:`\langle e_2 \rangle`) :latexmath:`\vdots` (:latexmath:`\langle p_n \rangle` :latexmath:`\langle e_n \rangle`))
 
-consisting of the symbol `cond` followed by parenthesized pairs of expressions `(`$\langle p\ e \rangle$`)` called *clauses*. The first expression in each pair is a *predicate*—that is, an expression whose value is interpreted as either true or false.<sup><a href="#note-1-18">18</a></sup>
+consisting of the symbol `cond` followed by parenthesized pairs of expressions `(`:latexmath:`\langle p\ e \rangle``)` called *clauses*. The first expression in each pair is a *predicate*—that is, an expression whose value is interpreted as either true or false.<sup><a href="#note-1-18">18</a></sup>
 
-Conditional expressions are evaluated as follows. The predicate $\langle p_1 \rangle$ is evaluated first. If its value is false, then $\langle p_2 \rangle$ is evaluated. If $\langle p_2 \rangle$'s value is also false, then $\langle p_3 \rangle$ is evaluated. This process continues until a predicate is found whose value is true, in which case the interpreter returns the value of the corresponding *consequent expression*$\langle e \rangle$ of the clause as the value of the conditional expression. If none of the $\langle p \rangle$'s is found to be true, the value of the `cond` is undefined.
+Conditional expressions are evaluated as follows. The predicate :latexmath:`\langle p_1 \rangle` is evaluated first. If its value is false, then :latexmath:`\langle p_2 \rangle` is evaluated. If :latexmath:`\langle p_2 \rangle`'s value is also false, then :latexmath:`\langle p_3 \rangle` is evaluated. This process continues until a predicate is found whose value is true, in which case the interpreter returns the value of the corresponding *consequent expression*:latexmath:`\langle e \rangle` of the clause as the value of the conditional expression. If none of the :latexmath:`\langle p \rangle`'s is found to be true, the value of the `cond` is undefined.
 
 The word *predicate* is used for procedures that return true or false, as well as for expressions that evaluate to true or false. The absolute-value procedure `abs` makes use of the primitive predicates `>`, `<`, and `=`.<sup><a href="#note-1-19">19</a></sup> These take two numbers as arguments and test whether the first number is, respectively, greater than, less than, or equal to the second number, returning true or false accordingly.
 
@@ -576,7 +575,7 @@ Another way to write the absolute-value procedure is
     (else x)))
 ```
 
-which could be expressed in English as "If $x$ is less than zero return $- x$; otherwise return $x$."`Else` is a special symbol that can be used in place of the $\langle p \rangle$ in the final clause of a `cond`. This causes the `cond` to return as its value the value of the corresponding $\langle e \rangle$ whenever all previous clauses have been bypassed. In fact, any expression that always evaluates to a true value could be used as the $\langle p \rangle$ here.
+which could be expressed in English as "If :latexmath:`x` is less than zero return :latexmath:`- x`; otherwise return :latexmath:`x`."`Else` is a special symbol that can be used in place of the :latexmath:`\langle p \rangle` in the final clause of a `cond`. This causes the `cond` to return as its value the value of the corresponding :latexmath:`\langle e \rangle` whenever all previous clauses have been bypassed. In fact, any expression that always evaluates to a true value could be used as the :latexmath:`\langle p \rangle` here.
 
 Here is yet another way to write the absolute-value procedure:
 
@@ -589,21 +588,20 @@ Here is yet another way to write the absolute-value procedure:
 
 This uses the special form `if`, a restricted type of conditional that can be used when there are precisely two cases in the case analysis. The general form of an `if` expression is
 
-(if $\langle \textit{predicate} \rangle$ $\langle \textit{consequent}\rangle$ $\langle \textit{alternative}\rangle$)
+(if :latexmath:`\langle \textit{predicate} \rangle` :latexmath:`\langle \textit{consequent}\rangle` :latexmath:`\langle \textit{alternative}\rangle`)
 
-To evaluate an `if` expression, the interpreter starts by evaluating the $\langle \textit{predicate}\rangle$ part of the expression. If the $\langle \textit{predicate}\rangle$ evaluates to a true value, the interpreter then evaluates the $\langle \textit{consequent}\rangle$ and returns its value. Otherwise it evaluates the $\langle \textit{alternative}\rangle$ and returns its value.<sup><a href="#note-1-20">20</a></sup>
+To evaluate an `if` expression, the interpreter starts by evaluating the :latexmath:`\langle \textit{predicate}\rangle` part of the expression. If the :latexmath:`\langle \textit{predicate}\rangle` evaluates to a true value, the interpreter then evaluates the :latexmath:`\langle \textit{consequent}\rangle` and returns its value. Otherwise it evaluates the :latexmath:`\langle \textit{alternative}\rangle` and returns its value.<sup><a href="#note-1-20">20</a></sup>
 
 In addition to primitive predicates such as `<`, `=`, and `>`, there are logical composition operations, which enable us to construct compound predicates. The three most frequently used are these:
-- `(and`$\langle e_1\rangle \ldots \langle e_n \rangle$`)`
-The interpreter evaluates the expressions $\langle e \rangle$ one at a time, in left-to-right order. If any $\langle e \rangle$ evaluates to false, the value of the `and` expression is false, and the rest of the $\langle e \rangle$'s are not evaluated. If all $\langle e \rangle$'s evaluate to true values, the value of the `and` expression is the value of the last one.
-- `(or`$\langle e_1 \rangle\ldots \langle e_n \rangle$`)`
-The interpreter evaluates the expressions $\langle e \rangle$ one at a time, in left-to-right order. If any $\langle e \rangle$ evaluates to a true value, that value is returned as the value of the `or` expression, and the rest of the $\langle e \rangle$'s are not evaluated. If all $\langle e \rangle$'s evaluate to false, the value of the `or` expression is false.
-- `(not`$\langle e \rangle$`)
-`
-The value of a `not` expression is true when the expression $\langle e \rangle$ evaluates to false, and false otherwise.
+- `(and`:latexmath:`\langle e_1\rangle \ldots \langle e_n \rangle``)`
+The interpreter evaluates the expressions :latexmath:`\langle e \rangle` one at a time, in left-to-right order. If any :latexmath:`\langle e \rangle` evaluates to false, the value of the `and` expression is false, and the rest of the :latexmath:`\langle e \rangle`'s are not evaluated. If all :latexmath:`\langle e \rangle`'s evaluate to true values, the value of the `and` expression is the value of the last one.
+- `(or`:latexmath:`\langle e_1 \rangle\ldots \langle e_n \rangle``)`
+The interpreter evaluates the expressions :latexmath:`\langle e \rangle` one at a time, in left-to-right order. If any :latexmath:`\langle e \rangle` evaluates to a true value, that value is returned as the value of the `or` expression, and the rest of the :latexmath:`\langle e \rangle`'s are not evaluated. If all :latexmath:`\langle e \rangle`'s evaluate to false, the value of the `or` expression is false.
+- `(not`:latexmath:`\langle e \rangle``) `
+The value of a `not` expression is true when the expression :latexmath:`\langle e \rangle` evaluates to false, and false otherwise.
 Notice that `and` and `or` are special forms, not procedures, because the subexpressions are not necessarily all evaluated. `Not` is an ordinary procedure.
 
-As an example of how these are used, the condition that a number $x$ be in the range $5 < x < 10$ may be expressed as
+As an example of how these are used, the condition that a number :latexmath:`x` be in the range :latexmath:`5 < x < 10` may be expressed as
 
 ```scheme
 (and (> x 5) (< x 10))
@@ -684,9 +682,7 @@ or alternatively as
    (+ a 1))
 ```
 
-**Exercise 1.2.** Translate the following expression into prefix form $\begin{array}{l}
-\quad~~\dfrac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7)}
-\end{array}$
+**Exercise 1.2.** Translate the following expression into prefix form :latexmath:`\begin{array}{l} \quad~~\dfrac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7)} \end{array}`
 
 **Exercise 1.3.** Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
 
@@ -725,7 +721,7 @@ What behavior will Ben observe with an interpreter that uses applicative-order e
 :::::
 
 ::::: aside {id="note-1-20"}
-**20.** A minor difference  between `if` and `cond` is that the $\langle e \rangle$ part of each `cond` clause may be a sequence of expressions. If the corresponding $\langle p \rangle$ is found to be true, the expressions $\langle e \rangle$ are evaluated in sequence and the value of the final expression in the sequence is returned as the value of the `cond`. In an `if` expression, however, the $\langle \textit{consequent}\rangle$ and $\langle \textit{alternative}\rangle$ must be single expressions.
+**20.** A minor difference  between `if` and `cond` is that the :latexmath:`\langle e \rangle` part of each `cond` clause may be a sequence of expressions. If the corresponding :latexmath:`\langle p \rangle` is found to be true, the expressions :latexmath:`\langle e \rangle` are evaluated in sequence and the value of the final expression in the sequence is returned as the value of the `cond`. In an `if` expression, however, the :latexmath:`\langle \textit{consequent}\rangle` and :latexmath:`\langle \textit{alternative}\rangle` must be single expressions.
 :::::
 
 ### 1.1.7 Example: Square Roots by Newton's Method
@@ -734,8 +730,14 @@ Procedures, as introduced above, are much like ordinary mathematical functions. 
 
 As a case in point, consider the problem of computing square roots. We can define the square-root function as
 
-$$\sqrt{x}\ =\text{ the }y\text{ such that }y \geq 0\text{ and }
-y^2\ =\ x$$
+
+
+```latexmath
+\sqrt{x}\ =\text{ the }y\text{ such that }y \geq 0\text{ and }
+y^2\ =\ x
+```
+
+
 
 This describes a perfectly legitimate mathematical function. We could use it to recognize whether one number is the square root of another, or to derive facts about square roots in general. On the other hand, the definition does not describe a procedure. Indeed, it tells us almost nothing about how to actually find the square root of a given number. It will not help matters to rephrase this definition in pseudo-Lisp:
 
@@ -749,15 +751,21 @@ This only begs the question.
 
 The contrast between function and procedure is a reflection of the general distinction between describing properties of things and describing how to do things, or, as it is sometimes referred to, the distinction between declarative knowledge and imperative knowledge. In mathematics we are usually concerned with declarative (what is) descriptions, whereas in computer science we are usually concerned with imperative (how to) descriptions.<sup><a href="#note-1-21">21</a></sup>
 
-How does one compute square roots? The most common way is to use Newton's method of successive approximations, which says that whenever we have a guess $y$ for the value of the square root of a number $x$, we can perform a simple manipulation to get a better guess (one closer to the actual square root) by averaging $y$ with $x/y$.<sup><a href="#note-1-22">22</a></sup> For example, we can compute the square root of 2 as follows. Suppose our initial guess is 1:
+How does one compute square roots? The most common way is to use Newton's method of successive approximations, which says that whenever we have a guess :latexmath:`y` for the value of the square root of a number :latexmath:`x`, we can perform a simple manipulation to get a better guess (one closer to the actual square root) by averaging :latexmath:`y` with :latexmath:`x/y`.<sup><a href="#note-1-22">22</a></sup> For example, we can compute the square root of 2 as follows. Suppose our initial guess is 1:
 
-$$\begin{array}{lll}
-\textrm{Guess} & \textrm{Quotient} & \textrm{Average}\[1em]
-1 & {\displaystyle \frac{2}{1} = 2} & {\displaystyle \frac{(2+1)}{2} = 1.5} \[1em]
-1.5 & {\displaystyle \frac{2}{1.5} = 1.3333} & {\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167} \[1em]
-1.4167 & {\displaystyle \frac{2}{1.4167} = 1.4118} & {\displaystyle \frac{(1.4167+1.4118)}{2} = 1.4142} \[1em]
+
+
+```latexmath
+\begin{array}{lll}
+\textrm{Guess} & \textrm{Quotient} & \textrm{Average}\\[1em]
+1 & {\displaystyle \frac{2}{1} = 2} & {\displaystyle \frac{(2+1)}{2} = 1.5} \\[1em]
+1.5 & {\displaystyle \frac{2}{1.5} = 1.3333} & {\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167} \\[1em]
+1.4167 & {\displaystyle \frac{2}{1.4167} = 1.4118} & {\displaystyle \frac{(1.4167+1.4118)}{2} = 1.4142} \\[1em]
 1.4142 & \ldots & \ldots
-\end{array}$$
+\end{array}
+```
+
+
 
 Continuing this process, we obtain better and better approximations to the square root.
 
@@ -902,11 +910,17 @@ What happens when Alyssa attempts to use this to compute square roots? Explain.
 
 **Exercise 1.7.** The `good-enough?` test used in computing square roots will not be very effective for finding the square roots of very small numbers. Also, in real computers, arithmetic operations are almost always performed with limited precision. This makes our test inadequate for very large numbers. Explain these statements, with examples showing how the test fails for small and large numbers. An alternative strategy for implementing `good-enough?` is to watch how `guess` changes from one iteration to the next and to stop when the change is a very small fraction of the guess. Design a square-root procedure that uses this kind of end test. Does this work better for small and large numbers?
 
-**Exercise 1.8.** Newton's method for cube roots is based on the fact that if $y$ is an approximation to the cube root of $x$, then a better approximation is given by the value
+**Exercise 1.8.** Newton's method for cube roots is based on the fact that if :latexmath:`y` is an approximation to the cube root of :latexmath:`x`, then a better approximation is given by the value
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \dfrac{x/y^{2}+2y} {3}
-\end{array}$$
+\end{array}
+```
+
+
 
 Use this formula to implement a cube-root procedure analogous to the square-root procedure. (In section 1.3.4 we will see how to implement Newton's method in general as an abstraction of these square-root and cube-root procedures.)
 
@@ -923,7 +937,7 @@ Use this formula to implement a cube-root procedure analogous to the square-root
 :::::
 
 ::::: aside {id="note-1-24"}
-**24.** Observe that we express our initial guess as 1.0 rather than 1. This would not make any difference in many Lisp implementations.  MIT Scheme, however, distinguishes between exact integers and decimal values, and dividing two integers produces a rational number rather than a decimal. For example, dividing 10 by 6 yields 5/3, while dividing 10.0 by 6.0 yields 1.6666666666666667. (We will learn how to implement arithmetic on rational numbers in section 2.1.1.) If we start with an initial guess of 1 in our square-root program, and $x$ is an exact integer, all subsequent values produced in the square-root computation will be rational numbers rather than decimals. Mixed operations on rational numbers and decimals always yield decimals, so starting with an initial guess of 1.0 forces all subsequent values to be decimals.
+**24.** Observe that we express our initial guess as 1.0 rather than 1. This would not make any difference in many Lisp implementations.  MIT Scheme, however, distinguishes between exact integers and decimal values, and dividing two integers produces a rational number rather than a decimal. For example, dividing 10 by 6 yields 5/3, while dividing 10.0 by 6.0 yields 1.6666666666666667. (We will learn how to implement arithmetic on rational numbers in section 2.1.1.) If we start with an initial guess of 1 in our square-root program, and :latexmath:`x` is an exact integer, all subsequent values produced in the square-root computation will be rational numbers rather than decimals. Mixed operations on rational numbers and decimals always yield decimals, so starting with an initial guess of 1.0 forces all subsequent values to be decimals.
 :::::
 
 ::::: aside {id="note-1-25"}

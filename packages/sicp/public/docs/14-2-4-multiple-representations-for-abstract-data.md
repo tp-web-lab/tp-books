@@ -28,23 +28,35 @@ In section 2.5 we will show how to use type tags and data-directed style to dev
 
 We will develop a system that performs arithmetic operations on complex numbers as a simple but unrealistic example of a program that uses generic operations. We begin by discussing two plausible representations for complex numbers as ordered pairs: rectangular form (real part and imaginary part) and polar form (magnitude and angle).<sup><a href="#note-2-43">43</a></sup> Section 2.4.2 will show how both representations can be made to coexist in a single system through the use of type tags and generic operations.
 
-Like rational numbers, complex numbers are naturally represented as ordered pairs. The set of complex numbers can be thought of as a two-dimensional space with two orthogonal axes, the "real" axis and the "imaginary" axis. (See figure 2.20.) From this point of view, the complex number $z=x+iy$ (where $i^{2} =-1$) can be thought of as the point in the plane whose real coordinate is $x$ and whose imaginary coordinate is $y$. Addition of complex numbers reduces in this representation to addition of coordinates:
+Like rational numbers, complex numbers are naturally represented as ordered pairs. The set of complex numbers can be thought of as a two-dimensional space with two orthogonal axes, the "real" axis and the "imaginary" axis. (See figure 2.20.) From this point of view, the complex number :latexmath:`z=x+iy` (where :latexmath:`i^{2} =-1`) can be thought of as the point in the plane whose real coordinate is :latexmath:`x` and whose imaginary coordinate is :latexmath:`y`. Addition of complex numbers reduces in this representation to addition of coordinates:
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \text{Real-part}(z_{1}+z_{2}) & = &
-\text{Real-part}(z_{1})+\text{Real-part}(z_{2}) \[1ex]
+\text{Real-part}(z_{1})+\text{Real-part}(z_{2}) \\[1ex]
 \text{Imaginary-part}(z_{1} +z_{2}) & = &
 \text{Imaginary-part}(z_1)+\text{Imaginary-part}(z_2)
-\end{array}$$
+\end{array}
+```
 
-When multiplying complex numbers, it is more natural to think in terms of representing a complex number in polar form, as a magnitude and an angle ($r$ and $A$ in figure 2.20). The product of two complex numbers is the vector obtained by stretching one complex number by the length of the other and then rotating it through the angle of the other:
 
-$$\begin{array}{lll}
+
+When multiplying complex numbers, it is more natural to think in terms of representing a complex number in polar form, as a magnitude and an angle (:latexmath:`r` and :latexmath:`A` in figure 2.20). The product of two complex numbers is the vector obtained by stretching one complex number by the length of the other and then rotating it through the angle of the other:
+
+
+
+```latexmath
+\begin{array}{lll}
 \text{Magnitude}(z_{1}\cdot z_{2}) & = &
-\text{Magnitude}(z_{1})\cdot\text{Magnitude}(z_{2})\[1ex]
+\text{Magnitude}(z_{1})\cdot\text{Magnitude}(z_{2})\\[1ex]
 \text{Angle}(z_{1}\cdot z_{2}) & = &
 \text{Angle}(z_{1})+\text{Angle}(z_{2})
-\end{array}$$
+\end{array}
+```
+
+
 
 Thus, there are two different representations for complex numbers, which are appropriate for different operations. Yet, from the viewpoint of someone writing a program that uses complex numbers, the principle of data abstraction suggests that all the operations for manipulating complex numbers should be available regardless of which representation is used by the computer. For example, it is often useful to be able to find the magnitude of a complex number that is specified by rectangular coordinates. Similarly, it is often useful to be able to determine the real part of a complex number that is specified by polar coordinates.
 
@@ -90,12 +102,18 @@ To complete the complex-number package, we must choose a representation and we m
 
 In order to make the different choices concrete, imagine that there are two programmers, Ben Bitdiddle and Alyssa P. Hacker, who are independently designing representations for the complex-number system. Ben chooses to represent complex numbers in rectangular form. With this choice, selecting the real and imaginary parts of a complex number is straightforward, as is constructing a complex number with given real and imaginary parts. To find the magnitude and the angle, or to construct a complex number with a given magnitude and angle, he uses the trigonometric relations
 
-$$\begin{array}{lllllll}
-x & = & r\ \cos A & \quad \quad \quad & r & = & \sqrt{x^2 +y^2} \
-y & = & r\ \sin A & & A &= & \arctan (y,x)
-\end{array}$$
 
-which relate the real and imaginary parts ($x$, $y$) to the magnitude and the angle $(r, A)$.<sup><a href="#note-2-44">44</a></sup> Ben's representation is therefore given by the following selectors and constructors:
+
+```latexmath
+\begin{array}{lllllll}
+x & = & r\ \cos A & \quad \quad \quad & r & = & \sqrt{x^2 +y^2} \\
+y & = & r\ \sin A & & A &= & \arctan (y,x)
+\end{array}
+```
+
+
+
+which relate the real and imaginary parts (:latexmath:`x`, :latexmath:`y`) to the magnitude and the angle :latexmath:`(r, A)`.<sup><a href="#note-2-44">44</a></sup> Ben's representation is therefore given by the following selectors and constructors:
 
 ```scheme
 (define (real-part z) (car z))
@@ -141,14 +159,14 @@ The discipline of data abstraction ensures that the same implementation of `add-
 :::::
 
 ::::: aside {id="note-2-44"}
-**44.** The arctangent function referred to here,  computed by Scheme's `atan` procedure,  is defined so as to take two arguments $y$ and $x$ and to return the angle whose tangent is $y/x$. The signs of the arguments determine the quadrant of the angle.
+**44.** The arctangent function referred to here,  computed by Scheme's `atan` procedure,  is defined so as to take two arguments :latexmath:`y` and :latexmath:`x` and to return the angle whose tangent is :latexmath:`y/x`. The signs of the arguments determine the quadrant of the angle.
 :::::
 
 ### 2.4.2 Tagged data
 
 One way to view data abstraction is as an application of the "principle of least commitment." In implementing the complex-number system in section 2.4.1, we can use either Ben's rectangular representation or Alyssa's polar representation. The abstraction barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice of a concrete representation for our data objects and thus retain maximum flexibility in our system design.
 
-The principle of least commitment can be carried to even further extremes. If we desire, we can maintain the ambiguity of representation even *after* we have designed the selectors and constructors, and elect to use both Ben's representation *and* Alyssa's representation. If both representations are included in a single system, however, we will need some way to distinguish data in polar form from data in rectangular form. Otherwise, if we were asked, for instance, to find the `magnitude` of the pair $(3,4)$, we wouldn't know whether to answer 5 (interpreting the number in rectangular form) or 3 (interpreting the number in polar form). A straightforward way to accomplish this distinction is to include a *type tag*—the symbol `rectangular` or `polar`—as part of each complex number. Then when we need to manipulate a complex number we can use the tag to decide which selector to apply.
+The principle of least commitment can be carried to even further extremes. If we desire, we can maintain the ambiguity of representation even *after* we have designed the selectors and constructors, and elect to use both Ben's representation *and* Alyssa's representation. If both representations are included in a single system, however, we will need some way to distinguish data in polar form from data in rectangular form. Otherwise, if we were asked, for instance, to find the `magnitude` of the pair :latexmath:`(3,4)`, we wouldn't know whether to answer 5 (interpreting the number in rectangular form) or 3 (interpreting the number in polar form). A straightforward way to accomplish this distinction is to include a *type tag*—the symbol `rectangular` or `polar`—as part of each complex number. Then when we need to manipulate a complex number we can use the tag to decide which selector to apply.
 
 In order to manipulate tagged data, we will assume that we have procedures`type-tag` and `contents` that extract from a data object the tag and the actual contents (the polar or rectangular coordinates, in the case of a complex number). We will also postulate a procedure`attach-tag` that takes a tag and contents and produces a tagged data object. A straightforward way to implement this is to use ordinary list structure:
 
@@ -276,7 +294,7 @@ Finally, we must choose whether to construct complex numbers using Ben's represe
 
 **Figure 2.21.** Structure of the generic complex-arithmetic system.
 
-$\!$The resulting complex-number system has the structure shown in figure 2.21. The system has been decomposed into three relatively independent parts: the complex-number-arithmetic operations, Alyssa's polar implementation, and Ben's rectangular implementation. The polar and rectangular implementations could have been written by Ben and Alyssa working separately, and both of these can be used as underlying representations by a third programmer implementing the complex-arithmetic procedures in terms of the abstract constructor/selector interface.
+:latexmath:`\!`The resulting complex-number system has the structure shown in figure 2.21. The system has been decomposed into three relatively independent parts: the complex-number-arithmetic operations, Alyssa's polar implementation, and Ben's rectangular implementation. The polar and rectangular implementations could have been written by Ben and Alyssa working separately, and both of these can be used as underlying representations by a third programmer implementing the complex-arithmetic procedures in terms of the abstract constructor/selector interface.
 
 Since each data object is tagged with its type, the selectors operate on the data in a generic manner. That is, each selector is defined to have a behavior that depends upon the particular type of data it is applied to. Notice the general mechanism for interfacing the separate representations: Within a given representation implementation (say, Alyssa's polar package) a complex number is an untyped pair (magnitude, angle). When a generic selector operates on a number of `polar` type, it strips off the tag and passes the contents on to Alyssa's code. Conversely, when Alyssa constructs a number for general use, she tags it with a type so that it can be appropriately recognized by the higher-level procedures. This discipline of stripping off and attaching tags as data objects are passed from level to level can be an important organizational strategy, as we shall see in section 2.5.
 
@@ -297,12 +315,10 @@ Data-directed programming is the technique of designing programs to work with su
 **Figure 2.22.** Table of operations for the complex-number system.
 
 To implement this plan, assume that we have two procedures,`put` and `get`, for manipulating the operation-and-type table:
-- `(put `$\langle \textit{op} \rangle\ \langle \textit{type}
-\rangle \ \langle \textit{item} \rangle$`)`
-installs the $\langle \textit{item} \rangle$ in the table, indexed by the $\langle \textit{op} \rangle$ and the $\langle \textit{type} \rangle$.
-- `(get `$\langle \textit{op} \rangle\ \langle
-\textit{type}$`)`
-looks up the $\langle \textit{op} \rangle$, $\langle \textit{type} \rangle$ entry in the table and returns the item found there. If no item is found, `get` returns false.
+- `(put `:latexmath:`\langle \textit{op} \rangle\ \langle \textit{type} \rangle \ \langle \textit{item} \rangle``)`
+installs the :latexmath:`\langle \textit{item} \rangle` in the table, indexed by the :latexmath:`\langle \textit{op} \rangle` and the :latexmath:`\langle \textit{type} \rangle`.
+- `(get `:latexmath:`\langle \textit{op} \rangle\ \langle \textit{type}``)`
+looks up the :latexmath:`\langle \textit{op} \rangle`, :latexmath:`\langle \textit{type} \rangle` entry in the table and returns the item found there. If no item is found, `get` returns false.
 For now, we can assume that `put` and `get` are included in our language. In chapter 3 (section 3.3.3) we will see how to implement these and other operations for manipulating tables.
 
 Here is how data-directed programming can be used in the complex-number system. Ben, who developed the rectangular representation, implements his code just as he did originally. He defines a collection of procedures, or a *package*, and interfaces these to the rest of the system by adding entries to the table that tell the system how to operate on rectangular numbers. This is accomplished by calling the following procedure:

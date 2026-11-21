@@ -15,24 +15,30 @@ The basic idea of data abstraction is to structure the programs that are to use 
 Suppose we want to do arithmetic with rational numbers. We want to be able to add, subtract, multiply, and divide them and to test whether two rational numbers are equal.
 
 Let us begin by assuming that we already have a way of constructing a rational number from a numerator and a denominator. We also assume that, given a rational number, we have a way of extracting (or selecting) its numerator and its denominator. Let us further assume that the constructor and selectors are available as procedures:
-- `(make-rat n d)` returns the rational number whose numerator is the integer $n$ and whose denominator is the integer $d$.
-- `(numer x)` returns the numerator of the rational number $x$.
-- `(denom x)` returns the denominator of the rational number $x$.
+- `(make-rat n d)` returns the rational number whose numerator is the integer :latexmath:`n` and whose denominator is the integer :latexmath:`d`.
+- `(numer x)` returns the numerator of the rational number :latexmath:`x`.
+- `(denom x)` returns the denominator of the rational number :latexmath:`x`.
 
 We are using here a powerful strategy of synthesis: *wishful thinking*. We haven't yet said how a rational number is represented, or how the procedures`numer`, `denom`, and `make-rat` should be implemented. Even so, if we did have these three procedures, we could then add, subtract, multiply, divide, and test equality by using the following relations:
 
-$$\begin{array}{rll}
+
+
+```latexmath
+\begin{array}{rll}
 \dfrac{n_{1}}{d_{1}}+\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}-\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}\cdot\dfrac{n_{2}}{d_{2}}
-&=&\dfrac{n_{1}n_{2}}{d_{1}d_{2}}\[15pt]
+&=&\dfrac{n_{1}n_{2}}{d_{1}d_{2}}\\[15pt]
 \dfrac{n_{1}/d_{1}}{n_{2}/d_{2}}
-&=&\dfrac{n_{1}d_{2}}{d_{1}n_{2}}\[15pt]
+&=&\dfrac{n_{1}d_{2}}{d_{1}n_{2}}\\[15pt]
 \dfrac{n_{1}}{d_{1}}
 &=&\dfrac{n_{2}}{d_{2}}\ \quad \textrm{if and only if}\ \ \ n_{1}d_{2}\ =\ n_{2}d_{1}
-\end{array}$$
+\end{array}
+```
+
+
 
 We can express these rules as procedures:
 
@@ -409,7 +415,7 @@ The difference between this implementation and the previous one lies in when we 
 
 Constraining the dependence on the representation to a few interface procedures helps us design programs as well as modify them, because it allows us to maintain the flexibility to consider alternate implementations. To continue with our simple example, suppose we are designing a rational-number package and we can't decide initially whether to perform the `gcd` at construction time or at selection time. The data-abstraction methodology gives us a way to defer that decision without losing the ability to make progress on the rest of the system.
 
-**Exercise 2.2.** Consider the problem of representing line segments in a plane. Each segment is represented as a pair of points: a starting point and an ending point. Define a constructor `make-segment` and selectors `start-segment` and `end-segment` that define the representation of segments in terms of points. Furthermore, a point can be represented as a pair of numbers: the $x$ coordinate and the $y$ coordinate. Accordingly, specify a constructor `make-point` and selectors `x-point` and `y-point` that define this representation. Finally, using your selectors and constructors, define a procedure`midpoint-segment` that takes a line segment as argument and returns its midpoint (the point whose coordinates are the average of the coordinates of the endpoints). To try your procedures, you'll need a way to print points:
+**Exercise 2.2.** Consider the problem of representing line segments in a plane. Each segment is represented as a pair of points: a starting point and an ending point. Define a constructor `make-segment` and selectors `start-segment` and `end-segment` that define the representation of segments in terms of points. Furthermore, a point can be represented as a pair of numbers: the :latexmath:`x` coordinate and the :latexmath:`y` coordinate. Accordingly, specify a constructor `make-point` and selectors `x-point` and `y-point` that define this representation. Finally, using your selectors and constructors, define a procedure`midpoint-segment` that takes a line segment as argument and returns its midpoint (the point whose coordinates are the average of the coordinates of the endpoints). To try your procedures, you'll need a way to print points:
 
 ```scheme
 (define (print-point p)
@@ -429,11 +435,17 @@ We began the rational-number implementation in section 2.1.1 by implementing th
 
 But exactly what is meant by *data*? It is not enough to say "whatever is implemented by the given selectors and constructors." Clearly, not every arbitrary set of three procedures can serve as an appropriate basis for the rational-number implementation. We need to guarantee that, if we construct a rational number `x` from a pair of integers `n` and `d`, then extracting the `numer` and the `denom` of `x` and dividing them should yield the same result as dividing `n` by `d`. In other words, `make-rat`,`numer`, and `denom` must satisfy the condition that, for any integer `n` and any nonzero integer `d`, if `x` is `(make-rat n d)`, then
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \dfrac{(\texttt{numer}~\texttt{x})}{(\texttt{denom}~\texttt{x})}
 &=&
 \dfrac{\texttt{n}}{\texttt{d}}
-\end{array}$$
+\end{array}
+```
+
+
 
 In fact, this is the only condition `make-rat`,`numer`, and `denom` must fulfill in order to form a suitable basis for a rational-number representation. In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation.<sup><a href="#note-2-5">5</a></sup>
 
@@ -470,7 +482,7 @@ The point of exhibiting the procedural representation of pairs is not that our l
 
 What is the corresponding definition of `cdr`? (Hint: To verify that this works, make use of the substitution model of section 1.1.5.)
 
-**Exercise 2.5.** Show that we can represent pairs of nonnegative integers using only numbers and arithmetic operations if we represent the pair $a$ and $b$ as the integer that is the product $2^a 3^b$. Give the corresponding definitions of the procedures`cons`,`car`, and `cdr`.
+**Exercise 2.5.** Show that we can represent pairs of nonnegative integers using only numbers and arithmetic operations if we represent the pair :latexmath:`a` and :latexmath:`b` as the integer that is the product :latexmath:`2^a 3^b`. Give the corresponding definitions of the procedures`cons`,`car`, and `cdr`.
 
 **Exercise 2.6.** In case representing pairs as procedures (exercise 2.4) wasn't mind-boggling enough, consider that, in a language that can manipulate procedures, we can get by without numbers (at least insofar as nonnegative integers are concerned) by implementing 0 and the operation of adding 1 as
 
@@ -481,7 +493,7 @@ What is the corresponding definition of `cdr`? (Hint: To verify that this works,
   (lambda (f) (lambda (x) (f ((n f) x)))))
 ```
 
-This representation is known as *Church numerals*, after its inventor, Alonzo Church, the logician who invented the $\lambda$ calculus.
+This representation is known as *Church numerals*, after its inventor, Alonzo Church, the logician who invented the :latexmath:`\lambda` calculus.
 
 Define `one` and `two` directly (not in terms of `zero` and `add-1`). (Hint: Use substitution to evaluate `(add-1 zero)`). Give a direct definition of the addition procedure `+` (not in terms of repeated application of `add-1`).
 
@@ -493,13 +505,19 @@ Define `one` and `two` directly (not in terms of `zero` and `add-1`). (Hint: Use
 
 Alyssa P. Hacker is designing a system to help people solve engineering problems. One feature she wants to provide in her system is the ability to manipulate inexact quantities (such as measured parameters of physical devices) with known precision, so that when computations are done with such approximate quantities the results will be numbers of known precision.
 
-Electrical engineers will be using Alyssa's system to compute electrical quantities. It is sometimes necessary for them to compute the value of a parallel equivalent resistance $R_{p}$ of two resistors $R_{1}$ and $R_{2}$ using the formula
+Electrical engineers will be using Alyssa's system to compute electrical quantities. It is sometimes necessary for them to compute the value of a parallel equivalent resistance :latexmath:`R_{p}` of two resistors :latexmath:`R_{1}` and :latexmath:`R_{2}` using the formula
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 R_{p} & = & \dfrac{1}{1/R_{1}+1/R_{2}}
-\end{array}$$
+\end{array}
+```
 
-Resistance values are usually known only up to some tolerance guaranteed by the manufacturer of the resistor. For example, if you buy a resistor labeled "6.8 ohms with 10% tolerance" you can only be sure that the resistor has a resistance between $6.8-0.68=6.12$ and $6.8+0.68=7.48$ ohms. Thus, if you have a 6.8-ohm 10% resistor in parallel with a 4.7-ohm 5% resistor, the resistance of the combination can range from about 2.58 ohms (if the two resistors are at the lower bounds) to about 2.97 ohms (if the two resistors are at the upper bounds).
+
+
+Resistance values are usually known only up to some tolerance guaranteed by the manufacturer of the resistor. For example, if you buy a resistor labeled "6.8 ohms with 10% tolerance" you can only be sure that the resistor has a resistance between :latexmath:`6.8-0.68=6.12` and :latexmath:`6.8+0.68=7.48` ohms. Thus, if you have a 6.8-ohm 10% resistor in parallel with a 4.7-ohm 5% resistor, the resistance of the combination can range from about 2.58 ohms (if the two resistors are at the lower bounds) to about 2.97 ohms (if the two resistors are at the upper bounds).
 
 Alyssa's idea is to implement "interval arithmetic" as a set of arithmetic operations for combining "intervals" (objects that represent the range of possible values of an inexact quantity). The result of adding, subtracting, multiplying, or dividing two intervals is itself an interval, representing the range of the result.
 
@@ -548,7 +566,7 @@ Define selectors `upper-bound` and `lower-bound` to complete the implementation.
 
 **Exercise 2.11.** In passing, Ben also cryptically comments: "By testing the signs of the endpoints of the intervals, it is possible to break `mul-interval` into nine cases, only one of which requires more than two multiplications." Rewrite this procedure using Ben's suggestion.
 
-After debugging her program, Alyssa shows it to a potential user, who complains that her program solves the wrong problem. He wants a program that can deal with numbers represented as a center value and an additive tolerance; for example, he wants to work with intervals such as $3.5\pm 0.15$ rather than $[3.35, 3.65]$. Alyssa returns to her desk and fixes this problem by supplying an alternate constructor and alternate selectors:
+After debugging her program, Alyssa shows it to a potential user, who complains that her program solves the wrong problem. He wants a program that can deal with numbers represented as a center value and an additive tolerance; for example, he wants to work with intervals such as :latexmath:`3.5\pm 0.15` rather than :latexmath:`[3.35, 3.65]`. Alyssa returns to her desk and fixes this problem by supplying an alternate constructor and alternate selectors:
 
 ```scheme
 (define (make-center-width c w)
@@ -569,11 +587,23 @@ Unfortunately, most of Alyssa's users are engineers. Real engineering situations
 
 After considerable work, Alyssa P. Hacker delivers her finished system. Several years later, after she has forgotten all about it, she gets a frenzied call from an irate user, Lem E. Tweakit. It seems that Lem has noticed that the formula for parallel resistors can be written in two algebraically equivalent ways:
 
-$$\dfrac{R_{1}R_{2}}{R_{1}+R_{2}}$$
+
+
+```latexmath
+\dfrac{R_{1}R_{2}}{R_{1}+R_{2}}
+```
+
+
 
 and
 
-$$\dfrac{1}{1/R_{1}+1/R_{2}}$$
+
+
+```latexmath
+\dfrac{1}{1/R_{1}+1/R_{2}}
+```
+
+
 
 He has written the following two programs, each of which computes the parallel-resistors formula differently:
 
@@ -591,7 +621,7 @@ He has written the following two programs, each of which computes the parallel-r
 
 Lem complains that Alyssa's program gives different answers for the two ways of computing. This is a serious complaint.
 
-**Exercise 2.14.** Demonstrate that Lem is right. Investigate the behavior of the system on a variety of arithmetic expressions. Make some intervals $A$ and $B$, and use them in computing the expressions $A/A$ and $A/B$. You will get the most insight by using intervals whose width is a small percentage of the center value. Examine the results of the computation in center-percent form (see exercise 2.12).
+**Exercise 2.14.** Demonstrate that Lem is right. Investigate the behavior of the system on a variety of arithmetic expressions. Make some intervals :latexmath:`A` and :latexmath:`B`, and use them in computing the expressions :latexmath:`A/A` and :latexmath:`A/B`. You will get the most insight by using intervals whose width is a small percentage of the center value. Examine the results of the computation in center-percent form (see exercise 2.12).
 
 **Exercise 2.15.** Eva Lu Ator, another user, has also noticed the different intervals computed by different but algebraically equivalent expressions. She says that a formula to compute with intervals using Alyssa's system will produce tighter error bounds if it can be written in such a form that no variable that represents an uncertain number is repeated. Thus, she says, `par2` is a "better" program for parallel resistances than `par1`. Is she right? Why?
 

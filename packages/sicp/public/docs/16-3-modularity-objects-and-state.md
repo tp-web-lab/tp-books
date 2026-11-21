@@ -6,11 +6,7 @@ math: latexmath
 
 [Original PDF · page 221](original/sicp.pdf#page=221)
 
-\addtocontents{toc}{\protect\enlargethispage{2\baselineskip}}
-
-> $\def\aal{\alpha{\raise 1pt\hbox{\hskip -4pt{\char'47}}}}
-> M\epsilon\tau\alpha\beta\acute{\alpha}\lambda\lambda o \nu\
-> ἀ\nu\alpha\pi\alpha\acute{\upsilon}\epsilon\tau\alpha\iota$
+> Μεταβάλλον ἀναπαύεται
 > (Even while it changes, it stands still.)
 > — Heraclitus
 

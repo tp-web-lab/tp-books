@@ -10,7 +10,7 @@ We've gained a good understanding of assignment as a tool in modeling, as well a
 
 Let's step back and review where this complexity comes from. In an attempt to model real-world phenomena, we made some apparently reasonable decisions: We modeled real-world objects with local state by computational objects with local variables. We identified time variation in the real world with time variation in the computer. We implemented the time variation of the states of the model objects in the computer with assignments to the local variables of the model objects.
 
-Is there another approach? Can we avoid identifying time in the computer with time in the modeled world? Must we make the model change with time in order to model phenomena in a changing world? Think about the issue in terms of mathematical functions. We can describe the time-varying behavior of a quantity $x$ as a function of time $x(t)$. If we concentrate on $x$ instant by instant, we think of it as a changing quantity. Yet if we concentrate on the entire time history of values, we do not emphasize change—the function itself does not change.<sup><a href="#note-3-53">53</a></sup>
+Is there another approach? Can we avoid identifying time in the computer with time in the modeled world? Must we make the model change with time in order to model phenomena in a changing world? Think about the issue in terms of mathematical functions. We can describe the time-varying behavior of a quantity :latexmath:`x` as a function of time :latexmath:`x(t)`. If we concentrate on :latexmath:`x` instant by instant, we think of it as a changing quantity. Yet if we concentrate on the entire time history of values, we do not emphasize change—the function itself does not change.<sup><a href="#note-3-53">53</a></sup>
 
 If time is measured in discrete steps, then we can model a time function as a (possibly infinite) sequence. In this section, we will see how to model change in terms of sequences that represent the time histories of the systems being modeled. To accomplish this, we introduce new data structures called *streams*. From an abstract point of view, a stream is simply a sequence. However, we will find that the straightforward implementation of streams as lists (as in section 2.2.1) doesn't fully reveal the power of stream processing. As an alternative, we introduce the technique of *delayed evaluation*, which enables us to represent very large (even infinite) sequences as streams.
 
@@ -59,7 +59,13 @@ This expression does find the second prime, but the computational overhead is ou
 
 Streams are a clever idea that allows one to use sequence manipulations without incurring the costs of manipulating sequences as lists. With streams we can achieve the best of both worlds: We can formulate programs elegantly as sequence manipulations, while attaining the efficiency of incremental computation. The basic idea is to arrange to construct a stream only partially, and to pass the partial construction to the program that consumes the stream. If the consumer attempts to access a part of the stream that has not yet been constructed, the stream will automatically construct just enough more of itself to produce the required part, thus preserving the illusion that the entire stream exists. In other words, although we will write programs as if we were processing complete sequences, we design our stream implementation to automatically and transparently interleave the construction of the stream with its use.
 
-On the surface, streams are just lists with different names for the procedures that manipulate them. There is a constructor, `cons-stream`, and two selectors, `stream-car` and `stream-cdr`, which satisfy the constraints \begin{eqnarray*} \mbox{(stream-car (cons-stream x y))} &=& \mbox{x} \ \mbox{(stream-cdr (cons-stream x y))} &=& \mbox{y} \end{eqnarray*} There is a distinguishable object, `the-empty-stream`, which cannot be the result of any `cons-stream` operation, and which can be identified with the predicate `stream-null?`.<sup><a href="#note-3-55">55</a></sup>
+On the surface, streams are just lists with different names for the procedures that manipulate them. There is a constructor, `cons-stream`, and two selectors, `stream-car` and `stream-cdr`, which satisfy the constraints 
+
+```latexmath
+\begin{eqnarray*} \mbox{(stream-car (cons-stream x y))} &=& \mbox{x} \\ \mbox{(stream-cdr (cons-stream x y))} &=& \mbox{y} \end{eqnarray*}
+```
+
+ There is a distinguishable object, `the-empty-stream`, which cannot be the result of any `cons-stream` operation, and which can be identified with the predicate `stream-null?`.<sup><a href="#note-3-55">55</a></sup>
 
 Thus we can make and use streams, in just the same way as we can make and use lists, to represent aggregate data arranged in a sequence. In particular, we can build stream analogs of the list operations from chapter 2, such as `list-ref`, `map`, and `for-each`:<sup><a href="#note-3-56">56</a></sup>
 
@@ -297,7 +303,7 @@ What does the interpreter print in response to evaluating each expression in the
 (display-stream z)
 ```
 
-What is the value of `sum` after each of the above expressions is evaluated? What is the printed response to evaluating the `stream-ref` and `display-stream` expressions? Would these responses differ if we had implemented `(delay exp)` simply as `(lambda () exp)` without using the optimization provided by `memo-proc`$\,$? Explain.
+What is the value of `sum` after each of the above expressions is evaluated? What is the printed response to evaluating the `stream-ref` and `display-stream` expressions? Would these responses differ if we had implemented `(delay exp)` simply as `(lambda () exp)` without using the optimization provided by `memo-proc`:latexmath:`\,`? Explain.
 
 ::::: aside {id="note-3-54"}
 **54.** Assume that we have a predicate `prime?` (e.g., as in section 1.2.6) that tests for primality.
@@ -412,7 +418,7 @@ In analogy with `integers`, we can define the infinite stream of Fibonacci numbe
 (define fibs (fibgen 0 1))
 ```
 
-`Fibs` is a pair whose `car` is 0 and whose `cdr` is a promise to evaluate `(fibgen 1 1)`. When we evaluate this delayed `(fibgen 1 1)`, it will produce a pair whose `car` is 1 and whose `cdr` is a promise to evaluate `(fibgen 1 2)`, and so on.
+`Fibs` is a pair whose `car` is 0 and whose `cdr` is a promise to evaluate `(fibgen 1 1)`. When we evaluate this delayed `(fibgen 1 1)`, it will produce a pair whose `car` is 1 and whose `cdr` is a promise to evaluate `(fibgen 1 2)`, and so on.
 
 For a look at a more exciting infinite stream, we can generalize the `no-sevens` example to construct the infinite stream of prime numbers, using a *sieving* method.<sup><a href="#note-3-61">61</a></sup> We start with the integers beginning with 2, which is the first prime. To get the rest of the primes, we start by filtering the multiples of 2 from the rest of the integers. This leaves a stream beginning with 3, which is the next prime. Now we filter the multiples of 3 from the rest of this stream. This leaves a stream beginning with 5, which is the next prime, and so on. In other words, we construct the primes by a sieving process, described as follows: To sieve a stream S, form a stream whose first element is the first element of S and the rest of which is obtained by filtering all multiples of the first element of S out of the rest of S and sieving the result. This process is readily described in terms of stream operations:
 
@@ -534,11 +540,17 @@ We can define the Fibonacci numbers in the same style:
 
 This definition says that `fibs` is a stream beginning with 0 and 1, such that the rest of the stream can be generated by adding `fibs` to itself shifted by one place:
 
-$$\begin{array}{ccccccccccccl}
-& & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & \ldots & = & \texttt{(stream-cdr fibs)} \
-& & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & \ldots & = & \texttt{fibs} \ \hline
+
+
+```latexmath
+\begin{array}{ccccccccccccl}
+& & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & \ldots & = & \texttt{(stream-cdr fibs)} \\
+& & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & \ldots & = & \texttt{fibs} \\ \hline
 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & \ldots & = & \texttt{fibs}
-\end{array}$$
+\end{array}
+```
+
+
 
 `Scale-stream` is another useful procedure in formulating such stream definitions. This multiplies each item in a stream by a given constant:
 
@@ -553,7 +565,7 @@ For example,
 (define double (cons-stream 1 (scale-stream double 2)))
 ```
 
-produces the stream of powers of 2: $1, 2, 4, 8, 16, 32,$….
+produces the stream of powers of 2: :latexmath:`1, 2, 4, 8, 16, 32,`….
 
 An alternate definition of the stream of primes can be given by starting with the integers and filtering them by testing for primality. We will need the first prime, 2, to get started:
 
@@ -564,7 +576,7 @@ An alternate definition of the stream of primes can be given by starting with th
    (stream-filter prime? (integers-starting-from 3))))
 ```
 
-This definition is not so straightforward as it appears, because we will test whether a number $n$ is prime by checking whether $n$ is divisible by a prime (not by just any integer) less than or equal to $\sqrt{n}$:
+This definition is not so straightforward as it appears, because we will test whether a number :latexmath:`n` is prime by checking whether :latexmath:`n` is divisible by a prime (not by just any integer) less than or equal to :latexmath:`\sqrt{n}`:
 
 ```scheme
 (define (prime? n)
@@ -575,7 +587,7 @@ This definition is not so straightforward as it appears, because we will test wh
   (iter primes))
 ```
 
-This is a recursive definition, since `primes` is defined in terms of the `prime?` predicate, which itself uses the `primes` stream. The reason this procedure works is that, at any point, enough of the `primes` stream has been generated to test the primality of the numbers we need to check next. That is, for every $n$ we test for primality, either $n$ is not prime (in which case there is a prime already generated that divides it) or $n$ is prime (in which case there is a prime already generated—i.e., a prime less than $n$—that is greater than $\sqrt{n}$).<sup><a href="#note-3-64">64</a></sup>
+This is a recursive definition, since `primes` is defined in terms of the `prime?` predicate, which itself uses the `primes` stream. The reason this procedure works is that, at any point, enough of the `primes` stream has been generated to test the primality of the numbers we need to check next. That is, for every :latexmath:`n` we test for primality, either :latexmath:`n` is not prime (in which case there is a prime already generated that divides it) or :latexmath:`n` is prime (in which case there is a prime already generated—i.e., a prime less than :latexmath:`n`—that is greater than :latexmath:`\sqrt{n}`).<sup><a href="#note-3-64">64</a></sup>
 
 **Exercise 3.53.** Without running the program, describe the elements of the stream defined by
 
@@ -583,13 +595,13 @@ This is a recursive definition, since `primes` is defined in terms of the `prime
 (define s (cons-stream 1 (add-streams s s)))
 ```
 
-**Exercise 3.54.** Define a procedure`mul-streams`, analogous to `add-streams`, that produces the elementwise product of its two input streams. Use this together with the stream of `integers` to complete the following definition of the stream whose $n$th element (counting from 0) is $n+1$ factorial:
+**Exercise 3.54.** Define a procedure`mul-streams`, analogous to `add-streams`, that produces the elementwise product of its two input streams. Use this together with the stream of `integers` to complete the following definition of the stream whose :latexmath:`n`th element (counting from 0) is :latexmath:`n+1` factorial:
 
 ```scheme
 (define factorials (cons-stream 1 (mul-streams ?? ??)))
 ```
 
-**Exercise 3.55.** Define a procedure`partial-sums` that takes as argument a stream $S$ and returns the stream whose elements are $S_0, S_0+S_1, S_0+S_1+S_2,$…. For example, `(partial-sums integers)` should be the stream $1, 3, 6, 10, 15,\ldots$.
+**Exercise 3.55.** Define a procedure`partial-sums` that takes as argument a stream :latexmath:`S` and returns the stream whose elements are :latexmath:`S_0, S_0+S_1, S_0+S_1+S_2,`…. For example, `(partial-sums integers)` should be the stream :latexmath:`1, 3, 6, 10, 15,\ldots`.
 
 **Exercise 3.56.** A famous problem, first raised by R. Hamming, is to enumerate, in ascending order with no repetitions, all positive integers with no prime factors other than 2, 3, or 5. One obvious way to do this is to simply test each integer in turn to see whether it has any factors other than 2, 3, and 5. But this is very inefficient, since, as the integers get larger, fewer and fewer of them fit the requirement. As an alternative, let us call the required stream of numbers `S` and notice the following facts about it.
 - `S` begins with 1.
@@ -623,7 +635,7 @@ Then the required stream may be constructed with `merge`, as follows:
 
 Fill in the missing expressions in the places marked &lt;??&gt; above.
 
-**Exercise 3.57.** How many additions are performed when we compute the $n$th Fibonacci number using the definition of `fibs` based on the `add-streams` procedure? Show that the number of additions would be exponentially greater if we had implemented `(delay exp)` simply as `(lambda () exp)`, without using the optimization provided by the `memo-proc` procedure described in section 3.5.1.<sup><a href="#note-3-65">65</a></sup>
+**Exercise 3.57.** How many additions are performed when we compute the :latexmath:`n`th Fibonacci number using the definition of `fibs` based on the `add-streams` procedure? Show that the number of additions would be exponentially greater if we had implemented `(delay exp)` simply as `(lambda () exp)`, without using the optimization provided by the `memo-proc` procedure described in section 3.5.1.<sup><a href="#note-3-65">65</a></sup>
 
 **Exercise 3.58.** Give an interpretation of the stream computed by the following procedure:
 
@@ -638,25 +650,37 @@ Fill in the missing expressions in the places marked &lt;??&gt; above.
 
 **Exercise 3.59.** In section 2.5.3 we saw how to implement a polynomial arithmetic system representing polynomials as lists of terms. In a similar way, we can work with *power series*, such as
 
-$$\begin{array}{rll}
+
+
+```latexmath
+\begin{array}{rll}
 e^{x} &=&
 1+x+\dfrac{x^{2}}{2}+\dfrac{x^{3}}{3\cdot2}
-+\dfrac{x^{4}}{4\cdot 3\cdot 2}+\cdots, \[9pt]
-\cos x &=& 1-\dfrac{x^{2}}{2}+\dfrac{x^{4}}{4\cdot 3\cdot 2}-\cdots, \[9pt]
++\dfrac{x^{4}}{4\cdot 3\cdot 2}+\cdots, \\[9pt]
+\cos x &=& 1-\dfrac{x^{2}}{2}+\dfrac{x^{4}}{4\cdot 3\cdot 2}-\cdots, \\[9pt]
 \sin x &=& x-\dfrac{x^{3}}{3\cdot 2}
 +\dfrac{x^{5}}{5\cdot 4\cdot 3\cdot 2}- \cdots,
-\end{array}$$
+\end{array}
+```
 
-represented as infinite streams. We will represent the series $a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$ as the stream whose elements are the coefficients $a_0, a_1, a_2, a_3,$….
-a. The integral of the series $a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$ is the series
 
-$$\begin{array}{l}
+
+represented as infinite streams. We will represent the series :latexmath:`a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots` as the stream whose elements are the coefficients :latexmath:`a_0, a_1, a_2, a_3,`….
+a. The integral of the series :latexmath:`a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots` is the series
+
+
+
+```latexmath
+\begin{array}{l}
 c + a_0 x + \frac{1}{2}a_1 x^2 + \frac{1}{3}a_2 x^3 + \frac{1}{4}a_3
 x^4 + \cdots
-\end{array}$$
+\end{array}
+```
 
-where $c$ is any constant. Define a procedure`integrate-series` that takes as input a stream $a_0, a_1, a_2,\ldots$ representing a power series and returns the stream $a_0, \frac{1}{2}a_1, \frac{1}{3}a_2,\ldots$ of coefficients of the nonconstant terms of the integral of the series. (Since the result has no constant term, it doesn't represent a power series; when we use `integrate-series`, we will `cons` on the appropriate constant.)
-b. The function $x\mapsto e^x$ is its own derivative. This implies that $e^x$ and the integral of $e^x$ are the same series, except for the constant term, which is $e^0 = 1$. Accordingly, we can generate the series for $e^x$ as
+
+
+where :latexmath:`c` is any constant. Define a procedure`integrate-series` that takes as input a stream :latexmath:`a_0, a_1, a_2,\ldots` representing a power series and returns the stream :latexmath:`a_0, \frac{1}{2}a_1, \frac{1}{3}a_2,\ldots` of coefficients of the nonconstant terms of the integral of the series. (Since the result has no constant term, it doesn't represent a power series; when we use `integrate-series`, we will `cons` on the appropriate constant.)
+b. The function :latexmath:`x\mapsto e^x` is its own derivative. This implies that :latexmath:`e^x` and the integral of :latexmath:`e^x` are the same series, except for the constant term, which is :latexmath:`e^0 = 1`. Accordingly, we can generate the series for :latexmath:`e^x` as
 
 ```scheme
 (define exp-series
@@ -680,9 +704,15 @@ Show how to generate the series for sine and cosine, starting from the facts tha
   (cons-stream ?? (add-streams ?? ??)))
 ```
 
-You can test your procedure by verifying that $sin^2 x + cos^2 x = 1$, using the series from exercise 3.59.
+You can test your procedure by verifying that :latexmath:`sin^2 x + cos^2 x = 1`, using the series from exercise 3.59.
 
-**Exercise 3.61.** Let $S$ be a power series (exercise 3.59) whose constant term is 1. Suppose we want to find the power series $1/S$, that is, the series $X$ such that $S\cdot X= 1$. Write $S=1+S_R$ where $S_R$ is the part of $S$ after the constant term. Then we can solve for $X$ as follows: \[ \begin{array}{rll} S \cdot X &=& 1 \ (1+S_R)\cdot X &=& 1 \ X + S_R \cdot X &=& 1 \ X &=& 1 - S_R \cdot X \end{array} \] In other words, $X$ is the power series whose constant term is 1 and whose higher-order terms are given by the negative of $S_R$ times $X$. Use this idea to write a procedure`invert-unit-series` that computes $1/S$ for a power series $S$ with constant term 1. You will need to use `mul-series` from exercise 3.60.
+**Exercise 3.61.** Let :latexmath:`S` be a power series (exercise 3.59) whose constant term is 1. Suppose we want to find the power series :latexmath:`1/S`, that is, the series :latexmath:`X` such that :latexmath:`S\cdot X= 1`. Write :latexmath:`S=1+S_R` where :latexmath:`S_R` is the part of :latexmath:`S` after the constant term. Then we can solve for :latexmath:`X` as follows: 
+
+```latexmath
+\begin{array}{rll} S \cdot X &=& 1 \\ (1+S_R)\cdot X &=& 1 \\ X + S_R \cdot X &=& 1 \\ X &=& 1 - S_R \cdot X \end{array}
+```
+
+ In other words, :latexmath:`X` is the power series whose constant term is 1 and whose higher-order terms are given by the negative of :latexmath:`S_R` times :latexmath:`X`. Use this idea to write a procedure`invert-unit-series` that computes :latexmath:`1/S` for a power series :latexmath:`S` with constant term 1. You will need to use `mul-series` from exercise 3.60.
 
 **Exercise 3.62.** Use the results of exercises 3.60 and 3.61 to define a procedure`div-series` that divides two power series. `Div-series` should work for any two series, provided that the denominator series begins with a nonzero constant term. (If the denominator has a zero constant term, then `div-series` should signal an error.) Show how to use `div-series` together with the result of exercise 3.59 to generate the power series for tangent.
 
@@ -699,7 +729,7 @@ You can test your procedure by verifying that $sin^2 x + cos^2 x = 1$, using the
 :::::
 
 ::::: aside {id="note-3-64"}
-**64.** This last point is very subtle and relies on the fact that $p_{n+1} \leq p_{n}^2$. (Here, $p_{k}$ denotes the $k$th prime.) Estimates such as these are very difficult to establish. The ancient proof by  Euclid that there are an infinite number of primes shows that $p_{n+1}\leq p_{1} p_{2}\,\cdots\,\, p_{n} +1$, and no substantially better result was proved until 1851, when the Russian mathematician  P. L. Chebyshev established that $p_{n+1}\leq 2p_{n}$ for all $n$. This result, originally conjectured in 1845, is known as *Bertrand's hypothesis*. A proof can be found in section 22.3 of Hardy and Wright 1960.
+**64.** This last point is very subtle and relies on the fact that :latexmath:`p_{n+1} \leq p_{n}^2`. (Here, :latexmath:`p_{k}` denotes the :latexmath:`k`th prime.) Estimates such as these are very difficult to establish. The ancient proof by  Euclid that there are an infinite number of primes shows that :latexmath:`p_{n+1}\leq p_{1} p_{2}\,\cdots\,\, p_{n} +1`, and no substantially better result was proved until 1851, when the Russian mathematician  P. L. Chebyshev established that :latexmath:`p_{n+1}\leq 2p_{n}` for all :latexmath:`n`. This result, originally conjectured in 1845, is known as *Bertrand's hypothesis*. A proof can be found in section 22.3 of Hardy and Wright 1960.
 :::::
 
 ::::: aside {id="note-3-65"}
@@ -714,7 +744,7 @@ The stream approach can be illuminating because it allows us to build systems wi
 
 #### Formulating iterations as stream processes
 
-In section 1.2.1, we introduced iterative processes, which proceed by updating state variables. We know now that we can represent state as a "timeless" stream of values rather than as a set of variables to be updated. Let's adopt this perspective in revisiting the square-root procedure from section 1.1.7. Recall that the idea is to generate a sequence of better and better guesses for the square root of $x$ by applying over and over again the procedure that improves guesses:
+In section 1.2.1, we introduced iterative processes, which proceed by updating state variables. We know now that we can represent state as a "timeless" stream of values rather than as a set of variables to be updated. Let's adopt this perspective in revisiting the square-root procedure from section 1.1.7. Recall that the idea is to generate a sequence of better and better guesses for the square root of :latexmath:`x` by applying over and over again the procedure that improves guesses:
 
 ```scheme
 (define (sqrt-improve guess x)
@@ -800,11 +830,17 @@ In our original `sqrt`procedure, we made these guesses be the successive values 
 
 We can generate more and more terms of the stream to get better and better guesses. If we like, we can write a procedure that keeps generating terms until the answer is good enough. (See exercise 3.64.)
 
-Another iteration that we can treat in the same way is to generate an approximation to $\pi$, based upon the alternating series that we saw in section 1.3.1:
+Another iteration that we can treat in the same way is to generate an approximation to :latexmath:`\pi`, based upon the alternating series that we saw in section 1.3.1:
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 \dfrac {\pi}{4} &=& 1-\dfrac{1}{3}+\dfrac{1}{5}-\dfrac{1}{7}+\cdots
-\end{array}$$
+\end{array}
+```
+
+
 
 We first generate the stream of summands of the series (the reciprocals of the odd integers, with alternating signs). Then we take the stream of sums of more and more terms (using the `partial-sums` procedure of exercise 3.55) and scale the result by 4:
 
@@ -888,21 +924,27 @@ We first generate the stream of summands of the series (the reciprocals of the o
 
 </details>
 
-This gives us a stream of better and better approximations to $\pi$, although the approximations converge rather slowly. Eight terms of the sequence bound the value of $\pi$ between 3.284 and 3.017.
+This gives us a stream of better and better approximations to :latexmath:`\pi`, although the approximations converge rather slowly. Eight terms of the sequence bound the value of :latexmath:`\pi` between 3.284 and 3.017.
 
 So far, our use of the stream of states approach is not much different from updating state variables. But streams give us an opportunity to do some interesting tricks. For example, we can transform a stream with a *sequence accelerator* that converts a sequence of approximations to a new sequence that converges to the same value as the original, only faster.
 
-One such accelerator, due to the eighteenth-century Swiss mathematician Leonhard Euler, works well with sequences that are partial sums of alternating series (series of terms with alternating signs). In Euler's technique, if $S_n$ is the $n$th term of the original sum sequence, then the accelerated sequence has terms
+One such accelerator, due to the eighteenth-century Swiss mathematician Leonhard Euler, works well with sequences that are partial sums of alternating series (series of terms with alternating signs). In Euler's technique, if :latexmath:`S_n` is the :latexmath:`n`th term of the original sum sequence, then the accelerated sequence has terms
 
-$$\begin{array}{l}
+
+
+```latexmath
+\begin{array}{l}
 S_{n+1} - \dfrac{(S_{n+1}-S_n)^2}{S_{n-1}-2S_n+S_{n+1}}
-\end{array}$$
+\end{array}
+```
+
+
 
 Thus, if the original sequence is represented as a stream of values, the transformed sequence is given by
 
-(define (euler-transform s) (let ((s0 (stream-ref s 0)) ; $S_{n-1}$ (s1 (stream-ref s 1)) ; $S_{n}$ (s2 (stream-ref s 2))) ; $S_{n+1}$ (cons-stream (- s2 (/ (square (- s2 s1)) (+ s0 (* -2 s1) s2))) (euler-transform (stream-cdr s)))))
+(define (euler-transform s) (let ((s0 (stream-ref s 0)) ; :latexmath:`S_{n-1}` (s1 (stream-ref s 1)) ; :latexmath:`S_{n}` (s2 (stream-ref s 2))) ; :latexmath:`S_{n+1}` (cons-stream (- s2 (/ (square (- s2 s1)) (+ s0 (* -2 s1) s2))) (euler-transform (stream-cdr s)))))
 
-We can demonstrate Euler acceleration with our sequence of approximations to $\pi$:
+We can demonstrate Euler acceleration with our sequence of approximations to :latexmath:`\pi`:
 
 <!-- verification:example-090 -->
 **Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
@@ -1013,12 +1055,18 @@ Even better, we can accelerate the accelerated sequence, and recursively acceler
 
 The tableau has the form
 
-$$\begin{array}{llllll}
-s_{00} & s_{01} & s_{02} & s_{03} & s_{04} & \ldots\
-& s_{10} & s_{11} & s_{12} & s_{13} & \ldots\
-& & s_{20} & s_{21} & s_{22} & \ldots\
+
+
+```latexmath
+\begin{array}{llllll}
+s_{00} & s_{01} & s_{02} & s_{03} & s_{04} & \ldots\\
+& s_{10} & s_{11} & s_{12} & s_{13} & \ldots\\
+& & s_{20} & s_{21} & s_{22} & \ldots\\
 & & & & \ldots &
-\end{array}$$
+\end{array}
+```
+
+
 
 Finally, we form a sequence by taking the first term in each row of the tableau:
 
@@ -1028,7 +1076,7 @@ Finally, we form a sequence by taking the first term in each row of the tableau:
               (make-tableau transform s)))
 ```
 
-We can demonstrate this kind of "super-acceleration" of the $\pi$ sequence:
+We can demonstrate this kind of "super-acceleration" of the :latexmath:`\pi` sequence:
 
 <!-- verification:example-091 -->
 **Adaptation pending:** this transcript needs additional setup or an embedded evaluator; it is not yet a verified LIPS demonstration. [Verification details](audit.md).
@@ -1143,7 +1191,7 @@ We can demonstrate this kind of "super-acceleration" of the $\pi$ sequence:
 
 </details>
 
-The result is impressive. Taking eight terms of the sequence yields the correct value of $\pi$ to 14 decimal places. If we had used only the original $\pi$ sequence, we would need to compute on the order of $10^{13}$ terms (i.e., expanding the series far enough so that the individual terms are less then $10^{-13}$) to get that much accuracy!
+The result is impressive. Taking eight terms of the sequence yields the correct value of :latexmath:`\pi` to 14 decimal places. If we had used only the original :latexmath:`\pi` sequence, we would need to compute on the order of :latexmath:`10^{13}` terms (i.e., expanding the series far enough so that the individual terms are less then :latexmath:`10^{-13}`) to get that much accuracy!
 
 We could have implemented these acceleration techniques without using streams. But the stream formulation is particularly elegant and convenient because the entire sequence of states is available to us as a data structure that can be manipulated with a uniform set of operations.
 
@@ -1168,17 +1216,23 @@ Alyssa P. Hacker replies that this version of the procedure is considerably less
 
 **Exercise 3.65.** Use the series
 
-$$\begin{array}{lll}
-\ln 2 &=& 1-\dfrac{1}{2}+\dfrac{1}{3}-\dfrac{1}{4}+\cdots
-\end{array}$$
 
-to compute three sequences of approximations to the natural logarithm of 2, in the same way we did above for $\pi$. How rapidly do these sequences converge?
+
+```latexmath
+\begin{array}{lll}
+\ln 2 &=& 1-\dfrac{1}{2}+\dfrac{1}{3}-\dfrac{1}{4}+\cdots
+\end{array}
+```
+
+
+
+to compute three sequences of approximations to the natural logarithm of 2, in the same way we did above for :latexmath:`\pi`. How rapidly do these sequences converge?
 
 #### Infinite streams of pairs
 
 In section 2.2.3, we saw how the sequence paradigm handles traditional nested loops as processes defined on sequences of pairs. If we generalize this technique to infinite streams, then we can write programs that are not easily represented as loops, because the "looping" must range over an infinite set.
 
-For example, suppose we want to generalize the `prime-sum-pairs` procedure of section 2.2.3 to produce the stream of pairs of *all* integers $(i,j)$ with $i \leq j$ such that $i+j$ is prime. If `int-pairs` is the sequence of all pairs of integers $(i,j)$ with $i \leq j$, then our required stream is simply<sup><a href="#note-3-67">67</a></sup>
+For example, suppose we want to generalize the `prime-sum-pairs` procedure of section 2.2.3 to produce the stream of pairs of *all* integers :latexmath:`(i,j)` with :latexmath:`i \leq j` such that :latexmath:`i+j` is prime. If `int-pairs` is the sequence of all pairs of integers :latexmath:`(i,j)` with :latexmath:`i \leq j`, then our required stream is simply<sup><a href="#note-3-67">67</a></sup>
 
 ```scheme
 (stream-filter (lambda (pair)
@@ -1186,35 +1240,53 @@ For example, suppose we want to generalize the `prime-sum-pairs` procedure of se
                int-pairs)
 ```
 
-Our problem, then, is to produce the stream `int-pairs`. More generally, suppose we have two streams $S = (S_i)$ and $T = (T_j)$, and imagine the infinite rectangular array
+Our problem, then, is to produce the stream `int-pairs`. More generally, suppose we have two streams :latexmath:`S = (S_i)` and :latexmath:`T = (T_j)`, and imagine the infinite rectangular array
 
-$$\begin{array}{cccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-(S_1,T_0) & (S_1,T_1) & (S_1, T_2) & \ldots\
-(S_2,T_0) & (S_2,T_1) & (S_2, T_2) & \ldots\
+
+
+```latexmath
+\begin{array}{cccc}
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+(S_1,T_0) & (S_1,T_1) & (S_1, T_2) & \ldots\\
+(S_2,T_0) & (S_2,T_1) & (S_2, T_2) & \ldots\\
 \ldots
-\end{array}$$
+\end{array}
+```
+
+
 
 We wish to generate a stream that contains all the pairs in the array that lie on or above the diagonal, i.e., the pairs
 
-$$\begin{array}{cccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-& (S_1,T_1) & (S_1, T_2) & \ldots\
-& & (S_2, T_2) & \ldots\
+
+
+```latexmath
+\begin{array}{cccc}
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+& (S_1,T_1) & (S_1, T_2) & \ldots\\
+& & (S_2, T_2) & \ldots\\
 & & & \ldots
-\end{array}$$
+\end{array}
+```
 
-(If we take both $S$ and $T$ to be the stream of integers, then this will be our desired stream `int-pairs`.)
 
-Call the general stream of pairs `(pairs S T)`, and consider it to be composed of three parts: the pair $(S_0,T_0)$, the rest of the pairs in the first row, and the remaining pairs:<sup><a href="#note-3-68">68</a></sup>
 
-$$\begin{array}{c|ccc}
-(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\
-\hline{} %--------------------------------------------------- \
-& (S_1,T_1) & (S_1, T_2) & \ldots\
-& & (S_2, T_2) & \ldots\
+(If we take both :latexmath:`S` and :latexmath:`T` to be the stream of integers, then this will be our desired stream `int-pairs`.)
+
+Call the general stream of pairs `(pairs S T)`, and consider it to be composed of three parts: the pair :latexmath:`(S_0,T_0)`, the rest of the pairs in the first row, and the remaining pairs:<sup><a href="#note-3-68">68</a></sup>
+
+
+
+```latexmath
+\begin{array}{c|ccc}
+(S_0,T_0) & (S_0,T_1) & (S_0, T_2) & \ldots\\
+\hline{} %--------------------------------------------------- \\
+& (S_1,T_1) & (S_1, T_2) & \ldots\\
+& & (S_2, T_2) & \ldots\\
 & & & \ldots
-\end{array}$$
+\end{array}
+```
+
+
 
 Observe that the third piece in this decomposition (pairs that are not in the first row) is (recursively) the pairs formed from `(stream-cdr S)` and `(stream-cdr T)`. Also note that the second piece (the rest of the first row) is
 
@@ -1225,7 +1297,7 @@ Observe that the third piece in this decomposition (pairs that are not in the fi
 
 Thus we can form our stream of pairs as follows:
 
-(define (pairs s t) (cons-stream (list (stream-car s) (stream-car t)) ($\langle combine-in-some-way \rangle$ (stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t)) (pairs (stream-cdr s) (stream-cdr t)))))
+(define (pairs s t) (cons-stream (list (stream-car s) (stream-car t)) (:latexmath:`\langle combine-in-some-way \rangle` (stream-map (lambda (x) (list (stream-car s) x)) (stream-cdr t)) (pairs (stream-cdr s) (stream-cdr t)))))
 
 In order to complete the procedure, we must choose some way to combine the two inner streams. One idea is to use the stream analog of the `append`procedure from section 2.2.1:
 
@@ -1271,9 +1343,9 @@ We can thus generate the required stream of pairs as
 
 **Exercise 3.66.** Examine the stream `(pairs integers integers)`. Can you make any general comments about the order in which the pairs are placed into the stream? For example, approximately how many pairs precede the pair (1,100)? the pair (99,100)? the pair (100,100)? (If you can make precise mathematical statements here, all the better. But feel free to give more qualitative answers if you find yourself getting bogged down.)
 
-**Exercise 3.67.** Modify the `pairs`procedure so that `(pairs integers integers)` will produce the stream of *all* pairs of integers $(i,j)$ (without the condition $i \leq j$). Hint: You will need to mix in an additional stream.
+**Exercise 3.67.** Modify the `pairs`procedure so that `(pairs integers integers)` will produce the stream of *all* pairs of integers :latexmath:`(i,j)` (without the condition :latexmath:`i \leq j`). Hint: You will need to mix in an additional stream.
 
-**Exercise 3.68.** Louis Reasoner thinks that building a stream of pairs from three parts is unnecessarily complicated. Instead of separating the pair $(S_0,T_0)$ from the rest of the pairs in the first row, he proposes to work with the whole first row, as follows:
+**Exercise 3.68.** Louis Reasoner thinks that building a stream of pairs from three parts is unnecessarily complicated. Instead of separating the pair :latexmath:`(S_0,T_0)` from the rest of the pairs in the first row, he proposes to work with the whole first row, as follows:
 
 ```scheme
 (define (pairs s t)
@@ -1285,27 +1357,31 @@ We can thus generate the required stream of pairs as
 
 Does this work? Consider what happens if we evaluate `(pairs integers integers)` using Louis's definition of `pairs`.
 
-**Exercise 3.69.** Write a procedure`triples` that takes three infinite streams, $S$, $T$, and $U$, and produces the stream of triples $(S_i,T_j,U_k)$ such that $i \leq j \leq k$. Use `triples` to generate the stream of all Pythagorean triples of positive integers, i.e., the triples $(i,j,k)$ such that $i \leq j$ and $i^2 + j^2 =k^2$.
+**Exercise 3.69.** Write a procedure`triples` that takes three infinite streams, :latexmath:`S`, :latexmath:`T`, and :latexmath:`U`, and produces the stream of triples :latexmath:`(S_i,T_j,U_k)` such that :latexmath:`i \leq j \leq k`. Use `triples` to generate the stream of all Pythagorean triples of positive integers, i.e., the triples :latexmath:`(i,j,k)` such that :latexmath:`i \leq j` and :latexmath:`i^2 + j^2 =k^2`.
 
-**Exercise 3.70.** It would be nice to be able to generate streams in which the pairs appear in some useful order, rather than in the order that results from an *ad hoc* interleaving process. We can use a technique similar to the `merge`procedure of exercise 3.56, if we define a way to say that one pair of integers is "less than" another. One way to do this is to define a "weighting function"$W(i,j)$ and stipulate that $(i_1,j_1)$ is less than $(i_2,j_2)$ if $W(i_1,j_1) < W(i_2,j_2)$. Write a procedure `merge-weighted` that is like `merge`, except that `merge-weighted` takes an additional argument `weight`, which is a procedure that computes the weight of a pair, and is used to determine the order in which elements should appear in the resulting merged stream.<sup><a href="#note-3-70">70</a></sup> Using this, generalize `pairs` to a procedure `weighted-pairs` that takes two streams, together with a procedure that computes a weighting function, and generates the stream of pairs, ordered according to weight. Use your procedure to generate
-a. the stream of all pairs of positive integers $(i,j)$ with $i \leq
-j$ ordered according to the sum $i + j$
-b. the stream of all pairs of positive integers $(i,j)$ with $i \leq
-j$, where neither $i$ nor $j$ is divisible by 2, 3, or 5, and the pairs are ordered according to the sum $2 i + 3 j + 5 i j$.
+**Exercise 3.70.** It would be nice to be able to generate streams in which the pairs appear in some useful order, rather than in the order that results from an *ad hoc* interleaving process. We can use a technique similar to the `merge`procedure of exercise 3.56, if we define a way to say that one pair of integers is "less than" another. One way to do this is to define a "weighting function":latexmath:`W(i,j)` and stipulate that :latexmath:`(i_1,j_1)` is less than :latexmath:`(i_2,j_2)` if :latexmath:`W(i_1,j_1) < W(i_2,j_2)`. Write a procedure `merge-weighted` that is like `merge`, except that `merge-weighted` takes an additional argument `weight`, which is a procedure that computes the weight of a pair, and is used to determine the order in which elements should appear in the resulting merged stream.<sup><a href="#note-3-70">70</a></sup> Using this, generalize `pairs` to a procedure `weighted-pairs` that takes two streams, together with a procedure that computes a weighting function, and generates the stream of pairs, ordered according to weight. Use your procedure to generate
+a. the stream of all pairs of positive integers :latexmath:`(i,j)` with :latexmath:`i \leq j` ordered according to the sum :latexmath:`i + j`
+b. the stream of all pairs of positive integers :latexmath:`(i,j)` with :latexmath:`i \leq j`, where neither :latexmath:`i` nor :latexmath:`j` is divisible by 2, 3, or 5, and the pairs are ordered according to the sum :latexmath:`2 i + 3 j + 5 i j`.
 
-**Exercise 3.71.** Numbers that can be expressed as the sum of two cubes in more than one way are sometimes called *Ramanujan numbers*, in honor of the mathematician Srinivasa Ramanujan.<sup><a href="#note-3-71">71</a></sup> Ordered streams of pairs provide an elegant solution to the problem of computing these numbers. To find a number that can be written as the sum of two cubes in two different ways, we need only generate the stream of pairs of integers $(i,j)$ weighted according to the sum $i^3 + j^3$ (see exercise 3.70), then search the stream for two consecutive pairs with the same weight. Write a procedure to generate the Ramanujan numbers. The first such number is 1,729. What are the next five?
+**Exercise 3.71.** Numbers that can be expressed as the sum of two cubes in more than one way are sometimes called *Ramanujan numbers*, in honor of the mathematician Srinivasa Ramanujan.<sup><a href="#note-3-71">71</a></sup> Ordered streams of pairs provide an elegant solution to the problem of computing these numbers. To find a number that can be written as the sum of two cubes in two different ways, we need only generate the stream of pairs of integers :latexmath:`(i,j)` weighted according to the sum :latexmath:`i^3 + j^3` (see exercise 3.70), then search the stream for two consecutive pairs with the same weight. Write a procedure to generate the Ramanujan numbers. The first such number is 1,729. What are the next five?
 
 **Exercise 3.72.** In a similar way to exercise 3.71 generate a stream of all numbers that can be written as the sum of two squares in three different ways (showing how they can be so written).
 
 #### Streams as signals
 
-We began our discussion of streams by describing them as computational analogs of the "signals" in signal-processing systems. In fact, we can use streams to model signal-processing systems in a very direct way, representing the values of a signal at successive time intervals as consecutive elements of a stream. For instance, we can implement an *integrator* or *summer* that, for an input stream $x=(x_{i})$, an initial value $C$, and a small increment $dt$, accumulates the sum
+We began our discussion of streams by describing them as computational analogs of the "signals" in signal-processing systems. In fact, we can use streams to model signal-processing systems in a very direct way, representing the values of a signal at successive time intervals as consecutive elements of a stream. For instance, we can implement an *integrator* or *summer* that, for an input stream :latexmath:`x=(x_{i})`, an initial value :latexmath:`C`, and a small increment :latexmath:`dt`, accumulates the sum
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 S_i &=& C +\sum_{j=1}^{i} x_{j} \, dt
-\end{array}$$
+\end{array}
+```
 
-and returns the stream of values $S=(S_{i})$. The following `integral`procedure is reminiscent of the "implicit style" definition of the stream of integers (section 3.5.2):
+
+
+and returns the stream of values :latexmath:`S=(S_{i})`. The following `integral`procedure is reminiscent of the "implicit style" definition of the stream of integers (section 3.5.2):
 
 ```scheme
 (define (integral integrand initial-value dt)
@@ -1320,17 +1396,17 @@ and returns the stream of values $S=(S_{i})$. The following `integral`procedure 
 
 **Figure 3.32.** The `integral` procedure viewed as a signal-processing system.
 
-Figure 3.32 is a picture of a signal-processing system that corresponds to the `integral`procedure. The input stream is scaled by $dt$ and passed through an adder, whose output is passed back through the same adder. The self-reference in the definition of `int` is reflected in the figure by the feedback loop that connects the output of the adder to one of the inputs.
+Figure 3.32 is a picture of a signal-processing system that corresponds to the `integral`procedure. The input stream is scaled by :latexmath:`dt` and passed through an adder, whose output is passed back through the same adder. The self-reference in the definition of `int` is reflected in the figure by the feedback loop that connects the output of the adder to one of the inputs.
 
-**Exercise 3.73.** We can model electrical circuits using streams to represent the values of currents or voltages at a sequence of times. For instance, suppose we have an *RC circuit* consisting of a resistor of resistance $R$ and a capacitor of capacitance $C$ in series. The voltage response $v$ of the circuit to an injected current $i$ is determined by the formula in figure 3.33, whose structure is shown by the accompanying signal-flow diagram.
+**Exercise 3.73.** We can model electrical circuits using streams to represent the values of currents or voltages at a sequence of times. For instance, suppose we have an *RC circuit* consisting of a resistor of resistance :latexmath:`R` and a capacitor of capacitance :latexmath:`C` in series. The voltage response :latexmath:`v` of the circuit to an injected current :latexmath:`i` is determined by the formula in figure 3.33, whose structure is shown by the accompanying signal-flow diagram.
 
-Write a procedure`RC` that models this circuit. `RC` should take as inputs the values of $R$, $C$, and $dt$ and should return a procedure that takes as inputs a stream representing the current $i$ and an initial value for the capacitor voltage $v_{0}$ and produces as output the stream of voltages $v$. For example, you should be able to use `RC` to model an RC circuit with $R = 5$ ohms, $C = 1$ farad, and a 0.5-second time step by evaluating `(define RC1 (RC 5 1 0.5))`. This defines `RC1` as a procedure that takes a stream representing the time sequence of currents and an initial capacitor voltage and produces the output stream of voltages.
+Write a procedure`RC` that models this circuit. `RC` should take as inputs the values of :latexmath:`R`, :latexmath:`C`, and :latexmath:`dt` and should return a procedure that takes as inputs a stream representing the current :latexmath:`i` and an initial value for the capacitor voltage :latexmath:`v_{0}` and produces as output the stream of voltages :latexmath:`v`. For example, you should be able to use `RC` to model an RC circuit with :latexmath:`R = 5` ohms, :latexmath:`C = 1` farad, and a 0.5-second time step by evaluating `(define RC1 (RC 5 1 0.5))`. This defines `RC1` as a procedure that takes a stream representing the time sequence of currents and an initial capacitor voltage and produces the output stream of voltages.
 
-**Exercise 3.74.** Alyssa P. Hacker is designing a system to process signals coming from physical sensors. One important feature she wishes to produce is a signal that describes the *zero crossings* of the input signal. That is, the resulting signal should be $+1$ whenever the input signal changes from negative to positive, $-1$ whenever the input signal changes from positive to negative, and 0 otherwise. (Assume that the sign of a 0 input is positive.) For example, a typical input signal with its associated zero-crossing signal would be
+**Exercise 3.74.** Alyssa P. Hacker is designing a system to process signals coming from physical sensors. One important feature she wishes to produce is a signal that describes the *zero crossings* of the input signal. That is, the resulting signal should be :latexmath:`+1` whenever the input signal changes from negative to positive, :latexmath:`-1` whenever the input signal changes from positive to negative, and 0 otherwise. (Assume that the sign of a 0 input is positive.) For example, a typical input signal with its associated zero-crossing signal would be
 
-$\ldots$ 1 2 1.5 1 0.5 -0.1 -2 -3 -2 -0.5 0.2 3 4 $\ldots$ $\ldots$ 0 0 0 0 0 -1 0 0 0 0 1 0 0 $\ldots$
+:latexmath:`\ldots` 1 2 1.5 1 0.5 -0.1 -2 -3 -2 -0.5 0.2 3 4 :latexmath:`\ldots` :latexmath:`\ldots` 0 0 0 0 0 -1 0 0 0 0 1 0 0 :latexmath:`\ldots`
 
-In Alyssa's system, the signal from the sensor is represented as a stream `sense-data` and the stream `zero-crossings` is the corresponding stream of zero crossings. Alyssa first writes a procedure`sign-change-detector` that takes two values as arguments and compares the signs of the values to produce an appropriate $0$, $1$, or $-1$. She then constructs her zero-crossing stream as follows:
+In Alyssa's system, the signal from the sensor is represented as a stream `sense-data` and the stream `zero-crossings` is the corresponding stream of zero crossings. Alyssa first writes a procedure`sign-change-detector` that takes two values as arguments and compares the signs of the values to produce an appropriate :latexmath:`0`, :latexmath:`1`, or :latexmath:`-1`. She then constructs her zero-crossing stream as follows:
 
 ```scheme
 (define (make-zero-crossings input-stream last-value)
@@ -1382,7 +1458,7 @@ This does not correctly implement Alyssa's plan. Find the bug that Louis has ins
 :::::
 
 ::::: aside {id="note-3-69"}
-**69.** The precise statement of the required property on the order of combination is as follows: There should be a function $f$ of two arguments such that the pair corresponding to element $i$ of the first stream and element $j$ of the second stream will appear as element number $f(i,j)$ of the output stream. The trick of using `interleave` to accomplish this was shown to us by  David Turner, who employed it in the language  KRC (Turner 1981).
+**69.** The precise statement of the required property on the order of combination is as follows: There should be a function :latexmath:`f` of two arguments such that the pair corresponding to element :latexmath:`i` of the first stream and element :latexmath:`j` of the second stream will appear as element number :latexmath:`f(i,j)` of the output stream. The trick of using `interleave` to accomplish this was shown to us by  David Turner, who employed it in the language  KRC (Turner 1981).
 :::::
 
 ::::: aside {id="note-3-70"}
@@ -1406,13 +1482,13 @@ The `integral`procedure at the end of the preceding section shows how we can use
 
 The interpreter's ability to deal with such an implicit definition depends on the `delay` that is incorporated into `cons-stream`. Without this `delay`, the interpreter could not construct `int` before evaluating both arguments to `cons-stream`, which would require that `int` already be defined. In general, `delay` is crucial for using streams to model signal-processing systems that contain loops. Without `delay`, our models would have to be formulated so that the inputs to any signal-processing component would be fully evaluated before the output could be produced. This would outlaw loops.
 
-Unfortunately, stream models of systems with loops may require uses of `delay` beyond the "hidden"`delay` supplied by `cons-stream`. For instance, figure 3.34 shows a signal-processing system for solving the differential equation $dy/dt=f(y)$ where $f$ is a given function. The figure shows a mapping component, which applies $f$ to its input signal, linked in a feedback loop to an integrator in a manner very similar to that of the analog computer circuits that are actually used to solve such equations.
+Unfortunately, stream models of systems with loops may require uses of `delay` beyond the "hidden"`delay` supplied by `cons-stream`. For instance, figure 3.34 shows a signal-processing system for solving the differential equation :latexmath:`dy/dt=f(y)` where :latexmath:`f` is a given function. The figure shows a mapping component, which applies :latexmath:`f` to its input signal, linked in a feedback loop to an integrator in a manner very similar to that of the analog computer circuits that are actually used to solve such equations.
 
 ![](docs/img_original/ch3-Z-G-52.svg)
 
-**Figure 3.34.** An "analog computer circuit" that solves the equation $dy/dt = f(y)$.
+**Figure 3.34.** An "analog computer circuit" that solves the equation :latexmath:`dy/dt = f(y)`.
 
-Assuming we are given an initial value $y_0$ for $y$, we could try to model this system using the procedure
+Assuming we are given an initial value :latexmath:`y_0` for :latexmath:`y`, we could try to model this system using the procedure
 
 ```scheme
 (define (solve f y0 dt)
@@ -1446,7 +1522,7 @@ Now we can implement our `solve`procedure by delaying the evaluation of `dy` in 
   y)
 ```
 
-In general, every caller of `integral` must now `delay` the integrand argument. We can demonstrate that the `solve`procedure works by approximating $e\approx 2.718$ by computing the value at $y=1$ of the solution to the differential equation $dy/dt=y$ with initial condition $y(0)=1$:
+In general, every caller of `integral` must now `delay` the integrand argument. We can demonstrate that the `solve`procedure works by approximating :latexmath:`e\approx 2.718` by computing the value at :latexmath:`y=1` of the solution to the differential equation :latexmath:`dy/dt=y` with initial condition :latexmath:`y(0)=1`:
 
 <!-- verification:example-092 -->
 **Output comparison:** the current LIPS output differs from the printed result. [Verification details](audit.md).
@@ -1522,47 +1598,71 @@ When used in systems with loops, this procedure has the same problem as does our
 
 **Exercise 3.78.** Consider the problem of designing a signal-processing system to study the homogeneous second-order linear differential equation
 
-$$\begin{array}{lll}
-\dfrac {d^{2} y}{dt^{2}}-a\dfrac{dy}{dt}-by &=& 0
-\end{array}$$
 
-The output stream, modeling $y$, is generated by a network that contains a loop. This is because the value of $d^{2}y/dt^{2}$ depends upon the values of $y$ and $dy/dt$ and both of these are determined by integrating $d^{2}y/dt^{2}$. The diagram we would like to encode is shown in figure 3.35. Write a procedure `solve-2nd` that takes as arguments the constants $a$, $b$, and $dt$ and the initial values $y_{0}$ and $dy_{0}$ for $y$ and $dy/dt$ and generates the stream of successive values of $y$.
+
+```latexmath
+\begin{array}{lll}
+\dfrac {d^{2} y}{dt^{2}}-a\dfrac{dy}{dt}-by &=& 0
+\end{array}
+```
+
+
+
+The output stream, modeling :latexmath:`y`, is generated by a network that contains a loop. This is because the value of :latexmath:`d^{2}y/dt^{2}` depends upon the values of :latexmath:`y` and :latexmath:`dy/dt` and both of these are determined by integrating :latexmath:`d^{2}y/dt^{2}`. The diagram we would like to encode is shown in figure 3.35. Write a procedure `solve-2nd` that takes as arguments the constants :latexmath:`a`, :latexmath:`b`, and :latexmath:`dt` and the initial values :latexmath:`y_{0}` and :latexmath:`dy_{0}` for :latexmath:`y` and :latexmath:`dy/dt` and generates the stream of successive values of :latexmath:`y`.
 
 ![](docs/img_original/ch3-Z-G-53.svg)
 
 **Figure 3.35.** Signal-flow diagram for the solution to a second-order linear differential equation.
 
-**Exercise 3.79.** Generalize the `solve-2nd` procedure of exercise 3.78 so that it can be used to solve general second-order differential equations $d^{2} y/dt^{2}=f(dy/dt,\, y)$.
+**Exercise 3.79.** Generalize the `solve-2nd` procedure of exercise 3.78 so that it can be used to solve general second-order differential equations :latexmath:`d^{2} y/dt^{2}=f(dy/dt,\, y)`.
 
 ![](docs/img_original/ch3-Z-G-58.svg)
 
 **Figure 3.36.** A series RLC circuit.
 
-**Exercise 3.80.** A *series RLC circuit* consists of a resistor, a capacitor, and an inductor connected in series, as shown in figure 3.36. If $R$, $L$, and $C$ are the resistance, inductance, and capacitance, then the relations between voltage ($v$) and current ($i$) for the three components are described by the equations
+**Exercise 3.80.** A *series RLC circuit* consists of a resistor, a capacitor, and an inductor connected in series, as shown in figure 3.36. If :latexmath:`R`, :latexmath:`L`, and :latexmath:`C` are the resistance, inductance, and capacitance, then the relations between voltage (:latexmath:`v`) and current (:latexmath:`i`) for the three components are described by the equations
 
-$$\begin{array}{lll}
-v_{R} &=& i_{R} R\[9pt]
-v_{L} &=& L\dfrac{di_{L}}{dt}\[11pt]
+
+
+```latexmath
+\begin{array}{lll}
+v_{R} &=& i_{R} R\\[9pt]
+v_{L} &=& L\dfrac{di_{L}}{dt}\\[11pt]
 i_{C} &=& C\dfrac{dv_{C}}{dt}
-\end{array}$$
+\end{array}
+```
+
+
 
 and the circuit connections dictate the relations
 
-$$\begin{array}{lll}
-i_{R} &=& i_{L}=-i_{C}\[3pt]
+
+
+```latexmath
+\begin{array}{lll}
+i_{R} &=& i_{L}=-i_{C}\\[3pt]
 v_{C} &=& v_{L}+v_{R}
-\end{array}$$
+\end{array}
+```
 
-Combining these equations shows that the state of the circuit (summarized by $v_{C}$, the voltage across the capacitor, and $i_{L}$, the current in the inductor) is described by the pair of differential equations
 
-$$\begin{array}{lll}
-\dfrac{dv_{C}}{dt} &=& -\dfrac{i_{L}}{C}\[11pt]
+
+Combining these equations shows that the state of the circuit (summarized by :latexmath:`v_{C}`, the voltage across the capacitor, and :latexmath:`i_{L}`, the current in the inductor) is described by the pair of differential equations
+
+
+
+```latexmath
+\begin{array}{lll}
+\dfrac{dv_{C}}{dt} &=& -\dfrac{i_{L}}{C}\\[11pt]
 \dfrac {di_{L}}{dt} &=& \dfrac{1}{L}v_{C}-\dfrac{R}{L}i_{L}
-\end{array}$$
+\end{array}
+```
+
+
 
 The signal-flow diagram representing this system of differential equations is shown in figure 3.37.
 
-Write a procedure`RLC` that takes as arguments the parameters $R$, $L$, and $C$ of the circuit and the time increment $dt$. In a manner similar to that of the `RC`procedure of exercise 3.73, `RLC` should produce a procedure that takes the initial values of the state variables, $v_{C_{0}}$ and $i_{L_{0}}$, and produces a pair (using `cons`) of the streams of states $v_{C}$ and $i_{L}$. Using `RLC`, generate the pair of streams that models the behavior of a series RLC circuit with $R = 1$ ohm, $C= 0.2$ farad, $L = 1$ henry, $dt = 0.1$ second, and initial values $i_{L_{0}} = 0$ amps and $v_{C_{0}} = 10$ volts.
+Write a procedure`RLC` that takes as arguments the parameters :latexmath:`R`, :latexmath:`L`, and :latexmath:`C` of the circuit and the time increment :latexmath:`dt`. In a manner similar to that of the `RC`procedure of exercise 3.73, `RLC` should produce a procedure that takes the initial values of the state variables, :latexmath:`v_{C_{0}}` and :latexmath:`i_{L_{0}}`, and produces a pair (using `cons`) of the streams of states :latexmath:`v_{C}` and :latexmath:`i_{L}`. Using `RLC`, generate the pair of streams that models the behavior of a series RLC circuit with :latexmath:`R = 1` ohm, :latexmath:`C= 0.2` farad, :latexmath:`L = 1` henry, :latexmath:`dt = 0.1` second, and initial values :latexmath:`i_{L_{0}} = 0` amps and :latexmath:`v_{C_{0}} = 10` volts.
 
 #### Normal-order evaluation
 
@@ -1584,7 +1684,7 @@ One way to avoid the need for two different classes of procedures is to make all
 
 ### 3.5.5 Modularity of Functional Programs and Modularity of Objects
 
-As we saw in section 3.1.2, one of the major benefits of introducing assignment is that we can increase the modularity of our systems by encapsulating, or "hiding," parts of the state of a large system within local variables. Stream models can provide an equivalent modularity without the use of assignment. As an illustration, we can reimplement the Monte Carlo estimation of $\pi$, which we examined in section 3.1.2, from a stream-processing point of view.
+As we saw in section 3.1.2, one of the major benefits of introducing assignment is that we can increase the modularity of our systems by encapsulating, or "hiding," parts of the state of a large system within local variables. Stream models can provide an equivalent modularity without the use of assignment. As an illustration, we can reimplement the Monte Carlo estimation of :latexmath:`\pi`, which we examined in section 3.1.2, from a stream-processing point of view.
 
 The key modularity issue was that we wished to hide the internal state of a random-number generator from programs that used random numbers. We began with a procedure `rand-update`, whose successive values furnished our supply of random numbers, and used this to produce a random-number generator:
 
@@ -1617,7 +1717,7 @@ We use this to construct the stream of outcomes of the Cesàro experiment perfor
       (map-successive-pairs f (stream-cdr (stream-cdr s)))))
 ```
 
-The `cesaro-stream` is now fed to a `monte-carlo`procedure, which produces a stream of estimates of probabilities. The results are then converted into a stream of estimates of $\pi$. This version of the program doesn't need a parameter telling how many trials to perform. Better estimates of $\pi$ (from performing more experiments) are obtained by looking farther into the `pi` stream:
+The `cesaro-stream` is now fed to a `monte-carlo`procedure, which produces a stream of estimates of probabilities. The results are then converted into a stream of estimates of :latexmath:`\pi`. This version of the program doesn't need a parameter telling how many trials to perform. Better estimates of :latexmath:`\pi` (from performing more experiments) are obtained by looking farther into the `pi` stream:
 
 ```scheme
 (define (monte-carlo experiment-stream passed failed)

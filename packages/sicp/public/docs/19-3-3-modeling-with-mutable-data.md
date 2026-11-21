@@ -8,7 +8,7 @@ math: latexmath
 
 Chapter 2 dealt with compound data as a means for constructing computational objects that have several parts, in order to model real-world objects that have several aspects. In that chapter we introduced the discipline of data abstraction, according to which data structures are specified in terms of constructors, which create data objects, and selectors, which access the parts of compound data objects. But we now know that there is another aspect of data that chapter 2 did not address. The desire to model systems composed of objects that have changing state leads us to the need to modify compound data objects, as well as to construct and select from them. In order to model compound objects with changing state, we will design data abstractions to include, in addition to selectors and constructors, operations called *mutators*, which modify data objects. For instance, modeling a banking system requires us to change account balances. Thus, a data structure for representing bank accounts might admit an operation
 
-(set-balance! $account$ $new$-$value$)
+(set-balance! :latexmath:`account` :latexmath:`new`-:latexmath:`value`)
 
 that changes the balance of the designated account to the designated new value. Data objects for which mutators are defined are known as *mutable data objects*.
 
@@ -20,7 +20,7 @@ The basic operations on pairs—`cons`, `car`, and `cdr`—can be used to constr
 
 The primitive mutators for pairs are `set-car!` and `set-cdr!`.`Set-car!` takes two arguments, the first of which must be a pair. It modifies this pair, replacing the `car` pointer by a pointer to the second argument of `set-car!`.<sup><a href="#note-3-17">17</a></sup>
 
-As an example, suppose that `x` is bound to the list `((a b) c d)` and `y` to the list `(e f)` as illustrated in figure 3.12. Evaluating the expression `(set-car! x y)` modifies the pair to which `x` is bound, replacing its `car` by the value of `y`. The result of the operation is shown in figure 3.13. The structure `x` has been modified and would now be printed as `((e f) c d)`. The pairs representing the list `(a b)`, identified by the pointer that was replaced, are now detached from the original structure.<sup><a href="#note-3-18">18</a></sup>
+As an example, suppose that `x` is bound to the list `((a b) c d)` and `y` to the list `(e f)` as illustrated in figure 3.12. Evaluating the expression `(set-car! x y)` modifies the pair to which `x` is bound, replacing its `car` by the value of `y`. The result of the operation is shown in figure 3.13. The structure `x` has been modified and would now be printed as `((e f) c d)`. The pairs representing the list `(a b)`, identified by the pointer that was replaced, are now detached from the original structure.<sup><a href="#note-3-18">18</a></sup>
 
 ![](docs/img_original/ch3-Z-G-13.svg)
 
@@ -327,7 +327,7 @@ Even though `z1` and `z2` are "the same" structure, applying `set-to-wow!` to th
 
 </details>
 
-One way to detect sharing in list structures is to use the predicate `eq?`, which we introduced in section 2.3.1 as a way to test whether two symbols are equal. More generally, `(eq? x y)` tests whether `x` and `y` are the same object (that is, whether `x` and `y` are equal as pointers). Thus, with `z1` and `z2` as defined in figure 3.16 and 3.17, `(eq? (car z1) (cdr z1))` is true and `(eq? (car z2) (cdr z2))` is false.
+One way to detect sharing in list structures is to use the predicate `eq?`, which we introduced in section 2.3.1 as a way to test whether two symbols are equal. More generally, `(eq? x y)` tests whether `x` and `y` are the same object (that is, whether `x` and `y` are equal as pointers). Thus, with `z1` and `z2` as defined in figure 3.16 and 3.17, `(eq? (car z1) (cdr z1))` is true and `(eq? (car z2) (cdr z2))` is false.
 
 As will be seen in the following sections, we can exploit sharing to greatly extend the repertoire of data structures that can be represented by pairs. On the other hand, sharing can also be dangerous, since modifications made to structures will also affect other structures that happen to share the modified parts. The mutation operations `set-car!` and `set-cdr!` should be used with care; unless we have a good understanding of how our data objects are shared, mutation can have unanticipated results.<sup><a href="#note-3-21">21</a></sup>
 
@@ -475,10 +475,12 @@ tests if the queue is empty.
 returns the object at the front of the queue, signaling an error if the queue is empty; it does not modify the queue.
 - two mutators:
 `(insert-queue! queue item)`
-inserts the item at the rear of the queue and returns the modified queue as its value.\[4pt]`(delete-queue! queue)`
+inserts the item at the rear of the queue and returns the modified queue as its value.
+
+`(delete-queue! queue)`
 removes the item at the front of the queue and returns the modified queue as its value, signaling an error if the queue is empty before the deletion.
 
-Because a queue is a sequence of items, we could certainly represent it as an ordinary list; the front of the queue would be the `car` of the list, inserting an item in the queue would amount to appending a new element at the end of the list, and deleting an item from the queue would just be taking the `cdr` of the list. However, this representation is inefficient, because in order to insert an item we must scan the list until we reach the end. Since the only method we have for scanning a list is by successive `cdr` operations, this scanning requires $\Theta(n)$ steps for a list of $n$ items. A simple modification to the list representation overcomes this disadvantage by allowing the queue operations to be implemented so that they require $\Theta(1)$ steps; that is, so that the number of steps needed is independent of the length of the queue.
+Because a queue is a sequence of items, we could certainly represent it as an ordinary list; the front of the queue would be the `car` of the list, inserting an item in the queue would amount to appending a new element at the end of the list, and deleting an item from the queue would just be taking the `cdr` of the list. However, this representation is inefficient, because in order to insert an item we must scan the list until we reach the end. Since the only method we have for scanning a list is by successive `cdr` operations, this scanning requires :latexmath:`\Theta(n)` steps for a list of :latexmath:`n` items. A simple modification to the list representation overcomes this disadvantage by allowing the queue operations to be implemented so that they require :latexmath:`\Theta(1)` steps; that is, so that the number of steps needed is independent of the length of the queue.
 
 The difficulty with the list representation arises from the need to scan to find the end of the list. The reason we need to scan is that, although the standard way of representing a list as a chain of pairs readily provides us with a pointer to the beginning of the list, it gives us no easily accessible pointer to the end. The modification that avoids the drawback is to represent the queue as a list, together with an additional pointer that indicates the final pair in the list. That way, when we go to insert an item, we can consult the rear pointer and so avoid scanning the list.
 
@@ -631,11 +633,11 @@ To delete the item at the front of the queue, we merely modify the front pointer
 
 **Exercise 3.22.** Instead of representing a queue as a pair of pointers, we can build a queue as a procedure with local state. The local state will consist of pointers to the beginning and the end of an ordinary list. Thus, the `make-queue`procedure will have the form
 
-(define (make-queue) (let ((front-ptr $\ldots$ ) (rear-ptr $\ldots$ )) definitions of internal procedures (define (dispatch m) $\ldots$) dispatch))
+(define (make-queue) (let ((front-ptr :latexmath:`\ldots` ) (rear-ptr :latexmath:`\ldots` )) definitions of internal procedures (define (dispatch m) :latexmath:`\ldots`) dispatch))
 
 Complete the definition of `make-queue` and provide implementations of the queue operations using this representation.
 
-**Exercise 3.23.** A *deque* ("double-ended queue") is a sequence in which items can be inserted and deleted at either the front or the rear. Operations on deques are the constructor `make-deque`, the predicate `empty-deque`, selectors `front-deque` and `rear-deque`, and mutators `front-insert-deque!`,`front-delete-deque!`,`rear-insert-deque!`, and `rear-delete-deque`. Show how to represent deques using pairs, and give implementations of the operations.<sup><a href="#note-3-24">24</a></sup> All operations should be accomplished in $\Theta(1)$ steps.
+**Exercise 3.23.** A *deque* ("double-ended queue") is a sequence in which items can be inserted and deleted at either the front or the rear. Operations on deques are the constructor `make-deque`, the predicate `empty-deque`, selectors `front-deque` and `rear-deque`, and mutators `front-insert-deque!`,`front-delete-deque!`,`rear-insert-deque!`, and `rear-delete-deque`. Show how to represent deques using pairs, and give implementations of the operations.<sup><a href="#note-3-24">24</a></sup> All operations should be accomplished in :latexmath:`\Theta(1)` steps.
 
 ::::: aside {id="note-3-23"}
 **23.** If the first item is the final item in the queue, the front pointer will be the empty list after the deletion, which will mark the queue as empty; we needn't worry about updating the rear pointer, which will still point to the deleted item, because `empty-queue?` looks only at the front pointer.
@@ -786,7 +788,6 @@ The `lookup` and `insert!` operations defined above take the table as an argumen
 Using `make-table`, we could implement the `get` and `put` operations used in section 2.4.3 for data-directed programming, as follows:
 
 ```scheme
-operation-and-type tableimplementing
 (define operation-table (make-table))
 (define get (operation-table 'lookup-proc))
 (define put (operation-table 'insert-proc!))
@@ -834,7 +835,7 @@ where the memoizer is defined as
               result))))))
 ```
 
-Draw an environment diagram to analyze the computation of `(memo-fib 3)`. Explain why `memo-fib` computes the $n$th Fibonacci number in a number of steps proportional to $n$. Would the scheme still work if we had simply defined `memo-fib` to be `(memoize fib)`?
+Draw an environment diagram to analyze the computation of `(memo-fib 3)`. Explain why `memo-fib` computes the :latexmath:`n`th Fibonacci number in a number of steps proportional to :latexmath:`n`. Would the scheme still work if we had simply defined `memo-fib` to be `(memoize fib)`?
 
 ::::: aside {id="note-3-25"}
 **25.** Because `assoc` uses `equal?`, it can recognize keys that are symbols, numbers, or list structure.
@@ -854,7 +855,7 @@ Our computational model of a circuit will be composed of objects that correspond
 
 **Figure 3.24.** Primitive functions in the digital logic simulator.
 
-We can connect primitive functions together to construct more complex functions. To accomplish this we wire the outputs of some function boxes to the inputs of other function boxes. For example, the *half-adder* circuit shown in figure 3.25 consists of an or-gate, two and-gates, and an inverter. It takes two input signals, $A$ and $B$, and has two output signals, $S$ and $C$. $S$ will become 1 whenever precisely one of $A$ and $B$ is 1, and $C$ will become 1 whenever $A$ and $B$ are both 1. We can see from the figure that, because of the delays involved, the outputs may be generated at different times. Many of the difficulties in the design of digital circuits arise from this fact.
+We can connect primitive functions together to construct more complex functions. To accomplish this we wire the outputs of some function boxes to the inputs of other function boxes. For example, the *half-adder* circuit shown in figure 3.25 consists of an or-gate, two and-gates, and an inverter. It takes two input signals, :latexmath:`A` and :latexmath:`B`, and has two output signals, :latexmath:`S` and :latexmath:`C`. :latexmath:`S` will become 1 whenever precisely one of :latexmath:`A` and :latexmath:`B` is 1, and :latexmath:`C` will become 1 whenever :latexmath:`A` and :latexmath:`B` are both 1. We can see from the figure that, because of the delays involved, the outputs may be generated at different times. Many of the difficulties in the design of digital circuits arise from this fact.
 
 ![](docs/img_original/ch3-Z-G-25.svg)
 
@@ -1142,11 +1143,11 @@ An and-gate is a little more complex. The action procedure must be run if either
 
 **Exercise 3.29.** Another way to construct an or-gate is as a compound digital logic device, built from and-gates and inverters. Define a procedure`or-gate` that accomplishes this. What is the delay time of the or-gate in terms of `and-gate-delay` and `inverter-delay`?
 
-**Exercise 3.30.** Figure 3.27 shows a *ripple-carry adder* formed by stringing together $n$ full-adders. This is the simplest form of parallel adder for adding two $n$-bit binary numbers. The inputs $A_{1}$, $A_{2}$, $A_{3}$, …, $A_{n}$ and $B_{1}$, $B_{2}$, $B_{3}$, …, $B_{n}$ are the two binary numbers to be added (each $A_{k}$ and $B_{k}$ is a 0 or a 1). The circuit generates $S_{1}$, $S_{2}$, $S_{3}$, …, $S_{n}$, the $n$ bits of the sum, and $C$, the carry from the addition. Write a procedure`ripple-carry-adder` that generates this circuit. The procedure should take as arguments three lists of $n$ wires each—the $A_{k}$, the $B_{k}$, and the $S_{k}$—and also another wire $C$. The major drawback of the ripple-carry adder is the need to wait for the carry signals to propagate. What is the delay needed to obtain the complete output from an $n$-bit ripple-carry adder, expressed in terms of the delays for and-gates, or-gates, and inverters?
+**Exercise 3.30.** Figure 3.27 shows a *ripple-carry adder* formed by stringing together :latexmath:`n` full-adders. This is the simplest form of parallel adder for adding two :latexmath:`n`-bit binary numbers. The inputs :latexmath:`A_{1}`, :latexmath:`A_{2}`, :latexmath:`A_{3}`, …, :latexmath:`A_{n}` and :latexmath:`B_{1}`, :latexmath:`B_{2}`, :latexmath:`B_{3}`, …, :latexmath:`B_{n}` are the two binary numbers to be added (each :latexmath:`A_{k}` and :latexmath:`B_{k}` is a 0 or a 1). The circuit generates :latexmath:`S_{1}`, :latexmath:`S_{2}`, :latexmath:`S_{3}`, …, :latexmath:`S_{n}`, the :latexmath:`n` bits of the sum, and :latexmath:`C`, the carry from the addition. Write a procedure`ripple-carry-adder` that generates this circuit. The procedure should take as arguments three lists of :latexmath:`n` wires each—the :latexmath:`A_{k}`, the :latexmath:`B_{k}`, and the :latexmath:`S_{k}`—and also another wire :latexmath:`C`. The major drawback of the ripple-carry adder is the need to wait for the carry signals to propagate. What is the delay needed to obtain the complete output from an :latexmath:`n`-bit ripple-carry adder, expressed in terms of the delays for and-gates, or-gates, and inverters?
 
 ![](docs/img_original/ch3-Z-G-27.svg)
 
-**Figure 3.27.** A ripple-carry adder for $n$-bit numbers.
+**Figure 3.27.** A ripple-carry adder for :latexmath:`n`-bit numbers.
 
 #### Representing wires
 
@@ -2104,7 +2105,7 @@ The first agenda item is found at the head of the queue in the first time segmen
 **Exercise 3.32.** The procedures to be run during each time segment of the agenda are kept in a queue. Thus, the procedures for each segment are called in the order in which they were added to the agenda (first in, first out). Explain why this order must be used. In particular, trace the behavior of an and-gate whose inputs change from 0,1 to 1,0 in the same segment and say how the behavior would differ if we stored a segment's procedures in an ordinary list, adding and removing procedures only at the front (last in, first out).
 
 ::::: aside {id="note-3-27"}
-**27.** A full-adder is a basic circuit element used in adding two binary numbers. Here $A$ and $B$ are the bits at corresponding positions in the two numbers to be added, and $C_{\mathit{in}}$ is the carry bit from the addition one place to the right. The circuit generates $\mathit{SUM}$, which is the sum bit in the corresponding position, and $C_{\mathit{out}}$, which is the carry bit to be propagated to the left.
+**27.** A full-adder is a basic circuit element used in adding two binary numbers. Here :latexmath:`A` and :latexmath:`B` are the bits at corresponding positions in the two numbers to be added, and :latexmath:`C_{\mathit{in}}` is the carry bit from the addition one place to the right. The circuit generates :latexmath:`\mathit{SUM}`, which is the sum bit in the corresponding position, and :latexmath:`C_{\mathit{out}}`, which is the carry bit to be propagated to the left.
 :::::
 
 ::::: aside {id="note-3-28"}
@@ -2125,29 +2126,41 @@ The first agenda item is found at the head of the queue in the first time segmen
 
 ### 3.3.5 Propagation of Constraints
 
-Computer programs are traditionally organized as one-directional computations, which perform operations on prespecified arguments to produce desired outputs. On the other hand, we often model systems in terms of relations among quantities. For example, a mathematical model of a mechanical structure might include the information that the deflection $d$ of a metal rod is related to the force $F$ on the rod, the length $L$ of the rod, the cross-sectional area $A$, and the elastic modulus $E$ via the equation
+Computer programs are traditionally organized as one-directional computations, which perform operations on prespecified arguments to produce desired outputs. On the other hand, we often model systems in terms of relations among quantities. For example, a mathematical model of a mechanical structure might include the information that the deflection :latexmath:`d` of a metal rod is related to the force :latexmath:`F` on the rod, the length :latexmath:`L` of the rod, the cross-sectional area :latexmath:`A`, and the elastic modulus :latexmath:`E` via the equation
 
-$$\begin{array}{lll}
+
+
+```latexmath
+\begin{array}{lll}
 d A E & = & F L
-\end{array}$$
+\end{array}
+```
 
-Such an equation is not one-directional. Given any four of the quantities, we can use it to compute the fifth. Yet translating the equation into a traditional computer language would force us to choose one of the quantities to be computed in terms of the other four. Thus, a procedure for computing the area $A$ could not be used to compute the deflection $d$, even though the computations of $A$ and $d$ arise from the same equation.<sup><a href="#note-3-32">32</a></sup>
 
-In this section, we sketch the design of a language that enables us to work in terms of relations themselves. The primitive elements of the language are *primitive constraints*, which state that certain relations hold between quantities. For example, `(adder a b c)` specifies that the quantities $a$, $b$, and $c$ must be related by the equation $a+b=c$, `(multiplier x y z)` expresses the constraint $xy = z$, and `(constant 3.14 x)` says that the value of $x$ must be 3.14.
+
+Such an equation is not one-directional. Given any four of the quantities, we can use it to compute the fifth. Yet translating the equation into a traditional computer language would force us to choose one of the quantities to be computed in terms of the other four. Thus, a procedure for computing the area :latexmath:`A` could not be used to compute the deflection :latexmath:`d`, even though the computations of :latexmath:`A` and :latexmath:`d` arise from the same equation.<sup><a href="#note-3-32">32</a></sup>
+
+In this section, we sketch the design of a language that enables us to work in terms of relations themselves. The primitive elements of the language are *primitive constraints*, which state that certain relations hold between quantities. For example, `(adder a b c)` specifies that the quantities :latexmath:`a`, :latexmath:`b`, and :latexmath:`c` must be related by the equation :latexmath:`a+b=c`, `(multiplier x y z)` expresses the constraint :latexmath:`xy = z`, and `(constant 3.14 x)` says that the value of :latexmath:`x` must be 3.14.
 
 Our language provides a means of combining primitive constraints in order to express more complex relations. We combine constraints by constructing *constraint networks*, in which constraints are joined by *connectors*. A connector is an object that "holds" a value that may participate in one or more constraints. For example, we know that the relationship between Fahrenheit and Celsius temperatures is
 
-$$\begin{array}{lll}
-9C & = & 5(F - 32)
-\end{array}$$
 
-Such a constraint can be thought of as a network consisting of primitive adder, multiplier, and constant constraints (figure 3.28). In the figure, we see on the left a multiplier box with three terminals, labeled $m_1$, $m_2$, and $p$. These connect the multiplier to the rest of the network as follows: The $m_1$ terminal is linked to a connector $C$, which will hold the Celsius temperature. The $m_2$ terminal is linked to a connector $w$, which is also linked to a constant box that holds 9. The $p$ terminal, which the multiplier box constrains to be the product of $m_1$ and $m_2$, is linked to the $p$ terminal of another multiplier box, whose $m_2$ is connected to a constant 5 and whose $m_1$ is connected to one of the terms in a sum.
+
+```latexmath
+\begin{array}{lll}
+9C & = & 5(F - 32)
+\end{array}
+```
+
+
+
+Such a constraint can be thought of as a network consisting of primitive adder, multiplier, and constant constraints (figure 3.28). In the figure, we see on the left a multiplier box with three terminals, labeled :latexmath:`m_1`, :latexmath:`m_2`, and :latexmath:`p`. These connect the multiplier to the rest of the network as follows: The :latexmath:`m_1` terminal is linked to a connector :latexmath:`C`, which will hold the Celsius temperature. The :latexmath:`m_2` terminal is linked to a connector :latexmath:`w`, which is also linked to a constant box that holds 9. The :latexmath:`p` terminal, which the multiplier box constrains to be the product of :latexmath:`m_1` and :latexmath:`m_2`, is linked to the :latexmath:`p` terminal of another multiplier box, whose :latexmath:`m_2` is connected to a constant 5 and whose :latexmath:`m_1` is connected to one of the terms in a sum.
 
 ![](docs/img_original/ch3-Z-G-30.svg)
 
-**Figure 3.28.** The relation $9C = 5(F - 32)$ expressed as a constraint network.
+**Figure 3.28.** The relation :latexmath:`9C = 5(F - 32)` expressed as a constraint network.
 
-Computation by such a network proceeds as follows: When a connector is given a value (by the user or by a constraint box to which it is linked), it awakens all of its associated constraints (except for the constraint that just awakened it) to inform them that it has a value. Each awakened constraint box then polls its connectors to see if there is enough information to determine a value for a connector. If so, the box sets that connector, which then awakens all of its associated constraints, and so on. For instance, in conversion between Celsius and Fahrenheit, $w$, $x$, and $y$ are immediately set by the constant boxes to $9$, $5$, and $32$, respectively. The connectors awaken the multipliers and the adder, which determine that there is not enough information to proceed. If the user (or some other part of the network) sets $C$ to a value (say 25), the leftmost multiplier will be awakened, and it will set $u$ to $25\cdot 9=225$. Then $u$ awakens the second multiplier, which sets $v$ to $45$, and $v$ awakens the adder, which sets $F$ to $77$.
+Computation by such a network proceeds as follows: When a connector is given a value (by the user or by a constraint box to which it is linked), it awakens all of its associated constraints (except for the constraint that just awakened it) to inform them that it has a value. Each awakened constraint box then polls its connectors to see if there is enough information to determine a value for a connector. If so, the box sets that connector, which then awakens all of its associated constraints, and so on. For instance, in conversion between Celsius and Fahrenheit, :latexmath:`w`, :latexmath:`x`, and :latexmath:`y` are immediately set by the constant boxes to :latexmath:`9`, :latexmath:`5`, and :latexmath:`32`, respectively. The connectors awaken the multipliers and the adder, which determine that there is not enough information to proceed. If the user (or some other part of the network) sets :latexmath:`C` to a value (say 25), the leftmost multiplier will be awakened, and it will set :latexmath:`u` to :latexmath:`25\cdot 9=225`. Then :latexmath:`u` awakens the second multiplier, which sets :latexmath:`v` to :latexmath:`45`, and :latexmath:`v` awakens the adder, which sets :latexmath:`F` to :latexmath:`77`.
 
 #### Using the constraint system
 
@@ -3646,7 +3659,7 @@ There is a serious flaw in this idea. Explain.
 
 **Exercise 3.35.** Ben Bitdiddle tells Louis that one way to avoid the trouble in exercise 3.34 is to define a squarer as a new primitive constraint. Fill in the missing portions in Ben's outline for a procedure to implement such a constraint:
 
-(define (squarer a b) (define (process-new-value) (if (has-value? b) (if (< (get-value b) 0) (error "square less than 0 - - SQUARER" (get-value b)) $\langle alternative1\rangle$) $\langle alternative2 \rangle$)) (define (process-forget-value) $\langle body1 \rangle$) (define (me request) $\langle body2 \rangle$) $\langle rest\ of\ definition\rangle$ me)
+(define (squarer a b) (define (process-new-value) (if (has-value? b) (if (< (get-value b) 0) (error "square less than 0 - - SQUARER" (get-value b)) :latexmath:`\langle alternative1\rangle`) :latexmath:`\langle alternative2 \rangle`)) (define (process-forget-value) :latexmath:`\langle body1 \rangle`) (define (me request) :latexmath:`\langle body2 \rangle`) :latexmath:`\langle rest\ of\ definition\rangle` me)
 
 **Exercise 3.36.** Suppose we evaluate the following sequence of expressions in the global environment:
 
@@ -3696,7 +3709,7 @@ Define analogous procedures`c-`,`c*`,`c/`, and `cv` (constant value) that enable
 :::::
 
 ::::: aside {id="note-3-34"}
-**34.** The  expression-oriented format is convenient because it avoids the need to name the intermediate expressions in a computation. Our original formulation of the constraint language is cumbersome in the same way that many languages are cumbersome when dealing with operations on compound data. For example, if we wanted to compute the product ${(a+b)}\cdot{(c+d)}$, where the variables represent vectors, we could work in "imperative style," using procedures that set the values of designated vector arguments but do not themselves return vectors as values: 
+**34.** The  expression-oriented format is convenient because it avoids the need to name the intermediate expressions in a computation. Our original formulation of the constraint language is cumbersome in the same way that many languages are cumbersome when dealing with operations on compound data. For example, if we wanted to compute the product :latexmath:`{(a+b)}\cdot{(c+d)}`, where the variables represent vectors, we could work in "imperative style," using procedures that set the values of designated vector arguments but do not themselves return vectors as values: 
 
 ```scheme
 (v-sum a b temp1)

@@ -16,11 +16,15 @@ Differences include numeric formatting, alternative definitions, state mutations
 
 Unverified after editing: 0.
 
+## Text conformity
+
+All 33 reading sections have been compared with the supplied PDF. See the [section-by-section text conformity audit](text-conformity.md) for the method, corrections, authorized exceptions and limits. Execution failures above remain independent of that check.
+
 ## Source recovery
 
 The initially supplied Markdown is preserved unchanged for provenance, but is not used as the reading text: its exporter omitted Scheme-specific passages. The reading text is regenerated from the original XML at the revision recorded in source/upstream.json, selecting Scheme and PDF-only content. It includes 357 exercises, 338 notes and 95 figure captions. The 620-page original PDF is included, identified by SHA-256 in source/reference.json, and linked from every section. Its title pages and printed index remain available in that PDF.
 
-Text recovery and interpreter compatibility are separate checks. Original prose and printed results are retained; added dependency programs and verification notices are editorial additions. The XML revision predates the PDF creation by 19 minutes, but this is not a proof of character-for-character equivalence. Formula layout, page breaks and typography can differ in the web presentation. Global names can denote different procedures in different sections; the dependency resolver still needs review for the failing examples.
+Text recovery and interpreter compatibility are separate checks. Original prose and printed results are retained; added dependency programs and verification notices are editorial additions. The detailed text conformity report records comparisons against the PDF itself, not only the XML revision. Formula layout, page breaks and typography can differ in the web presentation. Global names can denote different procedures in different sections; the dependency resolver still needs review for the failing examples.
 
 ## Interactive examples
 
