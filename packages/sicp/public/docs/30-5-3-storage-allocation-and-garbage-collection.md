@@ -275,11 +275,11 @@ gc-flip
 :::::
 
 ::::: aside {id="note-5-14"}
-**14.** This idea was invented and first implemented by  Minsky, as part of the implementation of  Lisp for the PDP-1 at the  MIT Research Laboratory of Electronics. It was further developed by  Fenichel and Yochelson (1969) for use in the Lisp implementation for the  Multics time-sharing system. Later,  Baker (1978) developed a "real-time" version of the method, which does not require the computation to stop during garbage collection. Baker's idea was extended by  Hewitt,  Lieberman, and  Moon (see Lieberman and Hewitt 1983) to take advantage of the fact that some structure is more volatile and other structure is more permanent. 
+**14.** This idea was invented and first implemented by  Minsky, as part of the implementation of  Lisp for the PDP-1 at the  MIT Research Laboratory of Electronics. It was further developed by  :tp-ref:{href="@SICP-BIB-27" label="Fenichel and Yochelson (1969)"} for use in the Lisp implementation for the  Multics time-sharing system. Later,  :tp-ref:{href="@SICP-BIB-6" label="Baker (1978)"} developed a "real-time" version of the method, which does not require the computation to stop during garbage collection. Baker's idea was extended by  Hewitt,  Lieberman, and  Moon (see :tp-ref:{href="@SICP-BIB-67" label="Lieberman and Hewitt 1983"}) to take advantage of the fact that some structure is more volatile and other structure is more permanent. 
 
 
 
- An alternative commonly used garbage-collection technique is the *mark-sweep* method. This consists of tracing all the structure accessible from the machine registers and marking each pair we reach. We then scan all of memory, and any location that is unmarked is "swept up" as garbage and made available for reuse. A full discussion of the mark-sweep method can be found in Allen 1978. 
+ An alternative commonly used garbage-collection technique is the *mark-sweep* method. This consists of tracing all the structure accessible from the machine registers and marking each pair we reach. We then scan all of memory, and any location that is unmarked is "swept up" as garbage and made available for reuse. A full discussion of the mark-sweep method can be found in :tp-ref:{href="@ALL78" label="Allen 1978"}. 
 
 
 
@@ -297,3 +297,26 @@ gc-flip
 ::::: aside {id="note-5-17"}
 **17.** The garbage collector uses the low-level predicate `pointer-to-pair?` instead of the list-structure `pair?` operation because in a real system there might be various things that are treated as pairs for garbage-collection purposes. For example,  in a Scheme system that conforms to the IEEE standard  a  procedure  object may be implemented as a special kind of "pair" that doesn't satisfy the `pair?` predicate. For simulation purposes, `pointer-to-pair?` can be implemented as `pair?`.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-27" label="Fenichel 1969" id="bib-sicp-bib-27"}
+Fenichel, R., and J. Yochelson. 1969. A Lisp garbage collector for virtual memory computer systems. *Communications of the ACM* 12(11):611–612.
+:::
+
+::: tp-biblio {ref="SICP-BIB-6" label="Baker 1978" id="bib-sicp-bib-6"}
+Baker, Henry G., Jr. 1978. List processing in real time on a serial computer. *Communications of the ACM* 21(4):280–293.
+:::
+
+::: tp-biblio {ref="SICP-BIB-67" label="Lieberman 1983" id="bib-sicp-bib-67"}
+Lieberman, Henry, and Carl E. Hewitt. 1983. A real-time garbage collector based on the lifetimes of objects. *Communications of the ACM* 26(6):419–429.
+:::
+
+::: tp-biblio {ref="ALL78" label="Allen 1978" id="bib-all78"}
+Allen, John. 1978. *Anatomy of Lisp.* New York: McGraw-Hill.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

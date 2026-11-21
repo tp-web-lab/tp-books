@@ -9,6 +9,8 @@ const counts=Object.fromEntries(['passed','equivalent','exercise-result','expect
 const browser=existsSync(new URL('browser-verification.json',root))?read('browser-verification.json'):[];
 const browserCurrent=browser.filter(r=>{const e=examples.find(e=>e.id===r.id);return e&&r.signature===createHash('sha256').update(e.program+'\n'+e.query).digest('hex');});
 const browserCounts=Object.fromEntries(['passed','equivalent','exercise-result','expected-error','different','error'].map(status=>[status,browserCurrent.filter(r=>r.status===status).length]));
+const bibliography=read('bibliography.json');
+const bibliographyCheck=existsSync(new URL('bibliography-verification.json',root))?read('bibliography-verification.json'):null;
 const text=`# Adaptation and execution audit
 
 ## Scope
@@ -47,6 +49,20 @@ The browser check opens the actual generated reading pages in Chromium and runs 
 Current source verified in the browser: **${browserCurrent.length}/${examples.length} cells**. Results: ${browserCounts.passed} matching, ${browserCounts.equivalent} equivalent, ${browserCounts['exercise-result']} exercise answers, ${browserCounts['expected-error']} expected-error cases, ${browserCounts.different} differences, ${browserCounts.error} unexpected errors. Missing or stale: **${examples.length-browserCurrent.length}**.
 
 ${browserCurrent.filter(r=>['different','error'].includes(r.status)).map(r=>`- ${r.id}: ${escape(r.error??r.reason??r.actual)}`).join('\n')}
+
+## Bibliography and citations
+
+The reading edition uses tp-ref with the original author-date wording, tp-biblio definitions and one tp-listof on each page containing citations. References uses one merged tp-global-listof, retaining uncited notices and combining identical local definitions. Its links lead back to every citation, grouped by page; local reference scopes remain independent.
+
+There are **${bibliography.citations.length} citation occurrences** and **${bibliography.entries.length} distinct notices**. Citations explicitly tagged in the XML are converted structurally. Additional plain-text author-date citations are linked using a reviewed mapping; historical dates and Scheme source are not heuristically rewritten. The canonical text used for PDF comparison is unchanged.
+
+Eight notices cited in the PDF are absent from its bibliography. The linked edition restores the exact notices below, preserving the citation wording and keeping every original bibliography entry. These are disclosed editorial additions, not changes to the supplied PDF.
+
+| Notice | Provenance |
+| --- | --- |
+${bibliography.entries.filter(e=>e.supplemental).map(e=>`| ${e.label} | ${e.source?`[Original SICP bibliography](${e.source})`:e.provenance} |`).join('\n')}
+
+Browser checks in scripts/verify-bibliography.mjs verify local labels, tooltip content, local lists, global merging, citation links and browser Back navigation. Results are recorded in bibliography-verification.json.${bibliographyCheck?` Latest successful run: **${bibliographyCheck.pages.length} citing pages, ${bibliographyCheck.global.citations} citation links, one merged list of ${bibliographyCheck.global.terms} notices**, with tooltips and browser Back checked.`:''}
 
 ## Text conformity
 

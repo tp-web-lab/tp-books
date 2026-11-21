@@ -1682,11 +1682,11 @@ Explain why this interchange makes the program run slowly. Estimate how long it 
 :::::
 
 ::::: aside {id="note-2-15"}
-**15.** Richard Waters (1979) developed a program that automatically analyzes traditional  Fortran programs, viewing them in terms of maps, filters, and accumulations. He found that fully 90 percent of the code in the Fortran Scientific Subroutine Package fits neatly into this paradigm. One of the reasons for the success of Lisp as a programming language is that lists provide a standard medium for expressing ordered collections so that they can be manipulated using higher-order operations. Many modern languages, such as Python, have learned this lesson.
+**15.** Richard :tp-ref:{href="@SICP-BIB-105" label="Waters (1979)"} developed a program that automatically analyzes traditional  Fortran programs, viewing them in terms of maps, filters, and accumulations. He found that fully 90 percent of the code in the Fortran Scientific Subroutine Package fits neatly into this paradigm. One of the reasons for the success of Lisp as a programming language is that lists provide a standard medium for expressing ordered collections so that they can be manipulated using higher-order operations. Many modern languages, such as Python, have learned this lesson.
 :::::
 
 ::::: aside {id="note-2-16"}
-**16.** According to  Knuth (1997b), this rule was formulated by  W. G. Horner early in the nineteenth century, but the method was actually used by Newton over a hundred years earlier. Horner's rule evaluates the polynomial using fewer additions and multiplications than does the straightforward method of first computing :latexmath:`a_{n} x^n`, then adding :latexmath:`a_{n-1}x^{n-1}`, and so on. In fact, it is possible to prove that any algorithm for evaluating arbitrary polynomials must use at least as many additions and multiplications as does Horner's rule, and thus Horner's rule is an  optimal algorithm for polynomial evaluation. This was proved (for the number of additions) by  A. M. Ostrowski in a 1954 paper that essentially founded the modern study of optimal algorithms. The analogous statement for multiplications was proved by  V. Y. Pan in 1966. The book by  Borodin and Munro (1975)  provides an overview of these and other results about optimal algorithms.
+**16.** According to  :tp-ref:{href="@KNU97B" label="Knuth (1997b)"}, this rule was formulated by  W. G. Horner early in the nineteenth century, but the method was actually used by Newton over a hundred years earlier. Horner's rule evaluates the polynomial using fewer additions and multiplications than does the straightforward method of first computing :latexmath:`a_{n} x^n`, then adding :latexmath:`a_{n-1}x^{n-1}`, and so on. In fact, it is possible to prove that any algorithm for evaluating arbitrary polynomials must use at least as many additions and multiplications as does Horner's rule, and thus Horner's rule is an  optimal algorithm for polynomial evaluation. This was proved (for the number of additions) by  A. M. Ostrowski in a 1954 paper that essentially founded the modern study of optimal algorithms. The analogous statement for multiplications was proved by  V. Y. Pan in 1966. The book by :tp-ref:{href="@BOR75" label="Borodin and Munro (1975)"} provides an overview of these and other results about optimal algorithms.
 :::::
 
 ::::: aside {id="note-2-17"}
@@ -1694,7 +1694,7 @@ Explain why this interchange makes the program run slowly. Estimate how long it 
 :::::
 
 ::::: aside {id="note-2-18"}
-**18.** This approach to nested mappings was shown to us by  David Turner, whose languages  KRC and  Miranda provide elegant formalisms for dealing with these constructs. The examples in this section (see also exercise 2.42) are adapted from Turner 1981. In section 3.5.3, we'll see how this approach generalizes to infinite sequences.
+**18.** This approach to nested mappings was shown to us by  David Turner, whose languages  KRC and  Miranda provide elegant formalisms for dealing with these constructs. The examples in this section (see also exercise 2.42) are adapted from :tp-ref:{href="@TUR81" label="Turner 1981"}. In section 3.5.3, we'll see how this approach generalizes to infinite sequences.
 :::::
 
 ::::: aside {id="note-2-19"}
@@ -2058,7 +2058,7 @@ b. Change the pattern constructed by `corner-split` (for example, by using only 
 c. Modify the version of `square-limit` that uses `square-of-four` so as to assemble the corners in a different pattern. (For example, you might make the big Mr. Rogers look outward from each corner of the square.)
 
 ::::: aside {id="note-2-22"}
-**22.** The picture language is based on the language  Peter Henderson created to construct images like  M.C. Escher's "Square Limit" woodcut (see Henderson 1982). The woodcut incorporates a repeated scaled pattern, similar to the arrangements drawn using the `square-limit`procedure in this section.
+**22.** The picture language is based on the language  Peter Henderson created to construct images like  M.C. Escher's "Square Limit" woodcut (see :tp-ref:{href="@HEN82" label="Henderson 1982"}). The woodcut incorporates a repeated scaled pattern, similar to the arrangements drawn using the `square-limit`procedure in this section.
 :::::
 
 ::::: aside {id="note-2-23"}
@@ -2123,3 +2123,30 @@ c. Modify the version of `square-limit` that uses `square-of-four` so as to asse
 ::::: aside {id="note-2-31"}
 **31.** Section 3.3.4 describes one such language.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-105" label="Waters 1979" id="bib-sicp-bib-105"}
+Waters, Richard C. 1979. A method for analyzing loop programs. *IEEE Transactions on Software Engineering* 5(3):237–247.
+:::
+
+::: tp-biblio {ref="KNU97B" label="Knuth 1997b" id="bib-knu97b"}
+Knuth, Donald E. 1997b. *Seminumerical Algorithms.* Volume 2 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.
+:::
+
+::: tp-biblio {ref="BOR75" label="Borodin 1975" id="bib-bor75"}
+Borodin, Alan, and Ian Munro. 1975. *The Computational Complexity of Algebraic and Numeric Problems.* New York: American Elsevier.
+:::
+
+::: tp-biblio {ref="TUR81" label="Turner 1981" id="bib-tur81"}
+Turner, David. 1981. The future of applicative languages. In *Proceedings of the 3rd European Conference on Informatics,* Lecture Notes in Computer Science, volume 123. New York: Springer-Verlag, pp. 334–348.
+:::
+
+::: tp-biblio {ref="HEN82" label="Henderson 1982" id="bib-hen82"}
+Henderson. Peter. 1982. Functional Geometry. In *Conference Record of the 1982 ACM Symposium on Lisp and Functional Programming,* pp. 179–187.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

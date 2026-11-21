@@ -38,5 +38,16 @@ In section 4.4 we implement a *logic-programming* language in which knowledge i
 :::::
 
 ::::: aside {id="note-4-2"}
-**2.** The most important features that our evaluator leaves out are mechanisms for handling errors and supporting debugging. For a more extensive discussion of evaluators, see  Friedman, Wand, and Haynes 1992, which gives an exposition of programming languages that proceeds via a sequence of evaluators written in Scheme.
+**2.** The most important features that our evaluator leaves out are mechanisms for handling errors and supporting debugging. For a more extensive discussion of evaluators, see  :tp-ref:{href="@SICP-BIB-31" label="Friedman, Wand, and Haynes 1992"}, which gives an exposition of programming languages that proceeds via a sequence of evaluators written in Scheme.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-31" label="Friedman 1992" id="bib-sicp-bib-31"}
+Friedman, Daniel P., Mitchell Wand, and Christopher T. Haynes. 1992. *Essentials of Programming Languages.* Cambridge, MA: MIT Press/McGraw-Hill.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

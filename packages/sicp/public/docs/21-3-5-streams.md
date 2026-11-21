@@ -326,7 +326,7 @@ What is the value of `sum` after each of the above expressions is evaluated? Wha
 :::::
 
 ::::: aside {id="note-3-59"}
-**59.** There are many possible implementations of streams other than the one described in this section. Delayed evaluation, which is the key to making streams practical, was inherent in  Algol 60's *call-by-name* parameter-passing method. The use of this mechanism to implement streams was first described by  Landin (1965). Delayed evaluation for streams was introduced into Lisp by  Friedman and Wise (1976). In their implementation, `cons` always delays evaluating its arguments, so that lists automatically behave as streams. The memoizing optimization is also known as *call-by-need*. The Algol community would refer to our original delayed objects as *call-by-name thunks* and to the optimized versions as *call-by-need thunks*.
+**59.** There are many possible implementations of streams other than the one described in this section. Delayed evaluation, which is the key to making streams practical, was inherent in  Algol 60's *call-by-name* parameter-passing method. The use of this mechanism to implement streams was first described by  :tp-ref:{href="@SICP-BIB-66" label="Landin (1965)"}. Delayed evaluation for streams was introduced into Lisp by  :tp-ref:{href="@SICP-BIB-30" label="Friedman and Wise (1976)"}. In their implementation, `cons` always delays evaluating its arguments, so that lists automatically behave as streams. The memoizing optimization is also known as *call-by-need*. The Algol community would refer to our original delayed objects as *call-by-name thunks* and to the optimized versions as *call-by-need thunks*.
 :::::
 
 ::::: aside {id="note-3-60"}
@@ -717,7 +717,7 @@ You can test your procedure by verifying that :latexmath:`sin^2 x + cos^2 x = 1`
 **Exercise 3.62.** Use the results of exercises 3.60 and 3.61 to define a procedure`div-series` that divides two power series. `Div-series` should work for any two series, provided that the denominator series begins with a nonzero constant term. (If the denominator has a zero constant term, then `div-series` should signal an error.) Show how to use `div-series` together with the result of exercise 3.59 to generate the power series for tangent.
 
 ::::: aside {id="note-3-61"}
-**61.** This method is reminiscent of the ancient *sieve of Eratosthenes*, named for  Eratosthenes, a third-century BCE Alexandrian Greek mathematician. His sieve finds the primes by repeatedly crossing off the multiples of each prime in turn; although ancient, it has formed the basis for special-purpose hardware "sieves" that, until the 1970s, were the most powerful tools in existence for locating large primes. Since then, however, these methods have been superseded by outgrowths of the  probabilistic techniques discussed in section 1.2.6. But the stream-based method given here is not actually Eratosthenes's sieve: as Melissa E. O'Neill shows in O'Neill 2009, it tests each candidate for divisibility by the primes found so far—a form of *trial division*—rather than crossing off multiples, and is substantially less efficient than the sieve of Eratosthenes.
+**61.** This method is reminiscent of the ancient *sieve of Eratosthenes*, named for  Eratosthenes, a third-century BCE Alexandrian Greek mathematician. His sieve finds the primes by repeatedly crossing off the multiples of each prime in turn; although ancient, it has formed the basis for special-purpose hardware "sieves" that, until the 1970s, were the most powerful tools in existence for locating large primes. Since then, however, these methods have been superseded by outgrowths of the  probabilistic techniques discussed in section 1.2.6. But the stream-based method given here is not actually Eratosthenes's sieve: as Melissa E. O'Neill shows in :tp-ref:{href="@ONE09" label="O'Neill 2009"}, it tests each candidate for divisibility by the primes found so far—a form of *trial division*—rather than crossing off multiples, and is substantially less efficient than the sieve of Eratosthenes.
 :::::
 
 ::::: aside {id="note-3-62"}
@@ -729,7 +729,7 @@ You can test your procedure by verifying that :latexmath:`sin^2 x + cos^2 x = 1`
 :::::
 
 ::::: aside {id="note-3-64"}
-**64.** This last point is very subtle and relies on the fact that :latexmath:`p_{n+1} \leq p_{n}^2`. (Here, :latexmath:`p_{k}` denotes the :latexmath:`k`th prime.) Estimates such as these are very difficult to establish. The ancient proof by  Euclid that there are an infinite number of primes shows that :latexmath:`p_{n+1}\leq p_{1} p_{2}\,\cdots\,\, p_{n} +1`, and no substantially better result was proved until 1851, when the Russian mathematician  P. L. Chebyshev established that :latexmath:`p_{n+1}\leq 2p_{n}` for all :latexmath:`n`. This result, originally conjectured in 1845, is known as *Bertrand's hypothesis*. A proof can be found in section 22.3 of Hardy and Wright 1960.
+**64.** This last point is very subtle and relies on the fact that :latexmath:`p_{n+1} \leq p_{n}^2`. (Here, :latexmath:`p_{k}` denotes the :latexmath:`k`th prime.) Estimates such as these are very difficult to establish. The ancient proof by  Euclid that there are an infinite number of primes shows that :latexmath:`p_{n+1}\leq p_{1} p_{2}\,\cdots\,\, p_{n} +1`, and no substantially better result was proved until 1851, when the Russian mathematician  P. L. Chebyshev established that :latexmath:`p_{n+1}\leq 2p_{n}` for all :latexmath:`n`. This result, originally conjectured in 1845, is known as *Bertrand's hypothesis*. A proof can be found in section 22.3 of :tp-ref:{href="@HAR60" label="Hardy and Wright 1960"}.
 :::::
 
 ::::: aside {id="note-3-65"}
@@ -1607,7 +1607,7 @@ This does not correctly implement Alyssa's plan. Find the bug that Louis has ins
 :::::
 
 ::::: aside {id="note-3-69"}
-**69.** The precise statement of the required property on the order of combination is as follows: There should be a function :latexmath:`f` of two arguments such that the pair corresponding to element :latexmath:`i` of the first stream and element :latexmath:`j` of the second stream will appear as element number :latexmath:`f(i,j)` of the output stream. The trick of using `interleave` to accomplish this was shown to us by  David Turner, who employed it in the language  KRC (Turner 1981).
+**69.** The precise statement of the required property on the order of combination is as follows: There should be a function :latexmath:`f` of two arguments such that the pair corresponding to element :latexmath:`i` of the first stream and element :latexmath:`j` of the second stream will appear as element number :latexmath:`f(i,j)` of the output stream. The trick of using `interleave` to accomplish this was shown to us by  David Turner, who employed it in the language  KRC (:tp-ref:{href="@TUR81" label="Turner 1981"}).
 :::::
 
 ::::: aside {id="note-3-70"}
@@ -1615,7 +1615,7 @@ This does not correctly implement Alyssa's plan. Find the bug that Louis has ins
 :::::
 
 ::::: aside {id="note-3-71"}
-**71.** To quote from G. H. Hardy's obituary of  Ramanujan (Hardy 1921): "It was Mr. Littlewood (I believe) who remarked that "every positive integer was one of his friends." I remember once going to see him when he was lying ill at Putney. I had ridden in taxi-cab No. 1729, and remarked that the number seemed to me a rather dull one, and that I hoped it was not an unfavorable omen. "No," he replied, "it is a very interesting number; it is the smallest number expressible as the sum of two cubes in two different ways."" The trick of using weighted pairs to generate the Ramanujan numbers was shown to us by  Charles Leiserson.
+**71.** To quote from G. H. Hardy's obituary of  Ramanujan (:tp-ref:{href="@HAR21" label="Hardy 1921"}): "It was Mr. Littlewood (I believe) who remarked that "every positive integer was one of his friends." I remember once going to see him when he was lying ill at Putney. I had ridden in taxi-cab No. 1729, and remarked that the number seemed to me a rather dull one, and that I hoped it was not an unfavorable omen. "No," he replied, "it is a very interesting number; it is the smallest number expressible as the sum of two cubes in two different ways."" The trick of using weighted pairs to generate the Ramanujan numbers was shown to us by  Charles Leiserson.
 :::::
 
 ### 3.5.4 Streams and Delayed Evaluation
@@ -1863,7 +1863,7 @@ One way to avoid the need for two different classes of procedures is to make all
 :::::
 
 ::::: aside {id="note-3-73"}
-**73.** This is a small reflection, in Lisp, of the difficulties that  conventional strongly  typed languages such as Pascal have in coping with higher-order procedures. In such languages, the programmer must specify the data types of the arguments and the result of each procedure: number, logical value, sequence, and so on. Consequently, we could not express an abstraction such as "map a given procedure`proc` over all the elements in a sequence" by a single higher-order procedure such as `stream-map`. Rather, we would need a different mapping procedure for each different combination of argument and result data types that might be specified for a `proc`. Maintaining a practical notion of "data type" in the presence of higher-order procedures raises many difficult issues. One way of dealing with this problem is illustrated by the language  ML  (Gordon, Milner, and Wadsworth 1979), whose "polymorphic data types" include templates for higher-order transformations between data types. Moreover, data types for most procedures in ML are never explicitly declared by the programmer. Instead, ML includes a *type-inferencing* mechanism that uses information in the environment to deduce the data types for newly defined procedures.
+**73.** This is a small reflection, in Lisp, of the difficulties that  conventional strongly  typed languages such as Pascal have in coping with higher-order procedures. In such languages, the programmer must specify the data types of the arguments and the result of each procedure: number, logical value, sequence, and so on. Consequently, we could not express an abstraction such as "map a given procedure`proc` over all the elements in a sequence" by a single higher-order procedure such as `stream-map`. Rather, we would need a different mapping procedure for each different combination of argument and result data types that might be specified for a `proc`. Maintaining a practical notion of "data type" in the presence of higher-order procedures raises many difficult issues. One way of dealing with this problem is illustrated by the language  ML  (:tp-ref:{href="@GOR79" label="Gordon, Milner, and Wadsworth 1979"}), whose "polymorphic data types" include templates for higher-order transformations between data types. Moreover, data types for most procedures in ML are never explicitly declared by the programmer. Instead, ML includes a *type-inferencing* mechanism that uses information in the environment to deduce the data types for newly defined procedures.
 :::::
 
 ### 3.5.5 Modularity of Functional Programs and Modularity of Objects
@@ -1976,7 +1976,7 @@ We began this chapter with the goal of building computational models whose struc
 :::::
 
 ::::: aside {id="note-3-75"}
-**75.** John Backus, the  inventor of Fortran, gave high visibility to functional programming when he was awarded the ACM Turing award in 1978. His acceptance speech  (Backus 1978) strongly advocated the functional approach. A good overview of functional programming is given in Henderson 1980 and in Darlington, Henderson, and Turner 1982.
+**75.** John Backus, the  inventor of Fortran, gave high visibility to functional programming when he was awarded the ACM Turing award in 1978. His acceptance speech  (:tp-ref:{href="@BAC78" label="Backus 1978"}) strongly advocated the functional approach. A good overview of functional programming is given in :tp-ref:{href="@HEN80" label="Henderson 1980"} and in :tp-ref:{href="@DAR82" label="Darlington, Henderson, and Turner 1982"}.
 :::::
 
 ::::: aside {id="note-3-76"}
@@ -1986,3 +1986,50 @@ We began this chapter with the goal of building computational models whose struc
 ::::: aside {id="note-3-77"}
 **77.** The object model approximates the world by dividing it into separate pieces. The functional model does not  modularize along object boundaries. The object model is useful when the unshared state of the "objects" is much larger than the state that they share. An example of a place where the object viewpoint fails is  quantum mechanics, where thinking of things as individual particles leads to paradoxes and confusions. Unifying the object view with the functional view may have little to do with programming, but rather with fundamental epistemological issues.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-66" label="Landin 1965" id="bib-sicp-bib-66"}
+Landin, Peter. 1965. A correspondence between Algol 60 and Church's lambda notation: Part I. *Communications of the ACM* 8(2):89–101.
+:::
+
+::: tp-biblio {ref="SICP-BIB-30" label="Friedman 1976" id="bib-sicp-bib-30"}
+Friedman, Daniel P., and David S. Wise. 1976. CONS should not evaluate its arguments. In *Automata, Languages, and Programming: Third International Colloquium,* edited by S. Michaelson and R. Milner, pp. 257–284.
+:::
+
+::: tp-biblio {ref="ONE09" label="O'Neill 2009" id="bib-one09"}
+O'Neill, Melissa E. 2009. The genuine sieve of Eratosthenes. *Journal of Functional Programming* 19(1):95–106.
+:::
+
+::: tp-biblio {ref="HAR60" label="Hardy 1960" id="bib-har60"}
+Hardy, Godfrey H., and E. M. Wright. 1960. *An Introduction to the Theory of Numbers.* 4th edition. New York: Oxford University Press.
+:::
+
+::: tp-biblio {ref="TUR81" label="Turner 1981" id="bib-tur81"}
+Turner, David. 1981. The future of applicative languages. In *Proceedings of the 3rd European Conference on Informatics,* Lecture Notes in Computer Science, volume 123. New York: Springer-Verlag, pp. 334–348.
+:::
+
+::: tp-biblio {ref="HAR21" label="Hardy 1921" id="bib-har21"}
+Hardy, Godfrey H. 1921. Srinivasa Ramanujan. *Proceedings of the London Mathematical Society* XIX(2).
+:::
+
+::: tp-biblio {ref="GOR79" label="Gordon 1979" id="bib-gor79"}
+Gordon, Michael, Robin Milner, and Christopher Wadsworth. 1979. *Edinburgh LCF.* Lecture Notes in Computer Science, volume 78. New York: Springer-Verlag.
+:::
+
+::: tp-biblio {ref="BAC78" label="Backus 1978" id="bib-bac78"}
+Backus, John. 1978. Can programming be liberated from the von Neumann style? *Communications of the ACM* 21(8):613–641.
+:::
+
+::: tp-biblio {ref="HEN80" label="Henderson 1980" id="bib-hen80"}
+Henderson, Peter. 1980. *Functional Programming: Application and Implementation.* Englewood Cliffs, N.J.: Prentice-Hall.
+:::
+
+::: tp-biblio {ref="DAR82" label="Darlington 1982" id="bib-dar82"}
+Darlington, John, Peter Henderson, and David Turner. 1982. *Functional Programming and Its Applications.* New York: Cambridge University Press.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

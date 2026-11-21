@@ -47,6 +47,8 @@ The user requested that corrected source text be retained, with exceptions docum
 | Listings; PDF pages 301, 307, 389, 392, 413, 415, 416, 418, 455, 458, 475, 481, 517, 527–532 | Some comments show literal \`\\emph{…}\` and \`{\\JS~…~}\` formatting commands. | Retain the comment wording and identifiers without exposing these formatting commands. |
 | Procedure annotations; PDF pages 38 and 82 | Some arrow/caret pointers are absent or rendered incorrectly in the PDF. | Preserve the arrow/caret pointers specified by the XML. |
 
+Bibliographic citations now use tp-ref, with local tp-listof bibliographies and a merged tp-global-listof in References. Eight missing notices are explicitly restored in the reading edition; see the [bibliography audit](audit.md#bibliography-and-citations) for their provenance. The canonical comparison text and original PDF are unchanged.
+
 Unresolved cross-references printed as “??” in the PDF remain “??”: no reference has been invented. Interactive support definitions and execution notices remain identified as TP additions. The separate execution audit records actual interpreter results, adaptations, expected errors and any remaining execution differences; text conformity is not an execution check.
 
 ## Browser verification

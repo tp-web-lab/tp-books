@@ -37,6 +37,27 @@ Current source verified in the browser: **119/119 cells**. Results: 107 matching
 
 
 
+## Bibliography and citations
+
+The reading edition uses tp-ref with the original author-date wording, tp-biblio definitions and one tp-listof on each page containing citations. References uses one merged tp-global-listof, retaining uncited notices and combining identical local definitions. Its links lead back to every citation, grouped by page; local reference scopes remain independent.
+
+There are **123 citation occurrences** and **117 distinct notices**. Citations explicitly tagged in the XML are converted structurally. Additional plain-text author-date citations are linked using a reviewed mapping; historical dates and Scheme source are not heuristically rewritten. The canonical text used for PDF comparison is unchanged.
+
+Eight notices cited in the PDF are absent from its bibliography. The linked edition restores the exact notices below, preserving the citation wording and keeping every original bibliography entry. These are disclosed editorial additions, not changes to the supplied PDF.
+
+| Notice | Provenance |
+| --- | --- |
+| Knuth 1997b | Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF. |
+| Cormen 2022 | Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF. |
+| Edwards 2019 | Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF. |
+| Knuth 1997a | Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF. |
+| Pitman 1983 | [Original SICP bibliography](https://sarabander.github.io/sicp/html/References.xhtml) |
+| Teitelman 1974 | [Original SICP bibliography](https://sarabander.github.io/sicp/html/References.xhtml) |
+| Steele 1982 | [Original SICP bibliography](https://sarabander.github.io/sicp/html/References.xhtml) |
+| Steele 1990 | [Original SICP bibliography](https://sarabander.github.io/sicp/html/References.xhtml) |
+
+Browser checks in scripts/verify-bibliography.mjs verify local labels, tooltip content, local lists, global merging, citation links and browser Back navigation. Results are recorded in bibliography-verification.json. Latest successful run: **21 citing pages, 123 citation links, one merged list of 117 notices**, with tooltips and browser Back checked.
+
 ## Text conformity
 
 All 33 reading sections have been compared with the supplied PDF. See the [section-by-section text conformity audit](text-conformity.md) for the method, corrections, authorized exceptions and limits. Execution failures above remain independent of that check.

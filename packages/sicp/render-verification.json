@@ -21,7 +21,7 @@
   },
   {
     "page": "03-preface.md",
-    "sourceHash": "4223ea8ea7b73d376bbefd20f3549dd9533ad4c11628a4ebb7ffd2ae3379e66c",
+    "sourceHash": "43b0c67798b9e68d875df5118be3d2b35f2fa156246a884a4f751b1125ef2fed",
     "raw": [],
     "mathCount": 0,
     "alerts": [],
@@ -51,7 +51,7 @@
   },
   {
     "page": "06-1-building-abstractions-with-procedures.md",
-    "sourceHash": "c02836cc9ba2125a405beeba74b1b1fdd51cd51d847897a108daac0a1b80300d",
+    "sourceHash": "26c0e4030309a8dcbb4ba22b447d075fe9dd4c033bcfffe6242dfe97ae6d1060",
     "raw": [],
     "mathCount": 0,
     "alerts": [],
@@ -61,7 +61,7 @@
   },
   {
     "page": "07-1-1-the-elements-of-programming.md",
-    "sourceHash": "f33280ded99aa09d2ce4eea9f4ec1e7a436fce89fb972732536a6c7738b05077",
+    "sourceHash": "e091e03e67df70a7254dc11596b6ec5447414bb1b69a25b4f35d278c4e98f2b7",
     "raw": [],
     "mathCount": 68,
     "alerts": [],
@@ -71,7 +71,7 @@
   },
   {
     "page": "08-1-2-procedures-and-the-processes-they-generate.md",
-    "sourceHash": "41427b96ab51f35cc5708c4bbb7fdc32c6799f8d01e75fd799d6962567d0f0de",
+    "sourceHash": "fc844aceda471c3b925a9b3ebdc86e4b3b6f9d4b1050be544d2f34e1caa65d17",
     "raw": [],
     "mathCount": 360,
     "alerts": [],
@@ -81,7 +81,7 @@
   },
   {
     "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
-    "sourceHash": "edcc89d498769b9af33eab5abaf9d9144fbd09200aa5f92f76c41037037f05fc",
+    "sourceHash": "b47fe3bb9e306c0361406ce11fec706078e9825029234bbd1b29d68e8c79be97",
     "raw": [],
     "mathCount": 220,
     "alerts": [],
@@ -101,7 +101,7 @@
   },
   {
     "page": "11-2-1-introduction-to-data-abstraction.md",
-    "sourceHash": "4bf1bdfc724dd96a7037a848588e8fc9a5a3de21049c9d61d8312b9ce05fabaa",
+    "sourceHash": "fefd85c48834d062d12b42427ad98a61176316a3bccb6d9182cbcb505273236d",
     "raw": [],
     "mathCount": 26,
     "alerts": [],
@@ -111,7 +111,7 @@
   },
   {
     "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
-    "sourceHash": "94d613876b59bde249f1d67478b8a807741d5039a8a21a6d8b20dd92ab367404",
+    "sourceHash": "ece483884e479915508463dbf8c5a74d15f2b97c13f35b65582ab7ffdb5b10a6",
     "raw": [],
     "mathCount": 133,
     "alerts": [],
@@ -121,7 +121,7 @@
   },
   {
     "page": "13-2-3-symbolic-data.md",
-    "sourceHash": "427b8fbed092262a21681b763d0d6c52efdaffcdad1fd9e8f76d2da5bc2a89f0",
+    "sourceHash": "f26c4bde0511034462cd10e37eb1f9a9f3fcf31eba7951d28494576be85c47c8",
     "raw": [],
     "mathCount": 95,
     "alerts": [],
@@ -141,7 +141,7 @@
   },
   {
     "page": "15-2-5-systems-with-generic-operations.md",
-    "sourceHash": "adb04bbb04d26ae687b5bbc1a1311f64912c6e7accef58f87b60a92c9f30c20d",
+    "sourceHash": "5a9d4ab6d3b1a34ed0de2bbdc79db230299316601d10a75996caaacab09f4f7d",
     "raw": [],
     "mathCount": 105,
     "alerts": [],
@@ -161,7 +161,7 @@
   },
   {
     "page": "17-3-1-assignment-and-local-state.md",
-    "sourceHash": "72b9dfe32e4c170fb557639f962b34109783616642ba487f34114d1671d78ed7",
+    "sourceHash": "a71527c7094a09ca19e9cd42ee4b9184e016f6c270d16afcc7e0208b6d498a54",
     "raw": [],
     "mathCount": 39,
     "alerts": [],
@@ -181,7 +181,7 @@
   },
   {
     "page": "19-3-3-modeling-with-mutable-data.md",
-    "sourceHash": "9d1804f8807ba86aa8a558b358e4b79748b596d3ad88a50d5aaab27b19bbeef3",
+    "sourceHash": "4d5cb2e27a274a987da2dfd7eef13c338c46c8963ded3299f69f45ac743b6b76",
     "raw": [],
     "mathCount": 104,
     "alerts": [],
@@ -191,7 +191,7 @@
   },
   {
     "page": "20-3-4-concurrency-time-is-of-the-essence.md",
-    "sourceHash": "c4c953b9b1116ba98d819f9d1aa499d2bedd5e354b333f9db25a66ad59514ff8",
+    "sourceHash": "c39e71e1c5b642d102ba04d50606b7958c17ff2a7c10f082a7fd9c42eb1ad04f",
     "raw": [],
     "mathCount": 57,
     "alerts": [],
@@ -201,7 +201,7 @@
   },
   {
     "page": "21-3-5-streams.md",
-    "sourceHash": "befae12b86f0defd31ab19deefe3f8bfebea5bea93f7b81c343c0b9a48d875ed",
+    "sourceHash": "157740d87b306085182fba96c7ad7dc4661dbf6eb9b65a860eac0e898db16ca1",
     "raw": [],
     "mathCount": 197,
     "alerts": [],
@@ -211,7 +211,7 @@
   },
   {
     "page": "22-4-metalinguistic-abstraction.md",
-    "sourceHash": "77eea51f1843d972c6ecee35aef61fe3a9e5d1e759f33920d9d6afe31fc636b2",
+    "sourceHash": "f3dcda13dec970fcfa36f89aec8c4d2c4fdf42ba46a1957c6f66f5c323058a15",
     "raw": [],
     "mathCount": 0,
     "alerts": [],
@@ -221,7 +221,7 @@
   },
   {
     "page": "23-4-1-the-metacircular-evaluator.md",
-    "sourceHash": "77c0c07186e01b068830736bf4dec1a0b11de3b3b3e7b02d73eaa5ffa77d79fd",
+    "sourceHash": "804db0d84f8b2661ed830709cf0d2f22f40fba19b8079a8a8abbf582cb9cdf7b",
     "raw": [],
     "mathCount": 7,
     "alerts": [],
@@ -231,7 +231,7 @@
   },
   {
     "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
-    "sourceHash": "b7dc324983cbed105edf32d1b4f278362e45bac2d971f0ba7737cb02c51b140c",
+    "sourceHash": "fe884dd39efdb2eacb94c2aa3818b2a6d61cc6b38a36c52c7676245eba6f4638",
     "raw": [],
     "mathCount": 1,
     "alerts": [],
@@ -241,7 +241,7 @@
   },
   {
     "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
-    "sourceHash": "20aa3eef613178b6159e9ae757637a0645ffe0bf5c3255c8eb660e30ce3de79d",
+    "sourceHash": "73aee1f1fdb62f2068de1213fc2d6f351db0f2f56a9483c3abf54195748a77a2",
     "raw": [],
     "mathCount": 11,
     "alerts": [],
@@ -251,7 +251,7 @@
   },
   {
     "page": "26-4-4-logic-programming.md",
-    "sourceHash": "1ddc706ac6a8f37c88c4c20c1e2f8edb97a9f109a09415ae80d13c21aba47685",
+    "sourceHash": "f2e8cf693d9ef65b1f893fb16416cabc95086f5c95479f82d174a8ab74a36f80",
     "raw": [],
     "mathCount": 69,
     "alerts": [],
@@ -291,7 +291,7 @@
   },
   {
     "page": "30-5-3-storage-allocation-and-garbage-collection.md",
-    "sourceHash": "f10feca0d8fbe6d80189fe3ef530566b0583b6dac5bdf6424d12e9c0f13b0bda",
+    "sourceHash": "c00d15c750bebf1470cf1373cedcb3d26527b846b82a0c69f59402ee7e8bdf25",
     "raw": [],
     "mathCount": 30,
     "alerts": [],
@@ -301,7 +301,7 @@
   },
   {
     "page": "31-5-4-the-explicit-control-evaluator.md",
-    "sourceHash": "0a5e5009ffb729f06310867253128160aa0e1dab60fce38c055383433daef863",
+    "sourceHash": "e406125d3e0d1595227761eefc3f5f46013e8ef36a5fb515fec4e8dc3de1af98",
     "raw": [],
     "mathCount": 18,
     "alerts": [],
@@ -311,7 +311,7 @@
   },
   {
     "page": "32-5-5-compilation.md",
-    "sourceHash": "7eb68e64951d0dac53ba392c22bc3c85714d97c09a765ca669d72408870ec5cd",
+    "sourceHash": "5a051add9414e2ef27987ac9f6a863be583f56938094bab3c399d892b17ccb1b",
     "raw": [],
     "mathCount": 81,
     "alerts": [],
@@ -321,9 +321,9 @@
   },
   {
     "page": "33-references.md",
-    "sourceHash": "d2c1ba75a37a7915fe5a7e2cd51764fbb1e88b4ef3503d44be987b4e705f17b3",
+    "sourceHash": "2372a8d10f493cab82994976d98ccccfb0a10ef95a88d904970050f4a917603b",
     "raw": [],
-    "mathCount": 1,
+    "mathCount": 2,
     "alerts": [],
     "mathErrors": [],
     "badImages": [],

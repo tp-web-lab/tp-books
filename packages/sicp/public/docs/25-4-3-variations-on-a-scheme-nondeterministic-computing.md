@@ -2829,7 +2829,7 @@ The driver loop for the `amb` evaluator has some unusual properties. It reads an
 ```
 
 ::::: aside {id="note-4-43"}
-**43.** The idea of `amb` for nondeterministic programming was first described in 1961 by  John McCarthy (see McCarthy 1967).
+**43.** The idea of `amb` for nondeterministic programming was first described in 1961 by  John McCarthy (see :tp-ref:{href="@MCC67" label="McCarthy 1967"}).
 :::::
 
 ::::: aside {id="note-4-44"}
@@ -2841,11 +2841,11 @@ The driver loop for the `amb` evaluator has some unusual properties. It reads an
 :::::
 
 ::::: aside {id="note-4-46"}
-**46.** Automagically: "Automatically, but in a way which, for some reason (typically because it is too complicated, or too ugly, or perhaps even too trivial), the speaker doesn't feel like explaining." (Steele 1983, Raymond 1996)
+**46.** Automagically: "Automatically, but in a way which, for some reason (typically because it is too complicated, or too ugly, or perhaps even too trivial), the speaker doesn't feel like explaining." (:tp-ref:{href="@STE83" label="Steele 1983"}, :tp-ref:{href="@RAY96" label="Raymond 1996"})
 :::::
 
 ::::: aside {id="note-4-47"}
-**47.** The integration of  automatic search strategies into programming languages has had a long and checkered history. The first suggestions that nondeterministic algorithms might be elegantly encoded in a programming language with search and automatic backtracking came from  Robert Floyd (1967).  Carl Hewitt (1969) invented a programming language called  Planner that explicitly supported automatic chronological backtracking, providing for a built-in depth-first search strategy.  Sussman, Winograd, and Charniak (1971) implemented a subset of this language, called  MicroPlanner, which was used to support work in problem solving and robot planning. Similar ideas, arising from logic and theorem proving, led to the genesis in Edinburgh and Marseille of the elegant language  Prolog (which we will discuss in section 4.4). After sufficient frustration with automatic search,  McDermott and Sussman (1972) developed a language called  Conniver, which included mechanisms for placing the search strategy under programmer control. This proved unwieldy, however, and  Sussman and Stallman (1975) found a more tractable approach while investigating methods of symbolic analysis for electrical circuits. They developed a nonchronological backtracking scheme that was based on tracing out the logical dependencies connecting facts, a technique that has come to be known as *dependency-directed backtracking*. Although their method was complex, it produced reasonably efficient programs because it did little redundant search. Doyle (1979) and  McAllester (1978, 1980) generalized and clarified the methods of Stallman and Sussman, developing a new paradigm for formulating search that is now called *truth maintenance*.  Modern problem-solving systems all  use some form of truth-maintenance system as a substrate. See Forbus and de Kleer 1993 for a discussion of elegant ways to build truth-maintenance systems and applications using truth maintenance. Zabih, McAllester, and Chapman 1987 describes a  nondeterministic extension to Scheme that is based on `amb`; it is similar to the interpreter described in this section, but more sophisticated, because it uses dependency-directed backtracking rather than chronological backtracking. Winston 1992 gives an introduction to both kinds of backtracking.
+**47.** The integration of  automatic search strategies into programming languages has had a long and checkered history. The first suggestions that nondeterministic algorithms might be elegantly encoded in a programming language with search and automatic backtracking came from  Robert :tp-ref:{href="@SICP-BIB-28" label="Floyd (1967)"}.  Carl :tp-ref:{href="@SICP-BIB-49" label="Hewitt (1969)"} invented a programming language called  Planner that explicitly supported automatic chronological backtracking, providing for a built-in depth-first search strategy.  :tp-ref:{href="@SICP-BIB-100" label="Sussman, Winograd, and Charniak (1971)"} implemented a subset of this language, called  MicroPlanner, which was used to support work in problem solving and robot planning. Similar ideas, arising from logic and theorem proving, led to the genesis in Edinburgh and Marseille of the elegant language  Prolog (which we will discuss in section 4.4). After sufficient frustration with automatic search,  :tp-ref:{href="@SICP-BIB-75" label="McDermott and Sussman (1972)"} developed a language called  Conniver, which included mechanisms for placing the search strategy under programmer control. This proved unwieldy, however, and  :tp-ref:{href="@SUS75" label="Sussman and Stallman (1975)"} found a more tractable approach while investigating methods of symbolic analysis for electrical circuits. They developed a nonchronological backtracking scheme that was based on tracing out the logical dependencies connecting facts, a technique that has come to be known as *dependency-directed backtracking*. Although their method was complex, it produced reasonably efficient programs because it did little redundant search. :tp-ref:{href="@DOY79" label="Doyle (1979)"} and  McAllester (:tp-ref:{href="@MCA78" label="1978"}, :tp-ref:{href="@MCA80" label="1980"}) generalized and clarified the methods of Stallman and Sussman, developing a new paradigm for formulating search that is now called *truth maintenance*.  Modern problem-solving systems all  use some form of truth-maintenance system as a substrate. See :tp-ref:{href="@FOR93" label="Forbus and de Kleer 1993"} for a discussion of elegant ways to build truth-maintenance systems and applications using truth maintenance. :tp-ref:{href="@ZAB87" label="Zabih, McAllester, and Chapman 1987"} describes a  nondeterministic extension to Scheme that is based on `amb`; it is similar to the interpreter described in this section, but more sophisticated, because it uses dependency-directed backtracking rather than chronological backtracking. :tp-ref:{href="@WIN92" label="Winston 1992"} gives an introduction to both kinds of backtracking.
 :::::
 
 ### 4.3.2 Examples of Nondeterministic Programs
@@ -2854,7 +2854,7 @@ Section 4.3.3 describes the implementation of the `amb` evaluator. First, howev
 
 #### Logic Puzzles
 
-The following puzzle (adapted from Dinesman 1968) is typical of a large class of simple logic puzzles:
+The following puzzle (adapted from :tp-ref:{href="@DIN68" label="Dinesman 1968"}) is typical of a large class of simple logic puzzles:
 
 > The software company Gargle is expanding, and Alyssa, Ben, Cy, Lem, and Louis are moving into a row of five private offices in a new building. Alyssa does not move into the last office. Ben does not move into the first office. Cy takes neither the first nor the last office. Lem moves into an office after Ben's. Louis's office is not next to Cy's. Cy's office is not next to Ben's. Who moves into which office?
 
@@ -2899,7 +2899,7 @@ Although this simple procedure works, it is very slow. Exercises 4.40 and 4.41
 
 **Exercise 4.42.** Write an ordinary Scheme program to solve the office move puzzle.
 
-**Exercise 4.43.** Solve the following "Liars" puzzle (adapted from Phillips 1934):
+**Exercise 4.43.** Solve the following "Liars" puzzle (adapted from :tp-ref:{href="@PHI34" label="Phillips 1934"}):
 
 > Alyssa, Cy, Eva, Lem, and Louis meet for a business lunch at SoSoService. Their meals arrive one after the other, a considerable time after they placed their orders. To entertain Ben, who expects them back at the office for a meeting, they decide to each make one true statement and one false statement about their orders:
 > - Alyssa: "Lem's meal arrived second. Mine arrived third."
@@ -2909,7 +2909,7 @@ Although this simple procedure works, it is very slow. Exercises 4.40 and 4.41
 > - Louis: "Mine arrived fourth. Alyssa's meal arrived first."
 > What was the real order in which the five diners received their meals?
 
-**Exercise 4.44.** Use the `amb` evaluator to solve the following puzzle (adapted from Phillips 1961):
+**Exercise 4.44.** Use the `amb` evaluator to solve the following puzzle (adapted from :tp-ref:{href="@PHI61" label="Phillips 1961"}):
 
 > Alyssa, Ben, Cy, Eva, and Louis each pick a different chapter of SICP JS and solve all the exercises in that chapter. Louis solves the exercises in the "Functions" chapter, Alyssa the ones in the "Data" chapter, and Cy the ones in the "State" chapter. They decide to check each other's work, and Alyssa volunteers to check the exercises in the "Meta" chapter. The exercises in the "Register Machines" chapter are solved by Ben and checked by Louis. The person who checks the exercises in the "Functions" chapter solves the exercises that are checked by Eva. Who checks the exercises in the "Data" chapter?
 
@@ -3703,7 +3703,7 @@ Does this work? Does the program's behavior change if we interchange the order o
 :::::
 
 ::::: aside {id="note-4-52"}
-**52.** This kind of grammar can become arbitrarily complex, but it is only a  toy as far as real language understanding is concerned. Real natural-language understanding by computer requires an elaborate mixture of syntactic analysis and interpretation of meaning. On the other hand, even toy parsers can be useful in supporting flexible command languages for programs such as information-retrieval systems. Winston 1992 discusses computational approaches to real language understanding and also the applications of simple grammars to command languages.
+**52.** This kind of grammar can become arbitrarily complex, but it is only a  toy as far as real language understanding is concerned. Real natural-language understanding by computer requires an elaborate mixture of syntactic analysis and interpretation of meaning. On the other hand, even toy parsers can be useful in supporting flexible command languages for programs such as information-retrieval systems. :tp-ref:{href="@WIN92" label="Winston 1992"} discusses computational approaches to real language understanding and also the applications of simple grammars to command languages.
 :::::
 
 ::::: aside {id="note-4-53"}
@@ -5161,3 +5161,78 @@ as well the procedure`analyze-require` that handles `require` expressions. Compl
 ::::: aside {id="note-4-56"}
 **56.** We  didn't worry about undoing definitions, since we can assume that  internal definitions are scanned out (section 4.1.6).
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="MCC67" label="McCarthy 1967" id="bib-mcc67"}
+McCarthy, John. 1967. A basis for a mathematical theory of computation. In *Computer Programing and Formal Systems*, edited by P. Braffort and D. Hirschberg. North-Holland, pp. 33–70.
+:::
+
+::: tp-biblio {ref="STE83" label="Steele 1983" id="bib-ste83"}
+Steele, Guy Lewis, Jr., Donald R. Woods, Raphael A. Finkel, Mark R. Crispin, Richard M. Stallman, and Geoffrey S. Goodfellow. 1983. *The Hacker's Dictionary.* New York: Harper \& Row.
+:::
+
+::: tp-biblio {ref="RAY96" label="Raymond 1996" id="bib-ray96"}
+Raymond, Eric. 1996. *The New Hacker's Dictionary.* 3rd edition. Cambridge, MA: MIT Press.
+:::
+
+::: tp-biblio {ref="SICP-BIB-28" label="Floyd 1967" id="bib-sicp-bib-28"}
+Floyd, Robert. 1967. Nondeterministic algorithms. *JACM,* 14(4):636–644.
+:::
+
+::: tp-biblio {ref="SICP-BIB-49" label="Hewitt 1969" id="bib-sicp-bib-49"}
+Hewitt, Carl E. 1969. PLANNER: A language for proving theorems in robots. In *Proceedings of the International Joint Conference on Artificial Intelligence,* pp. 295–301.
+:::
+
+::: tp-biblio {ref="SICP-BIB-100" label="Sussman 1971" id="bib-sicp-bib-100"}
+Sussman, Gerald Jay, Terry Winograd, and Eugene Charniak. 1971. Microplanner reference manual. Memo 203A, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="SICP-BIB-75" label="McDermott 1972" id="bib-sicp-bib-75"}
+McDermott, Drew, and Gerald Jay Sussman. 1972. Conniver reference manual. Memo 259, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="SUS75" label="Sussman 1975" id="bib-sus75"}
+Sussman, Gerald Jay, and Richard M. Stallman. 1975. Heuristic techniques in computer-aided circuit analysis. *IEEE Transactions on Circuits and Systems* CAS-22(11):857–865.
+:::
+
+::: tp-biblio {ref="DOY79" label="Doyle 1979" id="bib-doy79"}
+Doyle, Jon. 1979. A truth maintenance system. *Artificial Intelligence* 12:231–272.
+:::
+
+::: tp-biblio {ref="MCA78" label="McAllester 1978" id="bib-mca78"}
+McAllester, David Allen. 1978. A three-valued truth-maintenance system. Memo 473, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="MCA80" label="McAllester 1980" id="bib-mca80"}
+McAllester, David Allen. 1980. An outlook on truth maintenance. Memo 551, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="FOR93" label="Forbus 1993" id="bib-for93"}
+Forbus, Kenneth D., and Johan de Kleer. 1993. *Building Problem Solvers.* Cambridge, MA: MIT Press.
+:::
+
+::: tp-biblio {ref="ZAB87" label="Zabih 1987" id="bib-zab87"}
+Zabih, Ramin, David McAllester, and David Chapman. 1987. Non-deterministic Lisp with dependency-directed backtracking. *AAAI-87*, pp. 59–64.
+:::
+
+::: tp-biblio {ref="WIN92" label="Winston 1992" id="bib-win92"}
+Winston, Patrick. 1992. *Artificial Intelligence*. 3rd edition. Reading, MA: Addison-Wesley.
+:::
+
+::: tp-biblio {ref="DIN68" label="Dinesman 1968" id="bib-din68"}
+Dinesman, Howard P. 1968. *Superior Mathematical Puzzles*. New York: Simon and Schuster.
+:::
+
+::: tp-biblio {ref="PHI34" label="Phillips 1934" id="bib-phi34"}
+Phillips, Hubert. 1934. *The Sphinx Problem Book*. London: Faber and Faber.
+:::
+
+::: tp-biblio {ref="PHI61" label="Phillips 1961" id="bib-phi61"}
+Phillips, Hubert. 1961. *My Best Puzzles in Logic and Reasoning*. New York: Dover Publications.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

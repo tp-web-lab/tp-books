@@ -608,7 +608,7 @@ Then we have
 What happens if we (perversely) ask the interpreter to evaluate the combination `(f f)`? Explain.
 
 ::::: aside {id="note-1-54"}
-**54.** It would be clearer and less intimidating to people learning Lisp if a name more obvious than `lambda`, such as `make-procedure`,  were used. But the convention is  firmly entrenched.  The notation is adopted from the :latexmath:`\lambda` calculus, a mathematical formalism introduced by the mathematical logician  Alonzo Church (1941). Church developed the :latexmath:`\lambda` calculus to provide a rigorous foundation for studying the notions of function and function application. The :latexmath:`\lambda` calculus has become a basic tool for mathematical investigations of the semantics of programming languages.
+**54.** It would be clearer and less intimidating to people learning Lisp if a name more obvious than `lambda`, such as `make-procedure`,  were used. But the convention is  firmly entrenched.  The notation is adopted from the :latexmath:`\lambda` calculus, a mathematical formalism introduced by the mathematical logician  Alonzo :tp-ref:{href="@SICP-BIB-11" label="Church (1941)"}. Church developed the :latexmath:`\lambda` calculus to provide a rigorous foundation for studying the notions of function and function application. The :latexmath:`\lambda` calculus has become a basic tool for mathematical investigations of the semantics of programming languages.
 :::::
 
 ::::: aside {id="note-1-55"}
@@ -1181,3 +1181,14 @@ Hint: You may find it convenient to use `compose` from exercise 1.42.
 ::::: aside {id="note-1-67"}
 **67.** The major implementation cost of first-class procedures is that allowing procedures to be returned as values requires reserving storage for a procedure's free variables even while the procedure is not executing.  In the Scheme implementation we will study in section 4.1, these variables are stored in the procedure's  environment.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-11" label="Church 1941" id="bib-sicp-bib-11"}
+Church, Alonzo. 1941. *The Calculi of Lambda-Conversion.* Princeton, N.J.: Princeton University Press.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

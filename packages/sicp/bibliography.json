@@ -1,0 +1,1141 @@
+{
+  "canonicalTextSha256": "2ad73332ab3f79f8e1020362b75998fab64c3092c733a700432f824762cc54a4",
+  "linkedTextSha256": "2ad73332ab3f79f8e1020362b75998fab64c3092c733a700432f824762cc54a4",
+  "entries": [
+    {
+      "key": "ABE92",
+      "content": "Abelson, Harold, Andrew Berlin, Jacob Katzenelson, William McAllister, Guillermo Rozas, Gerald Jay Sussman, and Jack Wisdom. 1992. The Supercomputer Toolkit: A general framework for special-purpose computing. *International Journal of High-Speed Electronics* 3(3):337–361.",
+      "label": "Abelson 1992"
+    },
+    {
+      "key": "ALL78",
+      "content": "Allen, John. 1978. *Anatomy of Lisp.* New York: McGraw-Hill.",
+      "label": "Allen 1978"
+    },
+    {
+      "key": "ANS94",
+      "content": "ANSI X3.226-1994. *American National Standard for Information Systems—Programming Language—Common Lisp.*",
+      "label": "ANSI X3.226-1994"
+    },
+    {
+      "key": "APP87",
+      "content": "Appel, Andrew W. 1987. Garbage collection can be faster than stack allocation. *Information Processing Letters* 25(4):275–279.",
+      "label": "Appel 1987"
+    },
+    {
+      "key": "BAC78",
+      "content": "Backus, John. 1978. Can programming be liberated from the von Neumann style? *Communications of the ACM* 21(8):613–641.",
+      "label": "Backus 1978"
+    },
+    {
+      "key": "SICP-BIB-6",
+      "content": "Baker, Henry G., Jr. 1978. List processing in real time on a serial computer. *Communications of the ACM* 21(4):280–293.",
+      "label": "Baker 1978"
+    },
+    {
+      "key": "BAT82",
+      "content": "Batali, John, Neil Mayle, Howard Shrobe, Gerald Jay Sussman, and Daniel Weise. 1982. The Scheme-81 architecture—System and chip. In *Proceedings of the MIT Conference on Advanced Research in VLSI,* edited by Paul Penfield, Jr. Dedham, MA: Artech House.",
+      "label": "Batali 1982"
+    },
+    {
+      "key": "SICP-BIB-8",
+      "content": "Borning, Alan. 1977. ThingLab—An object-oriented system for building simulations using constraints. In *Proceedings of the 5th International Joint Conference on Artificial Intelligence.*",
+      "label": "Borning 1977"
+    },
+    {
+      "key": "BOR75",
+      "content": "Borodin, Alan, and Ian Munro. 1975. *The Computational Complexity of Algebraic and Numeric Problems.* New York: American Elsevier.",
+      "label": "Borodin 1975"
+    },
+    {
+      "key": "CHA75",
+      "content": "Chaitin, Gregory J. 1975. Randomness and mathematical proof. *Scientific American* 232(5):47–52.",
+      "label": "Chaitin 1975"
+    },
+    {
+      "key": "SICP-BIB-11",
+      "content": "Church, Alonzo. 1941. *The Calculi of Lambda-Conversion.* Princeton, N.J.: Princeton University Press.",
+      "label": "Church 1941"
+    },
+    {
+      "key": "SICP-BIB-12",
+      "content": "Clark, Keith L. 1978. Negation as failure. In *Logic and Data Bases.* New York: Plenum Press, pp. 293–322.",
+      "label": "Clark 1978"
+    },
+    {
+      "key": "SICP-BIB-13",
+      "content": "Clinger, William. 1982. Nondeterministic call by need is neither lazy nor by name. In *Proceedings of the ACM Symposium on Lisp and Functional Programming,* pp. 226–234.",
+      "label": "Clinger 1982"
+    },
+    {
+      "key": "CLI91",
+      "content": "Clinger, William, and Jonathan Rees. 1991. Macros that work. In *Proceedings of the 1991 ACM Conference on Principles of Programming Languages,* pp. 155–162.",
+      "label": "Clinger 1991"
+    },
+    {
+      "key": "COL73",
+      "content": "Colmerauer A., H. Kanoui, R. Pasero, and P. Roussel. 1973. Un système de communication homme-machine en français. Technical report, Groupe d'Intelligence Artificielle, Université d'Aix-Marseille II, Luminy.",
+      "label": "Colmerauer A. 1973"
+    },
+    {
+      "key": "SICP-BIB-16",
+      "content": "Cormen, Thomas, Charles Leiserson, and Ronald Rivest. 1990. *Introduction to Algorithms.* Cambridge, MA: MIT Press.",
+      "label": "Cormen 1990"
+    },
+    {
+      "key": "DAR82",
+      "content": "Darlington, John, Peter Henderson, and David Turner. 1982. *Functional Programming and Its Applications.* New York: Cambridge University Press.",
+      "label": "Darlington 1982"
+    },
+    {
+      "key": "DIJ68A",
+      "content": "Dijkstra, Edsger W. 1968a. The structure of the \"THE\" multiprogramming system. *Communications of the ACM* 11(5):341–346.",
+      "label": "Dijkstra 1968a"
+    },
+    {
+      "key": "SICP-BIB-19",
+      "content": "Dijkstra, Edsger W. 1968b. Cooperating sequential processes. In *Programming Languages*, edited by F. Genuys. New York: Academic Press, pp. 43–112.",
+      "label": "Dijkstra 1968b"
+    },
+    {
+      "key": "DIN68",
+      "content": "Dinesman, Howard P. 1968. *Superior Mathematical Puzzles*. New York: Simon and Schuster.",
+      "label": "Dinesman 1968"
+    },
+    {
+      "key": "DE77",
+      "content": "de Kleer, Johan, Jon Doyle, Guy Steele, and Gerald J. Sussman. 1977. AMORD: Explicit control of reasoning. In *Proceedings of the ACM Symposium on Artificial Intelligence and Programming Languages,* pp. 116–125.",
+      "label": "de Kleer 1977"
+    },
+    {
+      "key": "DOY79",
+      "content": "Doyle, Jon. 1979. A truth maintenance system. *Artificial Intelligence* 12:231–272.",
+      "label": "Doyle 1979"
+    },
+    {
+      "key": "FEE86",
+      "content": "Feeley, Marc. 1986. Deux approches à l'implantation du language Scheme. Masters thesis, Université de Montréal.",
+      "label": "Feeley 1986"
+    },
+    {
+      "key": "FEE87",
+      "content": "Feeley, Marc and Guy Lapalme. 1987. Using closures for code generation. *Journal of Computer Languages* 12(1):47–66.",
+      "label": "Feeley 1987"
+    },
+    {
+      "key": "FEI93",
+      "content": "Feigenbaum, Edward, and Howard Shrobe. 1993. The Japanese National Fifth Generation Project: Introduction, survey, and evaluation. In *Future Generation Computer Systems,* vol. 9, pp. 105–117.",
+      "label": "Feigenbaum 1993"
+    },
+    {
+      "key": "SICP-BIB-26",
+      "content": "Feller, William. 1957. *An Introduction to Probability Theory and Its Applications,* volume 1. New York: John Wiley \\& Sons.",
+      "label": "Feller 1957"
+    },
+    {
+      "key": "SICP-BIB-27",
+      "content": "Fenichel, R., and J. Yochelson. 1969. A Lisp garbage collector for virtual memory computer systems. *Communications of the ACM* 12(11):611–612.",
+      "label": "Fenichel 1969"
+    },
+    {
+      "key": "SICP-BIB-28",
+      "content": "Floyd, Robert. 1967. Nondeterministic algorithms. *JACM,* 14(4):636–644.",
+      "label": "Floyd 1967"
+    },
+    {
+      "key": "FOR93",
+      "content": "Forbus, Kenneth D., and Johan de Kleer. 1993. *Building Problem Solvers.* Cambridge, MA: MIT Press.",
+      "label": "Forbus 1993"
+    },
+    {
+      "key": "SICP-BIB-30",
+      "content": "Friedman, Daniel P., and David S. Wise. 1976. CONS should not evaluate its arguments. In *Automata, Languages, and Programming: Third International Colloquium,* edited by S. Michaelson and R. Milner, pp. 257–284.",
+      "label": "Friedman 1976"
+    },
+    {
+      "key": "SICP-BIB-31",
+      "content": "Friedman, Daniel P., Mitchell Wand, and Christopher T. Haynes. 1992. *Essentials of Programming Languages.* Cambridge, MA: MIT Press/McGraw-Hill.",
+      "label": "Friedman 1992"
+    },
+    {
+      "key": "GAB88",
+      "content": "Gabriel, Richard P. 1988. The Why of *Y*. *Lisp Pointers* 2(2):15–25.",
+      "label": "Gabriel 1988"
+    },
+    {
+      "key": "SICP-BIB-33",
+      "content": "Goldberg, Adele, and David Robson. 1983. *Smalltalk-80: The Language and Its Implementation.* Reading, MA: Addison-Wesley.",
+      "label": "Goldberg 1983"
+    },
+    {
+      "key": "GOR79",
+      "content": "Gordon, Michael, Robin Milner, and Christopher Wadsworth. 1979. *Edinburgh LCF.* Lecture Notes in Computer Science, volume 78. New York: Springer-Verlag.",
+      "label": "Gordon 1979"
+    },
+    {
+      "key": "GRA93",
+      "content": "Gray, Jim, and Andreas Reuter. 1993. *Transaction Processing: Concepts and Models.* San Mateo, CA: Morgan-Kaufman.",
+      "label": "Gray 1993"
+    },
+    {
+      "key": "GRE69",
+      "content": "Green, Cordell. 1969. Application of theorem proving to problem solving. In *Proceedings of the International Joint Conference on Artificial Intelligence,* pp. 219–240.",
+      "label": "Green 1969"
+    },
+    {
+      "key": "SICP-BIB-37",
+      "content": "Green, Cordell, and Bertram Raphael. 1968. The use of theorem-proving techniques in question-answering systems. In *Proceedings of the ACM National Conference,* pp. 169–181.",
+      "label": "Green 1968"
+    },
+    {
+      "key": "GRI81",
+      "content": "Griss, Martin L. 1981. Portable Standard Lisp, a brief overview. Utah Symbolic Computation Group Operating Note 58, University of Utah.",
+      "label": "Griss 1981"
+    },
+    {
+      "key": "GUT77",
+      "content": "Guttag, John V. 1977. Abstract data types and the development of data structures. *Communications of the ACM* 20(6):397–404.",
+      "label": "Guttag 1977"
+    },
+    {
+      "key": "HAM80",
+      "content": "Hamming, Richard W. 1980. *Coding and Information Theory.* Englewood Cliffs, N.J.: Prentice-Hall.",
+      "label": "Hamming 1980"
+    },
+    {
+      "key": "HAN90",
+      "content": "Hanson, Christopher P. 1990. Efficient stack allocation for tail-recursive languages. In *Proceedings of ACM Conference on Lisp and Functional Programming,* pp. 106–118.",
+      "label": "Hanson 1990"
+    },
+    {
+      "key": "HAN91",
+      "content": "Hanson, Christopher P. 1991. A syntactic closures macro facility. *Lisp Pointers,* 4(4):9–16.",
+      "label": "Hanson 1991"
+    },
+    {
+      "key": "HAR21",
+      "content": "Hardy, Godfrey H. 1921. Srinivasa Ramanujan. *Proceedings of the London Mathematical Society* XIX(2).",
+      "label": "Hardy 1921"
+    },
+    {
+      "key": "HAR60",
+      "content": "Hardy, Godfrey H., and E. M. Wright. 1960. *An Introduction to the Theory of Numbers.* 4th edition. New York: Oxford University Press.",
+      "label": "Hardy 1960"
+    },
+    {
+      "key": "HAV68",
+      "content": "Havender, J. 1968. Avoiding deadlocks in multi-tasking systems. *IBM Systems Journal* 7(2):74–84.",
+      "label": "Havender 1968"
+    },
+    {
+      "key": "HEA69",
+      "content": "Hearn, Anthony C. 1969. Standard Lisp. Technical report AIM-90, Artificial Intelligence Project, Stanford University.",
+      "label": "Hearn 1969"
+    },
+    {
+      "key": "HEN80",
+      "content": "Henderson, Peter. 1980. *Functional Programming: Application and Implementation.* Englewood Cliffs, N.J.: Prentice-Hall.",
+      "label": "Henderson 1980"
+    },
+    {
+      "key": "HEN82",
+      "content": "Henderson. Peter. 1982. Functional Geometry. In *Conference Record of the 1982 ACM Symposium on Lisp and Functional Programming,* pp. 179–187.",
+      "label": "Henderson 1982"
+    },
+    {
+      "key": "SICP-BIB-49",
+      "content": "Hewitt, Carl E. 1969. PLANNER: A language for proving theorems in robots. In *Proceedings of the International Joint Conference on Artificial Intelligence,* pp. 295–301.",
+      "label": "Hewitt 1969"
+    },
+    {
+      "key": "HEW77",
+      "content": "Hewitt, Carl E. 1977. Viewing control structures as patterns of passing messages. *Journal of Artificial Intelligence* 8(3):323–364.",
+      "label": "Hewitt 1977"
+    },
+    {
+      "key": "SICP-BIB-51",
+      "content": "Hoare, C. A. R. 1972. Proof of correctness of data representations. *Acta Informatica* 1(1):271–281.",
+      "label": "Hoare 1972"
+    },
+    {
+      "key": "HOD83",
+      "content": "Hodges, Andrew. 1983. *Alan Turing: The Enigma.* New York: Simon and Schuster.",
+      "label": "Hodges 1983"
+    },
+    {
+      "key": "SICP-BIB-53",
+      "content": "Hofstadter, Douglas R. 1979. *Gödel, Escher, Bach: An Eternal Golden Braid.* New York: Basic Books.",
+      "label": "Hofstadter 1979"
+    },
+    {
+      "key": "HUG90",
+      "content": "Hughes, R. J. M. 1990. Why functional programming matters. In *Research Topics in Functional Programming*, edited by David Turner. Reading, MA: Addison-Wesley, pp. 17–42.",
+      "label": "Hughes 1990"
+    },
+    {
+      "key": "IEE90",
+      "content": "IEEE Std 1178-1990. 1990. *IEEE Standard for the Scheme Programming Language.*",
+      "label": "IEEE Std 1178-1990"
+    },
+    {
+      "key": "ING60",
+      "content": "Ingerman, Peter, Edgar Irons, Kirk Sattley, and Wallace Feurzeig; assisted by M. Lind, Herbert Kanner, and Robert Floyd. 1960. THUNKS: A way of compiling procedure statements, with some comments on procedure declarations. Unpublished manuscript. (Also, private communication from Wallace Feurzeig.)",
+      "label": "Ingerman 1960"
+    },
+    {
+      "key": "KAL90",
+      "content": "Kaldewaij, Anne. 1990. *Programming: The Derivation of Algorithms.* New York: Prentice-Hall.",
+      "label": "Kaldewaij 1990"
+    },
+    {
+      "key": "KOH86",
+      "content": "Kohlbecker, Eugene Edmund, Jr. 1986. Syntactic extensions in the programming language Lisp. Ph.D. thesis, Indiana University.",
+      "label": "Kohlbecker 1986"
+    },
+    {
+      "key": "SICP-BIB-59",
+      "content": "Knuth, Donald E. 1973. *Fundamental Algorithms.* Volume 1 of *The Art of Computer Programming.* 2nd edition. Reading, MA: Addison-Wesley.",
+      "label": "Knuth 1973"
+    },
+    {
+      "key": "SICP-BIB-60",
+      "content": "Knuth, Donald E. 1981. *Seminumerical Algorithms.* Volume 2 of *The Art of Computer Programming.* 2nd edition. Reading, MA: Addison-Wesley.",
+      "label": "Knuth 1981"
+    },
+    {
+      "key": "KON84",
+      "content": "Konopasek, Milos, and Sundaresan Jayaraman. 1984. *The TK!Solver Book: A Guide to Problem-Solving in Science, Engineering, Business, and Education.* Berkeley, CA: Osborne/McGraw-Hill.",
+      "label": "Konopasek 1984"
+    },
+    {
+      "key": "KOW73",
+      "content": "Kowalski, Robert. 1973. Predicate logic as a programming language. Technical report 70, Department of Computational Logic, School of Artificial Intelligence, University of Edinburgh.",
+      "label": "Kowalski 1973"
+    },
+    {
+      "key": "KOW79",
+      "content": "Kowalski, Robert. 1979. *Logic for Problem Solving.* New York: North-Holland.",
+      "label": "Kowalski 1979"
+    },
+    {
+      "key": "SICP-BIB-64",
+      "content": "Lamport, Leslie. 1978. Time, clocks, and the ordering of events in a distributed system. *Communications of the ACM* 21(7):558–565.",
+      "label": "Lamport 1978"
+    },
+    {
+      "key": "LAM81",
+      "content": "Lampson, Butler, J. J. Horning, R. London, J. G. Mitchell, and G. K. Popek. 1981. Report on the programming language Euclid. Technical report, Computer Systems Research Group, University of Toronto.",
+      "label": "Lampson 1981"
+    },
+    {
+      "key": "SICP-BIB-66",
+      "content": "Landin, Peter. 1965. A correspondence between Algol 60 and Church's lambda notation: Part I. *Communications of the ACM* 8(2):89–101.",
+      "label": "Landin 1965"
+    },
+    {
+      "key": "SICP-BIB-67",
+      "content": "Lieberman, Henry, and Carl E. Hewitt. 1983. A real-time garbage collector based on the lifetimes of objects. *Communications of the ACM* 26(6):419–429.",
+      "label": "Lieberman 1983"
+    },
+    {
+      "key": "SICP-BIB-68",
+      "content": "Liskov, Barbara H., and Stephen N. Zilles. 1975. Specification techniques for data abstractions. *IEEE Transactions on Software Engineering* 1(1):7–19.",
+      "label": "Liskov 1975"
+    },
+    {
+      "key": "MCA78",
+      "content": "McAllester, David Allen. 1978. A three-valued truth-maintenance system. Memo 473, MIT Artificial Intelligence Laboratory.",
+      "label": "McAllester 1978"
+    },
+    {
+      "key": "MCA80",
+      "content": "McAllester, David Allen. 1980. An outlook on truth maintenance. Memo 551, MIT Artificial Intelligence Laboratory.",
+      "label": "McAllester 1980"
+    },
+    {
+      "key": "MCC60",
+      "content": "McCarthy, John. 1960. Recursive functions of symbolic expressions and their computation by machine. *Communications of the ACM* 3(4):184-195.",
+      "label": "McCarthy 1960"
+    },
+    {
+      "key": "MCC67",
+      "content": "McCarthy, John. 1967. A basis for a mathematical theory of computation. In *Computer Programing and Formal Systems*, edited by P. Braffort and D. Hirschberg. North-Holland, pp. 33–70.",
+      "label": "McCarthy 1967"
+    },
+    {
+      "key": "MCC78",
+      "content": "McCarthy, John. 1978. The history of Lisp. In *Proceedings of the ACM SIGPLAN Conference on the History of Programming Languages.*",
+      "label": "McCarthy 1978"
+    },
+    {
+      "key": "MCC65",
+      "content": "McCarthy, John, P. W. Abrahams, D. J. Edwards, T. P. Hart, and M. I. Levin. 1965. *Lisp 1.5 Programmer's Manual.* 2nd edition. Cambridge, MA: MIT Press.",
+      "label": "McCarthy 1965"
+    },
+    {
+      "key": "SICP-BIB-75",
+      "content": "McDermott, Drew, and Gerald Jay Sussman. 1972. Conniver reference manual. Memo 259, MIT Artificial Intelligence Laboratory.",
+      "label": "McDermott 1972"
+    },
+    {
+      "key": "MIL76",
+      "content": "Miller, Gary L. 1976. Riemann's Hypothesis and tests for primality. *Journal of Computer and System Sciences* 13(3):300–317.",
+      "label": "Miller 1976"
+    },
+    {
+      "key": "MIL94",
+      "content": "Miller, James S., and Guillermo J. Rozas. 1994. Garbage collection is fast, but a stack is faster. Memo 1462, MIT Artificial Intelligence Laboratory.",
+      "label": "Miller 1994"
+    },
+    {
+      "key": "MOO78",
+      "content": "Moon, David. 1978. MacLisp reference manual, Version 0. Technical report, MIT Laboratory for Computer Science.",
+      "label": "Moon 1978"
+    },
+    {
+      "key": "MOO81",
+      "content": "Moon, David, and Daniel Weinreb. 1981. Lisp machine manual. Technical report, MIT Artificial Intelligence Laboratory.",
+      "label": "Moon 1981"
+    },
+    {
+      "key": "MOR80",
+      "content": "Morris, J. H., Eric Schmidt, and Philip Wadler. 1980. Experience with an applicative string processing language. In *Proceedings of the 7th Annual ACM SIGACT/SIGPLAN Symposium on the Principles of Programming Languages.*",
+      "label": "Morris 1980"
+    },
+    {
+      "key": "ONE09",
+      "content": "O'Neill, Melissa E. 2009. The genuine sieve of Eratosthenes. *Journal of Functional Programming* 19(1):95–106.",
+      "label": "O'Neill 2009"
+    },
+    {
+      "key": "PHI34",
+      "content": "Phillips, Hubert. 1934. *The Sphinx Problem Book*. London: Faber and Faber.",
+      "label": "Phillips 1934"
+    },
+    {
+      "key": "PHI61",
+      "content": "Phillips, Hubert. 1961. *My Best Puzzles in Logic and Reasoning*. New York: Dover Publications.",
+      "label": "Phillips 1961"
+    },
+    {
+      "key": "RAB80",
+      "content": "Rabin, Michael O. 1980. Probabilistic algorithm for testing primality. *Journal of Number Theory* 12:128–138.",
+      "label": "Rabin 1980"
+    },
+    {
+      "key": "RAY96",
+      "content": "Raymond, Eric. 1996. *The New Hacker's Dictionary.* 3rd edition. Cambridge, MA: MIT Press.",
+      "label": "Raymond 1996"
+    },
+    {
+      "key": "SICP-BIB-86",
+      "content": "Raynal, Michel. 1986. *Algorithms for Mutual Exclusion.* Cambridge, MA: MIT Press.",
+      "label": "Raynal 1986"
+    },
+    {
+      "key": "REE82",
+      "content": "Rees, Jonathan A., and Norman I. Adams IV. 1982. T: A dialect of Lisp or, lambda: The ultimate software tool. In *Conference Record of the 1982 ACM Symposium on Lisp and Functional Programming,* pp. 114–122.",
+      "label": "Rees 1982"
+    },
+    {
+      "key": "SICP-BIB-88",
+      "content": "Rees, Jonathan, and William Clinger (eds). 1991. The revised$^4$ report on the algorithmic language Scheme. *Lisp Pointers,* 4(3).",
+      "label": "Rees 1991"
+    },
+    {
+      "key": "SICP-BIB-89",
+      "content": "Rivest, Ronald, Adi Shamir, and Leonard Adleman. 1977. A method for obtaining digital signatures and public-key cryptosystems. Technical memo LCS/TM82, MIT Laboratory for Computer Science.",
+      "label": "Rivest 1977"
+    },
+    {
+      "key": "ROB65",
+      "content": "Robinson, J. A. 1965. A machine-oriented logic based on the resolution principle. *Journal of the ACM* 12(1):23.",
+      "label": "Robinson 1965"
+    },
+    {
+      "key": "ROB83",
+      "content": "Robinson, J. A. 1983. Logic programming—Past, present, and future. *New Generation Computing* 1:107–124.",
+      "label": "Robinson 1983"
+    },
+    {
+      "key": "SPA89",
+      "content": "Spafford, Eugene H. 1989. The Internet Worm: Crisis and aftermath. *Communications of the ACM* 32(6):678–688.",
+      "label": "Spafford 1989"
+    },
+    {
+      "key": "STE77",
+      "content": "Steele, Guy Lewis, Jr. 1977. Debunking the \"expensive procedure call\" myth. In *Proceedings of the National Conference of the ACM,* pp. 153–162.",
+      "label": "Steele 1977"
+    },
+    {
+      "key": "STE75",
+      "content": "Steele, Guy Lewis, Jr., and Gerald Jay Sussman. 1975. Scheme: An interpreter for the extended lambda calculus. Memo 349, MIT Artificial Intelligence Laboratory.",
+      "label": "Steele 1975"
+    },
+    {
+      "key": "STE83",
+      "content": "Steele, Guy Lewis, Jr., Donald R. Woods, Raphael A. Finkel, Mark R. Crispin, Richard M. Stallman, and Geoffrey S. Goodfellow. 1983. *The Hacker's Dictionary.* New York: Harper \\& Row.",
+      "label": "Steele 1983"
+    },
+    {
+      "key": "STO77",
+      "content": "Stoy, Joseph E. 1977. *Denotational Semantics.* Cambridge, MA: MIT Press.",
+      "label": "Stoy 1977"
+    },
+    {
+      "key": "SUS75",
+      "content": "Sussman, Gerald Jay, and Richard M. Stallman. 1975. Heuristic techniques in computer-aided circuit analysis. *IEEE Transactions on Circuits and Systems* CAS-22(11):857–865.",
+      "label": "Sussman 1975"
+    },
+    {
+      "key": "SUS80",
+      "content": "Sussman, Gerald Jay, and Guy Lewis Steele Jr. 1980. Constraints—A language for expressing almost-hierarchical descriptions. *AI Journal* 14:1–39.",
+      "label": "Sussman 1980"
+    },
+    {
+      "key": "SUS92",
+      "content": "Sussman, Gerald Jay, and Jack Wisdom. 1992. Chaotic evolution of the solar system. *Science* 257:256–262.",
+      "label": "Sussman 1992"
+    },
+    {
+      "key": "SICP-BIB-100",
+      "content": "Sussman, Gerald Jay, Terry Winograd, and Eugene Charniak. 1971. Microplanner reference manual. Memo 203A, MIT Artificial Intelligence Laboratory.",
+      "label": "Sussman 1971"
+    },
+    {
+      "key": "SICP-BIB-101",
+      "content": "Sutherland, Ivan E. 1963. SKETCHPAD: A man-machine graphical communication system. Technical report 296, MIT Lincoln Laboratory.",
+      "label": "Sutherland 1963"
+    },
+    {
+      "key": "THA78",
+      "content": "Thatcher, James W., Eric G. Wagner, and Jesse B. Wright. 1978. Data type specification: Parameterization and the power of specification techniques. In *Conference Record of the Tenth Annual ACM Symposium on Theory of Computing*, pp. 119–132.",
+      "label": "Thatcher 1978"
+    },
+    {
+      "key": "TUR81",
+      "content": "Turner, David. 1981. The future of applicative languages. In *Proceedings of the 3rd European Conference on Informatics,* Lecture Notes in Computer Science, volume 123. New York: Springer-Verlag, pp. 334–348.",
+      "label": "Turner 1981"
+    },
+    {
+      "key": "WAN80",
+      "content": "Wand, Mitchell. 1980. Continuation-based program transformation strategies. *Journal of the ACM* 27(1):164–180.",
+      "label": "Wand 1980"
+    },
+    {
+      "key": "SICP-BIB-105",
+      "content": "Waters, Richard C. 1979. A method for analyzing loop programs. *IEEE Transactions on Software Engineering* 5(3):237–247.",
+      "label": "Waters 1979"
+    },
+    {
+      "key": "WIN92",
+      "content": "Winston, Patrick. 1992. *Artificial Intelligence*. 3rd edition. Reading, MA: Addison-Wesley.",
+      "label": "Winston 1992"
+    },
+    {
+      "key": "ZAB87",
+      "content": "Zabih, Ramin, David McAllester, and David Chapman. 1987. Non-deterministic Lisp with dependency-directed backtracking. *AAAI-87*, pp. 59–64.",
+      "label": "Zabih 1987"
+    },
+    {
+      "key": "SICP-BIB-108",
+      "content": "Zippel, Richard. 1979. Probabilistic algorithms for sparse polynomials. Ph.D. dissertation, Department of Electrical Engineering and Computer Science, MIT.",
+      "label": "Zippel 1979"
+    },
+    {
+      "key": "SICP-BIB-109",
+      "content": "Zippel, Richard. 1993. *Effective Polynomial Computation.* Boston, MA: Kluwer Academic Publishers.",
+      "label": "Zippel 1993"
+    },
+    {
+      "key": "KNU97B",
+      "content": "Knuth, Donald E. 1997b. *Seminumerical Algorithms.* Volume 2 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.",
+      "label": "Knuth 1997b",
+      "supplemental": true,
+      "provenance": "Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF."
+    },
+    {
+      "key": "COR22",
+      "content": "Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. *Introduction to Algorithms.* 4th edition. Cambridge, MA: MIT Press.",
+      "label": "Cormen 2022",
+      "supplemental": true,
+      "provenance": "Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF."
+    },
+    {
+      "key": "EDW19",
+      "content": "Edwards, A. W. F. 2019. *Pascal's Arithmetical Triangle*. Mineola, New York: Dover Publications.",
+      "label": "Edwards 2019",
+      "supplemental": true,
+      "provenance": "Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF."
+    },
+    {
+      "key": "KNU97A",
+      "content": "Knuth, Donald E. 1997a. *Fundamental Algorithms.* Volume 1 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.",
+      "label": "Knuth 1997a",
+      "supplemental": true,
+      "provenance": "Exact notice from the original XML, omitted by its Scheme bibliography branch but cited in the supplied PDF."
+    },
+    {
+      "key": "PIT83",
+      "label": "Pitman 1983",
+      "content": "Pitman, Kent. 1983. The revised MacLisp Manual (Saturday evening edition). Technical report 295, MIT Laboratory for Computer Science.",
+      "supplemental": true,
+      "provenance": "Restored from the bibliography of the original SICP edition.",
+      "source": "https://sarabander.github.io/sicp/html/References.xhtml"
+    },
+    {
+      "key": "TEI74",
+      "label": "Teitelman 1974",
+      "content": "Teitelman, Warren. 1974. Interlisp reference manual. Technical report, Xerox Palo Alto Research Center.",
+      "supplemental": true,
+      "provenance": "Restored from the bibliography of the original SICP edition.",
+      "source": "https://sarabander.github.io/sicp/html/References.xhtml"
+    },
+    {
+      "key": "STE82",
+      "label": "Steele 1982",
+      "content": "Steele, Guy Lewis, Jr. 1982. An overview of Common Lisp. In *Proceedings of the ACM Symposium on Lisp and Functional Programming*, pp. 98–107.",
+      "supplemental": true,
+      "provenance": "Restored from the bibliography of the original SICP edition.",
+      "source": "https://sarabander.github.io/sicp/html/References.xhtml"
+    },
+    {
+      "key": "STE90",
+      "label": "Steele 1990",
+      "content": "Steele, Guy Lewis, Jr. 1990. *Common Lisp: The Language*. 2nd edition. Digital Press.",
+      "supplemental": true,
+      "provenance": "Restored from the bibliography of the original SICP edition.",
+      "source": "https://sarabander.github.io/sicp/html/References.xhtml"
+    }
+  ],
+  "citations": [
+    {
+      "key": "MCC60",
+      "label": "McCarthy 1960"
+    },
+    {
+      "key": "MCC65",
+      "label": "McCarthy 1965"
+    },
+    {
+      "key": "MCC78",
+      "label": "McCarthy 1978"
+    },
+    {
+      "key": "MOO78",
+      "label": "Moon 1978"
+    },
+    {
+      "key": "HEA69",
+      "label": "Hearn 1969"
+    },
+    {
+      "key": "GRI81",
+      "label": "Griss 1981"
+    },
+    {
+      "key": "MOO81",
+      "label": "Moon 1981"
+    },
+    {
+      "key": "STE75",
+      "label": "Steele 1975"
+    },
+    {
+      "key": "IEE90",
+      "label": "IEEE 1990"
+    },
+    {
+      "key": "ANS94",
+      "label": "ANSI 1994"
+    },
+    {
+      "key": "ABE92",
+      "label": "Abelson et al. 1992"
+    },
+    {
+      "key": "SUS92",
+      "label": "Sussman and Wisdom 1992"
+    },
+    {
+      "key": "STO77",
+      "label": "Stoy 1977"
+    },
+    {
+      "key": "HEW77",
+      "label": "Hewitt (1977)"
+    },
+    {
+      "key": "STE75",
+      "label": "Steele 1975"
+    },
+    {
+      "key": "STE77",
+      "label": "Steele 1977"
+    },
+    {
+      "key": "KNU97B",
+      "label": "Knuth 1997b"
+    },
+    {
+      "key": "KAL90",
+      "label": "Kaldewaij 1990"
+    },
+    {
+      "key": "MIL76",
+      "label": "Miller 1976"
+    },
+    {
+      "key": "RAB80",
+      "label": "Rabin 1980"
+    },
+    {
+      "key": "THA78",
+      "label": "Thatcher, Wagner, and Wright 1978"
+    },
+    {
+      "key": "GUT77",
+      "label": "Guttag 1977"
+    },
+    {
+      "key": "BOR75",
+      "label": "Borodin and Munro (1975)"
+    },
+    {
+      "key": "HEN82",
+      "label": "Henderson 1982"
+    },
+    {
+      "key": "COR22",
+      "label": "Cormen, Leiserson, Rivest, and Stein 2022"
+    },
+    {
+      "key": "HAM80",
+      "label": "Hamming 1980"
+    },
+    {
+      "key": "KNU97B",
+      "label": "Knuth 1997b"
+    },
+    {
+      "key": "CHA75",
+      "label": "Chaitin 1975"
+    },
+    {
+      "key": "KNU97B",
+      "label": "Knuth 1997b"
+    },
+    {
+      "key": "LAM81",
+      "label": "Lampson et al. 1981"
+    },
+    {
+      "key": "MOR80",
+      "label": "Morris, Schmidt, and Wadler 1980"
+    },
+    {
+      "key": "STE77",
+      "label": "Steele (1977)"
+    },
+    {
+      "key": "SUS75",
+      "label": "Sussman and Stallman 1975"
+    },
+    {
+      "key": "SUS80",
+      "label": "Sussman and Steele 1980"
+    },
+    {
+      "key": "KON84",
+      "label": "Konopasek and Jayaraman 1984"
+    },
+    {
+      "key": "DIJ68A",
+      "label": "Dijkstra 1968a"
+    },
+    {
+      "key": "HAV68",
+      "label": "Havender (1968)"
+    },
+    {
+      "key": "GRA93",
+      "label": "Gray and Reuter 1993"
+    },
+    {
+      "key": "ONE09",
+      "label": "O'Neill 2009"
+    },
+    {
+      "key": "HAR60",
+      "label": "Hardy and Wright 1960"
+    },
+    {
+      "key": "TUR81",
+      "label": "Turner 1981"
+    },
+    {
+      "key": "HAR21",
+      "label": "Hardy 1921"
+    },
+    {
+      "key": "GOR79",
+      "label": "Gordon, Milner, and Wadsworth 1979"
+    },
+    {
+      "key": "BAC78",
+      "label": "Backus 1978"
+    },
+    {
+      "key": "HEN80",
+      "label": "Henderson 1980"
+    },
+    {
+      "key": "DAR82",
+      "label": "Darlington, Henderson, and Turner 1982"
+    },
+    {
+      "key": "KOH86",
+      "label": "Kohlbecker 1986"
+    },
+    {
+      "key": "CLI91",
+      "label": "Clinger and Rees 1991"
+    },
+    {
+      "key": "HAN91",
+      "label": "Hanson 1991"
+    },
+    {
+      "key": "HOD83",
+      "label": "Hodges 1983"
+    },
+    {
+      "key": "STO77",
+      "label": "Stoy 1977"
+    },
+    {
+      "key": "GAB88",
+      "label": "Gabriel 1988"
+    },
+    {
+      "key": "REE82",
+      "label": "Rees and Adams 1982"
+    },
+    {
+      "key": "FEE86",
+      "label": "Feeley 1986"
+    },
+    {
+      "key": "FEE87",
+      "label": "Feeley and Lapalme 1987"
+    },
+    {
+      "key": "STE83",
+      "label": "Steele et al. 1983"
+    },
+    {
+      "key": "RAY96",
+      "label": "Raymond 1996"
+    },
+    {
+      "key": "ING60",
+      "label": "Ingerman et al. 1960"
+    },
+    {
+      "key": "HUG90",
+      "label": "Hughes 1990"
+    },
+    {
+      "key": "MCC67",
+      "label": "McCarthy 1967"
+    },
+    {
+      "key": "STE83",
+      "label": "Steele 1983"
+    },
+    {
+      "key": "RAY96",
+      "label": "Raymond 1996"
+    },
+    {
+      "key": "DOY79",
+      "label": "Doyle (1979)"
+    },
+    {
+      "key": "MCA78",
+      "label": "1978"
+    },
+    {
+      "key": "MCA80",
+      "label": "1980"
+    },
+    {
+      "key": "FOR93",
+      "label": "Forbus and de Kleer 1993"
+    },
+    {
+      "key": "ZAB87",
+      "label": "Zabih, McAllester, and Chapman 1987"
+    },
+    {
+      "key": "WIN92",
+      "label": "Winston 1992"
+    },
+    {
+      "key": "DIN68",
+      "label": "Dinesman 1968"
+    },
+    {
+      "key": "PHI34",
+      "label": "Phillips 1934"
+    },
+    {
+      "key": "PHI61",
+      "label": "Phillips 1961"
+    },
+    {
+      "key": "WIN92",
+      "label": "Winston 1992"
+    },
+    {
+      "key": "ROB65",
+      "label": "Robinson 1965"
+    },
+    {
+      "key": "GRE69",
+      "label": "Green 1969"
+    },
+    {
+      "key": "COL73",
+      "label": "Colmerauer et al. 1973"
+    },
+    {
+      "key": "KOW73",
+      "label": "1973"
+    },
+    {
+      "key": "KOW79",
+      "label": "1979"
+    },
+    {
+      "key": "ROB83",
+      "label": "Robinson 1983"
+    },
+    {
+      "key": "FEI93",
+      "label": "Feigenbaum and Shrobe 1993"
+    },
+    {
+      "key": "DE77",
+      "label": "de Kleer et al. 1977"
+    },
+    {
+      "key": "ALL78",
+      "label": "Allen 1978"
+    },
+    {
+      "key": "BAT82",
+      "label": "Batali et al. 1982"
+    },
+    {
+      "key": "WAN80",
+      "label": "Wand 1980"
+    },
+    {
+      "key": "HAN90",
+      "label": "Hanson 1990"
+    },
+    {
+      "key": "APP87",
+      "label": "Appel 1987"
+    },
+    {
+      "key": "MIL94",
+      "label": "Miller and Rozas 1994"
+    },
+    {
+      "key": "SPA89",
+      "label": "Spafford 1989"
+    },
+    {
+      "key": "IEE90",
+      "label": "IEEE 1990",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "PIT83",
+      "label": "Pitman 1983",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "TEI74",
+      "label": "Teitelman 1974",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "STE82",
+      "label": "Steele 1982",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "STE90",
+      "label": "Steele 1990",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "EDW19",
+      "label": "Edwards (2019)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "KNU97A",
+      "label": "Knuth (1997a)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-89",
+      "label": "Rivest, Shamir, and Adleman (1977)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-11",
+      "label": "Church (1941)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-51",
+      "label": "Hoare (1972)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-68",
+      "label": "Liskov and Zilles (1975)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-105",
+      "label": "Waters (1979)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "KNU97B",
+      "label": "Knuth (1997b)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "TUR81",
+      "label": "Turner 1981",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-108",
+      "label": "Zippel (1979)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-109",
+      "label": "1993",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-8",
+      "label": "Borning (1977)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-101",
+      "label": "Sutherland (1963)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-19",
+      "label": "1968b",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-64",
+      "label": "Lamport (1978)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-30",
+      "label": "Friedman and Wise (1976)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-66",
+      "label": "Landin (1965)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-31",
+      "label": "Friedman, Wand, and Haynes 1992",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-53",
+      "label": "1979",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-13",
+      "label": "Clinger (1982)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-28",
+      "label": "Floyd (1967)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-49",
+      "label": "Hewitt (1969)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-75",
+      "label": "McDermott and Sussman (1972)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SUS75",
+      "label": "Sussman and Stallman (1975)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-100",
+      "label": "Sussman, Winograd, and Charniak (1971)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-37",
+      "label": "Green and Raphael (1968)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-49",
+      "label": "Hewitt (1969)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-12",
+      "label": "Clark (1978)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-6",
+      "label": "Baker (1978)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-27",
+      "label": "Fenichel and Yochelson (1969)",
+      "origin": "Reviewed plain-text citation"
+    },
+    {
+      "key": "SICP-BIB-67",
+      "label": "Lieberman and Hewitt 1983",
+      "origin": "Reviewed plain-text citation"
+    }
+  ]
+}

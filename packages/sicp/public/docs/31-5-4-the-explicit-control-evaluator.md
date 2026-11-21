@@ -21,7 +21,7 @@ Our Scheme evaluator register machine includes a stack and seven registers: `exp
 We will not provide a data-path diagram to show how the registers and operations of the evaluator are connected, nor will we give the complete list of machine operations. These are implicit in the evaluator's controller, which will be presented in detail.
 
 ::::: aside {id="note-5-18"}
-**18.** See Batali et al. 1982 for more information on the chip and the method by which it was designed.
+**18.** See :tp-ref:{href="@BAT82" label="Batali et al. 1982"} for more information on the chip and the method by which it was designed.
 :::::
 
 ### 5.4.1 The Core of the Explicit-Control Evaluator
@@ -211,7 +211,7 @@ compound-apply
 :::::
 
 ::::: aside {id="note-5-22"}
-**22.** The optimization of treating the last operand specially is known as *evlis tail recursion* (see Wand 1980). We could be somewhat more efficient in the argument evaluation loop if we made evaluation of the first operand a special case too. This would permit us to postpone initializing `argl` until after evaluating the first operand, so as to avoid saving `argl` in this case. The compiler in section 5.5 performs this optimization. (Compare the `construct-arglist` procedure of section 5.5.3.)
+**22.** The optimization of treating the last operand specially is known as *evlis tail recursion* (see :tp-ref:{href="@WAN80" label="Wand 1980"}). We could be somewhat more efficient in the argument evaluation loop if we made evaluation of the first operand a special case too. This would permit us to postpone initializing `argl` until after evaluating the first operand, so as to avoid saving `argl` in this case. The compiler in section 5.5 performs this optimization. (Compare the `construct-arglist` procedure of section 5.5.3.)
 :::::
 
 ::::: aside {id="note-5-23"}
@@ -1927,3 +1927,18 @@ b. Much worse is the problem of handling errors that are signaled by applying pr
 ::::: aside {id="note-5-30"}
 **30.** Regrettably, this is the normal state of affairs in  conventional compiler-based language systems such as C.  In UNIX:latexmath:`^{\textrm{TM}}` the system "dumps core," and in  DOS/Windows:latexmath:`^{\textrm{TM}}` it becomes catatonic. The  Macintosh:latexmath:`^{\textrm{TM}}` displays a picture of an exploding bomb and offers you the opportunity to reboot the computer—if you're lucky.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="BAT82" label="Batali 1982" id="bib-bat82"}
+Batali, John, Neil Mayle, Howard Shrobe, Gerald Jay Sussman, and Daniel Weise. 1982. The Scheme-81 architecture—System and chip. In *Proceedings of the MIT Conference on Advanced Research in VLSI,* edited by Paul Penfield, Jr. Dedham, MA: Artech House.
+:::
+
+::: tp-biblio {ref="WAN80" label="Wand 1980" id="bib-wan80"}
+Wand, Mitchell. 1980. Continuation-based program transformation strategies. *Journal of the ACM* 27(1):164–180.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

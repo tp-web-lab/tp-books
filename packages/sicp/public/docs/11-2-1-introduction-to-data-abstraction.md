@@ -503,7 +503,7 @@ This representation is known as *Church numerals*, after its inventor, Alonzo Ch
 Define `one` and `two` directly (not in terms of `zero` and `add-1`). (Hint: Use substitution to evaluate `(add-1 zero)`). Give a direct definition of the addition procedure `+` (not in terms of repeated application of `add-1`).
 
 ::::: aside {id="note-2-5"}
-**5.** Surprisingly, this idea is very difficult to formulate rigorously. There are two approaches to giving such a formulation. One, pioneered by  C. A. R. Hoare (1972), is known as the method of *abstract models*. It formalizes the "procedures plus conditions" specification as outlined in the rational-number example above. Note that the condition on the rational-number representation was stated in terms of facts about integers (equality and division). In general, abstract models define new kinds of data objects in terms of previously defined types of data objects. Assertions about data objects can therefore be checked by reducing them to assertions about previously defined data objects. Another approach, introduced by  Zilles at MIT, by  Goguen,  Thatcher,  Wagner, and  Wright at IBM (see Thatcher, Wagner, and Wright 1978), and by  Guttag at Toronto (see Guttag 1977), is called *algebraic specification*. It regards the "procedures" as elements of an abstract algebraic system whose behavior is specified by axioms that correspond to our "conditions," and uses the techniques of abstract algebra to check assertions about data objects. Both methods are surveyed in the paper by  Liskov and Zilles (1975).
+**5.** Surprisingly, this idea is very difficult to formulate rigorously. There are two approaches to giving such a formulation. One, pioneered by  C. A. R. :tp-ref:{href="@SICP-BIB-51" label="Hoare (1972)"}, is known as the method of *abstract models*. It formalizes the "procedures plus conditions" specification as outlined in the rational-number example above. Note that the condition on the rational-number representation was stated in terms of facts about integers (equality and division). In general, abstract models define new kinds of data objects in terms of previously defined types of data objects. Assertions about data objects can therefore be checked by reducing them to assertions about previously defined data objects. Another approach, introduced by  Zilles at MIT, by  Goguen,  Thatcher,  Wagner, and  Wright at IBM (see :tp-ref:{href="@THA78" label="Thatcher, Wagner, and Wright 1978"}), and by  Guttag at Toronto (see :tp-ref:{href="@GUT77" label="Guttag 1977"}), is called *algebraic specification*. It regards the "procedures" as elements of an abstract algebraic system whose behavior is specified by axioms that correspond to our "conditions," and uses the techniques of abstract algebra to check assertions about data objects. Both methods are surveyed in the paper by  :tp-ref:{href="@SICP-BIB-68" label="Liskov and Zilles (1975)"}.
 :::::
 
 ### 2.1.4 Extended Exercise: Interval Arithmetic
@@ -631,3 +631,26 @@ Lem complains that Alyssa's program gives different answers for the two ways of 
 **Exercise 2.15.** Eva Lu Ator, another user, has also noticed the different intervals computed by different but algebraically equivalent expressions. She says that a formula to compute with intervals using Alyssa's system will produce tighter error bounds if it can be written in such a form that no variable that represents an uncertain number is repeated. Thus, she says, `par2` is a "better" program for parallel resistances than `par1`. Is she right? Why?
 
 **Exercise 2.16.** Explain, in general, why equivalent algebraic expressions may lead to different answers. Can you devise an interval-arithmetic package that does not have this shortcoming, or is this task impossible? (Warning: This problem is very difficult.)
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-51" label="Hoare 1972" id="bib-sicp-bib-51"}
+Hoare, C. A. R. 1972. Proof of correctness of data representations. *Acta Informatica* 1(1):271–281.
+:::
+
+::: tp-biblio {ref="THA78" label="Thatcher 1978" id="bib-tha78"}
+Thatcher, James W., Eric G. Wagner, and Jesse B. Wright. 1978. Data type specification: Parameterization and the power of specification techniques. In *Conference Record of the Tenth Annual ACM Symposium on Theory of Computing*, pp. 119–132.
+:::
+
+::: tp-biblio {ref="GUT77" label="Guttag 1977" id="bib-gut77"}
+Guttag, John V. 1977. Abstract data types and the development of data structures. *Communications of the ACM* 20(6):397–404.
+:::
+
+::: tp-biblio {ref="SICP-BIB-68" label="Liskov 1975" id="bib-sicp-bib-68"}
+Liskov, Barbara H., and Stephen N. Zilles. 1975. Specification techniques for data abstractions. *IEEE Transactions on Software Engineering* 1(1):7–19.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

@@ -1,0 +1,159 @@
+{
+  "pages": [
+    {
+      "page": "03-preface.md",
+      "count": 1,
+      "terms": 1,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "06-1-building-abstractions-with-procedures.md",
+      "count": 16,
+      "terms": 16,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "07-1-1-the-elements-of-programming.md",
+      "count": 1,
+      "terms": 1,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "08-1-2-procedures-and-the-processes-they-generate.md",
+      "count": 10,
+      "terms": 10,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+      "count": 1,
+      "terms": 1,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "11-2-1-introduction-to-data-abstraction.md",
+      "count": 4,
+      "terms": 4,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+      "count": 5,
+      "terms": 5,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "13-2-3-symbolic-data.md",
+      "count": 2,
+      "terms": 2,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "15-2-5-systems-with-generic-operations.md",
+      "count": 2,
+      "terms": 2,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "17-3-1-assignment-and-local-state.md",
+      "count": 6,
+      "terms": 5,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "19-3-3-modeling-with-mutable-data.md",
+      "count": 5,
+      "terms": 5,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "20-3-4-concurrency-time-is-of-the-essence.md",
+      "count": 5,
+      "terms": 5,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "21-3-5-streams.md",
+      "count": 10,
+      "terms": 10,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "22-4-metalinguistic-abstraction.md",
+      "count": 1,
+      "terms": 1,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "23-4-1-the-metacircular-evaluator.md",
+      "count": 10,
+      "terms": 10,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+      "count": 5,
+      "terms": 5,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+      "count": 18,
+      "terms": 17,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "26-4-4-logic-programming.md",
+      "count": 11,
+      "terms": 11,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "30-5-3-storage-allocation-and-garbage-collection.md",
+      "count": 4,
+      "terms": 4,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "31-5-4-the-explicit-control-evaluator.md",
+      "count": 2,
+      "terms": 2,
+      "broken": [],
+      "tooltip": true
+    },
+    {
+      "page": "32-5-5-compilation.md",
+      "count": 4,
+      "terms": 4,
+      "broken": [],
+      "tooltip": true
+    }
+  ],
+  "global": {
+    "lists": 1,
+    "terms": 117,
+    "citations": 123,
+    "failed": ""
+  },
+  "originLink": true,
+  "backHistory": true
+}

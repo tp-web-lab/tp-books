@@ -783,7 +783,7 @@ Of course, there are better ways to represent large sets than as unordered lists
 :::::
 
 ::::: aside {id="note-2-40"}
-**40.** Examples of such structures include *B-trees* and *red-black trees*. There is a large literature on data structures devoted to this problem. See Cormen, Leiserson, Rivest, and Stein 2022.
+**40.** Examples of such structures include *B-trees* and *red-black trees*. There is a large literature on data structures devoted to this problem. See :tp-ref:{href="@COR22" label="Cormen, Leiserson, Rivest, and Stein 2022"}.
 :::::
 
 ::::: aside {id="note-2-41"}
@@ -1013,5 +1013,20 @@ How many bits are required for the encoding? What is the smallest number of bits
 **Exercise 2.72.** Consider the encoding procedure that you designed in exercise 2.68. What is the order of growth in the number of steps needed to encode a symbol? Be sure to include the number of steps needed to search the symbol list at each node encountered. To answer this question in general is difficult. Consider the special case where the relative frequencies of the :latexmath:`n` symbols are as described in exercise 2.71, and give the order of growth (as a function of :latexmath:`n`) of the number of steps needed to encode the most frequent and least frequent symbols in the alphabet.
 
 ::::: aside {id="note-2-42"}
-**42.** See Hamming 1980 for a discussion of the mathematical properties of Huffman codes.
+**42.** See :tp-ref:{href="@HAM80" label="Hamming 1980"} for a discussion of the mathematical properties of Huffman codes.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="COR22" label="Cormen 2022" id="bib-cor22"}
+Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. *Introduction to Algorithms.* 4th edition. Cambridge, MA: MIT Press.
+:::
+
+::: tp-biblio {ref="HAM80" label="Hamming 1980" id="bib-ham80"}
+Hamming, Richard W. 1980. *Coding and Information Theory.* Englewood Cliffs, N.J.: Prentice-Hall.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

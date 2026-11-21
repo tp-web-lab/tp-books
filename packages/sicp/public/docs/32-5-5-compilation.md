@@ -578,7 +578,7 @@ Suppose instead that we had handled the case of a procedure call with a linkage 
 :::::
 
 ::::: aside {id="note-5-38"}
-**38.** Making a  compiler generate tail-recursive  code might seem like a straightforward idea. But  However, compilers for common languages, including C and Pascal, do not always do this, and therefore these languages cannot represent iterative processes in terms of procedure call alone. The difficulty with  tail recursion in these languages is that their implementations use the stack to store procedure arguments and local variables as well as return addresses. The  Scheme  implementations described in this book store arguments and variables in memory to be garbage-collected. The reason for using the stack for variables and arguments is that it avoids the need for garbage collection in languages that would not otherwise require it, and is generally believed to be more efficient. Sophisticated Lisp compilers can, in fact, use the stack for arguments without destroying tail recursion. (See Hanson 1990 for a description.) There is also some debate about whether stack allocation is actually more efficient than garbage collection in the first place, but the details seem to hinge on fine points of computer architecture. (See Appel 1987 and Miller and Rozas 1994 for opposing views on this issue.)
+**38.** Making a  compiler generate tail-recursive  code might seem like a straightforward idea. But  However, compilers for common languages, including C and Pascal, do not always do this, and therefore these languages cannot represent iterative processes in terms of procedure call alone. The difficulty with  tail recursion in these languages is that their implementations use the stack to store procedure arguments and local variables as well as return addresses. The  Scheme  implementations described in this book store arguments and variables in memory to be garbage-collected. The reason for using the stack for variables and arguments is that it avoids the need for garbage collection in languages that would not otherwise require it, and is generally believed to be more efficient. Sophisticated Lisp compilers can, in fact, use the stack for arguments without destroying tail recursion. (See :tp-ref:{href="@HAN90" label="Hanson 1990"} for a description.) There is also some debate about whether stack allocation is actually more efficient than garbage collection in the first place, but the details seem to hinge on fine points of computer architecture. (See :tp-ref:{href="@APP87" label="Appel 1987"} and :tp-ref:{href="@MIL94" label="Miller and Rozas 1994"} for opposing views on this issue.)
 :::::
 
 ::::: aside {id="note-5-39"}
@@ -9327,7 +9327,7 @@ machine-finished) machine))
 
 
 
- Compilers for popular languages, such as  C and C++, put hardly any error-checking operations into running code, so as to make things run as fast as possible. As a result, it falls to programmers to explicitly provide error checking. Unfortunately, people often neglect to do this, even in critical applications where speed is not a constraint. Their programs lead fast and dangerous lives. For example, the notorious "Worm" that paralyzed the Internet in 1988 exploited the  UNIX:latexmath:`^{\textrm{TM}}` operating system's failure to check whether the input buffer has overflowed in the finger daemon. (See Spafford 1989.)
+ Compilers for popular languages, such as  C and C++, put hardly any error-checking operations into running code, so as to make things run as fast as possible. As a result, it falls to programmers to explicitly provide error checking. Unfortunately, people often neglect to do this, even in critical applications where speed is not a constraint. Their programs lead fast and dangerous lives. For example, the notorious "Worm" that paralyzed the Internet in 1988 exploited the  UNIX:latexmath:`^{\textrm{TM}}` operating system's failure to check whether the input buffer has overflowed in the finger daemon. (See :tp-ref:{href="@SPA89" label="Spafford 1989"}.)
 :::::
 
 ::::: aside {id="note-5-51"}
@@ -9337,3 +9337,26 @@ machine-finished) machine))
 ::::: aside {id="note-5-52"}
 **52.** This strategy leads to amusing tests of correctness of the compiler, such as checking whether the compilation of a program on the new machine, using the compiled compiler, is identical with the compilation of the program on the original Lisp system. Tracking down the source of differences is fun but often frustrating, because the results are extremely sensitive to minuscule details.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="HAN90" label="Hanson 1990" id="bib-han90"}
+Hanson, Christopher P. 1990. Efficient stack allocation for tail-recursive languages. In *Proceedings of ACM Conference on Lisp and Functional Programming,* pp. 106–118.
+:::
+
+::: tp-biblio {ref="APP87" label="Appel 1987" id="bib-app87"}
+Appel, Andrew W. 1987. Garbage collection can be faster than stack allocation. *Information Processing Letters* 25(4):275–279.
+:::
+
+::: tp-biblio {ref="MIL94" label="Miller 1994" id="bib-mil94"}
+Miller, James S., and Guillermo J. Rozas. 1994. Garbage collection is fast, but a stack is faster. Memo 1462, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="SPA89" label="Spafford 1989" id="bib-spa89"}
+Spafford, Eugene H. 1989. The Internet Worm: Crisis and aftermath. *Communications of the ACM* 32(6):678–688.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

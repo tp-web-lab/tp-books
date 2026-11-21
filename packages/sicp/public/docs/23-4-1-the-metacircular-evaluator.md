@@ -508,7 +508,7 @@ Modify `let->combination` of exercise 4.6 to also support named `let`.
 :::::
 
 ::::: aside {id="note-4-13"}
-**13.** Practical Lisp systems provide a mechanism that allows a user to add new derived expressions and specify their implementation as syntactic transformations without modifying the evaluator. Such a user-defined transformation is called a *macro*. Although it is easy to add an elementary mechanism for defining macros, the resulting language has subtle name-conflict problems. There has been much research on mechanisms for macro definition that do not cause these difficulties. See,  for example, Kohlbecker 1986, Clinger and Rees 1991, and Hanson 1991.
+**13.** Practical Lisp systems provide a mechanism that allows a user to add new derived expressions and specify their implementation as syntactic transformations without modifying the evaluator. Such a user-defined transformation is called a *macro*. Although it is easy to add an elementary mechanism for defining macros, the resulting language has subtle name-conflict problems. There has been much research on mechanisms for macro definition that do not cause these difficulties. See,  for example, :tp-ref:{href="@KOH86" label="Kohlbecker 1986"}, :tp-ref:{href="@CLI91" label="Clinger and Rees 1991"}, and :tp-ref:{href="@HAN91" label="Hanson 1991"}.
 :::::
 
 ### 4.1.3 Evaluator Data Structures
@@ -1584,11 +1584,11 @@ will both return 25.<sup><a href="#note-4-22">22</a></sup>
 Now consider evaluating the expression `(try try)` and show that any possible outcome (either halting or running forever) violates the intended behavior of `halts?`.<sup><a href="#note-4-23">23</a></sup>
 
 ::::: aside {id="note-4-19"}
-**19.** The fact that the machines are described in Lisp is inessential. If we give our evaluator a Lisp program that behaves as an evaluator for some other language, say C, the Lisp evaluator will emulate the C evaluator, which in turn can emulate any machine described as a C program. Similarly, writing a Lisp evaluator in C produces a C program that can execute any Lisp program. The deep idea here is that any evaluator can emulate any other. Thus, the notion of "what can in principle be computed" (ignoring practicalities of time and memory required) is independent of the language or the computer, and instead reflects an underlying notion of *computability*. This was first demonstrated in a clear way by  Alan M. Turing (1912–1954), whose 1936 paper laid the foundations for theoretical  computer science. In the paper, Turing presented a simple computational model—now known as a *Turing machine*—and argued that any "effective process" can be formulated as a program for such a machine. (This argument is known as the *Church–Turing thesis*.) Turing then implemented a universal machine, i.e., a Turing machine that behaves as an evaluator for Turing-machine programs. He used this framework to demonstrate that there are well-posed problems that cannot be computed by Turing machines (see exercise 4.16), and so by implication cannot be formulated as "effective processes." Turing went on to make fundamental contributions to practical computer science as well. For example, he invented the idea of  structuring programs using general-purpose subroutines. See Hodges 1983 for a biography of Turing.
+**19.** The fact that the machines are described in Lisp is inessential. If we give our evaluator a Lisp program that behaves as an evaluator for some other language, say C, the Lisp evaluator will emulate the C evaluator, which in turn can emulate any machine described as a C program. Similarly, writing a Lisp evaluator in C produces a C program that can execute any Lisp program. The deep idea here is that any evaluator can emulate any other. Thus, the notion of "what can in principle be computed" (ignoring practicalities of time and memory required) is independent of the language or the computer, and instead reflects an underlying notion of *computability*. This was first demonstrated in a clear way by  Alan M. Turing (1912–1954), whose 1936 paper laid the foundations for theoretical  computer science. In the paper, Turing presented a simple computational model—now known as a *Turing machine*—and argued that any "effective process" can be formulated as a program for such a machine. (This argument is known as the *Church–Turing thesis*.) Turing then implemented a universal machine, i.e., a Turing machine that behaves as an evaluator for Turing-machine programs. He used this framework to demonstrate that there are well-posed problems that cannot be computed by Turing machines (see exercise 4.16), and so by implication cannot be formulated as "effective processes." Turing went on to make fundamental contributions to practical computer science as well. For example, he invented the idea of  structuring programs using general-purpose subroutines. See :tp-ref:{href="@HOD83" label="Hodges 1983"} for a biography of Turing.
 :::::
 
 ::::: aside {id="note-4-20"}
-**20.** Some people find it counterintuitive that an evaluator, which is implemented by a relatively simple procedure, can emulate programs that are more complex than the evaluator itself. The existence of a universal evaluator machine is a deep and wonderful property of computation. *Recursion theory*, a branch of mathematical logic, is concerned with logical limits of computation.  Douglas Hofstadter's beautiful book *Gödel, Escher, Bach* (1979) explores some of these ideas.
+**20.** Some people find it counterintuitive that an evaluator, which is implemented by a relatively simple procedure, can emulate programs that are more complex than the evaluator itself. The existence of a universal evaluator machine is a deep and wonderful property of computation. *Recursion theory*, a branch of mathematical logic, is concerned with logical limits of computation.  Douglas Hofstadter's beautiful book *Gödel, Escher, Bach* (:tp-ref:{href="@SICP-BIB-53" label="1979"}) explores some of these ideas.
 :::::
 
 ::::: aside {id="note-4-21"}
@@ -1786,7 +1786,7 @@ Fill in the missing expressions to complete an alternative definition of `f`, wh
 :::::
 
 ::::: aside {id="note-4-27"}
-**27.** This example illustrates a programming trick for formulating recursive procedures without using `define`. The most general trick of this sort is the :latexmath:`Y`*operator*, which can be used to give a "pure :latexmath:`\lambda`-calculus" implementation of recursion. (See Stoy 1977 for details on the lambda calculus, and Gabriel 1988 for an exposition of the :latexmath:`Y` operator in Scheme.)
+**27.** This example illustrates a programming trick for formulating recursive procedures without using `define`. The most general trick of this sort is the :latexmath:`Y`*operator*, which can be used to give a "pure :latexmath:`\lambda`-calculus" implementation of recursion. (See :tp-ref:{href="@STO77" label="Stoy 1977"} for details on the lambda calculus, and :tp-ref:{href="@GAB88" label="Gabriel 1988"} for an exposition of the :latexmath:`Y` operator in Scheme.)
 :::::
 
 ### 4.1.7 Separating Syntactic Analysis from Execution
@@ -1959,7 +1959,7 @@ Compare the two versions of `analyze-sequence`. For example, consider the common
 **Exercise 4.25.** Design and carry out some experiments to compare the speed of the original metacircular evaluator with the version in this section. Use your results to estimate the fraction of time that is spent in analysis versus execution for various procedures.
 
 ::::: aside {id="note-4-28"}
-**28.** This technique is an integral part of the compilation process, which we shall discuss in chapter 5. Jonathan Rees wrote a Scheme interpreter like this in about 1982 for the T project  (Rees and Adams 1982).  Marc Feeley 1986 (see also Feeley and Lapalme 1987) independently invented this technique in his master's thesis.
+**28.** This technique is an integral part of the compilation process, which we shall discuss in chapter 5. Jonathan Rees wrote a Scheme interpreter like this in about 1982 for the T project  (:tp-ref:{href="@REE82" label="Rees and Adams 1982"}).  Marc :tp-ref:{href="@FEE86" label="Feeley 1986"} (see also :tp-ref:{href="@FEE87" label="Feeley and Lapalme 1987"}) independently invented this technique in his master's thesis.
 :::::
 
 ::::: aside {id="note-4-29"}
@@ -1969,3 +1969,50 @@ Compare the two versions of `analyze-sequence`. For example, consider the common
 ::::: aside {id="note-4-30"}
 **30.** See exercise 4.24 for some insight into the processing of sequences.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="KOH86" label="Kohlbecker 1986" id="bib-koh86"}
+Kohlbecker, Eugene Edmund, Jr. 1986. Syntactic extensions in the programming language Lisp. Ph.D. thesis, Indiana University.
+:::
+
+::: tp-biblio {ref="CLI91" label="Clinger 1991" id="bib-cli91"}
+Clinger, William, and Jonathan Rees. 1991. Macros that work. In *Proceedings of the 1991 ACM Conference on Principles of Programming Languages,* pp. 155–162.
+:::
+
+::: tp-biblio {ref="HAN91" label="Hanson 1991" id="bib-han91"}
+Hanson, Christopher P. 1991. A syntactic closures macro facility. *Lisp Pointers,* 4(4):9–16.
+:::
+
+::: tp-biblio {ref="HOD83" label="Hodges 1983" id="bib-hod83"}
+Hodges, Andrew. 1983. *Alan Turing: The Enigma.* New York: Simon and Schuster.
+:::
+
+::: tp-biblio {ref="SICP-BIB-53" label="Hofstadter 1979" id="bib-sicp-bib-53"}
+Hofstadter, Douglas R. 1979. *Gödel, Escher, Bach: An Eternal Golden Braid.* New York: Basic Books.
+:::
+
+::: tp-biblio {ref="STO77" label="Stoy 1977" id="bib-sto77"}
+Stoy, Joseph E. 1977. *Denotational Semantics.* Cambridge, MA: MIT Press.
+:::
+
+::: tp-biblio {ref="GAB88" label="Gabriel 1988" id="bib-gab88"}
+Gabriel, Richard P. 1988. The Why of *Y*. *Lisp Pointers* 2(2):15–25.
+:::
+
+::: tp-biblio {ref="REE82" label="Rees 1982" id="bib-ree82"}
+Rees, Jonathan A., and Norman I. Adams IV. 1982. T: A dialect of Lisp or, lambda: The ultimate software tool. In *Conference Record of the 1982 ACM Symposium on Lisp and Functional Programming,* pp. 114–122.
+:::
+
+::: tp-biblio {ref="FEE86" label="Feeley 1986" id="bib-fee86"}
+Feeley, Marc. 1986. Deux approches à l'implantation du language Scheme. Masters thesis, Université de Montréal.
+:::
+
+::: tp-biblio {ref="FEE87" label="Feeley 1987" id="bib-fee87"}
+Feeley, Marc and Guy Lapalme. 1987. Using closures for code generation. *Journal of Computer Languages* 12(1):47–66.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

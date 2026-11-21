@@ -508,7 +508,7 @@ The basic phenomenon here is that synchronizing different processes, establishin
 :::::
 
 ::::: aside {id="note-3-45"}
-**45.** The term "mutex" is an abbreviation for *mutual exclusion*. The general problem of arranging a mechanism that permits concurrent processes to safely share resources is called the mutual exclusion problem. Our mutex is a simple variant of the *semaphore* mechanism (see exercise 3.47), which was introduced in the "THE" Multiprogramming System developed at the  Technological University of Eindhoven and named for the university's initials in Dutch  (Dijkstra 1968a). The acquire and release operations were originally called  P and V, from the Dutch words *passeren* (to pass) and *vrijgeven* (to release), in reference to the semaphores used on railroad systems. Dijkstra's classic exposition (1968b) was one of the first to clearly present the issues of concurrency control, and showed how to use semaphores to handle a variety of concurrency problems.
+**45.** The term "mutex" is an abbreviation for *mutual exclusion*. The general problem of arranging a mechanism that permits concurrent processes to safely share resources is called the mutual exclusion problem. Our mutex is a simple variant of the *semaphore* mechanism (see exercise 3.47), which was introduced in the "THE" Multiprogramming System developed at the  Technological University of Eindhoven and named for the university's initials in Dutch  (:tp-ref:{href="@DIJ68A" label="Dijkstra 1968a"}). The acquire and release operations were originally called  P and V, from the Dutch words *passeren* (to pass) and *vrijgeven* (to release), in reference to the semaphores used on railroad systems. Dijkstra's classic exposition (:tp-ref:{href="@SICP-BIB-19" label="1968b"}) was one of the first to clearly present the issues of concurrency control, and showed how to use semaphores to handle a variety of concurrency problems.
 :::::
 
 ::::: aside {id="note-3-46"}
@@ -536,7 +536,7 @@ The basic phenomenon here is that synchronizing different processes, establishin
 :::::
 
 ::::: aside {id="note-3-49"}
-**49.** The general technique for avoiding  deadlock by numbering the shared resources and acquiring them in order is due to Havender (1968). Situations where deadlock cannot be avoided require *deadlock-recovery* methods, which entail having processes"back out" of the deadlocked state and try again. Deadlock-recovery mechanisms are widely used in data-base-management systems, a topic that is treated in detail in Gray and Reuter 1993.
+**49.** The general technique for avoiding  deadlock by numbering the shared resources and acquiring them in order is due to :tp-ref:{href="@HAV68" label="Havender (1968)"}. Situations where deadlock cannot be avoided require *deadlock-recovery* methods, which entail having processes"back out" of the deadlocked state and try again. Deadlock-recovery mechanisms are widely used in data-base-management systems, a topic that is treated in detail in :tp-ref:{href="@GRA93" label="Gray and Reuter 1993"}.
 :::::
 
 ::::: aside {id="note-3-50"}
@@ -548,5 +548,32 @@ The basic phenomenon here is that synchronizing different processes, establishin
 :::::
 
 ::::: aside {id="note-3-52"}
-**52.** For distributed systems, this perspective was pursued by  Lamport (1978), who showed how to use communication to establish "global clocks" that can be used to establish orderings on events in distributed systems.
+**52.** For distributed systems, this perspective was pursued by  :tp-ref:{href="@SICP-BIB-64" label="Lamport (1978)"}, who showed how to use communication to establish "global clocks" that can be used to establish orderings on events in distributed systems.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="DIJ68A" label="Dijkstra 1968a" id="bib-dij68a"}
+Dijkstra, Edsger W. 1968a. The structure of the "THE" multiprogramming system. *Communications of the ACM* 11(5):341–346.
+:::
+
+::: tp-biblio {ref="SICP-BIB-19" label="Dijkstra 1968b" id="bib-sicp-bib-19"}
+Dijkstra, Edsger W. 1968b. Cooperating sequential processes. In *Programming Languages*, edited by F. Genuys. New York: Academic Press, pp. 43–112.
+:::
+
+::: tp-biblio {ref="HAV68" label="Havender 1968" id="bib-hav68"}
+Havender, J. 1968. Avoiding deadlocks in multi-tasking systems. *IBM Systems Journal* 7(2):74–84.
+:::
+
+::: tp-biblio {ref="GRA93" label="Gray 1993" id="bib-gra93"}
+Gray, Jim, and Andreas Reuter. 1993. *Transaction Processing: Concepts and Models.* San Mateo, CA: Morgan-Kaufman.
+:::
+
+::: tp-biblio {ref="SICP-BIB-64" label="Lamport 1978" id="bib-sicp-bib-64"}
+Lamport, Leslie. 1978. Time, clocks, and the ordering of events in a distributed system. *Communications of the ACM* 21(7):558–565.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

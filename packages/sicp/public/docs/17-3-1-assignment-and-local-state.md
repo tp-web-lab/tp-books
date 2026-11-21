@@ -478,11 +478,11 @@ You will find it useful to have a procedure that returns a number chosen at rand
 **Exercise 3.6.** It is useful to be able to reset a random-number generator to produce a sequence starting from a given value. Design a new `rand`procedure that is called with an argument that is either the symbol `generate` or the symbol `reset` and behaves as follows: `(rand 'generate)` produces a new random number; `((rand 'reset)`:latexmath:`\langle \textit{new-value} \rangle``)` resets the internal state variable to the designated *new-value*. Thus, by resetting the state, one can generate repeatable sequences. These are very handy to have when testing and debugging programs that use random numbers.
 
 ::::: aside {id="note-3-6"}
-**6.** One common way to implement `rand-update` is to use the rule that :latexmath:`x` is updated to :latexmath:`ax+b` modulo :latexmath:`m`, where :latexmath:`a`, :latexmath:`b`, and :latexmath:`m` are appropriately chosen integers. Chapter 3 of Knuth 1997b includes an extensive discussion of techniques for generating sequences of random numbers and establishing their statistical properties. Notice that the `rand-update`procedure computes a mathematical function: Given the same input twice, it produces the same output. Therefore, the number sequence produced by `rand-update` certainly is not "random," if by "random" we insist that each number in the sequence is unrelated to the preceding number. The relation between "real randomness" and so-called *pseudo-random* sequences, which are produced by well-determined computations and yet have suitable statistical properties, is a complex question involving difficult issues in mathematics and philosophy.  Kolmogorov,  Solomonoff, and  Chaitin have made great progress in clarifying these issues; a discussion can be found in Chaitin 1975.
+**6.** One common way to implement `rand-update` is to use the rule that :latexmath:`x` is updated to :latexmath:`ax+b` modulo :latexmath:`m`, where :latexmath:`a`, :latexmath:`b`, and :latexmath:`m` are appropriately chosen integers. Chapter 3 of :tp-ref:{href="@KNU97B" label="Knuth 1997b"} includes an extensive discussion of techniques for generating sequences of random numbers and establishing their statistical properties. Notice that the `rand-update`procedure computes a mathematical function: Given the same input twice, it produces the same output. Therefore, the number sequence produced by `rand-update` certainly is not "random," if by "random" we insist that each number in the sequence is unrelated to the preceding number. The relation between "real randomness" and so-called *pseudo-random* sequences, which are produced by well-determined computations and yet have suitable statistical properties, is a complex question involving difficult issues in mathematics and philosophy.  Kolmogorov,  Solomonoff, and  Chaitin have made great progress in clarifying these issues; a discussion can be found in :tp-ref:{href="@CHA75" label="Chaitin 1975"}.
 :::::
 
 ::::: aside {id="note-3-7"}
-**7.** This theorem is due to G.  Lejeune Dirichlet. See section 4.5.2 of Knuth 1997b for a discussion and a proof.
+**7.** This theorem is due to G.  Lejeune Dirichlet. See section 4.5.2 of :tp-ref:{href="@KNU97B" label="Knuth 1997b"} for a discussion and a proof.
 :::::
 
 ::::: aside {id="note-3-8"}
@@ -762,9 +762,36 @@ will allow one to make transactions on `peter-acc` using the name `paul-acc` and
 :::::
 
 ::::: aside {id="note-3-10"}
-**10.** The phenomenon of a single computational object being accessed by more than one name is known as *aliasing*. The joint bank account situation illustrates a very simple example of an alias. In section 3.3 we will see much more complex examples, such as "distinct" compound data structures that share parts. Bugs can occur in our programs if we forget that a change to an object may also, as a "side effect," change a "different" object because the two "different" objects are actually a single object appearing under different aliases. These so-called *side-effect bugs* are so difficult to locate and to analyze that some people have proposed that programming languages be designed in such a way as to not allow side effects or aliasing  (Lampson et al. 1981; Morris, Schmidt, and Wadler 1980).
+**10.** The phenomenon of a single computational object being accessed by more than one name is known as *aliasing*. The joint bank account situation illustrates a very simple example of an alias. In section 3.3 we will see much more complex examples, such as "distinct" compound data structures that share parts. Bugs can occur in our programs if we forget that a change to an object may also, as a "side effect," change a "different" object because the two "different" objects are actually a single object appearing under different aliases. These so-called *side-effect bugs* are so difficult to locate and to analyze that some people have proposed that programming languages be designed in such a way as to not allow side effects or aliasing  (:tp-ref:{href="@LAM81" label="Lampson et al. 1981"}; :tp-ref:{href="@MOR80" label="Morris, Schmidt, and Wadler 1980"}).
 :::::
 
 ::::: aside {id="note-3-11"}
-**11.** In view of this, it is ironic that introductory programming is most often taught in a highly imperative style. This may be a vestige of a belief, common throughout the 1960s and 1970s, that programs that call procedures must inherently be less efficient than programs that perform assignments. (Steele (1977) debunks this argument.) Alternatively it may reflect a view that step-by-step assignment is easier for beginners to visualize than procedure call. Whatever the reason, it often saddles beginning programmers with "should I set this variable before or after that one" concerns that can complicate programming and obscure the important ideas.
+**11.** In view of this, it is ironic that introductory programming is most often taught in a highly imperative style. This may be a vestige of a belief, common throughout the 1960s and 1970s, that programs that call procedures must inherently be less efficient than programs that perform assignments. (:tp-ref:{href="@STE77" label="Steele (1977)"} debunks this argument.) Alternatively it may reflect a view that step-by-step assignment is easier for beginners to visualize than procedure call. Whatever the reason, it often saddles beginning programmers with "should I set this variable before or after that one" concerns that can complicate programming and obscure the important ideas.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="KNU97B" label="Knuth 1997b" id="bib-knu97b"}
+Knuth, Donald E. 1997b. *Seminumerical Algorithms.* Volume 2 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.
+:::
+
+::: tp-biblio {ref="CHA75" label="Chaitin 1975" id="bib-cha75"}
+Chaitin, Gregory J. 1975. Randomness and mathematical proof. *Scientific American* 232(5):47–52.
+:::
+
+::: tp-biblio {ref="LAM81" label="Lampson 1981" id="bib-lam81"}
+Lampson, Butler, J. J. Horning, R. London, J. G. Mitchell, and G. K. Popek. 1981. Report on the programming language Euclid. Technical report, Computer Systems Research Group, University of Toronto.
+:::
+
+::: tp-biblio {ref="MOR80" label="Morris 1980" id="bib-mor80"}
+Morris, J. H., Eric Schmidt, and Philip Wadler. 1980. Experience with an applicative string processing language. In *Proceedings of the 7th Annual ACM SIGACT/SIGPLAN Symposium on the Principles of Programming Languages.*
+:::
+
+::: tp-biblio {ref="STE77" label="Steele 1977" id="bib-ste77"}
+Steele, Guy Lewis, Jr. 1977. Debunking the "expensive procedure call" myth. In *Proceedings of the National Conference of the ACM,* pp. 153–162.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

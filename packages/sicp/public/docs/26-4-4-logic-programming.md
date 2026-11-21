@@ -41,7 +41,7 @@ Contemporary logic programming languages (including the one we implement here) h
 Earlier in this chapter we explored the technology of implementing interpreters and described the elements that are essential to an interpreter for a Lisp-like language (indeed, to an interpreter for any conventional language). Now we will apply these ideas to discuss an interpreter for a logic programming language. We call this language the *query language*, because it is very useful for retrieving information from data bases by formulating *queries*, or questions, expressed in the language. Even though the query language is very different from Lisp, we will find it convenient to describe the language in terms of the same general framework we have been using all along: as a collection of primitive elements, together with means of combination that enable us to combine simple elements to create more complex elements and means of abstraction that enable us to regard complex elements as single conceptual units. An interpreter for a logic programming language is considerably more complex than an interpreter for a language like Lisp. Nevertheless, we will see that our query-language interpreter contains many of the same elements found in the interpreter of section 4.1. In particular, there will be an "evaluate" part that classifies expressions according to type and an "apply" part that implements the language's abstraction mechanism (procedures in the case of Lisp, and *rules* in the case of logic programming). Also, a central role is played in the implementation by a frame data structure, which determines the correspondence between symbols and their associated values. One additional interesting aspect of our query-language implementation is that we make substantial use of streams, which were introduced in chapter 3.
 
 ::::: aside {id="note-4-57"}
-**57.** Logic programming has grown out of a long  history of research in  automatic theorem proving. Early theorem-proving programs could accomplish very little, because they exhaustively searched the space of possible proofs. The major breakthrough that made such a search plausible was the discovery in the early 1960s of the *unification algorithm* and the *resolution principle* (Robinson 1965). Resolution was used, for example, by  Green and Raphael (1968) (see also Green 1969) as the basis for a deductive question-answering system. During most of this period, researchers concentrated on algorithms that are guaranteed to find a proof if one exists. Such algorithms were difficult to control and to direct toward a proof.  Hewitt (1969) recognized the possibility of merging the control structure of a programming language with the operations of a logic-manipulation system, leading to the work in automatic search mentioned in section 4.3.1 (footnote 47). At the same time that this was being done,  Colmerauer, in Marseille, was developing rule-based systems for manipulating natural language (see Colmerauer et al. 1973). He invented a programming language called  Prolog for representing those rules.  Kowalski (1973; 1979) in Edinburgh, recognized that execution of a Prolog program could be interpreted as proving theorems (using a proof technique called linear  Horn-clause resolution). The merging of the last two strands led to the logic-programming movement. Thus, in assigning credit for the development of logic programming, the French can point to Prolog's genesis at the  University of Marseille, while the British can highlight the work at the  University of Edinburgh. According to people at  MIT, logic programming was developed by these groups in an attempt to figure out what Hewitt was talking about in his brilliant but impenetrable Ph.D. thesis. For a history of logic programming, see Robinson 1983.
+**57.** Logic programming has grown out of a long  history of research in  automatic theorem proving. Early theorem-proving programs could accomplish very little, because they exhaustively searched the space of possible proofs. The major breakthrough that made such a search plausible was the discovery in the early 1960s of the *unification algorithm* and the *resolution principle* (:tp-ref:{href="@ROB65" label="Robinson 1965"}). Resolution was used, for example, by  :tp-ref:{href="@SICP-BIB-37" label="Green and Raphael (1968)"} (see also :tp-ref:{href="@GRE69" label="Green 1969"}) as the basis for a deductive question-answering system. During most of this period, researchers concentrated on algorithms that are guaranteed to find a proof if one exists. Such algorithms were difficult to control and to direct toward a proof.  :tp-ref:{href="@SICP-BIB-49" label="Hewitt (1969)"} recognized the possibility of merging the control structure of a programming language with the operations of a logic-manipulation system, leading to the work in automatic search mentioned in section 4.3.1 (footnote 47). At the same time that this was being done,  Colmerauer, in Marseille, was developing rule-based systems for manipulating natural language (see :tp-ref:{href="@COL73" label="Colmerauer et al. 1973"}). He invented a programming language called  Prolog for representing those rules.  Kowalski (:tp-ref:{href="@KOW73" label="1973"}; :tp-ref:{href="@KOW79" label="1979"}) in Edinburgh, recognized that execution of a Prolog program could be interpreted as proving theorems (using a proof technique called linear  Horn-clause resolution). The merging of the last two strands led to the logic-programming movement. Thus, in assigning credit for the development of logic programming, the French can point to Prolog's genesis at the  University of Marseille, while the British can highlight the work at the  University of Edinburgh. According to people at  MIT, logic programming was developed by these groups in an attempt to figure out what Hewitt was talking about in his brilliant but impenetrable Ph.D. thesis. For a history of logic programming, see :tp-ref:{href="@ROB83" label="Robinson 1983"}.
 :::::
 
 ::::: aside {id="note-4-58"}
@@ -53,7 +53,7 @@ Earlier in this chapter we explored the technology of implementing interpreters 
 :::::
 
 ::::: aside {id="note-4-60"}
-**60.** Interest in logic programming peaked  during the early 1980s when the Japanese government began an ambitious project aimed at building superfast computers optimized to run logic programming languages. The speed of such computers was to be measured in LIPS (Logical Inferences Per Second) rather than the usual FLOPS (FLoating-point Operations Per Second). Although the project succeeded in developing hardware and software as originally planned, the international computer industry moved in a different direction. See Feigenbaum and Shrobe 1993 for an overview evaluation of the Japanese project. The logic programming community has also moved on to consider relational programming based on techniques other than simple pattern matching, such as the ability to deal with numerical constraints such as the ones illustrated in the constraint-propagation system of section 3.3.5.
+**60.** Interest in logic programming peaked  during the early 1980s when the Japanese government began an ambitious project aimed at building superfast computers optimized to run logic programming languages. The speed of such computers was to be measured in LIPS (Logical Inferences Per Second) rather than the usual FLOPS (FLoating-point Operations Per Second). Although the project succeeded in developing hardware and software as originally planned, the international computer industry moved in a different direction. See :tp-ref:{href="@FEI93" label="Feigenbaum and Shrobe 1993"} for an overview evaluation of the Japanese project. The logic programming community has also moved on to consider relational programming based on techniques other than simple pattern matching, such as the ability to deal with numerical constraints such as the ones illustrated in the constraint-propagation system of section 3.3.5.
 :::::
 
 ### 4.4.1 Deductive Information Retrieval
@@ -2116,7 +2116,7 @@ What has Ben just realized? Outline a method he can use to salvage the situation
 :::::
 
 ::::: aside {id="note-4-76"}
-**76.** This is not a problem of the logic but one of the procedural interpretation of the logic provided by our interpreter. We could write an interpreter that would not fall into a loop here. For example, we could enumerate all the proofs derivable from our assertions and our rules in a breadth-first rather than a depth-first order. However, such a system makes it more difficult to take advantage of the order of deductions in our programs. One attempt to build sophisticated control into such a program is described in de Kleer et al. 1977. Another technique, which does not lead to such serious control problems, is to put in special knowledge, such as detectors for particular kinds of loops (exercise 4.68). However, there can be no general scheme for reliably preventing a system from going down infinite paths in performing deductions. Imagine a diabolical rule of the form "To show :latexmath:`P(x)` is true, show that :latexmath:`P(f(x))` is true," for some suitably chosen function :latexmath:`f`.
+**76.** This is not a problem of the logic but one of the procedural interpretation of the logic provided by our interpreter. We could write an interpreter that would not fall into a loop here. For example, we could enumerate all the proofs derivable from our assertions and our rules in a breadth-first rather than a depth-first order. However, such a system makes it more difficult to take advantage of the order of deductions in our programs. One attempt to build sophisticated control into such a program is described in :tp-ref:{href="@DE77" label="de Kleer et al. 1977"}. Another technique, which does not lead to such serious control problems, is to put in special knowledge, such as detectors for particular kinds of loops (exercise 4.68). However, there can be no general scheme for reliably preventing a system from going down infinite paths in performing deductions. Imagine a diabolical rule of the form "To show :latexmath:`P(x)` is true, show that :latexmath:`P(f(x))` is true," for some suitably chosen function :latexmath:`f`.
 :::::
 
 ::::: aside {id="note-4-77"}
@@ -2124,7 +2124,7 @@ What has Ben just realized? Outline a method he can use to salvage the situation
 :::::
 
 ::::: aside {id="note-4-78"}
-**78.** A discussion and justification of this treatment of `not` can be found in the article "Negation as Failure" by  Clark (1978).
+**78.** A discussion and justification of this treatment of `not` can be found in the article "Negation as Failure" by  :tp-ref:{href="@SICP-BIB-12" label="Clark (1978)"}.
 :::::
 
 ### 4.4.4 Implementing the Query System
@@ -2929,3 +2929,54 @@ Implement for the query language a rule-application method that uses environment
 
 `Expand-question-mark` and `contract-question-mark` use several procedures with `string` in their names. These are Scheme primitives.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="ROB65" label="Robinson 1965" id="bib-rob65"}
+Robinson, J. A. 1965. A machine-oriented logic based on the resolution principle. *Journal of the ACM* 12(1):23.
+:::
+
+::: tp-biblio {ref="SICP-BIB-37" label="Green 1968" id="bib-sicp-bib-37"}
+Green, Cordell, and Bertram Raphael. 1968. The use of theorem-proving techniques in question-answering systems. In *Proceedings of the ACM National Conference,* pp. 169–181.
+:::
+
+::: tp-biblio {ref="GRE69" label="Green 1969" id="bib-gre69"}
+Green, Cordell. 1969. Application of theorem proving to problem solving. In *Proceedings of the International Joint Conference on Artificial Intelligence,* pp. 219–240.
+:::
+
+::: tp-biblio {ref="SICP-BIB-49" label="Hewitt 1969" id="bib-sicp-bib-49"}
+Hewitt, Carl E. 1969. PLANNER: A language for proving theorems in robots. In *Proceedings of the International Joint Conference on Artificial Intelligence,* pp. 295–301.
+:::
+
+::: tp-biblio {ref="COL73" label="Colmerauer A. 1973" id="bib-col73"}
+Colmerauer A., H. Kanoui, R. Pasero, and P. Roussel. 1973. Un système de communication homme-machine en français. Technical report, Groupe d'Intelligence Artificielle, Université d'Aix-Marseille II, Luminy.
+:::
+
+::: tp-biblio {ref="KOW73" label="Kowalski 1973" id="bib-kow73"}
+Kowalski, Robert. 1973. Predicate logic as a programming language. Technical report 70, Department of Computational Logic, School of Artificial Intelligence, University of Edinburgh.
+:::
+
+::: tp-biblio {ref="KOW79" label="Kowalski 1979" id="bib-kow79"}
+Kowalski, Robert. 1979. *Logic for Problem Solving.* New York: North-Holland.
+:::
+
+::: tp-biblio {ref="ROB83" label="Robinson 1983" id="bib-rob83"}
+Robinson, J. A. 1983. Logic programming—Past, present, and future. *New Generation Computing* 1:107–124.
+:::
+
+::: tp-biblio {ref="FEI93" label="Feigenbaum 1993" id="bib-fei93"}
+Feigenbaum, Edward, and Howard Shrobe. 1993. The Japanese National Fifth Generation Project: Introduction, survey, and evaluation. In *Future Generation Computer Systems,* vol. 9, pp. 105–117.
+:::
+
+::: tp-biblio {ref="DE77" label="de Kleer 1977" id="bib-de77"}
+de Kleer, Johan, Jon Doyle, Guy Steele, and Gerald J. Sussman. 1977. AMORD: Explicit control of reasoning. In *Proceedings of the ACM Symposium on Artificial Intelligence and Programming Languages,* pp. 116–125.
+:::
+
+::: tp-biblio {ref="SICP-BIB-12" label="Clark 1978" id="bib-sicp-bib-12"}
+Clark, Keith L. 1978. Negation as failure. In *Logic and Data Bases.* New York: Plenum Press, pp. 293–322.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

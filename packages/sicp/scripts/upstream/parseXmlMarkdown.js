@@ -10,6 +10,18 @@ import recursiveProcessPureText from "./processingFunctions/recursiveProcessPure
 
 const lang = getEdition().language;
 
+// Optional linked edition; the canonical/PDF comparison text remains unchanged.
+let linkedBibliography = false;
+export const bibliographyEntries = [];
+export const bibliographyCitations = [];
+export function enableBibliographyLinks(value) {
+  linkedBibliography = value;
+  bibliographyEntries.length = 0;
+  bibliographyCitations.length = 0;
+}
+const citationAttribute = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+
+
 const fenceLanguage =
   "scheme";
 
@@ -636,19 +648,30 @@ const processTextFunctionsMarkdown = {
     }
   },
 
-  // Bibliography entry (in REFERENCES).
+  // Bibliography entries and citations retain their original words.
   REFERENCE: (node, writeTo) => {
-    writeTo.push("\n\n- ");
-    recursiveProcessTextMarkdown(node.firstChild, writeTo);
+    const body=[];
+    recursiveProcessTextMarkdown(node.firstChild, body);
+    if (linkedBibliography) {
+      const content=finalizeMarkdown(body.join('')).trim();
+      const key=node.getAttribute('NAME') || `SICP-BIB-${bibliographyEntries.length+1}`;
+      const year=content.match(/\b(?:18|19|20)\d{2}[a-z]?\b/)?.[0] ?? '';
+      const author=content.split(',')[0].split('. ')[0].replaceAll('*','');
+      bibliographyEntries.push({key,content,label:year&&!author.includes(year)?`${author} ${year}`:author});
+    }
+    writeTo.push("\n\n- ", ...body);
   },
 
   CITATION: (node, writeTo) => {
     const text = node.getElementsByTagName("TEXT")[0];
-    if (text) {
-      recursiveProcessTextMarkdown(text.firstChild, writeTo);
-    } else {
-      recursiveProcessTextMarkdown(node.firstChild, writeTo);
-    }
+    const body=[];
+    recursiveProcessTextMarkdown((text || node).firstChild, body);
+    const label=body.join('').replace(/\s+/g,' ').trim();
+    const key=node.getAttribute('NAME');
+    if(linkedBibliography && key){
+      bibliographyCitations.push({key,label});
+      writeTo.push(`:tp-ref:{href="@${citationAttribute(key)}" label="${citationAttribute(label)}"}`);
+    } else writeTo.push(...body);
   },
 
   LINK: (node, writeTo) => {

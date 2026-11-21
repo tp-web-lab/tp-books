@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 const root=fileURLToPath(new URL('../',import.meta.url));
-export const source=readFileSync(`${root}source/sicp-canonical.md`,'utf8');
+export const source=readFileSync(`${root}.generated/sicp-linked.md`,'utf8');
 export function forms(code) {
  const out=[]; let start=-1,depth=0,string=false,escape=false,comment=false;
  for(let i=0;i<code.length;i++){
@@ -122,6 +122,13 @@ mkdirSync(`${root}public/docs`,{recursive:true});
 const corrections=[];
 const pdfSections=JSON.parse(readFileSync(`${root}source/pdf-sections.json`,'utf8'));
 const manifest=[];
+const bibliography=JSON.parse(readFileSync(`${root}bibliography.json`,'utf8'));
+const citedBibliographyKeys=new Set(bibliography.citations.map(c=>c.key));
+const bibliographyByKey=new Map(bibliography.entries.map(entry=>[entry.key,entry]));
+const missing=[...new Set(bibliography.citations.map(c=>c.key).filter(key=>!bibliographyByKey.has(key)))];
+if(missing.length)throw Error('Missing bibliography definitions: '+missing.join(', '));
+const bibliographyBlock=entry=>`::: tp-biblio {ref="${attr(entry.key)}" label="${attr(entry.label)}" id="bib-${entry.key.toLowerCase()}"}\n${entry.content}\n:::`;
+
 for(const page of pages){
  let text=source.slice(page.start,page.end);
  const items=groups.filter(g=>g[0].input.start>=page.start&&g.at(-1).result.end<=page.end);
@@ -147,6 +154,12 @@ for(const page of pages){
  text=text.replace(/^\[\^(\d+)-(\d+)\]: ([^\n]*(?:\n(?:    [^\n]*|(?=\n    )[^\n]*))*)/gm,(_all,chapter,number,body)=>
   `::::: aside {id="note-${chapter}-${number}"}\n**${number}.** ${body.replace(/^    /gm,'').trim()}\n:::::`);
  text=text.replace(/\[\^(\d+)-(\d+)\]/g,(_all,chapter,number)=>`<sup><a href="#note-${chapter}-${number}">${number}</a></sup>`);
+ const cited=[...new Set([...text.matchAll(/:tp-ref:\{href="@([^"]+)"/g)].map(m=>m[1]))];
+ if(page.title==='References'){
+  text='# References\n\nThis bibliography collects the entries from every page and links back to their citations. **TP correction:** eight notices cited in the supplied PDF but omitted from its bibliography are restored from the original XML or the original SICP bibliography. The [adaptation audit](audit.md#bibliography-and-citations) lists these additions and their provenance.\n\n'+bibliography.entries.filter(entry=>!citedBibliographyKeys.has(entry.key)).map(bibliographyBlock).join('\n\n')+'\n\n::: tp-global-listof {selector="tp-biblio" merge}\n:::\n';
+ } else if(cited.length){
+  text+='\n\n## References on this page\n\n'+cited.map(key=>bibliographyBlock(bibliographyByKey.get(key))).join('\n\n')+'\n\n::: tp-listof {selector="tp-biblio"}\n:::\n';
+ }
  text=mathMarkup(text);
  text=text.replaceAll("https://sicp.sourceacademy.org/", "docs/");
  const pdf=pdfSections.find(p=>p.heading===page.title);

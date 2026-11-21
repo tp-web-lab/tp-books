@@ -3763,7 +3763,7 @@ Here `c+`,`c*`, etc. are the "constraint" versions of the arithmetic operations.
 Define analogous procedures`c-`,`c*`,`c/`, and `cv` (constant value) that enable us to define compound constraints as in the converter example above.<sup><a href="#note-3-34">34</a></sup>
 
 ::::: aside {id="note-3-32"}
-**32.** Constraint propagation first appeared in the incredibly forward-looking  SKETCHPAD system of  Ivan Sutherland (1963). A beautiful constraint-propagation system based on the  Smalltalk language was developed by  Alan Borning (1977) at  Xerox Palo Alto Research Center. Sussman, Stallman, and Steele applied constraint propagation to electrical circuit analysis  (Sussman and Stallman 1975; Sussman and Steele 1980).  TK!Solver  (Konopasek and Jayaraman 1984) is an extensive modeling environment based on constraints.
+**32.** Constraint propagation first appeared in the incredibly forward-looking  SKETCHPAD system of  Ivan :tp-ref:{href="@SICP-BIB-101" label="Sutherland (1963)"}. A beautiful constraint-propagation system based on the  Smalltalk language was developed by  Alan :tp-ref:{href="@SICP-BIB-8" label="Borning (1977)"} at  Xerox Palo Alto Research Center. Sussman, Stallman, and Steele applied constraint propagation to electrical circuit analysis  (:tp-ref:{href="@SUS75" label="Sussman and Stallman 1975"}; :tp-ref:{href="@SUS80" label="Sussman and Steele 1980"}).  TK!Solver  (:tp-ref:{href="@KON84" label="Konopasek and Jayaraman 1984"}) is an extensive modeling environment based on constraints.
 :::::
 
 ::::: aside {id="note-3-33"}
@@ -3787,3 +3787,30 @@ Define analogous procedures`c-`,`c*`,`c/`, and `cv` (constant value) that enable
 
  Since Lisp allows us to return compound objects as values of procedures, we can transform our imperative-style constraint language into an expression-oriented style as shown in this exercise.  In languages that are impoverished in handling compound objects, such as  Algol, Basic, and Pascal (unless one explicitly uses Pascal pointer variables), one is usually stuck with the imperative style when manipulating compound objects.  Given the advantage of the expression-oriented format, one might ask if there is any reason to have implemented the system in imperative style, as we did in this section. One reason is that the non-expression-oriented constraint language provides a handle on constraint objects (e.g., the value of the `adder`procedure) as well as on connector objects. This is useful if we wish to extend the system with new operations that communicate with constraints directly rather than only indirectly via operations on connectors. Although it is easy to implement the expression-oriented style in terms of the imperative implementation, it is very difficult to do the converse.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-101" label="Sutherland 1963" id="bib-sicp-bib-101"}
+Sutherland, Ivan E. 1963. SKETCHPAD: A man-machine graphical communication system. Technical report 296, MIT Lincoln Laboratory.
+:::
+
+::: tp-biblio {ref="SICP-BIB-8" label="Borning 1977" id="bib-sicp-bib-8"}
+Borning, Alan. 1977. ThingLab—An object-oriented system for building simulations using constraints. In *Proceedings of the 5th International Joint Conference on Artificial Intelligence.*
+:::
+
+::: tp-biblio {ref="SUS75" label="Sussman 1975" id="bib-sus75"}
+Sussman, Gerald Jay, and Richard M. Stallman. 1975. Heuristic techniques in computer-aided circuit analysis. *IEEE Transactions on Circuits and Systems* CAS-22(11):857–865.
+:::
+
+::: tp-biblio {ref="SUS80" label="Sussman 1980" id="bib-sus80"}
+Sussman, Gerald Jay, and Guy Lewis Steele Jr. 1980. Constraints—A language for expressing almost-hierarchical descriptions. *AI Journal* 14:1–39.
+:::
+
+::: tp-biblio {ref="KON84" label="Konopasek 1984" id="bib-kon84"}
+Konopasek, Milos, and Sundaresan Jayaraman. 1984. *The TK!Solver Book: A Guide to Problem-Solving in Science, Engineering, Business, and Education.* Berkeley, CA: Osborne/McGraw-Hill.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

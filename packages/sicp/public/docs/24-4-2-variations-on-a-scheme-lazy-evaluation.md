@@ -9,7 +9,7 @@ math: latexmath
 Now that we have an evaluator expressed as a Lisp program, we can experiment with alternative choices in language design simply by modifying the evaluator. Indeed, new languages are often invented by first writing an evaluator that embeds the new language within an existing high-level language. For example, if we wish to discuss some aspect of a proposed modification to Lisp with another member of the Lisp community, we can supply an evaluator that embodies the change. The recipient can then experiment with the new evaluator and send back comments as further modifications. Not only does the high-level implementation base make it easier to test and debug the evaluator; in addition, the embedding enables the designer to snarf<sup><a href="#note-4-31">31</a></sup> features from the underlying language, just as our embedded Lisp evaluator uses primitives and control structure from the underlying Lisp. Only later (if ever) need the designer go to the trouble of building a complete implementation in a low-level language or in hardware. In this section and the next we explore some variations on Scheme that provide significant additional expressive power.
 
 ::::: aside {id="note-4-31"}
-**31.** Snarf: "To grab, especially a large document or file for the purpose of using it either with or without the owner's permission." Snarf down: "To snarf, sometimes with the connotation of absorbing, processing, or understanding." (These definitions were  snarfed from Steele et al. 1983. See also Raymond 1996.)
+**31.** Snarf: "To grab, especially a large document or file for the purpose of using it either with or without the owner's permission." Snarf down: "To snarf, sometimes with the connotation of absorbing, processing, or understanding." (These definitions were  snarfed from :tp-ref:{href="@STE83" label="Steele et al. 1983"}. See also :tp-ref:{href="@RAY96" label="Raymond 1996"}.)
 :::::
 
 ### 4.2.1 Normal Order and Applicative Order
@@ -1620,7 +1620,7 @@ d. How do you think sequences ought to be treated in the lazy evaluator? Do you 
 would define `f` to be a procedure of four arguments, where the first and third arguments are evaluated when the procedure is called, the second argument is delayed, and the fourth argument is both delayed and memoized. Thus, ordinary procedure definitions will produce the same behavior as ordinary Scheme, while adding the `lazy-memo` declaration to each parameter of every compound procedure will produce the behavior of the lazy evaluator defined in this section. Design and implement the changes required to produce such an extension to Scheme. You will have to implement new syntax procedures to handle the new syntax for `define`. You must also arrange for `eval` or `apply` to determine when arguments are to be delayed, and to force or delay arguments accordingly, and you must arrange for forcing to memoize or not, as appropriate.
 
 ::::: aside {id="note-4-34"}
-**34.** The word *thunk* was invented by an informal  working group that was discussing the implementation of call-by-name  in Algol 60. They observed that most of the analysis of ("thinking about") the expression could be done at compile time; thus, at run time, the expression would already have been "thunk" about  (Ingerman et al. 1960).
+**34.** The word *thunk* was invented by an informal  working group that was discussing the implementation of call-by-name  in Algol 60. They observed that most of the analysis of ("thinking about") the expression could be done at compile time; thus, at run time, the expression would already have been "thunk" about  (:tp-ref:{href="@ING60" label="Ingerman et al. 1960"}).
 :::::
 
 ::::: aside {id="note-4-35"}
@@ -1628,7 +1628,7 @@ would define `f` to be a procedure of four arguments, where the first and third 
 :::::
 
 ::::: aside {id="note-4-36"}
-**36.** Lazy evaluation combined with memoization is sometimes referred to as *call-by-need* argument passing, in contrast to *call-by-name* argument passing.  (Call-by-name, introduced in  Algol 60, is similar to non-memoized lazy evaluation.) As language designers, we can build our evaluator to memoize, not to memoize, or leave this an option for programmers (exercise 4.32). As you might expect from chapter 3, these choices raise issues that become both subtle and confusing in the presence of assignments. (See exercises 4.28 and 4.30.) An excellent article by  Clinger (1982) attempts to clarify the multiple dimensions of confusion that arise here.
+**36.** Lazy evaluation combined with memoization is sometimes referred to as *call-by-need* argument passing, in contrast to *call-by-name* argument passing.  (Call-by-name, introduced in  Algol 60, is similar to non-memoized lazy evaluation.) As language designers, we can build our evaluator to memoize, not to memoize, or leave this an option for programmers (exercise 4.32). As you might expect from chapter 3, these choices raise issues that become both subtle and confusing in the presence of assignments. (See exercises 4.28 and 4.30.) An excellent article by  :tp-ref:{href="@SICP-BIB-13" label="Clinger (1982)"} attempts to clarify the multiple dimensions of confusion that arise here.
 :::::
 
 ::::: aside {id="note-4-37"}
@@ -2238,5 +2238,32 @@ To his surprise, this produces an error. After some thought, he realizes that th
 :::::
 
 ::::: aside {id="note-4-41"}
-**41.** This permits us to create delayed versions of more general kinds of list structures, not just sequences. Hughes 1990 discusses some applications of "lazy trees."
+**41.** This permits us to create delayed versions of more general kinds of list structures, not just sequences. :tp-ref:{href="@HUG90" label="Hughes 1990"} discusses some applications of "lazy trees."
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="STE83" label="Steele 1983" id="bib-ste83"}
+Steele, Guy Lewis, Jr., Donald R. Woods, Raphael A. Finkel, Mark R. Crispin, Richard M. Stallman, and Geoffrey S. Goodfellow. 1983. *The Hacker's Dictionary.* New York: Harper \& Row.
+:::
+
+::: tp-biblio {ref="RAY96" label="Raymond 1996" id="bib-ray96"}
+Raymond, Eric. 1996. *The New Hacker's Dictionary.* 3rd edition. Cambridge, MA: MIT Press.
+:::
+
+::: tp-biblio {ref="ING60" label="Ingerman 1960" id="bib-ing60"}
+Ingerman, Peter, Edgar Irons, Kirk Sattley, and Wallace Feurzeig; assisted by M. Lind, Herbert Kanner, and Robert Floyd. 1960. THUNKS: A way of compiling procedure statements, with some comments on procedure declarations. Unpublished manuscript. (Also, private communication from Wallace Feurzeig.)
+:::
+
+::: tp-biblio {ref="SICP-BIB-13" label="Clinger 1982" id="bib-sicp-bib-13"}
+Clinger, William. 1982. Nondeterministic call by need is neither lazy nor by name. In *Proceedings of the ACM Symposium on Lisp and Functional Programming,* pp. 226–234.
+:::
+
+::: tp-biblio {ref="HUG90" label="Hughes 1990" id="bib-hug90"}
+Hughes, R. J. M. 1990. Why functional programming matters. In *Research Topics in Functional Programming*, edited by David Turner. Reading, MA: Addison-Wesley, pp. 17–42.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

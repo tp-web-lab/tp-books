@@ -735,5 +735,20 @@ The GCD computation is at the heart of any system that does operations on ration
 :::::
 
 ::::: aside {id="note-2-62"}
-**62.** One extremely efficient and elegant method for computing  polynomial GCDs was discovered by  Richard Zippel (1979). The method is a probabilistic algorithm, as is the fast test for primality that we discussed in chapter 1. Zippel's book (1993) describes this method, together with other ways to compute polynomial GCDs.
+**62.** One extremely efficient and elegant method for computing  polynomial GCDs was discovered by  Richard :tp-ref:{href="@SICP-BIB-108" label="Zippel (1979)"}. The method is a probabilistic algorithm, as is the fast test for primality that we discussed in chapter 1. Zippel's book (:tp-ref:{href="@SICP-BIB-109" label="1993"}) describes this method, together with other ways to compute polynomial GCDs.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="SICP-BIB-108" label="Zippel 1979" id="bib-sicp-bib-108"}
+Zippel, Richard. 1979. Probabilistic algorithms for sparse polynomials. Ph.D. dissertation, Department of Electrical Engineering and Computer Science, MIT.
+:::
+
+::: tp-biblio {ref="SICP-BIB-109" label="Zippel 1993" id="bib-sicp-bib-109"}
+Zippel, Richard. 1993. *Effective Polynomial Computation.* Boston, MA: Kluwer Academic Publishers.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

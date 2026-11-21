@@ -182,7 +182,7 @@ Give concise mathematical definitions for the functions computed by the procedur
 :::::
 
 ::::: aside {id="note-1-32"}
-**32.** Tail recursion has long been known as a compiler optimization trick. A coherent semantic basis for tail recursion was provided by  Carl Hewitt (1977), who explained it in  terms of the "message-passing" model of computation that we shall discuss in chapter 3. Inspired by this, Gerald Jay Sussman and  Guy Lewis Steele Jr. (see Steele 1975) constructed a tail-recursive interpreter for Scheme. Steele later showed how tail recursion is a consequence of the natural way to compile procedure  calls (Steele 1977). The IEEE standard for Scheme requires that Scheme implementations  be tail-recursive.
+**32.** Tail recursion has long been known as a compiler optimization trick. A coherent semantic basis for tail recursion was provided by  Carl :tp-ref:{href="@HEW77" label="Hewitt (1977)"}, who explained it in  terms of the "message-passing" model of computation that we shall discuss in chapter 3. Inspired by this, Gerald Jay Sussman and  Guy Lewis Steele Jr. (see :tp-ref:{href="@STE75" label="Steele 1975"}) constructed a tail-recursive interpreter for Scheme. Steele later showed how tail recursion is a consequence of the natural way to compile procedure  calls (:tp-ref:{href="@STE77" label="Steele 1977"}). The IEEE standard for Scheme requires that Scheme implementations  be tail-recursive.
 :::::
 
 ### 1.2.2 Tree Recursion
@@ -424,7 +424,7 @@ The numbers at the edge of the triangle are all 1, and each number inside the tr
 :::::
 
 ::::: aside {id="note-1-36"}
-**36.** The elements of Pascal's triangle are called the *binomial coefficients*, because the :latexmath:`n`th row consists of  the coefficients of the terms in the expansion of :latexmath:`(x+y)^n`. This pattern for computing the coefficients appeared in  Blaise Pascal's 1653 seminal work on probability theory, *Traité du triangle arithmétique*. According to  Edwards (2019), the same pattern appears in the works of the eleventh-century Persian mathematician  Al-Karaji, in the works of the twelfth-century Hindu mathematician  Bhaskara, and in the works of the thirteenth-century Chinese mathematician  Yang Hui.
+**36.** The elements of Pascal's triangle are called the *binomial coefficients*, because the :latexmath:`n`th row consists of  the coefficients of the terms in the expansion of :latexmath:`(x+y)^n`. This pattern for computing the coefficients appeared in  Blaise Pascal's 1653 seminal work on probability theory, *Traité du triangle arithmétique*. According to  :tp-ref:{href="@EDW19" label="Edwards (2019)"}, the same pattern appears in the works of the eleventh-century Persian mathematician  Al-Karaji, in the works of the twelfth-century Hindu mathematician  Bhaskara, and in the works of the thirteenth-century Chinese mathematician  Yang Hui.
 :::::
 
 ### 1.2.3 Orders of Growth
@@ -631,7 +631,7 @@ This algorithm takes a number of steps that is linear in `b`. Now suppose we inc
 :::::
 
 ::::: aside {id="note-1-40"}
-**40.** This iterative algorithm is ancient. It appears in the *Chandah-sutra* by Áchárya, written before 200 BCE. See Knuth 1997b, section 4.6.3, for a full discussion and analysis of this and other methods of exponentiation.
+**40.** This iterative algorithm is ancient. It appears in the *Chandah-sutra* by Áchárya, written before 200 BCE. See :tp-ref:{href="@KNU97B" label="Knuth 1997b"}, section 4.6.3, for a full discussion and analysis of this and other methods of exponentiation.
 :::::
 
 ::::: aside {id="note-1-41"}
@@ -639,7 +639,7 @@ This algorithm takes a number of steps that is linear in `b`. Now suppose we inc
 :::::
 
 ::::: aside {id="note-1-42"}
-**42.** This exercise was suggested  to us  by  Joe Stoy, based on an example in Kaldewaij 1990.
+**42.** This exercise was suggested  to us  by  Joe Stoy, based on an example in :tp-ref:{href="@KAL90" label="Kaldewaij 1990"}.
 :::::
 
 ### 1.2.5 Greatest Common Divisors
@@ -696,7 +696,7 @@ We can use this theorem to get an order-of-growth estimate for Euclid's Algorith
 **Exercise 1.20.** The process that a procedure generates is of course dependent on the rules used by the interpreter. As an example, consider the iterative `gcd`procedure given above. Suppose we were to interpret this procedure using normal-order evaluation, as discussed in section 1.1.5. (The normal-order-evaluation rule for `if` is described in exercise 1.5.) Using the substitution method (for normal order), illustrate the process generated in evaluating `(gcd 206 40)` and indicate the `remainder` operations that are actually performed. How many `remainder` operations are actually performed in the normal-order evaluation of `(gcd 206 40)`? In the applicative-order evaluation?
 
 ::::: aside {id="note-1-43"}
-**43.** Euclid's Algorithm is so called because it appears in Euclid's *Elements* (Book 7, ca. 300 BCE). According to  Knuth (1997a), it can be considered the oldest known nontrivial algorithm. The ancient Egyptian method of multiplication (exercise 1.18) is surely older, but, as Knuth explains, Euclid's Algorithm is the oldest known to have been presented as a general algorithm, rather than as a set of illustrative examples.
+**43.** Euclid's Algorithm is so called because it appears in Euclid's *Elements* (Book 7, ca. 300 BCE). According to  :tp-ref:{href="@KNU97A" label="Knuth (1997a)"}, it can be considered the oldest known nontrivial algorithm. The ancient Egyptian method of multiplication (exercise 1.18) is surely older, but, as Knuth explains, Euclid's Algorithm is the oldest known to have been presented as a general algorithm, rather than as a set of illustrative examples.
 :::::
 
 ::::: aside {id="note-1-44"}
@@ -841,7 +841,7 @@ Is she correct? Would this procedure serve as well for our fast prime tester? Ex
 
 **Exercise 1.27.** Demonstrate that the Carmichael numbers listed in footnote 48 really do fool the Fermat test. That is, write a procedure that takes an integer :latexmath:`n` and tests whether :latexmath:`a^n` is congruent to :latexmath:`a` modulo :latexmath:`n` for every :latexmath:`a < n`, and try your procedure on the given Carmichael numbers.
 
-**Exercise 1.28.** One variant of the Fermat test that cannot be fooled is called the *Miller–Rabin test* (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat's Little Theorem, which states that if :latexmath:`n` is a prime number and :latexmath:`a` is any positive integer less than :latexmath:`n`, then :latexmath:`a` raised to the :latexmath:`(n-1)`st power is congruent to 1 modulo :latexmath:`n`. To test the primality of a number :latexmath:`n` by the Miller–Rabin test, we pick a random number :latexmath:`a < n` and raise :latexmath:`a` to the :latexmath:`(n-1)`st power modulo :latexmath:`n` using the `expmod`procedure. However, whenever we perform the squaring step in `expmod`, we check to see if we have discovered a "nontrivial square root of 1 modulo :latexmath:`n`," that is, a number not equal to 1 or :latexmath:`n-1` whose square is equal to 1 modulo :latexmath:`n`. It is possible to prove that if such a nontrivial square root of 1 exists, then :latexmath:`n` is not prime. It is also possible to prove that if :latexmath:`n` is an odd number that is not prime, then, for at least half the numbers :latexmath:`a < n`, computing :latexmath:`a^{n-1}` in this way will reveal a nontrivial square root of 1 modulo :latexmath:`n`. (This is why the Miller–Rabin test cannot be fooled.) Modify the `expmod`procedure to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller–Rabin test with a procedure analogous to `fermat-test`. Check your procedure by testing various known primes and non-primes. Hint: One convenient way to make `expmod` signal is to have it return 0.
+**Exercise 1.28.** One variant of the Fermat test that cannot be fooled is called the *Miller–Rabin test* (:tp-ref:{href="@MIL76" label="Miller 1976"}; :tp-ref:{href="@RAB80" label="Rabin 1980"}). This starts from an alternate form of Fermat's Little Theorem, which states that if :latexmath:`n` is a prime number and :latexmath:`a` is any positive integer less than :latexmath:`n`, then :latexmath:`a` raised to the :latexmath:`(n-1)`st power is congruent to 1 modulo :latexmath:`n`. To test the primality of a number :latexmath:`n` by the Miller–Rabin test, we pick a random number :latexmath:`a < n` and raise :latexmath:`a` to the :latexmath:`(n-1)`st power modulo :latexmath:`n` using the `expmod`procedure. However, whenever we perform the squaring step in `expmod`, we check to see if we have discovered a "nontrivial square root of 1 modulo :latexmath:`n`," that is, a number not equal to 1 or :latexmath:`n-1` whose square is equal to 1 modulo :latexmath:`n`. It is possible to prove that if such a nontrivial square root of 1 exists, then :latexmath:`n` is not prime. It is also possible to prove that if :latexmath:`n` is an odd number that is not prime, then, for at least half the numbers :latexmath:`a < n`, computing :latexmath:`a^{n-1}` in this way will reveal a nontrivial square root of 1 modulo :latexmath:`n`. (This is why the Miller–Rabin test cannot be fooled.) Modify the `expmod`procedure to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller–Rabin test with a procedure analogous to `fermat-test`. Check your procedure by testing various known primes and non-primes. Hint: One convenient way to make `expmod` signal is to have it return 0.
 
 ::::: aside {id="note-1-45"}
 **45.** If :latexmath:`d` is a divisor of :latexmath:`n`, then so is :latexmath:`n/d`. But :latexmath:`d` and :latexmath:`n/d` cannot both be greater than :latexmath:`\sqrt{n}`.
@@ -860,5 +860,52 @@ Is she correct? Would this procedure serve as well for our fast prime tester? Ex
 :::::
 
 ::::: aside {id="note-1-49"}
-**49.** One of the most striking applications of probabilistic prime testing has been to the field of  cryptography.  Although it is now computationally infeasible to factor an arbitrary 200-digit number, the primality of such a number can be checked in a few seconds with the Fermat test.  This fact forms the basis of a technique for constructing "unbreakable codes" suggested by  Rivest,  Shamir, and  Adleman (1977). The resulting *RSA algorithm* has become a widely used technique for enhancing the security of electronic communications. Because of this and related developments, the study of  prime numbers, once considered the epitome of a topic in "pure" mathematics to be studied only for its own sake, now turns out to have important practical applications to cryptography, electronic funds transfer, and information retrieval.
+**49.** One of the most striking applications of probabilistic prime testing has been to the field of  cryptography.  Although it is now computationally infeasible to factor an arbitrary 200-digit number, the primality of such a number can be checked in a few seconds with the Fermat test.  This fact forms the basis of a technique for constructing "unbreakable codes" suggested by  :tp-ref:{href="@SICP-BIB-89" label="Rivest, Shamir, and Adleman (1977)"}. The resulting *RSA algorithm* has become a widely used technique for enhancing the security of electronic communications. Because of this and related developments, the study of  prime numbers, once considered the epitome of a topic in "pure" mathematics to be studied only for its own sake, now turns out to have important practical applications to cryptography, electronic funds transfer, and information retrieval.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="HEW77" label="Hewitt 1977" id="bib-hew77"}
+Hewitt, Carl E. 1977. Viewing control structures as patterns of passing messages. *Journal of Artificial Intelligence* 8(3):323–364.
+:::
+
+::: tp-biblio {ref="STE75" label="Steele 1975" id="bib-ste75"}
+Steele, Guy Lewis, Jr., and Gerald Jay Sussman. 1975. Scheme: An interpreter for the extended lambda calculus. Memo 349, MIT Artificial Intelligence Laboratory.
+:::
+
+::: tp-biblio {ref="STE77" label="Steele 1977" id="bib-ste77"}
+Steele, Guy Lewis, Jr. 1977. Debunking the "expensive procedure call" myth. In *Proceedings of the National Conference of the ACM,* pp. 153–162.
+:::
+
+::: tp-biblio {ref="EDW19" label="Edwards 2019" id="bib-edw19"}
+Edwards, A. W. F. 2019. *Pascal's Arithmetical Triangle*. Mineola, New York: Dover Publications.
+:::
+
+::: tp-biblio {ref="KNU97B" label="Knuth 1997b" id="bib-knu97b"}
+Knuth, Donald E. 1997b. *Seminumerical Algorithms.* Volume 2 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.
+:::
+
+::: tp-biblio {ref="KAL90" label="Kaldewaij 1990" id="bib-kal90"}
+Kaldewaij, Anne. 1990. *Programming: The Derivation of Algorithms.* New York: Prentice-Hall.
+:::
+
+::: tp-biblio {ref="KNU97A" label="Knuth 1997a" id="bib-knu97a"}
+Knuth, Donald E. 1997a. *Fundamental Algorithms.* Volume 1 of *The Art of Computer Programming.* 3rd edition. Reading, MA: Addison-Wesley.
+:::
+
+::: tp-biblio {ref="MIL76" label="Miller 1976" id="bib-mil76"}
+Miller, Gary L. 1976. Riemann's Hypothesis and tests for primality. *Journal of Computer and System Sciences* 13(3):300–317.
+:::
+
+::: tp-biblio {ref="RAB80" label="Rabin 1980" id="bib-rab80"}
+Rabin, Michael O. 1980. Probabilistic algorithm for testing primality. *Journal of Number Theory* 12:128–138.
+:::
+
+::: tp-biblio {ref="SICP-BIB-89" label="Rivest 1977" id="bib-sicp-bib-89"}
+Rivest, Ronald, Adi Shamir, and Leonard Adleman. 1977. A method for obtaining digital signatures and public-key cryptosystems. Technical memo LCS/TM82, MIT Laboratory for Computer Science.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

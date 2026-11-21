@@ -518,7 +518,7 @@ Lisp uses applicative-order evaluation, partly because of the additional efficie
 :::::
 
 ::::: aside {id="note-1-16"}
-**16.** Despite the simplicity of the substitution idea, it turns out to be surprisingly complicated to give a rigorous mathematical definition of the substitution process. The problem arises from the possibility of confusion between the names used for the formal parameters of a procedure and the (possibly identical) names used in the expressions to which the procedure may be applied. Indeed, there is a long history of erroneous definitions of *substitution* in the literature of logic and programming semantics.  See Stoy 1977 for a careful discussion of substitution.
+**16.** Despite the simplicity of the substitution idea, it turns out to be surprisingly complicated to give a rigorous mathematical definition of the substitution process. The problem arises from the possibility of confusion between the names used for the formal parameters of a procedure and the (possibly identical) names used in the expressions to which the procedure may be applied. Indeed, there is a long history of erroneous definitions of *substitution* in the literature of logic and programming semantics.  See :tp-ref:{href="@STO77" label="Stoy 1977"} for a careful discussion of substitution.
 :::::
 
 ::::: aside {id="note-1-17"}
@@ -1065,3 +1065,14 @@ We will use block structure extensively to help us break up large programs into 
 ::::: aside {id="note-1-29"}
 **29.** Embedded  definitions must come first in a procedure  body.  The management is not responsible for the consequences of running programs that intertwine definition and use; see also footnotes ?? and ?? in section 1.3.2.
 :::::
+
+
+
+## References on this page
+
+::: tp-biblio {ref="STO77" label="Stoy 1977" id="bib-sto77"}
+Stoy, Joseph E. 1977. *Denotational Semantics.* Cambridge, MA: MIT Press.
+:::
+
+::: tp-listof {selector="tp-biblio"}
+:::

@@ -17,6 +17,10 @@ This book uses `tp-markdown-multi-pages` and `tp-scheme mode="simple"`.
 
 Press Return in an interpreter's query field to run its program and query. Changed source is reloaded automatically. Adjacent queries are grouped to preserve their execution order and state. Each interpreter has its own environment; reading a previous page is not required.
 
+## Citations
+
+Author-date citations use `tp-ref` and local `tp-biblio` definitions. Each citing page ends with `tp-listof`; References collects all notices with `tp-global-listof merge`, including uncited entries, and links to their occurrences. `bibliography.json` records source notices and reviewed plain-text citations; eight restored notices are identified in the audit. Run `node scripts/verify-bibliography.mjs` with the development server running to check tooltips, merging and navigation.
+
 ## Verification
 
 ```sh
