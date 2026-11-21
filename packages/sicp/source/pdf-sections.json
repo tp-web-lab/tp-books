@@ -1,0 +1,167 @@
+[
+  {
+    "heading": "Foreword",
+    "pdfPage": 15,
+    "pdfLastPage": 21
+  },
+  {
+    "heading": "Prefaces",
+    "pdfPage": 21,
+    "pdfLastPage": 21
+  },
+  {
+    "heading": "Preface",
+    "pdfPage": 21,
+    "pdfLastPage": 22
+  },
+  {
+    "heading": "Preface to the First Edition",
+    "pdfPage": 22,
+    "pdfLastPage": 25
+  },
+  {
+    "heading": "Acknowledgments",
+    "pdfPage": 25,
+    "pdfLastPage": 29
+  },
+  {
+    "heading": "1 Building Abstractions with Procedures",
+    "pdfPage": 29,
+    "pdfLastPage": 32
+  },
+  {
+    "heading": "1.1 The Elements of Programming",
+    "pdfPage": 32,
+    "pdfLastPage": 54
+  },
+  {
+    "heading": "1.2 Procedures and the Processes They Generate",
+    "pdfPage": 54,
+    "pdfLastPage": 76
+  },
+  {
+    "heading": "1.3 Formulating Abstractions with Higher-Order Procedures",
+    "pdfPage": 76,
+    "pdfLastPage": 99
+  },
+  {
+    "heading": "2 Building Abstractions with Data",
+    "pdfPage": 99,
+    "pdfLastPage": 102
+  },
+  {
+    "heading": "2.1 Introduction to Data Abstraction",
+    "pdfPage": 102,
+    "pdfLastPage": 114
+  },
+  {
+    "heading": "2.2 Hierarchical Data and the Closure Property",
+    "pdfPage": 114,
+    "pdfLastPage": 154
+  },
+  {
+    "heading": "2.3 Symbolic Data",
+    "pdfPage": 154,
+    "pdfLastPage": 178
+  },
+  {
+    "heading": "2.4 Multiple Representations for Abstract Data",
+    "pdfPage": 178,
+    "pdfLastPage": 195
+  },
+  {
+    "heading": "2.5 Systems with Generic Operations",
+    "pdfPage": 195,
+    "pdfLastPage": 221
+  },
+  {
+    "heading": "3 Modularity, Objects, and State",
+    "pdfPage": 221,
+    "pdfLastPage": 222
+  },
+  {
+    "heading": "3.1 Assignment and Local State",
+    "pdfPage": 222,
+    "pdfLastPage": 237
+  },
+  {
+    "heading": "3.2 The Environment Model of Evaluation",
+    "pdfPage": 237,
+    "pdfLastPage": 251
+  },
+  {
+    "heading": "3.3 Modeling with Mutable Data",
+    "pdfPage": 251,
+    "pdfLastPage": 292
+  },
+  {
+    "heading": "3.4 Concurrency: Time Is of the Essence",
+    "pdfPage": 292,
+    "pdfLastPage": 310
+  },
+  {
+    "heading": "3.5 Streams",
+    "pdfPage": 310,
+    "pdfLastPage": 349
+  },
+  {
+    "heading": "4 Metalinguistic Abstraction",
+    "pdfPage": 349,
+    "pdfLastPage": 351
+  },
+  {
+    "heading": "4.1 The Metacircular Evaluator",
+    "pdfPage": 351,
+    "pdfLastPage": 385
+  },
+  {
+    "heading": "4.2 Variations on a Scheme: Lazy Evaluation",
+    "pdfPage": 385,
+    "pdfLastPage": 397
+  },
+  {
+    "heading": "4.3 Variations on a Scheme: Nondeterministic Computing",
+    "pdfPage": 397,
+    "pdfLastPage": 420
+  },
+  {
+    "heading": "4.4 Logic Programming",
+    "pdfPage": 420,
+    "pdfLastPage": 469
+  },
+  {
+    "heading": "5 Computing with Register Machines",
+    "pdfPage": 469,
+    "pdfLastPage": 470
+  },
+  {
+    "heading": "5.1 Designing Register Machines",
+    "pdfPage": 470,
+    "pdfLastPage": 488
+  },
+  {
+    "heading": "5.2 A Register-Machine Simulator",
+    "pdfPage": 488,
+    "pdfLastPage": 506
+  },
+  {
+    "heading": "5.3 Storage Allocation and Garbage Collection",
+    "pdfPage": 506,
+    "pdfLastPage": 518
+  },
+  {
+    "heading": "5.4 The Explicit-Control Evaluator",
+    "pdfPage": 518,
+    "pdfLastPage": 534
+  },
+  {
+    "heading": "5.5 Compilation",
+    "pdfPage": 534,
+    "pdfLastPage": 577
+  },
+  {
+    "heading": "References",
+    "pdfPage": 577,
+    "pdfLastPage": 583
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "title": "Foreword",
+    "level": 1,
+    "start": 0,
+    "end": 10549,
+    "file": "01-foreword.md"
+  },
+  {
+    "title": "Prefaces",
+    "level": 1,
+    "start": 10549,
+    "end": 10561,
+    "file": "02-prefaces.md"
+  },
+  {
+    "title": "Preface",
+    "level": 2,
+    "start": 10561,
+    "end": 13303,
+    "file": "03-preface.md"
+  },
+  {
+    "title": "Preface to the First Edition",
+    "level": 2,
+    "start": 13303,
+    "end": 19502,
+    "file": "04-preface-to-the-first-edition.md"
+  },
+  {
+    "title": "Acknowledgments",
+    "level": 1,
+    "start": 19502,
+    "end": 25951,
+    "file": "05-acknowledgments.md"
+  },
+  {
+    "title": "1 Building Abstractions with Procedures",
+    "level": 1,
+    "start": 25951,
+    "end": 35125,
+    "file": "06-1-building-abstractions-with-procedures.md"
+  },
+  {
+    "title": "1.1 The Elements of Programming",
+    "level": 2,
+    "start": 35125,
+    "end": 90372,
+    "file": "07-1-1-the-elements-of-programming.md"
+  },
+  {
+    "title": "1.2 Procedures and the Processes They Generate",
+    "level": 2,
+    "start": 90372,
+    "end": 147111,
+    "file": "08-1-2-procedures-and-the-processes-they-generate.md"
+  },
+  {
+    "title": "1.3 Formulating Abstractions with Higher-Order Procedures",
+    "level": 2,
+    "start": 147111,
+    "end": 192273,
+    "file": "09-1-3-formulating-abstractions-with-higher-order-procedures.md"
+  },
+  {
+    "title": "2 Building Abstractions with Data",
+    "level": 1,
+    "start": 192273,
+    "end": 202377,
+    "file": "10-2-building-abstractions-with-data.md"
+  },
+  {
+    "title": "2.1 Introduction to Data Abstraction",
+    "level": 2,
+    "start": 202377,
+    "end": 232996,
+    "file": "11-2-1-introduction-to-data-abstraction.md"
+  },
+  {
+    "title": "2.2 Hierarchical Data and the Closure Property",
+    "level": 2,
+    "start": 232996,
+    "end": 314180,
+    "file": "12-2-2-hierarchical-data-and-the-closure-property.md"
+  },
+  {
+    "title": "2.3 Symbolic Data",
+    "level": 2,
+    "start": 314180,
+    "end": 370748,
+    "file": "13-2-3-symbolic-data.md"
+  },
+  {
+    "title": "2.4 Multiple Representations for Abstract Data",
+    "level": 2,
+    "start": 370748,
+    "end": 409266,
+    "file": "14-2-4-multiple-representations-for-abstract-data.md"
+  },
+  {
+    "title": "2.5 Systems with Generic Operations",
+    "level": 2,
+    "start": 409266,
+    "end": 472258,
+    "file": "15-2-5-systems-with-generic-operations.md"
+  },
+  {
+    "title": "3 Modularity, Objects, and State",
+    "level": 1,
+    "start": 472258,
+    "end": 475655,
+    "file": "16-3-modularity-objects-and-state.md"
+  },
+  {
+    "title": "3.1 Assignment and Local State",
+    "level": 2,
+    "start": 475655,
+    "end": 515280,
+    "file": "17-3-1-assignment-and-local-state.md"
+  },
+  {
+    "title": "3.2 The Environment Model of Evaluation",
+    "level": 2,
+    "start": 515280,
+    "end": 540721,
+    "file": "18-3-2-the-environment-model-of-evaluation.md"
+  },
+  {
+    "title": "3.3 Modeling with Mutable Data",
+    "level": 2,
+    "start": 540721,
+    "end": 621685,
+    "file": "19-3-3-modeling-with-mutable-data.md"
+  },
+  {
+    "title": "3.4 Concurrency: Time Is of the Essence",
+    "level": 2,
+    "start": 621685,
+    "end": 665569,
+    "file": "20-3-4-concurrency-time-is-of-the-essence.md"
+  },
+  {
+    "title": "3.5 Streams",
+    "level": 2,
+    "start": 665569,
+    "end": 750585,
+    "file": "21-3-5-streams.md"
+  },
+  {
+    "title": "4 Metalinguistic Abstraction",
+    "level": 1,
+    "start": 750585,
+    "end": 759923,
+    "file": "22-4-metalinguistic-abstraction.md"
+  },
+  {
+    "title": "4.1 The Metacircular Evaluator",
+    "level": 2,
+    "start": 759923,
+    "end": 834619,
+    "file": "23-4-1-the-metacircular-evaluator.md"
+  },
+  {
+    "title": "4.2 Variations on a Scheme: Lazy Evaluation",
+    "level": 2,
+    "start": 834619,
+    "end": 861280,
+    "file": "24-4-2-variations-on-a-scheme-lazy-evaluation.md"
+  },
+  {
+    "title": "4.3 Variations on a Scheme: Nondeterministic Computing",
+    "level": 2,
+    "start": 861280,
+    "end": 914524,
+    "file": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md"
+  },
+  {
+    "title": "4.4 Logic Programming",
+    "level": 2,
+    "start": 914524,
+    "end": 1023959,
+    "file": "26-4-4-logic-programming.md"
+  },
+  {
+    "title": "5 Computing with Register Machines",
+    "level": 1,
+    "start": 1023959,
+    "end": 1028062,
+    "file": "27-5-computing-with-register-machines.md"
+  },
+  {
+    "title": "5.1 Designing Register Machines",
+    "level": 2,
+    "start": 1028062,
+    "end": 1065957,
+    "file": "28-5-1-designing-register-machines.md"
+  },
+  {
+    "title": "5.2 A Register-Machine Simulator",
+    "level": 2,
+    "start": 1065957,
+    "end": 1103780,
+    "file": "29-5-2-a-register-machine-simulator.md"
+  },
+  {
+    "title": "5.3 Storage Allocation and Garbage Collection",
+    "level": 2,
+    "start": 1103780,
+    "end": 1133584,
+    "file": "30-5-3-storage-allocation-and-garbage-collection.md"
+  },
+  {
+    "title": "5.4 The Explicit-Control Evaluator",
+    "level": 2,
+    "start": 1133584,
+    "end": 1172702,
+    "file": "31-5-4-the-explicit-control-evaluator.md"
+  },
+  {
+    "title": "5.5 Compilation",
+    "level": 2,
+    "start": 1172702,
+    "end": 1272040,
+    "file": "32-5-5-compilation.md"
+  },
+  {
+    "title": "References",
+    "level": 1,
+    "start": 1272040,
+    "end": 1287281,
+    "file": "33-references.md"
+  }
+]

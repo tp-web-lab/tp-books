@@ -1,0 +1,26 @@
+{
+  "name": "@tp/book-sicp",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "adapt": "node scripts/canonical.mjs && node scripts/adapt.mjs && node scripts/audit.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test scripts/*.test.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "@tp/tp-components": "link:../../../tp-components"
+  },
+  "devDependencies": {
+    "@xmldom/xmldom": "^0.9.12",
+    "lips": "1.0.0-beta.23.1",
+    "vite": "8.1.5",
+    "vite-plugin-static-copy": "4.1.1"
+  }
+}

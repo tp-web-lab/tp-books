@@ -1,0 +1,1073 @@
+[
+  {
+    "id": "example-001",
+    "signature": "6fcf3f975675f963529a13f36f9441ef0fe5de35e3c6e9310c8f5cbb52c0ea2b",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 163,
+    "status": "passed",
+    "expected": "486\n666\n495\n2\n12.7",
+    "actual": "486\n666\n495\n2\n12.7"
+  },
+  {
+    "id": "example-002",
+    "signature": "4821dad7b2ac368dd3a214f798888096e1abe1e31514dfce5e8a0849b66a8fbd",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 207,
+    "status": "passed",
+    "expected": "75\n1200",
+    "actual": "75\n1200"
+  },
+  {
+    "id": "example-003",
+    "signature": "b21095ee7d65bde57481e1fe1df2311df684d067628277a740ed8a5515bc8066",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 227,
+    "status": "passed",
+    "expected": "19",
+    "actual": "19"
+  },
+  {
+    "id": "example-004",
+    "signature": "ca47e87d068a2dfc8a35e012c139461599dab12ef2c24d7b459e1efa8ba2df6f",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 273,
+    "status": "passed",
+    "expected": "2\n10",
+    "actual": "2\n10"
+  },
+  {
+    "id": "example-005",
+    "signature": "4d05c10d0280ba57a665bb55d3acd5c2f2d908ce46498e4718eb162c75cf8302",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 299,
+    "status": "passed",
+    "expected": "314.159",
+    "actual": "314.159"
+  },
+  {
+    "id": "example-006",
+    "signature": "4725bfb727a4405afb84dbb804bfe640e2d2f88124251d8dfb1f36e245d4ea56",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 311,
+    "status": "passed",
+    "expected": "62.8318",
+    "actual": "62.8318"
+  },
+  {
+    "id": "example-007",
+    "signature": "469e47b26a6d241d2e3ef339404a3c7374d7692a980b8e4b0aeb34b821d3d825",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 400,
+    "status": "passed",
+    "expected": "441\n49\n81",
+    "actual": "441\n49\n81"
+  },
+  {
+    "id": "example-008",
+    "signature": "6a9e2cfb63f76d6160373267bab81ca31dbfebc4cfa27707e203d174e1b36170",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 439,
+    "status": "passed",
+    "expected": "25",
+    "actual": "25"
+  },
+  {
+    "id": "example-009",
+    "signature": "a596d1e6f9bf2ecdd59e7474eda52bf41828ccd133a08c8163ca80567410a4be",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 454,
+    "status": "passed",
+    "expected": "136",
+    "actual": "136"
+  },
+  {
+    "id": "example-010",
+    "signature": "e03cc0a20a4650cbb0c6f1e596b9e2369dd72b124db17924172cf90817e5b153",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 830,
+    "status": "passed",
+    "expected": "3.00009155413138\n11.704699917758145\n1.7739279023207892\n1000.000369924366",
+    "actual": "3.00009155413138\n11.704699917758145\n1.7739279023207892\n1000.000369924366"
+  },
+  {
+    "id": "example-011",
+    "signature": "5bcd6a11c04f6c8fea87263bac8ee46e5953cd17ffca5c1b5b154177db41a26a",
+    "page": "07-1-1-the-elements-of-programming.md",
+    "line": 874,
+    "status": "passed",
+    "expected": "5\n0",
+    "actual": "5\n0"
+  },
+  {
+    "id": "example-012",
+    "signature": "46d36607e2d8abdd01e760c3803bf94f4a4b7fb4e702ba6cd9f2b56e905ced89",
+    "page": "08-1-2-procedures-and-the-processes-they-generate.md",
+    "line": 1308,
+    "status": "passed",
+    "expected": "292",
+    "actual": "292"
+  },
+  {
+    "id": "example-013",
+    "signature": "e5bcddc562c0fd04d2cac18a31d3f120ce62ef731a11f698e6e387747a83cba3",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 1797,
+    "status": "passed",
+    "expected": "3025",
+    "actual": "3025"
+  },
+  {
+    "id": "example-014",
+    "signature": "81b87df74a1cdd9595512fbb7250852c6db5338d16dbd0cebe97dd7690be25fd",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 1818,
+    "status": "passed",
+    "expected": "55",
+    "actual": "55"
+  },
+  {
+    "id": "example-015",
+    "signature": "7b36c14bab93dcf9dd5165e0744a6583500ae80528fccfcda09dafbea1f366b0",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 1839,
+    "status": "passed",
+    "expected": "3.139592655589783",
+    "actual": "3.139592655589783"
+  },
+  {
+    "id": "example-016",
+    "signature": "2b70a65549eea3fcb915a70aed43b70243caa6be5641abbd5c2b6a5b65135903",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 1865,
+    "status": "different",
+    "expected": ".24998750000000042\n.249999875000001",
+    "actual": "0.24998750000000042\n0.249999875000001"
+  },
+  {
+    "id": "example-017",
+    "signature": "ebf80f62c35d731dba4d0f1a91fcab9145eb93a30211785ebe8c7796d052331a",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 1997,
+    "status": "passed",
+    "expected": "12",
+    "actual": "12"
+  },
+  {
+    "id": "example-018",
+    "signature": "36560442347bc5a9af5dc64cacaa63ddca9bd54a33a02b4e1a451cf8f95776b7",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2131,
+    "status": "passed",
+    "expected": "4\n6",
+    "actual": "4\n6"
+  },
+  {
+    "id": "example-019",
+    "signature": "d968af1fbf511b0692d3b76a8517fe42f7a7ca84dc333e400ffd574a989ceaec",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2235,
+    "status": "passed",
+    "expected": "0.7390822985224023",
+    "actual": "0.7390822985224023"
+  },
+  {
+    "id": "example-020",
+    "signature": "9e87d34d18337395f105e720f5832d9653be36899846565f05ba4950ae3f2795",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2245,
+    "status": "passed",
+    "expected": "1.2587315962971173",
+    "actual": "1.2587315962971173"
+  },
+  {
+    "id": "example-021",
+    "signature": "b695dd2c007b8377f38f090a99f11e01064f6045040dc9979f2169a51a6e6b17",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2341,
+    "status": "passed",
+    "expected": "55",
+    "actual": "55"
+  },
+  {
+    "id": "example-022",
+    "signature": "9a8d0a900b01c76b3b7144562aca1633af40d5bd840a4a9761cfc0c61ee046f6",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2398,
+    "status": "passed",
+    "expected": "75.00014999664018",
+    "actual": "75.00014999664018"
+  },
+  {
+    "id": "example-023",
+    "signature": "462f361c1efe8fb163d437f11ee139ffb70ea5b9d497c12c8a2a2a55aa7b0e03",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2484,
+    "status": "passed",
+    "expected": "49",
+    "actual": "49"
+  },
+  {
+    "id": "example-024",
+    "signature": "63b3b19ca5e61bddb2ff6c9c465e34e8212c325d96ad6c3fe15c036a5adac25a",
+    "page": "09-1-3-formulating-abstractions-with-higher-order-procedures.md",
+    "line": 2494,
+    "status": "error",
+    "expected": "625",
+    "error": "Unbound variable `repeated'"
+  },
+  {
+    "id": "example-025",
+    "signature": "a8c4b0a78401f771f55fa26d62f8f8a9e5ce7aca4039943c463ac83677d4bf54",
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "line": 2635,
+    "status": "passed",
+    "expected": "1\n2",
+    "actual": "1\n2"
+  },
+  {
+    "id": "example-026",
+    "signature": "f4ba0777e7126f9b6efc9b708d37490efb63aa02aeed78758d0052c1e0efa5a8",
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "line": 2661,
+    "status": "passed",
+    "expected": "1\n3",
+    "actual": "1\n3"
+  },
+  {
+    "id": "example-027",
+    "signature": "35135db5865f89981c06f24cce2f4b41445fb623bf1b8b48bdf9fcf6f92207bc",
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "line": 2703,
+    "status": "passed",
+    "expected": "1/2",
+    "actual": "1/2"
+  },
+  {
+    "id": "example-028",
+    "signature": "04135103c41d3df5618c7e759587865a91ef7fcf68a7bae012095b35acc435f4",
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "line": 2717,
+    "status": "passed",
+    "expected": "5/6\n1/6\n6/9",
+    "actual": "5/6\n1/6\n6/9"
+  },
+  {
+    "id": "example-029",
+    "signature": "616abaf2e09b3ab603c3d08263edc384fb500301a2a1d5a034bfd772194acfaa",
+    "page": "11-2-1-introduction-to-data-abstraction.md",
+    "line": 2751,
+    "status": "different",
+    "expected": "2/3",
+    "actual": "6/9"
+  },
+  {
+    "id": "example-030",
+    "signature": "1e35ea446e68d34d5cf9bffa2151a3b4aac6f9e329886ad3399e622bae5827f5",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3051,
+    "status": "passed",
+    "expected": "(1 2 3 4)",
+    "actual": "(1 2 3 4)"
+  },
+  {
+    "id": "example-031",
+    "signature": "458ba349ba21d4bb14694afb444c15c0848c0ced652a2c5d841f71293898ca62",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3063,
+    "status": "passed",
+    "expected": "1\n(2 3 4)\n2\n(10 1 2 3 4)\n(5 1 2 3 4)",
+    "actual": "1\n(2 3 4)\n2\n(10 1 2 3 4)\n(5 1 2 3 4)"
+  },
+  {
+    "id": "example-032",
+    "signature": "7ea51207d987d65815245d9f99a726cc650238c4b5a4a0defa14e543c1509843",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3118,
+    "status": "passed",
+    "expected": "16",
+    "actual": "16"
+  },
+  {
+    "id": "example-033",
+    "signature": "45dc39d4decf539dcf8a4f57d7d92c966c47a939c3065789e13a9665d368efae",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3158,
+    "status": "passed",
+    "expected": "(1 4 9 16 25 1 3 5 7)\n(1 3 5 7 1 4 9 16 25)",
+    "actual": "(1 4 9 16 25 1 3 5 7)\n(1 3 5 7 1 4 9 16 25)"
+  },
+  {
+    "id": "example-034",
+    "signature": "f92e59d42eb9410814763547c0f6f333e455983d2ce6d82e8ea93cee39052023",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3187,
+    "status": "passed",
+    "expected": "(34)",
+    "actual": "(34)"
+  },
+  {
+    "id": "example-035",
+    "signature": "e0f2e9889a48952ed435e65c70e0b6bbd89f60720104eb12eb423f2e9bcb1e4e",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3197,
+    "status": "passed",
+    "expected": "(25 16 9 4 1)",
+    "actual": "(25 16 9 4 1)"
+  },
+  {
+    "id": "example-036",
+    "signature": "fbcecd87b4dd435991280622cce5ef3c2cd727ced26cfcb8989cc6cd4a76a79d",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3217,
+    "status": "error",
+    "expected": "292",
+    "error": "Unbound variable `no-more?'"
+  },
+  {
+    "id": "example-037",
+    "signature": "4aa9070840c87184cec1302bd0589dc6a4ba0c5fffb6875bed4bb3fb8f9d9f22",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3271,
+    "status": "error",
+    "expected": "(1 3 5 7)\n(2 4 6)",
+    "error": "Unbound variable `same-parity'"
+  },
+  {
+    "id": "example-038",
+    "signature": "29b60ff4b2baa7c0df81f02be0aa7bed56621e2b640e57c81680550e15b6c0b3",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3299,
+    "status": "passed",
+    "expected": "(10 20 30 40 50)",
+    "actual": "(10 20 30 40 50)"
+  },
+  {
+    "id": "example-039",
+    "signature": "52b2b0ee8f178d01d6f307c211b0e8fdab3a9757e9d1ad05910102d2ccf3591d",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3317,
+    "status": "passed",
+    "expected": "(10 2.5 11.6 17)\n(1 4 9 16)",
+    "actual": "(10 2.5 11.6 17)\n(1 4 9 16)"
+  },
+  {
+    "id": "example-040",
+    "signature": "15df295a56e1ab7d8c8b3e9a1714c568434ab6306d4f063d6b8099c456f6259e",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3346,
+    "status": "different",
+    "expected": "(1 4 9 16)",
+    "actual": "(16 9 4 1)"
+  },
+  {
+    "id": "example-041",
+    "signature": "d80d7371e8a87685a29ba2f8c526eb5ac1713c7933de20bf808901462dad0778",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3401,
+    "status": "passed",
+    "expected": "57\n321\n88",
+    "actual": "57\n321\n88"
+  },
+  {
+    "id": "example-042",
+    "signature": "f9af1aaf89a5bbc2e294b78734b46f2087c197bfce234a1909fd074f0c7d063b",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3478,
+    "status": "passed",
+    "expected": "3\n4\n(((1 2) 3 4) ((1 2) 3 4))\n2\n8",
+    "actual": "3\n4\n(((1 2) 3 4) ((1 2) 3 4))\n2\n8"
+  },
+  {
+    "id": "example-043",
+    "signature": "cd55ba9ca4fdbdacf8ab505239565afb145973163b173b62853971463f9dc8b7",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3577,
+    "status": "error",
+    "expected": "((1 2) (3 4))\n((3 4) (1 2))\n((4 3) (2 1))",
+    "error": "Unbound variable `deep-reverse'"
+  },
+  {
+    "id": "example-044",
+    "signature": "7b4c2709d8409093f674a6c55d1898d3de5c2fd9b2eee7ec5b2a90d59322eb43",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3607,
+    "status": "error",
+    "expected": "(1 2 3 4)\n(1 2 3 4 1 2 3 4)",
+    "error": "Unbound variable `fringe'"
+  },
+  {
+    "id": "example-045",
+    "signature": "05a6b6a770f5a024e0397b21ce1b72986ab3575ac62b2debda7c79afa31a8d37",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3664,
+    "status": "passed",
+    "expected": "(10 (20 (30 40) 50) (60 70))",
+    "actual": "(10 (20 (30 40) 50) (60 70))"
+  },
+  {
+    "id": "example-046",
+    "signature": "6fbc8b6b2b5b438256a56d63c00fd55faf8318e4e788d0fb6b2975b59e89fd1e",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3688,
+    "status": "error",
+    "expected": "(1 (4 (9 16) 25) (36 49))",
+    "error": "Expecting number got nil"
+  },
+  {
+    "id": "example-047",
+    "signature": "5a590891b2ce9d7cae18f56e0adda44f5e2ad29b684c7edbba05640caad5054f",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3771,
+    "status": "passed",
+    "expected": "(1 4 9 16 25)",
+    "actual": "(1 4 9 16 25)"
+  },
+  {
+    "id": "example-048",
+    "signature": "3fc203833e28108c81ae8117f542d4d675ef5cabb22cbb32a0ce1271e7d74286",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3792,
+    "status": "passed",
+    "expected": "(1 3 5)",
+    "actual": "(1 3 5)"
+  },
+  {
+    "id": "example-049",
+    "signature": "11514c274e4f3b82d3feb6fcdddd6b9628af4edd4f6a27cd922fc62fdbddbc3d",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3810,
+    "status": "passed",
+    "expected": "15\n120\n(1 2 3 4 5)",
+    "actual": "15\n120\n(1 2 3 4 5)"
+  },
+  {
+    "id": "example-050",
+    "signature": "eaa9c0ccf42082d430db987dd3c42530521c08dc1bbc6eb375fc88379c37ea36",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3843,
+    "status": "passed",
+    "expected": "(2 3 4 5 6 7)",
+    "actual": "(2 3 4 5 6 7)"
+  },
+  {
+    "id": "example-051",
+    "signature": "b8c1e0ecc1a7f78892249b4cde0a9b235e11a01972573c66d1d5d4a2b8541805",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3861,
+    "status": "passed",
+    "expected": "(1 2 3 4 5)",
+    "actual": "(1 2 3 4 5)"
+  },
+  {
+    "id": "example-052",
+    "signature": "06b9bb7e0e086cacebb93fcb44ca4d184a1678b98b451a705e7464b3623c6227",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3904,
+    "status": "passed",
+    "expected": "(0 1 1 4 9 25 64 169 441 1156 3025)",
+    "actual": "(0 1 1 4 9 25 64 169 441 1156 3025)"
+  },
+  {
+    "id": "example-053",
+    "signature": "8d3a3c32c88fd20f592ff87f3a5d5dd2d3323b4b8e2a9897b8c92548f355437e",
+    "page": "12-2-2-hierarchical-data-and-the-closure-property.md",
+    "line": 3922,
+    "status": "passed",
+    "expected": "225",
+    "actual": "225"
+  },
+  {
+    "id": "example-054",
+    "signature": "60d3e4dd739bc1be5a81d5f15635c219c6b20c9e4501b88eec3f4fef9a142693",
+    "page": "13-2-3-symbolic-data.md",
+    "line": 4641,
+    "status": "passed",
+    "expected": "(1 2)\n(a b)\n(a 2)",
+    "actual": "(1 2)\n(a b)\n(a 2)"
+  },
+  {
+    "id": "example-055",
+    "signature": "d0ceef20313d96155ef7fed07f3f90137fcd8582d121092fdeece264aacacf88",
+    "page": "13-2-3-symbolic-data.md",
+    "line": 4667,
+    "status": "passed",
+    "expected": "a\n(b c)",
+    "actual": "a\n(b c)"
+  },
+  {
+    "id": "example-056",
+    "signature": "3a954323e7c4e886982bb0ad33e4a81438fa0f8f62588f3785730708555c541d",
+    "page": "13-2-3-symbolic-data.md",
+    "line": 4890,
+    "status": "passed",
+    "expected": "(+ 1 0)\n(+ (* x 0) (* 1 y))\n(+ (* (* x y) (+ 1 0))\n   (* (+ (* x 0) (* 1 y))\n      (+  x 3)))",
+    "actual": "(+ 1 0)\n(+ (* x 0) (* 1 y))\n(+ (* (* x y) (+ 1 0)) (* (+ (* x 0) (* 1 y)) (+ x 3)))"
+  },
+  {
+    "id": "example-057",
+    "signature": "ae8b0ccbddf1d99ffa5ac413e63a4467e39960069442f56a28ced9b918b1eca8",
+    "page": "13-2-3-symbolic-data.md",
+    "line": 4954,
+    "status": "different",
+    "expected": "1\ny\n(+ (* x y) (* y (+ x 3)))",
+    "actual": "(+ 1 0)\n(+ (* x 0) (* 1 y))\n(+ (* (* x y) (+ 1 0)) (* (+ (* x 0) (* 1 y)) (+ x 3)))"
+  },
+  {
+    "id": "example-058",
+    "signature": "e646aad9621895dc597d3ebfbcc6d21d6c074e8b41a416207f92e023a253bf60",
+    "page": "14-2-4-multiple-representations-for-abstract-data.md",
+    "line": 5863,
+    "status": "passed",
+    "expected": "(+ (* (* x y) (+ 1 0))\n(* (+ (* x 0) (* 1 y))\n(+  x 4)))",
+    "actual": "(+ (* (* x y) (+ 1 0)) (* (+ (* x 0) (* 1 y)) (+ x 4)))"
+  },
+  {
+    "id": "example-059",
+    "signature": "c8e0b16dbe464767d630c3ad612b53596314cfee847be3c890665a818b020217",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6627,
+    "status": "passed",
+    "expected": "75\n50\n\"Insufficient funds\"\n35",
+    "actual": "75\n50\n\"Insufficient funds\"\n35"
+  },
+  {
+    "id": "example-060",
+    "signature": "058c90a2955880179c0207e498ac0744e4aad970fa2180c1e145b62207335c85",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6729,
+    "status": "passed",
+    "expected": "50\n30\n\"Insufficient funds\"\n10",
+    "actual": "50\n30\n\"Insufficient funds\"\n10"
+  },
+  {
+    "id": "example-061",
+    "signature": "eda627329b543d42937d55a3b0269453096e76ed8af047b7a4a8bc3bb491a186",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6791,
+    "status": "passed",
+    "expected": "50\n\"Insufficient funds\"\n90\n30",
+    "actual": "50\n\"Insufficient funds\"\n90\n30"
+  },
+  {
+    "id": "example-062",
+    "signature": "c78aa32565e22939e4d1c29dd302d64f43f6bd0addc63a34159f7f8d7fe547e5",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6837,
+    "status": "error",
+    "expected": "15\n25",
+    "error": "Unbound variable `make-accumulator'"
+  },
+  {
+    "id": "example-063",
+    "signature": "4c437404bd4914eabbdf1a71c191cd121f1d7bda249427becf1956a9c9b242af",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6859,
+    "status": "error",
+    "expected": "10\n1",
+    "error": "Unbound variable `*table*'"
+  },
+  {
+    "id": "example-064",
+    "signature": "77b25a1b0350e3882eb81babfe106a5838e4fde4f7f3e7843cfebaa59579eacb",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 6883,
+    "status": "error",
+    "expected": "60\n\"Incorrect password\"",
+    "error": "Unknown request - - MAKE-ACCOUNT"
+  },
+  {
+    "id": "example-065",
+    "signature": "c1bc06a1b514f9b0fbfa4a1ba3066a7a7b9878cdec20381dfa22b9c89fa38f09",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 7023,
+    "status": "passed",
+    "expected": "5\n-5",
+    "actual": "5\n-5"
+  },
+  {
+    "id": "example-066",
+    "signature": "a293ebb309801ac591e71a62ef7edd9235f6bd113d07ed89881a80af28c59a8e",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 7053,
+    "status": "passed",
+    "expected": "5\n15",
+    "actual": "5\n15"
+  },
+  {
+    "id": "example-067",
+    "signature": "2e3d9e9344f4ead45cd196c200499c461bfdf71c44780fff7afc29224a3523e8",
+    "page": "17-3-1-assignment-and-local-state.md",
+    "line": 7135,
+    "status": "passed",
+    "expected": "5\n-15\n5",
+    "actual": "5\n-15\n5"
+  },
+  {
+    "id": "example-068",
+    "signature": "0bdbbedffc31f52359b302035d78a459c7d8cb918478db04e2193de54089dd54",
+    "page": "18-3-2-the-environment-model-of-evaluation.md",
+    "line": 7397,
+    "status": "passed",
+    "expected": "50",
+    "actual": "50"
+  },
+  {
+    "id": "example-069",
+    "signature": "0bdbbedffc31f52359b302035d78a459c7d8cb918478db04e2193de54089dd54",
+    "page": "18-3-2-the-environment-model-of-evaluation.md",
+    "line": 7425,
+    "status": "passed",
+    "expected": "50",
+    "actual": "50"
+  },
+  {
+    "id": "example-070",
+    "signature": "6af47ddadf7be52ff084c4af6aece5ff3eb71d824b60646ddc03b0c2cf793918",
+    "page": "18-3-2-the-environment-model-of-evaluation.md",
+    "line": 7568,
+    "status": "passed",
+    "expected": "90\n30",
+    "actual": "90\n30"
+  },
+  {
+    "id": "example-071",
+    "signature": "596b87a267983b25d39ede605b443c404bcd1a92a4caae7d8cc622b135369660",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 7688,
+    "status": "different",
+    "expected": "(a b c d)\n<response>",
+    "actual": "(a b c d)\n(b)"
+  },
+  {
+    "id": "example-072",
+    "signature": "6eb1a6301f676d6b56fbed3ea2f07974027460b0c51a5196d266280d2a40e0ab",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 7708,
+    "status": "different",
+    "expected": "(a b c d)\n<response>",
+    "actual": "(a b c d)\n(b c d)"
+  },
+  {
+    "id": "example-073",
+    "signature": "68e485a48d41efee0e90a9fc2ce1a35a60da470569b6d01a24c875dd38f16ca9",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 7812,
+    "status": "passed",
+    "expected": "((a b) a b)\n((wow b) wow b)\n((a b) a b)\n((wow b) a b)",
+    "actual": "((a b) a b)\n((wow b) wow b)\n((a b) a b)\n((wow b) a b)"
+  },
+  {
+    "id": "example-074",
+    "signature": "d6d4a0981110c6b755a0335b1050ce33f596c12644f64534daabfabc1fbdb1f2",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 7925,
+    "status": "different",
+    "expected": "17",
+    "actual": "1"
+  },
+  {
+    "id": "example-075",
+    "signature": "1b0ec5a40a9f8b05977042c5684819eac6bf9cba2d431f12ff4afafb8cdcd0d4",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8055,
+    "status": "passed",
+    "expected": "((a) a)\n((a b) b)\n((b) b)\n(() b)",
+    "actual": "((a) a)\n((a b) b)\n((b) b)\n(() b)"
+  },
+  {
+    "id": "example-076",
+    "signature": "38268cd0389d4d0e2976b2602d3de4c6223214e2808c7270d5e0f0e622f3e251",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8327,
+    "status": "error",
+    "expected": "ok\nok\nok\nok",
+    "error": "Unbound variable `or-gate'"
+  },
+  {
+    "id": "example-077",
+    "signature": "08c785022922fd7dbf68861369eb25029d0cdef7066a20ccc35302af903343c0",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8566,
+    "status": "passed",
+    "expected": "sum 0  New-value = 0\ncarry 0  New-value = 0",
+    "actual": "sum 0  New-value = 0\ncarry 0  New-value = 0"
+  },
+  {
+    "id": "example-078",
+    "signature": "2797576525ef8167c98251b11e176a2de11af523384958db542d1f65b441da20",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8589,
+    "status": "error",
+    "expected": "ok\ndone\nsum 8  New-value = 1\ndone",
+    "error": "Unbound variable `or-gate'"
+  },
+  {
+    "id": "example-079",
+    "signature": "0e8ef01b77350c6a4a5221026c8d5effb8d69620b11d318e4acb8f429dd072d0",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8616,
+    "status": "error",
+    "expected": "done\ncarry 11  New value = 1\nsum 16  New value = 0\ndone",
+    "error": "Unbound variable `or-gate'"
+  },
+  {
+    "id": "example-080",
+    "signature": "581a10f99bbf30a1bdc7076f7a7a33d865c42e89e2527746995d99969ad14b4b",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8781,
+    "status": "passed",
+    "expected": "ok",
+    "actual": "ok"
+  },
+  {
+    "id": "example-081",
+    "signature": "ad29ab600c4220f389f0e46fdb13bb9e29e35b758691b3956c3c6be6ed6042b4",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8820,
+    "status": "different",
+    "expected": "Probe: Celsius temp = 25\nProbe: Fahrenheit temp = 77\ndone",
+    "actual": "Probe: Celsius temp = 25\nProbe: Fahrenheit temp = 77done"
+  },
+  {
+    "id": "example-082",
+    "signature": "e0e717c7bdf19c771ee15bc098bcf7d77e6330be0030b2abe3c1cd12f8df19c4",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8834,
+    "status": "error",
+    "expected": "Error! Contradiction (77 212)",
+    "error": "Contradiction"
+  },
+  {
+    "id": "example-083",
+    "signature": "1edcfde3d9cb31f7548e3a3b0d1be704cf876bf0e80cd43f6d5c982d3ea6da33",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8844,
+    "status": "different",
+    "expected": "Probe: Celsius temp = ?\nProbe: Fahrenheit temp = ?\ndone",
+    "actual": "Probe: Celsius temp = ?\nProbe: Fahrenheit temp = ?done"
+  },
+  {
+    "id": "example-084",
+    "signature": "e0e717c7bdf19c771ee15bc098bcf7d77e6330be0030b2abe3c1cd12f8df19c4",
+    "page": "19-3-3-modeling-with-mutable-data.md",
+    "line": 8858,
+    "status": "error",
+    "expected": "Probe: Fahrenheit temp = 212\nProbe: Celsius temp = 100\ndone",
+    "error": "Contradiction"
+  },
+  {
+    "id": "example-085",
+    "signature": "33812e59f08f82d30e2e3a38dbbebcb3fd0b28299c698cca805049e96a2a7061",
+    "page": "20-3-4-concurrency-time-is-of-the-essence.md",
+    "line": 9166,
+    "status": "passed",
+    "expected": "75\n50",
+    "actual": "75\n50"
+  },
+  {
+    "id": "example-086",
+    "signature": "6b2d049cddbf99add947b77eafc87f34589036a7474cb46840a95d47ba3f486d",
+    "page": "21-3-5-streams.md",
+    "line": 9979,
+    "status": "passed",
+    "expected": "117",
+    "actual": "117"
+  },
+  {
+    "id": "example-087",
+    "signature": "87babb4d3306d7d64375d9ba8112be831f8d894590ef709e51cf880ead13fc17",
+    "page": "21-3-5-streams.md",
+    "line": 10014,
+    "status": "passed",
+    "expected": "233",
+    "actual": "233"
+  },
+  {
+    "id": "example-088",
+    "signature": "fefd401b9c208a71f38637a0d82a8326d8f897790d3486e929c965b797251177",
+    "page": "21-3-5-streams.md",
+    "line": 10254,
+    "status": "error",
+    "expected": "1.\n1.5\n1.4166666666666665\n1.4142156862745097\n1.4142135623746899\n...",
+    "error": "Execution exceeded the time limit"
+  },
+  {
+    "id": "example-089",
+    "signature": "11dc8540a48f006ef69caec2feccee359780db90de16cab0efa42ddffb075ebe",
+    "page": "21-3-5-streams.md",
+    "line": 10286,
+    "status": "error",
+    "expected": "4.\n2.666666666666667\n3.466666666666667\n2.8952380952380956\n3.3396825396825403\n2.9760461760461765\n3.2837384837384844\n3.017071817071818\n...",
+    "error": "Unbound variable `partial-sums'"
+  },
+  {
+    "id": "example-090",
+    "signature": "1bd61bb6cbf87e62be5fdc9c5be44e46f31bf3a7c822dd5dfadfb5e018863a95",
+    "page": "21-3-5-streams.md",
+    "line": 10318,
+    "status": "error",
+    "expected": "3.166666666666667\n3.1333333333333337\n3.1452380952380956\n3.13968253968254\n3.1427128427128435\n3.1408813408813416\n3.142071817071818\n3.1412548236077655\n...",
+    "error": "Unbound variable `partial-sums'"
+  },
+  {
+    "id": "example-091",
+    "signature": "97e38d164cbb8600b5e5ea0d114aab443f46b236527459035843396fd51162fd",
+    "page": "21-3-5-streams.md",
+    "line": 10362,
+    "status": "error",
+    "expected": "4.\n3.166666666666667\n3.142105263157895\n3.141599357319005\n3.1415927140337785\n3.1415926539752927\n3.1415926535911765\n3.141592653589778\n...",
+    "error": "Unbound variable `partial-sums'"
+  },
+  {
+    "id": "example-092",
+    "signature": "5dc3bb71812af4cfe582ed1a4a52321dc63d07a80ab407ed36322389854aceae",
+    "page": "21-3-5-streams.md",
+    "line": 10672,
+    "status": "different",
+    "expected": "2.716924",
+    "actual": "0.0"
+  },
+  {
+    "id": "example-093",
+    "signature": "70eb6b3b74d7c2d22482976c42af699075b374a32e3fd94522edce45e5a64328",
+    "page": "23-4-1-the-metacircular-evaluator.md",
+    "line": 11658,
+    "status": "different",
+    "expected": ";;; M-Eval value:\nok",
+    "actual": ""
+  },
+  {
+    "id": "example-094",
+    "signature": "ed053c3c9d348b0839f05c8a99f08cb6baa5c38513cc61bfd1f68277366ee580",
+    "page": "23-4-1-the-metacircular-evaluator.md",
+    "line": 11675,
+    "status": "error",
+    "expected": ";;; M-Eval value:\n(a b c d e f)",
+    "error": "prompt is not defined"
+  },
+  {
+    "id": "example-095",
+    "signature": "6c34498f387e9e20bf12fa66b73cb1b954377491e7ca0b18369c79c11ab25e57",
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "line": 12268,
+    "status": "error",
+    "expected": ";;; L-Eval input:\n(define (try a b)\n(if (= a 0) 1 b))\n;;; L-Eval value:\nok",
+    "error": "prompt is not defined"
+  },
+  {
+    "id": "example-096",
+    "signature": "60c10e5937a77a2f11ecd45e0cfe4e18ff54c07e26e0e6e4df5269a14f56a817",
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "line": 12358,
+    "status": "different",
+    "expected": ";;; L-Eval input:\n(square (id 10))\n;;; L-Eval value:\nresponse\n;;; L-Eval input:\ncount\n;;; L-Eval value:\nresponse",
+    "actual": ""
+  },
+  {
+    "id": "example-097",
+    "signature": "10f585c4b561178b8366151c0108f25cdc1c9771cbd8ab4738b96e3c65bd1e1c",
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "line": 12401,
+    "status": "different",
+    "expected": "57\n321\n88\n;;; L-Eval value:\ndone",
+    "actual": "57\n321\n88"
+  },
+  {
+    "id": "example-098",
+    "signature": "e324db904d994afbfffddc295b580f49dce536cb3a498647cc4f1b1aefe4d83a",
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "line": 12501,
+    "status": "error",
+    "expected": ";;; L-Eval value:\n18",
+    "error": "Unbound variable `ones'"
+  },
+  {
+    "id": "example-099",
+    "signature": "56a63bb677bdde70758d8d6cb72e320cf2a936d4379fe0441ee22ccfbb3fefb2",
+    "page": "24-4-2-variations-on-a-scheme-lazy-evaluation.md",
+    "line": 12514,
+    "status": "different",
+    "expected": ";;; L-Eval input:\n      (list-ref (solve (lambda (x) x) 1 0.001) 1000)\n      ;;; L-Eval value:\n      2.716924",
+    "actual": ""
+  },
+  {
+    "id": "example-100",
+    "signature": "1e545e0fa2f5cbab30f00a208e18dbfee7fc1a063bd5ac1d655afc3f5b6423c7",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12581,
+    "status": "error",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\n(3 20)",
+    "error": "Unbound variable `amb'"
+  },
+  {
+    "id": "example-101",
+    "signature": "1e545e0fa2f5cbab30f00a208e18dbfee7fc1a063bd5ac1d655afc3f5b6423c7",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12651,
+    "status": "error",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\n(3 20)",
+    "error": "Unbound variable `amb'"
+  },
+  {
+    "id": "example-102",
+    "signature": "39a6d1ff9679a31dedea2c59d1b07f1ebfe5c1676af37e76464ebd0dfd1b2ca0",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12665,
+    "status": "error",
+    "expected": ";;; Amb-Eval value:\n(3 110)",
+    "error": "Unbound variable `try-again'"
+  },
+  {
+    "id": "example-103",
+    "signature": "8673031d2269205706d888675d3a635aefb8fdd8b31067de12d560988932a943",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12678,
+    "status": "error",
+    "expected": ";;; Amb-Eval value:\n(8 35)\n\n;;; Amb-Eval input:\n;;; There are no more values of\n(prime-sum-pair (quote (1 3 5 8)) (quote (20 35 110)))",
+    "error": "Unbound variable `try-again'"
+  },
+  {
+    "id": "example-104",
+    "signature": "cd37e9ef35c4c6ca059140a5535c9b9f614faa1015b13ea1c3349c5989072ae0",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12702,
+    "status": "error",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\n(30 11)",
+    "error": "Unbound variable `amb'"
+  },
+  {
+    "id": "example-105",
+    "signature": "33f5db7d8a5bc6e7d5df922116d5232ed7fd459e3b0b4f59c519dabfcbfd8064",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 12886,
+    "status": "different",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\n(sentence (noun-phrase (article the) (noun cat)) (verb eats))",
+    "actual": "(sentence (noun-phrase (article the) (noun cat)) (verb eats))"
+  },
+  {
+    "id": "example-106",
+    "signature": "04a734b9208fa1b26d39b6ca0b46dad87f54041d09d8de0e0308caa96ad9a406",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 13358,
+    "status": "error",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\n(a b 2)\n\n;;; Amb-Eval input:\n;;; Amb-Eval value:\n(a c 3)",
+    "error": "Unbound variable `amb'"
+  },
+  {
+    "id": "example-107",
+    "signature": "a25b72f23c0ec5f271fb04da8e1dc0c2e492fa014bf4ee3f72df0a515cb6a5f5",
+    "page": "25-4-3-variations-on-a-scheme-nondeterministic-computing.md",
+    "line": 13393,
+    "status": "error",
+    "expected": ";;; Starting a new problem\n;;; Amb-Eval value:\nall-odd\n\n;;; Amb-Eval input:\n;;; Starting a new problem\n;;; Amb-Eval value:\n8",
+    "error": "Unbound variable `if-fail'"
+  },
+  {
+    "id": "example-108",
+    "signature": "30c61c4018290c16c71f441bcbfcb6115845de27ca5e03a5f75ef09109220cc4",
+    "page": "26-4-4-logic-programming.md",
+    "line": 13938,
+    "status": "error",
+    "expected": ";;; Query results:\n(append-to-form (a b) (c d) (a b c d))",
+    "error": "Unbound variable `append-to-form'"
+  },
+  {
+    "id": "example-109",
+    "signature": "7fd10217a33e98052d66bdc46f4ab216059adb12e7dd51f6d79aa239f73e5304",
+    "page": "26-4-4-logic-programming.md",
+    "line": 13953,
+    "status": "error",
+    "expected": ";;; Query results:\n      (append-to-form (a b) (c d) (a b c d))",
+    "error": "Unbound variable `append-to-form'"
+  },
+  {
+    "id": "example-110",
+    "signature": "18101110a27b38bacc51ab8377a3637a4148b31187e457bea8f6eebc780fe1eb",
+    "page": "26-4-4-logic-programming.md",
+    "line": 13968,
+    "status": "error",
+    "expected": ";;; Query results:\n(append-to-form () (a b c d) (a b c d))\n(append-to-form (a) (b c d) (a b c d))\n(append-to-form (a b) (c d) (a b c d))\n(append-to-form (a b c) (d) (a b c d))\n(append-to-form (a b c d) () (a b c d))",
+    "error": "Unbound variable `append-to-form'"
+  },
+  {
+    "id": "example-111",
+    "signature": "34f6f1a894a9faaee406613d9797141cfbd4147ffa24d6bec3b38dcc77f0ceef",
+    "page": "29-5-2-a-register-machine-simulator.md",
+    "line": 15553,
+    "status": "passed",
+    "expected": "done\ndone\ndone\n2",
+    "actual": "done\ndone\ndone\n2"
+  },
+  {
+    "id": "example-112",
+    "signature": "407848d12cbce62a256e5f72b250e3c13ffc7dd1f7a114228b153d2d530b0dbc",
+    "page": "31-5-4-the-explicit-control-evaluator.md",
+    "line": 16946,
+    "status": "error",
+    "expected": ";;; EC-Eval input:\n(define (append x y)\n(if (null? x)\ny\n(cons (car x)\n    (append (cdr x) y))))\n;;; EC-Eval value:\nok\n\n;;; EC-Eval input:\n(append '(a b c) '(d e f))\n;;; EC-Eval value:\n(a b c d e f)",
+    "error": "Unbound variable `eceval'"
+  },
+  {
+    "id": "example-113",
+    "signature": "93896ff08e4dfe89ab318620ad3b911ce4b4adc5c82e3ac2a4721a3d159d7559",
+    "page": "32-5-5-compilation.md",
+    "line": 18090,
+    "status": "error",
+    "expected": "(1 2)\n(2 0)\nnot-found",
+    "error": "Unbound variable `find-variable'"
+  },
+  {
+    "id": "example-114",
+    "signature": "d61b7628de0ff2132610b27b89db741e4f449db6109a8ccca3a9ee78ccc53485",
+    "page": "32-5-5-compilation.md",
+    "line": 18137,
+    "status": "error",
+    "expected": ";;; EC-Eval value:\nok",
+    "error": "Unbound variable `empty-instruction-sequence'"
+  },
+  {
+    "id": "example-115",
+    "signature": "877c3aea576d93cd98cc8d6497ca5b137ae953d26ae8cde2b88835236af58273",
+    "page": "32-5-5-compilation.md",
+    "line": 18154,
+    "status": "different",
+    "expected": ";;; EC-Eval value:\n120",
+    "actual": "120"
+  },
+  {
+    "id": "example-116",
+    "signature": "d61b7628de0ff2132610b27b89db741e4f449db6109a8ccca3a9ee78ccc53485",
+    "page": "32-5-5-compilation.md",
+    "line": 18213,
+    "status": "error",
+    "expected": "(total-pushes = 0 maximum-depth = 0)\n;;; EC-Eval value:\nok",
+    "error": "Unbound variable `empty-instruction-sequence'"
+  },
+  {
+    "id": "example-117",
+    "signature": "877c3aea576d93cd98cc8d6497ca5b137ae953d26ae8cde2b88835236af58273",
+    "page": "32-5-5-compilation.md",
+    "line": 18231,
+    "status": "different",
+    "expected": "(total-pushes = 31 maximum-depth = 14)\n;;; EC-Eval value:\n120",
+    "actual": "120"
+  },
+  {
+    "id": "example-118",
+    "signature": "f86caa374ebae19f37fb4bec39fdfdc6c9267b9eed27ba1cfda9be0876914a3d",
+    "page": "32-5-5-compilation.md",
+    "line": 18281,
+    "status": "error",
+    "expected": ";;; EC-Eval value:\nok",
+    "error": "Unbound variable `compile-and-run'"
+  },
+  {
+    "id": "example-119",
+    "signature": "877c3aea576d93cd98cc8d6497ca5b137ae953d26ae8cde2b88835236af58273",
+    "page": "32-5-5-compilation.md",
+    "line": 18298,
+    "status": "different",
+    "expected": ";;; EC-Eval value:\n120",
+    "actual": "120"
+  }
+]

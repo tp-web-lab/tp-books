@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/source-academy/sicp",
+  "revision": "fb2c363abda45e26e174e6a22c771efde20962f0",
+  "commitDate": "2026-11-03T16:40:11+08:00",
+  "pdfCreated": "2026-11-03T09:59:08+01:00",
+  "selection": "Scheme and PDF_ONLY branches; excludes JAVASCRIPT, WEB_ONLY, editorial metadata and exercise solutions",
+  "generator": "scripts/canonical.mjs; scripts/upstream/parseXmlMarkdown.js is an attributed adaptation of the upstream exporter"
+}

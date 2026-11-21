@@ -1,0 +1,62 @@
+[
+  {
+    "before": "# 1 Building Abstractions with",
+    "after": "# 1 Building Abstractions with Procedures",
+    "pdfPage": 29
+  },
+  {
+    "before": "## 1.2 and the Processes They Generate",
+    "after": "## 1.2 Procedures and the Processes They Generate",
+    "pdfPage": 58
+  },
+  {
+    "before": "## 1.3 Formulating Abstractions with Higher-Order",
+    "after": "## 1.3 Formulating Abstractions with Higher-Order Procedures",
+    "pdfPage": 94
+  },
+  {
+    "before": "### 1.1.3 Evaluating",
+    "after": "### 1.1.3 Evaluating Combinations",
+    "pdfPage": 35
+  },
+  {
+    "before": "### 1.1.4 Compound",
+    "after": "### 1.1.4 Compound Procedures",
+    "pdfPage": 38
+  },
+  {
+    "before": "In programming, we deal with two kinds of elements: and data.",
+    "after": "In programming, we deal with two kinds of elements: procedures and data.",
+    "pdfPage": 32
+  },
+  {
+    "before": "and are descriptions of the rules for manipulating the data.",
+    "after": "and procedures are descriptions of the rules for manipulating the data.",
+    "pdfPage": 32
+  },
+  {
+    "before": "primitive data and primitive and should have methods for combining and abstracting and data.",
+    "after": "primitive data and primitive procedures and should have methods for combining and abstracting procedures and data.",
+    "pdfPage": 32
+  },
+  {
+    "before": "the rules for building .",
+    "after": "the rules for building procedures.",
+    "pdfPage": 32
+  },
+  {
+    "before": "these same rules allow us to build to manipulate compound data as well.",
+    "after": "these same rules allow us to build procedures to manipulate compound data as well.",
+    "pdfPage": 32
+  },
+  {
+    "before": "One easy way to get started at programming is to examine some typical interactions with an interpreter for the You type and the interpreter responds by displaying the result of its *evaluating* that",
+    "after": "One easy way to get started at programming is to examine some typical interactions with an interpreter for the Scheme dialect of Lisp. Imagine that you are sitting at a computer terminal. You type an expression, and the interpreter responds by displaying the result of its *evaluating* that expression.",
+    "pdfPage": 32
+  },
+  {
+    "before": "A critical aspect of a programming language is the means it provides for using names to refer to computational We say that the name identifies a whose *value* is the object.",
+    "after": "A critical aspect of a programming language is the means it provides for using names to refer to computational objects. We say that the name identifies a variable whose *value* is the object.\n\nIn the Scheme dialect of Lisp, we name things with `define`.",
+    "pdfPage": 34
+  }
+]
